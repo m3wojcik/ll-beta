@@ -9,6 +9,13 @@ body{
   padding: 0px;
   background-color: #f9f9f9;
 }
+.active-main .md-icon,
+.active-main .md-text{
+    color: $md-primary-color !important;
+}
+.navigation a{
+    text-decoration: none;
+}
 .navigation{
 //  background-color: $md-blue-grey-900;
 }

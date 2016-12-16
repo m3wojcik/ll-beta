@@ -15,7 +15,7 @@ export default class LayoutContainer extends Component {
       navItems={MainNavigation}
       drawerClassName="navigation"
       contentClassName="md-grid"
-      drawerHeaderChildren={<div>sds</div>}
+      //drawerHeaderChildren={<div>sds</div>}
       mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY_MINI}
       tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}
       desktopDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT_MINI}

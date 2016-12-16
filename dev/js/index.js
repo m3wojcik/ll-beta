@@ -15,7 +15,7 @@ import MarksContainer from './containers/MarksContainer';
 
 const middleware = applyMiddleware(promise(), thunk, logger());
 const store = createStore(allReducers, middleware);
-const history = syncHistoryWithStore(browserHistory, store);
+const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
   <Provider store={store}>
