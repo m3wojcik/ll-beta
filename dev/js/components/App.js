@@ -18,7 +18,7 @@ WebFontLoader.load({
 export default class App extends React.Component{
 
   render(){
-      console.log(this.props.routing);
+      console.log("app: ",this.props);
     return(
       <LayoutContainer header={this.props.children.props.route.header} content={this.props.children} />
     )
