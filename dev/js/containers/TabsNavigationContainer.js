@@ -14,23 +14,25 @@ export default class TabsNavigationContainer extends Component {
     this.props.tabs.map(function(tab,i){
         tabs.push(
            <Tab key={i} label={tab.header}>
-               <h3 className="md-cell md-cell--12">component:</h3>
+               <h3 className="md-cell md-cell--12">{this.props.tabsContent[i]}</h3>
            </Tab>)
-    });
+    }.bind(this));
+
     this.state.tabs = tabs;
     this.handleTabChange = this.handleTabChange.bind(this);
   }
     handleTabChange(activeTabIndex) {
-        this.context.router.push('main/'+this.props.tabs[activeTabIndex].path);
-        this.setState({ activeTabIndex: activeTabIndex });
+        this.context.router.push(this.props.tabs[activeTabIndex].path);
+        this.setState({ activeTabIndex: activeTabIndex});
     }
   render(){
+      //console.log(this.props.tabsContent);
     return(
-        <TabsContainer onTabChange={this.handleTabChange} activeTabIndex={this.state.activeTabIndex}>
+        <TabsContainer onTabChange={this.handleTabChange} activeTabIndex={this.state.activeTabIndex} colored>
           <Tabs tabId="tab">
             {this.state.tabs}
           </Tabs>
-          </TabsContainer>
+          </TabsContainer>          
     )
   }
 }

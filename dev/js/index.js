@@ -11,8 +11,9 @@ import { syncHistoryWithStore } from 'react-router-redux'
 import allReducers from './reducers';
 import App from './components/App';
 import DashboardContainer from './containers/DashboardContainer';
-import MarksContainer from './containers/MarksContainer';
+
 import MainContainer from './containers/MainContainer';
+import MarksContainer from './containers/MarksContainer';
 import AlertsContainer from './containers/AlertsContainer';
 
 const middleware = applyMiddleware(promise(), thunk, logger());
@@ -24,7 +25,7 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/"  component={App}>
         <IndexRoute header="Dashboard" component={DashboardContainer} />
-        <Route path="main" header="Main" component={MainContainer} >
+        <Route header="Main" component={MainContainer} childComponents={[<MarksContainer />, <AlertsContainer />]} >
             <Route path="marks" header="Marks" component={MarksContainer} />
             <Route path="alerts" header="Alerts" component={AlertsContainer} />
         </Route>
