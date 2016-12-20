@@ -6,17 +6,17 @@ import {applyMiddleware,createStore} from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
-import { Router, Route, IndexRoute,hashHistory, browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
+import { Router, Route, IndexRoute, IndexRedirect, hashHistory, browserHistory } from 'react-router'
+import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import allReducers from './reducers';
 import App from './components/App';
 import DashboardContainer from './containers/DashboardContainer';
-
 import MainContainer from './containers/MainContainer';
+import ClassesContainer from './containers/ClassesContainer';
+import NotificationsContainer from './containers/NotificationsContainer';
 import MarksContainer from './containers/MarksContainer';
-import AlertsContainer from './containers/AlertsContainer';
 
-const middleware = applyMiddleware(promise(), thunk, logger());
+const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
 const history = syncHistoryWithStore(hashHistory, store);
 
@@ -25,10 +25,12 @@ ReactDOM.render(
     <Router history={history}>
       <Route path="/"  component={App}>
         <IndexRoute header="Dashboard" component={DashboardContainer} />
-        <Route header="Main" component={MainContainer} childComponents={[<MarksContainer />, <AlertsContainer />]} >
-            <Route path="marks" header="Marks" component={MarksContainer} />
-            <Route path="alerts" header="Alerts" component={AlertsContainer} />
+        <IndexRedirect to="/classes" />
+        <Route header="Main" component={MainContainer} childComponents={[<ClassesContainer />, <NotificationsContainer />]} >
+            <Route path="classes" header="Classes"/>
+            <Route path="notifications" header="Notifications"  />
         </Route>
+        <Route path="marks" header="Marks" component={MarksContainer} />
       </Route>
     </Router>
   </Provider>,

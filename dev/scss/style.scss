@@ -1,24 +1,6 @@
 @import '~react-md/src/scss/react-md';
-
 $md-primary-color: $md-light-blue-900;
 $md-secondary-color: $md-lime-a-400;
-
 @include react-md-everything;
-body{
-  margin: 0px;
-  padding: 0px;
-  background-color: #f9f9f9;
-}
-.active-main .md-icon,
-.active-main .md-text{
-    color: $md-primary-color !important;
-}
-.navigation a{
-    text-decoration: none;
-}
-.navigation{
-//  background-color: $md-blue-grey-900;
-}
-.navigation .md-list{
-//  background-color: $md-blue-grey-900;
-}
+@import './layout';
+@import './react-md-override';

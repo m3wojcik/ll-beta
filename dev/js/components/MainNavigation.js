@@ -5,7 +5,7 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 
 const MainNavigation = [
-  <IndexLink  key="dashboard" to="/" activeClassName="active-main" >
+  <IndexLink  key="dashboard" to="/classes" activeClassName="active-main" >
     <ListItem
       primaryText="Dashboard"
       leftIcon={<FontIcon>home</FontIcon>}

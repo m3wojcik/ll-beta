@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import WebFontLoader from 'webfontloader';
 import LayoutContainer from '../containers/LayoutContainer';
 
+
+
 require('../../scss/style.scss');
 WebFontLoader.load({
   google: {
@@ -12,15 +14,13 @@ WebFontLoader.load({
 });
 @connect((store) => {
    return {
-    routing: store.routing.locationBeforeTransitions
+    toolbar: store.app.toolbar
   };
 })
 export default class App extends React.Component{
-
   render(){
-      console.log("app: ",this.props);
     return(
-      <LayoutContainer header={this.props.children.props.route.header} content={this.props.children} />
+      <LayoutContainer header={this.props.toolbar.header} content={this.props.children} />
     )
   }
 }

@@ -1,12 +1,11 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
-// import UserReducer from './reducer-users';
+ import AppReducer from './AppReducer';
 // import ActiveUserReducer from './reducer-active-user';
 
 const allReducers = combineReducers({
-  routing: routerReducer
-  // users: UserReducer,
-  // activeUser: ActiveUserReducer
+  routing: routerReducer,
+  app: AppReducer
 });
 
 export default allReducers;
