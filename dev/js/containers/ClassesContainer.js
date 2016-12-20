@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { setAppHeader } from "../actions/AppActions"
+import { setAppHeader, setPageLoaded } from "../actions/AppActions"
 
 @connect((store) => {
    return {
@@ -10,14 +10,11 @@ import { setAppHeader } from "../actions/AppActions"
 })
 export default class ClassesContainer extends Component {
   componentWillMount() {
+      this.props.dispatch(setPageLoaded(false));
     this.props.dispatch(setAppHeader('Classes'));
   }
   componentDidMount(){
-    console.log(this.props.tabs.tabsContainer);
-    if(this.props.tabs.tabsContainer != null){
-      console.log('update');
-      this.props.tabs.tabsContainer.forceUpdate();
-    }
+    this.props.dispatch(setPageLoaded(true));
   }
   render(){
     if(this.props.page.isLoading){

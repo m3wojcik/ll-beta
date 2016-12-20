@@ -9,8 +9,7 @@ export default function reducer(state={
       tabsContainer: null
     },
     page:{
-      isLoading: false,
-      isLoaded: false,
+      loaded: false,
     }
   }, action) {
 
@@ -45,16 +44,10 @@ export default function reducer(state={
           tabs: {...state.tabs, tabsContainer: action.payload},
         }
       }
-      case "PAGE_IS_LOADING": {
+      case "SET_PAGE_LOADED": {
         return {
           ...state,
-          tabs: {...state.page, isLoading: true, isLoaded: false},
-        }
-      }
-      case "PAGE_IS_LOADED": {
-        return {
-          ...state,
-          tabs: {...state.page, isLoading: false, isLoaded: true},
+          page: {...state.page, loaded: action.payload},
         }
       }
     }

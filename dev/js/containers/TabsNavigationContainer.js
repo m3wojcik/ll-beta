@@ -35,6 +35,7 @@ export default class TabsNavigationContainer extends Component {
   }
   componentWillMount() {
     //Ustawienia headera i aktywnej zakładki
+console.log('will');
     var pathName = this.props.routing.locationBeforeTransitions.pathname;
     pathName = pathName.replace('/', "");
     this.props.tabs.tabs.forEach(function(tab, i){
@@ -44,8 +45,11 @@ export default class TabsNavigationContainer extends Component {
       }
     }.bind(this));
   }
+  componentDidMount(){
+      console.log('did');
+      console.log('pageloaded',this.props.page.loaded);
+  }
   setTabsContainer(tabsContainer) {
-    console.log('set');
     //this.props.dispatch(setTabsContainer(tabsContainer));
     this.tabsContainer = tabsContainer;
 
@@ -61,7 +65,7 @@ export default class TabsNavigationContainer extends Component {
     this.props.dispatch(setAppHeader(this.props.tabs.tabs[activeTabIndex].header));
   }
   render(){
-
+      console.log('render');
     return(
         <TabsContainer
           onTabChange={this.handleTabChange}
