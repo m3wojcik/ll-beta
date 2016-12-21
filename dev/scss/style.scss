@@ -2,5 +2,5 @@
 $md-primary-color: $md-light-blue-900;
 $md-secondary-color: $md-lime-a-400;
 @include react-md-everything;
-@import './layout';
 @import './react-md-override';
+@import './layout';

@@ -7,7 +7,7 @@ import Tab from 'react-md/lib/Tabs/Tab';
 import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
 import Toolbar from 'react-md/lib/Toolbars';
 
-import { setAppHeader, setActiveTabIndex, setTabsContainer } from "../actions/AppActions"
+import { setAppHeader, setActiveTabIndex, setTabsContainer, pageIsLoaded } from "../actions/AppActions"
 
 @connect((store) => {
    return {
@@ -22,16 +22,31 @@ export default class TabsNavigationContainer extends Component {
     super(props);
     this.state = { tabs: []};
     const tabs = [];
+    const childrenWithProps = React.Children.map(this.props.tabs.tabsContent,
+     (child) => React.cloneElement(child, {
+       onLoad: this.forceHeightCalculation
+     })
+    );
     this.props.tabs.tabs.map(function(tab,i){
         tabs.push(
            <Tab key={i} label={tab.header}>
-               <h3 className="md-cell md-cell--12">{this.props.tabs.tabsContent[i]}</h3>
+             <CSSTransitionGroup
+              component="div"
+              className="container"
+              transitionName="md-cross-fade"
+              transitionEnterTimeout={300}
+              transitionLeave={false}
+            >
+              <div className="container">{childrenWithProps[i]}</div>
+            </CSSTransitionGroup>
+
            </Tab>)
     }.bind(this));
 
     this.state.tabs = tabs;
     this.handleTabChange = this.handleTabChange.bind(this);
     this.setTabsContainer = this.setTabsContainer.bind(this);
+    this.forceHeightCalculation = this.forceHeightCalculation.bind(this);
   }
   componentWillMount() {
     //Ustawienia headera i aktywnej zakładki
@@ -45,14 +60,11 @@ export default class TabsNavigationContainer extends Component {
     }.bind(this));
   }
   setTabsContainer(tabsContainer) {
-    console.log('set');
-    //this.props.dispatch(setTabsContainer(tabsContainer));
-    this.tabsContainer = tabsContainer;
-
+    this.props.dispatch(setTabsContainer(tabsContainer));
   }
   forceHeightCalculation() {
-    if (this.tabsContainer) {
-      this.tabsContainer.forceUpdate();
+    if (this.tabs.tabsContainer) {
+        this.tabs.tabsContainer.forceUpdate();
     }
   }
   handleTabChange(activeTabIndex) {
@@ -61,7 +73,7 @@ export default class TabsNavigationContainer extends Component {
     this.props.dispatch(setAppHeader(this.props.tabs.tabs[activeTabIndex].header));
   }
   render(){
-
+    //console.log('render');
     return(
         <TabsContainer
           onTabChange={this.handleTabChange}
