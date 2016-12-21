@@ -28,15 +28,9 @@ export function setTabsContainer(content) {
     payload: content,
   }
 }
-export function pageIsLoading() {
+export function setPageLoaded(loaded) {
   return {
-    type: 'PAGE_IS_LOADING',
-    payload: true,
-  }
-}
-export function pageIsLoaded() {
-  return {
-    type: 'PAGE_IS_LOADED',
-    payload: false,
+    type: 'SET_PAGE_LOADED',
+    payload: loaded,
   }
 }

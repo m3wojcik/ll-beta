@@ -4,6 +4,7 @@ import { setAppHeader } from "../actions/AppActions";
 import { fetchUpcomingClasses } from "../actions/ClassesActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 
+
 @connect((store) => {
    return {
     page: store.app.page,
