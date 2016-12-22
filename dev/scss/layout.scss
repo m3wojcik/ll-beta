@@ -3,11 +3,7 @@ body{
   padding: 0px;
   background-color: #f9f9f9;
 }
-.no-shadow{
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-}
+
 .navigation,
 .navigation .md-list  {
     background-color: $md-blue-grey-800;
@@ -15,9 +11,94 @@ body{
 .navigation a{
     text-decoration: none;
 }
+.navigation .md-icon{
+  color: rgba(255,255,255,0.8);
+}
 .navigation .md-text{
   color: $md-blue-grey-50;
 }
 .active-main > .md-list-item{
   background-color: $md-blue-grey-900;
+}
+.content{
+  padding: 20px;
+}
+.content.content-tabs{
+  padding-top: 70px;
+}
+/*helpers
+------------------------------------------------------------------------------*/
+.no-shadow{
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+ul.clean-list,
+ul.clean-list > li{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+ul.clean-list > li{
+  padding-bottom: 20px;
+}
+/*Lists
+------------------------------------------------------------------------------*/
+ul.list-horizontal{
+  display: flex;
+}
+ul.list-horizontal > li{
+  padding-right: 5px;
+}
+/*Cards
+------------------------------------------------------------------------------*/
+.md-card.inactive{
+  background-color: #f1f1f1;
+}
+.card-title{
+  display: flex;
+  justify-content: space-between;
+}
+.card-right{
+  display: flex;
+}
+.card-section{
+  padding: 0px 16px;
+}
+/*Labels
+------------------------------------------------------------------------------*/
+.label {
+  display: inline;
+  padding: 0.5em .8em .4em;
+  font-size: 75%;
+  font-weight: bold;
+  line-height: 1;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+.label-default {
+  background-color: $md-blue-grey-300;
+}
+
+.label-primary {
+  background-color: $md-primary-color;
+}
+
+.label-success {
+  background-color: $md-green-500;
+}
+
+.label-info {
+  background-color: $md-light-blue-600;
+}
+
+.label-warning {
+  background-color: $md-orange-800;
+}
+
+.label-danger {
+  background-color: $md-red-800;
 }

@@ -15,6 +15,7 @@ import MainContainer from './containers/MainContainer';
 import ClassesContainer from './containers/ClassesContainer';
 import NotificationsContainer from './containers/NotificationsContainer';
 import MarksContainer from './containers/MarksContainer';
+import ClassDetailsContainer from './containers/ClassDetailsContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -30,6 +31,7 @@ ReactDOM.render(
             <Route path="classes" header="Classes"/>
             <Route path="notifications" header="Notifications"  />
         </Route>
+        <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />
         <Route path="marks" header="Marks" component={MarksContainer} />
       </Route>
     </Router>

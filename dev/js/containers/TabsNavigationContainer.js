@@ -50,7 +50,6 @@ export default class TabsNavigationContainer extends Component {
   }
   componentWillMount() {
     //Ustawienia headera i aktywnej zakładki
-console.log('will');
     var pathName = this.props.routing.locationBeforeTransitions.pathname;
     pathName = pathName.replace('/', "");
     this.props.tabs.tabs.forEach(function(tab, i){
@@ -59,10 +58,6 @@ console.log('will');
         this.props.dispatch(setActiveTabIndex(i));
       }
     }.bind(this));
-  }
-  componentDidMount(){
-      console.log('did');
-      console.log('pageloaded',this.props.page.loaded);
   }
   setTabsContainer(tabsContainer) {
     this.props.dispatch(setTabsContainer(tabsContainer));
@@ -83,6 +78,7 @@ console.log('will');
           onTabChange={this.handleTabChange}
           activeTabIndex={this.props.tabs.activeTabIndex}
           colored
+          fixed
           ref={this.setTabsContainer}>
           <Tabs tabId="tab" className="md-paper--2">
             {this.state.tabs}

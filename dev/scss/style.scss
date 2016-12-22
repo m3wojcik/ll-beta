@@ -1,6 +1,8 @@
 @import '~react-md/src/scss/react-md';
+$md-font-name: Lato !default;
+$md-font-family: Lato, sans-serif !default;
 $md-primary-color: $md-light-blue-900;
-$md-secondary-color: $md-lime-a-400;
+$md-secondary-color: $md-amber-500;
 @include react-md-everything;
 @import './react-md-override';
 @import './layout';

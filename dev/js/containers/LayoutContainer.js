@@ -26,7 +26,7 @@ export default class LayoutContainer extends Component {
       tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT}
       desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
       toolbarTitle={this.props.header}
-      contentClassName="content"
+      contentClassName=""
       contentId="main-content-demo"
       toolbarClassName={classess}
       >

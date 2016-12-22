@@ -1,5 +1,6 @@
 export default function reducer(state={
   classes: [],
+  classDetails: null,
   fetching: false,
   fetched: false,
   error: null,
@@ -18,6 +19,17 @@ export default function reducer(state={
           fetching: false,
           fetched: true,
           classes: action.payload,
+        }
+      }
+      case "FETCH_UPCOMING_CLASS_DETAILS_REJECTED": {
+        return {...state, fetching: false, error: action.payload}
+      }
+      case "FETCH_UPCOMING_CLASS_DETAILS_FULFILLED": {
+        return {
+          ...state,
+          fetching: false,
+          fetched: true,
+          classDetails: action.payload,
         }
       }
     }

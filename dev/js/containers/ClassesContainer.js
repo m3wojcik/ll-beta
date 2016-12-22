@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import { setAppHeader } from "../actions/AppActions";
 import { fetchUpcomingClasses } from "../actions/ClassesActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Classes from '../components/Classes'
 
 
 @connect((store) => {
    return {
+
     page: store.app.page,
     tabs: store.app.tabs,
     classes: store.classes.classes,
@@ -15,28 +17,17 @@ import CircularProgress from 'react-md/lib/Progress/CircularProgress';
   };
 })
 export default class ClassesContainer extends Component {
-  componentWillMount() {
-
-    this.props.dispatch(fetchUpcomingClasses());
-  }
   componentDidMount(){
-    this.props.onLoad();
+    this.props.dispatch(fetchUpcomingClasses(function () {
+      this.props.onLoad();
+    }.bind(this)));
   }
   render(){
     const { classes } = this.props;
-    const mappedClasses = classes.map(cla => <li key={cla.id}>{cla.name}</li>)
-
     return(
-      <div>
-
-        Classes:
-        <ul>
-          {mappedClasses}
-        </ul>
-
-
+      <div className="content content-tabs">
+        <Classes classes={classes} />
       </div>
-
     )
   }
 }
