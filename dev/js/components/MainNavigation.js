@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { render } from 'react-dom';
-import { Link, IndexLink  } from 'react-router'
+import { Link, IndexLink  } from 'react-router';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 
