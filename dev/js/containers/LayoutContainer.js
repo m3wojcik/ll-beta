@@ -6,13 +6,14 @@ import { connect } from "react-redux";
 
 @connect((store) => {
   return {
-    tabs: store.app.tabs
+    hasTabs: store.app.toolbar.hasTabs
   };
 })
 export default class LayoutContainer extends Component {
     render(){
+      const {hasTabs} = this.props;
       var classess = '';
-      if(this.props.tabs.tabs.length > 0){
+      if(hasTabs){
         classess = 'no-shadow';
       }
     return(

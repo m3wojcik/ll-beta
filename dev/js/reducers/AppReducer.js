@@ -1,6 +1,7 @@
 export default function reducer(state={
     toolbar: {
       header: null,
+      hasTabs: false
     },
     tabs:{
       activeTabIndex: 0,
@@ -20,6 +21,12 @@ export default function reducer(state={
           toolbar: {...state.toolbar, header: action.payload},
         }
       }
+      case "SET_HAS_TABS": {
+        return {
+          ...state,
+          toolbar: {...state.toolbar, hasTabs: action.payload},
+        }
+      }
       case "SET_ACTIVE_TAB_INDEX": {
         return {
           ...state,
@@ -29,7 +36,7 @@ export default function reducer(state={
       case "SET_TABS": {
         return {
           ...state,
-          tabs: {...state.tabs, tabs: action.payload},
+          tabs: {...state.tabs, tabs: action.payload, hasTabs: true},
         }
       }
       case "SET_TABS_CONTENT": {

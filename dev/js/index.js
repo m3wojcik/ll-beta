@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import { Router, Route, IndexRoute, IndexRedirect, hashHistory, browserHistory } from 'react-router'
 import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
+import { IntlProvider} from 'react-intl';
 import allReducers from './reducers';
 import App from './components/App';
 import DashboardContainer from './containers/DashboardContainer';
@@ -22,19 +23,21 @@ const store = createStore(allReducers, middleware);
 const history = syncHistoryWithStore(hashHistory, store);
 
 ReactDOM.render(
-  <Provider store={store}>
-    <Router history={history}>
-      <Route path="/"  component={App}>
-        <IndexRoute header="Dashboard" component={DashboardContainer} />
-        <IndexRedirect to="/classes" />
-        <Route header="Main" component={MainContainer} childComponents={[<ClassesContainer />, <NotificationsContainer />]} >
-            <Route path="classes" header="Classes"/>
-            <Route path="notifications" header="Notifications"  />
+  <Provider store={store} >
+    <IntlProvider locale="en">
+      <Router history={history}>
+        <Route path="/"  component={App}>
+          <IndexRoute header="Dashboard" component={DashboardContainer} />
+          <IndexRedirect to="/classes" />
+          <Route header="Main" component={MainContainer} childComponents={[<ClassesContainer />, <NotificationsContainer />]} >
+              <Route path="classes" header="Classes"/>
+              <Route path="notifications" header="Notifications"  />
+          </Route>
+          <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />
+          <Route path="marks" header="Marks" component={MarksContainer} />
         </Route>
-        <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />
-        <Route path="marks" header="Marks" component={MarksContainer} />
-      </Route>
-    </Router>
+      </Router>
+    </IntlProvider>
   </Provider>,
   document.getElementById('root')
 );

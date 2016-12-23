@@ -26,12 +26,68 @@ body{
 .content.content-tabs{
   padding-top: 70px;
 }
+/* ProgressBar
+------------------------------------------------------------------------------*/
+.md-card .progress-container{
+  padding: 16px;
+}
+.progress-bar {
+    position: relative;
+    display: block;
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
+    background: rgba(0,0,0,.1);
+    padding: 0;
+    border-radius: .28571429rem;
+}
+.progress-bar .bar {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 0;
+    min-width: 2em;
+    background: #888;
+    border-radius: .28571429rem;
+    -webkit-transition: width .1s ease,background-color .1s ease;
+    transition: width .1s ease,background-color .1s ease;
+}
+.indicating.progress-bar[data-percent^="1"] .bar, .indicating.progress-bar[data-percent^="2"] .bar {
+    background-color: #D95C5C;
+}
+.indicating.progress-bar[data-percent^="3"] .bar{
+    background-color: #EFBC72;
+}
+.indicating.progress-bar[data-percent^="4"] .bar, .indicating.progress-bar[data-percent^="5"] .bar{
+    background-color: #E6BB48;
+}
+.indicating.progress-bar[data-percent^="6"] .bar{
+    background-color: #DDC928;
+}
+.indicating.progress-bar[data-percent^="7"] .bar,.indicating.progress-bar[data-percent^="8"] .bar{
+    background-color: #B4D95C;
+}
+.indicating.progress-bar[data-percent^="9"] .bar,.indicating.progress-bar[data-percent^="100"] .bar {
+    background-color: #66DA81;
+}
+.progress-container .progress-title{
+  color: rgba(0, 0, 0, 0.87);
+  font-size: 21px;
+}
+.progress-container .progress-subtitle{
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 14px;
+}
 /*helpers
 ------------------------------------------------------------------------------*/
 .no-shadow{
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
+}
+.clickable{
+  cursor: pointer;
 }
 ul.clean-list,
 ul.clean-list > li{
@@ -101,4 +157,23 @@ ul.list-horizontal > li{
 
 .label-danger {
   background-color: $md-red-800;
+}
+/*Animations
+------------------------------------------------------------------------------*/
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }

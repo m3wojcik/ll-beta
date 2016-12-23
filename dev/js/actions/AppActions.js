@@ -34,3 +34,9 @@ export function setPageLoaded(loaded) {
     payload: loaded,
   }
 }
+export function setHasTabs(hasTabs) {
+  return {
+    type: 'SET_HAS_TABS',
+    payload: hasTabs,
+  }
+}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import Tabs from 'react-md/lib/Tabs/Tabs';
@@ -30,16 +30,7 @@ export default class TabsNavigationContainer extends Component {
     this.props.tabs.tabs.map(function(tab,i){
         tabs.push(
            <Tab key={i} label={tab.header}>
-             <CSSTransitionGroup
-              component="div"
-              className="container"
-              transitionName="md-cross-fade"
-              transitionEnterTimeout={300}
-              transitionLeave={false}
-            >
               <div className="container">{childrenWithProps[i]}</div>
-            </CSSTransitionGroup>
-
            </Tab>)
     }.bind(this));
 

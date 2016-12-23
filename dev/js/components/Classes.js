@@ -8,33 +8,19 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import CustomCardTitle from './CustomCardTitle';
 import CardClassDetails from './CardClassDetails';
-import { Link } from 'react-router'
-import {push} from 'react-router-redux';
-import { connect } from "react-redux";
+import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
-@connect((store) => {
-   return {
-    routing: store.routing,
-    toolbar: store.app.toolbar,
-    tabs: store.app.tabs,
-    page: store.app.page
-  };
-})
 export default class Classes extends Component {
-    constructor(props) {
-    super(props);
-        this.handleClick = this.handleClick.bind(this);
-    }
-    handleClick(classId){
-        this.props.dispatch(push('classDetails/'+classId));
-    }
   render(){
     const { classes } = this.props;
     const mappedClasses = classes.map(
       clas =>
-      <li key={clas.id} onClick={this.handleClick.bind(this,clas.id)}>
-        <Card className={clas.active ? 'active': 'inactive'} >
-          <CardTitle title={<CustomCardTitle left={clas.weekday} right={clas.date} />} subtitle={clas.startTime + ' - ' +clas.endTime}   />
+      <li key={clas.id} onClick={this.props.onCardClick.bind(this,clas.id, clas.name)}>
+        <Card className={clas.active ? 'clickable active': 'clickable inactive'} >
+          <CardTitle
+            title={<CustomCardTitle left={<FormattedRelative value={clas.date}/>} right={<FormattedDate value={clas.date} day="numeric" month="long" year="numeric" />} />}
+            subtitle={<div><FormattedTime value={clas.date} /> - <FormattedTime value={(new Date(clas.date)).getTime() + (clas.length * 1000 * 60) }  /></div>}
+            />
           <CardClassDetails status={clas.status} details={clas.details} />
           <List className="md-divider-border md-divider-border--top">
             <ListItem disabled primaryText={clas.name} leftIcon={<FontIcon>event</FontIcon>} />
@@ -46,6 +32,7 @@ export default class Classes extends Component {
     );
     return(
       <ul className="clean-list">
+
         {mappedClasses}
       </ul>
     )

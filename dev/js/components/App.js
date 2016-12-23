@@ -14,13 +14,14 @@ WebFontLoader.load({
 });
 @connect((store) => {
    return {
-    toolbar: store.app.toolbar
+    header: store.app.toolbar.header,
   };
 })
 export default class App extends React.Component{
   render(){
+    const { header } = this.props;
     return(
-      <LayoutContainer header={this.props.toolbar.header} content={this.props.children} />
+        <LayoutContainer header={header} content={this.props.children} />
     )
   }
 }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
-import CardActions from 'react-md/lib/Cards/CardActions';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
@@ -12,8 +11,7 @@ import CardClassDetails from './CardClassDetails';
 export default class ClassDetails extends Component {
   render(){
      const { clas } = this.props;
-
-     const mappedClasses = (
+     const mappedClass = (
        clas ?
       <li key={clas.id}>
         <Card className={clas.active ? 'active': 'inactive'}>
@@ -30,7 +28,7 @@ export default class ClassDetails extends Component {
     );
     return(
       <ul className="clean-list">
-        {mappedClasses}
+        {mappedClass}
       </ul>
     )
   }
