@@ -16,7 +16,11 @@ import MainContainer from './containers/MainContainer';
 import ClassesContainer from './containers/ClassesContainer';
 import NotificationsContainer from './containers/NotificationsContainer';
 import MarksContainer from './containers/MarksContainer';
+import AttendanceContainer from './containers/AttendanceContainer';
 import ClassDetailsContainer from './containers/ClassDetailsContainer';
+import MessagesContainer from './containers/MessagesContainer';
+import MessageContainer from './containers/MessageContainer';
+import InboxContainer from './containers/InboxContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -27,14 +31,20 @@ ReactDOM.render(
     <IntlProvider locale="en">
       <Router history={history}>
         <Route path="/"  component={App}>
-          <IndexRoute header="Dashboard" component={DashboardContainer} />
+          <IndexRoute header="Dashboard"/>
           <IndexRedirect to="/classes" />
-          <Route header="Main" component={MainContainer} childComponents={[<ClassesContainer />, <NotificationsContainer />]} >
+          <Route component={MainContainer} childComponents={[<ClassesContainer />, <NotificationsContainer />]} >
               <Route path="classes" header="Classes"/>
               <Route path="notifications" header="Notifications"  />
           </Route>
           <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />
           <Route path="marks" header="Marks" component={MarksContainer} />
+          <Route path="attendance" header="Attendance" component={AttendanceContainer} />
+          <Route component={MessagesContainer} childComponents={[<InboxContainer />, <NotificationsContainer />]} >
+              <Route path="inbox" header="Inbox"/>
+              <Route path="send" header="Send"  />
+          </Route>
+          <Route path="message/:messageId" component={MessageContainer} />
         </Route>
       </Router>
     </IntlProvider>

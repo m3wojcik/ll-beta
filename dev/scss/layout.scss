@@ -23,8 +23,14 @@ body{
 .content{
   padding: 20px;
 }
+.content-no-padding{
+  padding: 0px;
+}
 .content.content-tabs{
   padding-top: 70px;
+}
+.content-no-padding.content-tabs{
+  padding-top: 50px;
 }
 /* ProgressBar
 ------------------------------------------------------------------------------*/

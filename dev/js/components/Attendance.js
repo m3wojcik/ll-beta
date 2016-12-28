@@ -9,35 +9,35 @@ import TableHeader from 'react-md/lib/DataTables/TableHeader';
 import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import FontIcon from 'react-md/lib/FontIcons';
-import MarksRows from './MarksRows'
+import AttendanceRows from './AttendanceRows'
 import ProgressBar from './ProgressBar'
 
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
-export default class Marks extends Component {
+export default class Attendance extends Component {
   render(){
-    const { marks } = this.props;
-    const marksGroupsRows = marks.map(
+    const { attendance } = this.props;
+    const attendanceGroupsRows = attendance.map(
       (group) =>
       <li key={group.groupId}>
         <Card>
           <CardTitle title={group.groupName}  />
-          <ProgressBar title={group.percent + "%"} subtitle="Percent result"  value={group.percent} />
+          <ProgressBar title={group.attendance + "%"} subtitle="Percent result"  value={group.attendance} />
           <DataTable plain>
             <TableHeader>
               <TableRow>
-                <TableColumn>Name</TableColumn>
-                <TableColumn>Mark</TableColumn>
+                <TableColumn>Status</TableColumn>
+                <TableColumn>Date</TableColumn>
               </TableRow>
             </TableHeader>
-              <MarksRows marks={group.marks} />
+               <AttendanceRows attendance={group.statuses} />
           </DataTable>
         </Card>
       </li>
     );
     return(
       <ul className="clean-list">
-        {marksGroupsRows}
+        {attendanceGroupsRows}
       </ul>
     )
   }

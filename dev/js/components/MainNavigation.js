@@ -14,8 +14,20 @@ const MainNavigation = [
   <Link key="marks" to="marks" activeClassName="active-main" >
     <ListItem
       primaryText="Marks"
-      leftIcon={<FontIcon>map</FontIcon>}
+      leftIcon={<FontIcon>assessment</FontIcon>}
     />
+</Link>,
+  <Link key="attendance" to="attendance" activeClassName="active-main" >
+    <ListItem
+      primaryText="Attendance"
+      leftIcon={<FontIcon>done_all</FontIcon>}
+    />
+  </Link>,
+  <Link key="inbox" to="inbox" activeClassName="active-main" >
+      <ListItem
+        primaryText="Messages"
+        leftIcon={<FontIcon>inbox</FontIcon>}
+      />
   </Link>
 ]
 export default MainNavigation;

@@ -3,28 +3,28 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 
 import { setAppHeader, setHasTabs } from "../actions/AppActions";
-import { fetchMarks } from "../actions/MarksActions";
+import { fetchAttendance } from "../actions/AttendanceActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import Marks from '../components/Marks'
+import Attendance from '../components/Attendance'
 
 
 @connect((store) => {
    return {
     page: store.app.page,
     toolbar: store.app.toolbar,
-    marks: store.marks.marks,
-    fetched: store.marks.fetched,
-    fetching: store.marks.fetching
+    attendance: store.attendance.attendance,
+    fetched: store.attendance.fetched,
+    fetching: store.attendance.fetching
   };
 })
-export default class MarksContainer extends Component {
+export default class AttendanceContainer extends Component {
   componentDidMount(){
     this.props.dispatch(setHasTabs(false));
-    this.props.dispatch(setAppHeader('Marks'));
-    this.props.dispatch(fetchMarks());
+    this.props.dispatch(setAppHeader('Attendance'));
+    this.props.dispatch(fetchAttendance());
   }
   render(){
-    const { fetched, marks } = this.props;
+    const { fetched, attendance } = this.props;
     if(!fetched){
       return(
         <div className="content">
@@ -34,7 +34,7 @@ export default class MarksContainer extends Component {
     }
     return(
       <div className="content">
-          <Marks marks={marks} />
+          <Attendance attendance={attendance} />
       </div>
     )
   }

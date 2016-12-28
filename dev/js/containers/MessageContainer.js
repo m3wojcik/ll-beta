@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { setHasTabs } from "../actions/AppActions";
-import { fetchClassDetails } from "../actions/ClassesActions";
+import { fetchMessage } from "../actions/MessageActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import ClassDetails from '../components/ClassDetails'
+import Message from '../components/Message';
+
 
 @connect((store) => {
    return {
     routing: store.routing,
     toolbar: store.app.toolbar,
-    classes: store.classes.classes,
-    classDetails: store.classes.classDetails,
-    fetched: store.classes.fetched,
-    fetching: store.classes.fetching
+    message: store.message.message,
+    fetched: store.message.fetched,
+    fetching: store.message.fetching
   };
 })
-export default class ClassDetailsContainer extends Component {
+export default class MessageContainer extends Component {
   componentDidMount(){
     this.props.dispatch(setHasTabs(false));
-    this.props.dispatch(fetchClassDetails(this.props.params.classId));
+    this.props.dispatch(fetchMessage(this.props.params.messageId));
   }
   render(){
-    const { classDetails ,fetched } = this.props;
+    const { message ,fetched } = this.props;
+    console.log('Message',message);
     if(!fetched){
       return(
         <div className="content">
@@ -31,7 +32,7 @@ export default class ClassDetailsContainer extends Component {
     }
     return(
       <div className="content">
-        <ClassDetails clas={classDetails} />
+        <Message message={message} />
       </div>
     )
   }
