@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { setHasTabs } from "../actions/AppActions";
+import { setAppSettings } from "../actions/AppActions";
 import { fetchClassDetails } from "../actions/ClassesActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import ClassDetails from '../components/ClassDetails'
@@ -17,7 +17,7 @@ import ClassDetails from '../components/ClassDetails'
 })
 export default class ClassDetailsContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(setHasTabs(false));
+    this.props.dispatch(setAppSettings({hasTabs: false}));
     this.props.dispatch(fetchClassDetails(this.props.params.classId));
   }
   render(){

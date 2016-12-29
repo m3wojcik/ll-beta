@@ -6,6 +6,7 @@ import MarksReducer from './MarksReducer';
 import AttendanceReducer from './AttendanceReducer';
 import InboxReducer from './InboxReducer';
 import MessageReducer from './MessageReducer';
+import CreateMessageReducer from './CreateMessageReducer';
 
 const allReducers = combineReducers({
   routing: routerReducer,
@@ -14,7 +15,8 @@ const allReducers = combineReducers({
   marks: MarksReducer,
   attendance: AttendanceReducer,
   inbox: InboxReducer,
-  message: MessageReducer
+  message: MessageReducer,
+  addressBook: CreateMessageReducer
 });
 
 export default allReducers;

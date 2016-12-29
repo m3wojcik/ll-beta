@@ -6,21 +6,21 @@ import { connect } from "react-redux";
 
 @connect((store) => {
   return {
-    hasTabs: store.app.toolbar.hasTabs
+    hasTabs: store.app.toolbar.hasTabs,
+    header: store.app.toolbar.header,
+    hasBackButton: store.app.toolbar.hasBackButton
   };
 })
 export default class LayoutContainer extends Component {
     render(){
       const {hasTabs} = this.props;
-      var classess = '';
-      if(hasTabs){
-        classess = 'no-shadow';
-      }
+      var classess = hasTabs ? 'no-shadow' : '';
     return(
       <NavigationDrawer
       navItems={MainNavigation}
       drawerClassName="navigation"
       contentClassName="md-grid"
+      drawerHeaderChildren = {<div>drawer header children</div>}
       //drawerHeader={<div>drawer header</div>}
       //toolbarChildren= {}
       mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}

@@ -21,6 +21,7 @@ import ClassDetailsContainer from './containers/ClassDetailsContainer';
 import MessagesContainer from './containers/MessagesContainer';
 import MessageContainer from './containers/MessageContainer';
 import InboxContainer from './containers/InboxContainer';
+import CreateMessageContainer from './containers/CreateMessageContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -45,6 +46,7 @@ ReactDOM.render(
               <Route path="send" header="Send"  />
           </Route>
           <Route path="message/:messageId" component={MessageContainer} />
+          <Route path="createmessage" component={CreateMessageContainer} />
         </Route>
       </Router>
     </IntlProvider>

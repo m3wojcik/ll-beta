@@ -108,9 +108,14 @@ ul.clean-list > li{
 ------------------------------------------------------------------------------*/
 ul.list-horizontal{
   display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
 }
 ul.list-horizontal > li{
   padding-right: 5px;
+  padding-bottom: 5px;
 }
 /*Cards
 ------------------------------------------------------------------------------*/

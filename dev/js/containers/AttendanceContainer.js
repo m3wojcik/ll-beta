@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-
-import { setAppHeader, setHasTabs } from "../actions/AppActions";
+import { setAppSettings } from "../actions/AppActions";
 import { fetchAttendance } from "../actions/AttendanceActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import Attendance from '../components/Attendance'
@@ -19,8 +18,7 @@ import Attendance from '../components/Attendance'
 })
 export default class AttendanceContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(setHasTabs(false));
-    this.props.dispatch(setAppHeader('Attendance'));
+    this.props.dispatch(setAppSettings({header: 'Attendance', hasTabs: false}));
     this.props.dispatch(fetchAttendance());
   }
   render(){

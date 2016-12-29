@@ -1,3 +1,9 @@
+export function setAppSettings(settings) {
+  return {
+    type: 'SET_APP_SETTINGS',
+    payload: settings,
+  }
+}
 export function setAppHeader(header) {
   return {
     type: 'SET_APP_HEADER',

@@ -24,9 +24,9 @@ export default class Message extends Component {
   className="menu-example"
   tooltipLabel="Menu"
 >
-  <ListItem primaryText="Replay" />
-  <ListItem primaryText="Forward" />
-  <ListItem primaryText="Delete" />
+  <ListItem primaryText="Reply" leftIcon={<FontIcon>reply</FontIcon>} />
+  <ListItem primaryText="Forward" leftIcon={<FontIcon>forward</FontIcon>} />
+  <ListItem primaryText="Delete" leftIcon={<FontIcon>delete</FontIcon>} />
 </MenuButton>
 </div>
     );

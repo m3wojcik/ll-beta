@@ -1,7 +1,8 @@
 export default function reducer(state={
     toolbar: {
       header: null,
-      hasTabs: false
+      hasTabs: false,
+      hasBackButton: false
     },
     tabs:{
       activeTabIndex: 0,
@@ -15,6 +16,12 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      case "SET_APP_SETTINGS": {
+        return {
+          ...state,
+          toolbar: {...state.toolbar, header: action.payload.header, hasTabs: action.payload.hasTabs, hasBackButton: action.payload.hasBackButton},
+        }
+      }
       case "SET_APP_HEADER": {
         return {
           ...state,
