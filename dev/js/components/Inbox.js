@@ -17,7 +17,7 @@ export default class Inbox extends Component {
           leftAvatar={<Avatar icon={message.sender.charAt(0).toUpperCase()} />}
           rightIcon={<FormattedRelative value={message.date}/>}
           primaryText={message.read ? message.sender : <strong>{message.sender}</strong>}
-          secondaryText={message.topic}
+          secondaryText={message.subject}
         />
         <Divider />
       </div>

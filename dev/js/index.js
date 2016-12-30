@@ -13,7 +13,7 @@ import allReducers from './reducers';
 import App from './components/App';
 import DashboardContainer from './containers/DashboardContainer';
 import MainContainer from './containers/MainContainer';
-import ClassesContainer from './containers/ClassesContainer';
+import DashboardClassesContainer from './containers/DashboardClassesContainer';
 import NotificationsContainer from './containers/NotificationsContainer';
 import MarksContainer from './containers/MarksContainer';
 import AttendanceContainer from './containers/AttendanceContainer';
@@ -22,6 +22,7 @@ import MessagesContainer from './containers/MessagesContainer';
 import MessageContainer from './containers/MessageContainer';
 import InboxContainer from './containers/InboxContainer';
 import CreateMessageContainer from './containers/CreateMessageContainer';
+import ClassesContainer from './containers/ClassesContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -33,8 +34,8 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/"  component={App}>
           <IndexRoute header="Dashboard"/>
-          <IndexRedirect to="/classes" />
-          <Route component={MainContainer} childComponents={[<ClassesContainer />, <NotificationsContainer />]} >
+          <IndexRedirect to="dashboard/classes" />
+          <Route path="dashboard" component={MainContainer} childComponents={[<DashboardClassesContainer />, <NotificationsContainer />]} >
               <Route path="classes" header="Classes"/>
               <Route path="notifications" header="Notifications"  />
           </Route>
@@ -47,6 +48,7 @@ ReactDOM.render(
           </Route>
           <Route path="message/:messageId" component={MessageContainer} />
           <Route path="createmessage" component={CreateMessageContainer} />
+          <Route path="classes" component={ClassesContainer} />
         </Route>
       </Router>
     </IntlProvider>

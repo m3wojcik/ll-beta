@@ -24,8 +24,8 @@ export default class DashboardClassesContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    this.props.dispatch(setAppHeader('Classes'));
     this.props.dispatch(fetchUpcomingClasses(function () {
+      this.props.onLoad();
     }.bind(this)));
   }
   handleClick(classId, className){
@@ -42,7 +42,7 @@ export default class DashboardClassesContainer extends Component {
       )
     }
     return(
-      <div className="content">
+      <div className="content content-tabs">
         <Classes classes={classes} onCardClick={this.handleClick}  />
       </div>
     )

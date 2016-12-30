@@ -42,7 +42,7 @@ export default class TabsNavigationContainer extends Component {
   componentWillMount() {
     //Ustawienia headera i aktywnej zakładki
     var pathName = this.props.routing.locationBeforeTransitions.pathname;
-    pathName = pathName.replace('/', "");
+    pathName = pathName.replace(/(\/|)[^\/]+\/(.+)/, "$2");
     this.props.tabs.tabs.forEach(function(tab, i){
       if(tab.path == pathName){
         this.props.dispatch(setAppHeader(this.props.tabs.tabs[i].header));

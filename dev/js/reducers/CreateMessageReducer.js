@@ -1,9 +1,11 @@
 export default function reducer(state={
   addressBook: [],
-  receivers: [],
-  filtredReceivers: [],
+  message: null,
   fetching: false,
   fetched: false,
+  reply : false,
+  forward : false,
+  delete : false,
   error: null,
   }, action) {
 
@@ -16,8 +18,7 @@ export default function reducer(state={
           ...state,
           fetching: false,
           fetched: true,
-          addressBook: action.payload,
-          filtredReceivers: action.payload
+          addressBook: action.payload
         }
       }
       case "UPDATE_RECEIVERS": {
@@ -25,6 +26,18 @@ export default function reducer(state={
       }
       case "UPDATE_FILTRED_RECEIVERS": {
         return {...state, filtredReceivers: action.payload}
+      }
+      case "CREATE_NEW_MESSAGE_BTN_CLICK": {
+        return {...state, reply: false, forward: false}
+      }
+      case "REPLY_MESSAGE_BTN_CLICK": {
+        return {...state, reply: true, forward: false, fetched: false, message: action.payload}
+      }
+      case "FORWARD_MESSAGE_BTN_CLICK": {
+        return {...state, reply: false, forward: true, fetched: false, message: action.payload}
+      }
+      case "DELETE_MESSAGE_BTN_CLICK": {
+        return {...state, delete: true, message: action.payload}
       }
     }
     return state

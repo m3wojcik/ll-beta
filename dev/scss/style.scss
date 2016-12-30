@@ -5,4 +5,5 @@ $md-primary-color: $md-light-blue-900;
 $md-secondary-color: $md-amber-500;
 @include react-md-everything;
 @import './react-md-override';
+@import '~react-quill/node_modules/quill/dist/quill.snow.css';
 @import './layout';

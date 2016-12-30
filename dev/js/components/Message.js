@@ -14,25 +14,26 @@ export default class Message extends Component {
     const menu =(
       <div>
       <Button
+        onClick={this.props.onReplayBtnClick.bind(this, message)}
         tooltipLabel="Reply"
         icon
         >reply</Button>
       <MenuButton
-  id="vert-menu"
-  icon
-  buttonChildren="more_vert"
-  className="menu-example"
-  tooltipLabel="Menu"
->
-  <ListItem primaryText="Reply" leftIcon={<FontIcon>reply</FontIcon>} />
-  <ListItem primaryText="Forward" leftIcon={<FontIcon>forward</FontIcon>} />
-  <ListItem primaryText="Delete" leftIcon={<FontIcon>delete</FontIcon>} />
-</MenuButton>
+        id="vert-menu"
+        icon
+        buttonChildren="more_vert"
+        className="menu-example"
+        tooltipLabel="Menu"
+      >
+      <ListItem primaryText="Reply" onClick={this.props.onReplayBtnClick.bind(this, message)} leftIcon={<FontIcon>reply</FontIcon>} />
+      <ListItem primaryText="Forward" onClick={this.props.onForwardBtnClick.bind(this, message)} leftIcon={<FontIcon>forward</FontIcon>} />
+      <ListItem primaryText="Delete" onClick={this.props.onDeleteBtnClick.bind(this, message)} leftIcon={<FontIcon>delete</FontIcon>} />
+    </MenuButton>
 </div>
     );
     return(
-      <div>
-        <CustomCardTitle left={<h2>{message.topic}</h2>} right={menu} />
+      <div className="message">
+        <CustomCardTitle left={<h2>{message.subject}</h2>} right={menu} />
         <div className="md-list-tile md-list-tile--two-lines">
           <div className="md-ink-container"></div>
           <div className="md-tile-addon md-tile-addon--avatar">
@@ -48,7 +49,7 @@ export default class Message extends Component {
           </div>
         </div>
         <Divider />
-        <div dangerouslySetInnerHTML={{__html:message.message}} />
+        <div className="message-content" dangerouslySetInnerHTML={{__html:message.message}} />
       </div>
     )
   }

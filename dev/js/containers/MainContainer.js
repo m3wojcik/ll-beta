@@ -11,6 +11,7 @@ import { setTabs, setHasTabs, setTabsContent } from "../actions/AppActions";
 })
 export default class MainContainer extends Component {
   componentWillMount() {
+    console.log(this.props);
     this.props.dispatch(setHasTabs(true));
     this.props.dispatch(setTabs(this.props.route.childRoutes));
     this.props.dispatch(setTabsContent(this.props.route.childComponents));

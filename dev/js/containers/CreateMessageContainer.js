@@ -8,39 +8,59 @@ import TextField from 'react-md/lib/TextFields'
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import ReceiverChips from '../components/ReceiverChips'
 import Divider from 'react-md/lib/Dividers';
+import ReactQuill from 'react-quill';
+import Button from 'react-md/lib/Buttons/Button';
+import '../../scss/quill.snow.scss';
 
 @connect((store) => {
    return {
-     addressBook: store.addressBook.addressBook,
-     receivers: store.addressBook.receivers,
-     filtredReceivers: store.addressBook.filtredReceivers,
-     fetched: store.addressBook.fetched,
-     fetching: store.addressBook.fetching
+     addressBook: store.createMessage.addressBook,
+     message: store.createMessage.message,
+     reply: store.createMessage.reply,
+     forward: store.createMessage.forward,
+     fetched: store.createMessage.fetched,
+     fetching: store.createMessage.fetching
   };
 })
 export default class CreateMessageContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { addressBook: this.props.addressBook };
+    this.state = { addressBook: [], message:'' };
+    this.addReceiver = this.addReceiver.bind(this);
+    this.addReceiverById = this.addReceiverById.bind(this);
   }
   componentDidMount(){
     this.props.dispatch(setAppSettings({header: 'Create', hasTabs: false}));
-    this.props.dispatch(fetchAddressBook());
-    this.addReceiver = this.addReceiver.bind(this);
+    this.props.dispatch(fetchAddressBook(function(){
+      this.setState({addressBook: this.props.addressBook});
+      if (this.props.reply) {
+        this.addReceiverById(this.props.message.senderId);
+        this.setState({message: '<br /><br />' + this.props.message.sender + ' wrote: <br />' + this.props.message.message})
+      }else if(this.props.forward){
+        this.setState({message: '<br /><br />' + this.props.message.sender + ' wrote: <br />' + this.props.message.message})
+      }
+    }.bind(this)));
   }
   addReceiver(receiver, receiverIndex, receivers){
-    const { addressBook } = this.props;
+    const { addressBook } = this.state;
     addressBook[receivers[receiverIndex].id].isSelected = true;
     this.setState({ addressBook: addressBook });
-  };
+  }
+  addReceiverById(reciverId){
+    const { addressBook } = this.state;
+    addressBook[reciverId].isSelected = true;
+    this.setState({ addressBook: addressBook });
+  }
   handleRemove(receiverIndex, receiverId){
-    const { addressBook }  = this.props;
+    const { addressBook }  = this.state;
     addressBook[receiverId].isSelected = false;
     this.setState({ addressBook: addressBook });
 
   }
   render(){
-    const { addressBook, fetched } = this.props;
+    const { fetched, reply, forward, message } = this.props;
+    const { addressBook } = this.state;
+    let subjectdefaultValue =''
     if(!fetched){
       return(
         <div className="content">
@@ -50,7 +70,12 @@ export default class CreateMessageContainer extends Component {
     }
     let filtredReceivers = [], receivers = [];
     for(var key in addressBook){
-      addressBook[key].isSelected ? receivers.push({"name":addressBook[key].name,"id":addressBook[key].id}) :  filtredReceivers.push({"name":addressBook[key].name,"id":addressBook[key].id})
+      addressBook[key].isSelected ? receivers.push({"name": addressBook[key].name,"id": addressBook[key].id}) :  filtredReceivers.push({"name": addressBook[key].name,"id": addressBook[key].id})
+    }
+    if(reply){
+      subjectdefaultValue = 'Re: ' + message.subject;
+    }else if (forward) {
+      subjectdefaultValue = 'Fwd: ' + message.subject;
     }
     return(
       <div className="content">
@@ -64,24 +89,14 @@ export default class CreateMessageContainer extends Component {
           onAutocomplete={this.addReceiver}
           clearOnAutocomplete
         />
-
-        <Divider className="md-divider--text-field" />
-          <TextField
-            block
-            paddedBlock
-            id="subject"
-            placeholder="Subject"
-            maxLength={80}
-          />
-        <Divider className="md-divider--text-field" />
-          <TextField
-            block
-            paddedBlock
-            id="message"
-            placeholder="Message"
-            rows={4}
-            maxLength={240}
-          />
+        <TextField
+          id="subject"
+          label="Subject"
+          defaultValue={subjectdefaultValue}
+          maxLength={80}
+        />
+        <ReactQuill theme="snow" value={this.state.message} />
+        <Button raised primary label="Send" />
       </div>
     )
   }

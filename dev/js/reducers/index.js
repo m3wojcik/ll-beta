@@ -16,7 +16,7 @@ const allReducers = combineReducers({
   attendance: AttendanceReducer,
   inbox: InboxReducer,
   message: MessageReducer,
-  addressBook: CreateMessageReducer
+  createMessage: CreateMessageReducer
 });
 
 export default allReducers;

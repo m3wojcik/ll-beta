@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { setTabs, setHasTabs, setTabsContent } from "../actions/AppActions";
+import { createNewMessageBtnClick } from "../actions/CreateMessageActions";
 import TabsNavigationContainer from '../containers/TabsNavigationContainer';
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
@@ -22,6 +23,7 @@ export default class MessagesContainer extends Component {
     this.props.dispatch(setTabsContent(this.props.route.childComponents));
   }
   handleClick(){
+    this.props.dispatch(createNewMessageBtnClick());
     this.props.dispatch(push('createmessage'));
   }
   render(){

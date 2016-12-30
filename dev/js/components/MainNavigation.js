@@ -17,6 +17,12 @@ const MainNavigation = [
       leftIcon={<FontIcon>assessment</FontIcon>}
     />
 </Link>,
+<Link key="classes" to="classes" activeClassName="active-main" >
+    <ListItem
+      primaryText="Classes"
+      leftIcon={<FontIcon>event</FontIcon>}
+    />
+</Link>,
   <Link key="attendance" to="attendance" activeClassName="active-main" >
     <ListItem
       primaryText="Attendance"
