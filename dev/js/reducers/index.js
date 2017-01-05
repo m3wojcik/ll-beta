@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux'
 import AppReducer from './AppReducer';
 import DashboardClassesReducer from './DashboardClassesReducer';
 import ClassesReducer from './ClassesReducer';
+import ClassDetailsReducer from './ClassDetailsReducer';
 import MarksReducer from './MarksReducer';
 import AttendanceReducer from './AttendanceReducer';
 import InboxReducer from './InboxReducer';
@@ -15,6 +16,7 @@ const allReducers = combineReducers({
   app: AppReducer,
   dashboardClasses: DashboardClassesReducer,
   classes: ClassesReducer,
+  classDetails: ClassDetailsReducer,
   marks: MarksReducer,
   attendance: AttendanceReducer,
   inbox: InboxReducer,

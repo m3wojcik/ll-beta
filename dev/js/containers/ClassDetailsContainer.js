@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { setAppSettings } from "../actions/AppActions";
-import { fetchClassDetails } from "../actions/ClassesActions";
+import { fetchClassDetails } from "../actions/ClassDetailsActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import ClassDetails from '../components/ClassDetails'
 
 @connect((store) => {
    return {
     routing: store.routing,
-    toolbar: store.app.toolbar,
-    classes: store.classes.classes,
-    classDetails: store.classes.classDetails,
-    fetched: store.classes.fetched,
-    fetching: store.classes.fetching
+    classDetails: store.classDetails.classDetails,
+    fetched: store.classDetails.fetched,
+    fetching: store.classDetails.fetching
   };
 })
 export default class ClassDetailsContainer extends Component {

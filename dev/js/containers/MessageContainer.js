@@ -45,7 +45,7 @@ export default class MessageContainer extends Component {
       )
     }
     return(
-      <div className="content">
+      <div className="content-no-padding">
         <Message
           message={message}
           onReplayBtnClick={this.handleReplayBtnClick}

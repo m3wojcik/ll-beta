@@ -2,7 +2,7 @@
   background-color: #fff;
   color: #404b55;
   box-shadow: 0 1px 4px rgba(0,0,0,.15);
-  border-bottom: 2px solid #ffc107
+  border-bottom: 2px solid $md-secondary-color;
 }
 .md-toolbar--fixed.no-shadow{
   border-bottom: none;
@@ -50,18 +50,4 @@ border-color: transparent;
 }
 h3, .md-title, h6, .md-body-2{
   font-weight: 700;
-}
-.md-tile-text--primary{
-  color: $md-text-primary;
-}
-.md-tile-text--primary{
-  color: $md-text-primary;
-}
-.md-text--secondary{
-  color: $md-text-secondary;
-}
-@media screen and (min-width: 1025px){
-  .md-tile-text--primary{
-    font-size: 15px;
-  }
 }

@@ -77,11 +77,35 @@ strong{
 .message-list-item.message-unread{
   background-color: #fff;
 }
+/*message
+------------------------------------------------------------------------------*/
+.message .message-header{
+  padding: 20px;
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.message .message-content{
+  padding: 20px;
+}
 /*file list
 ------------------------------------------------------------------------------*/
 .file-list .md-subheader{
   height: 40px;
   line-height: 40px;
+}
+.file-list .md-tile-text--primary{
+  color: $md-text-primary;
+}
+.file-list .md-tile-text--primary{
+  color: $md-text-primary;
+}
+.file-list .md-text--secondary{
+  color: $md-text-secondary;
+}
+@media screen and (min-width: 1025px){
+  .file-list .md-tile-text--primary{
+    font-size: 15px;
+  }
 }
 /* ProgressBar
 ------------------------------------------------------------------------------*/
@@ -287,14 +311,6 @@ ul.list-horizontal > li{
 
 .label-danger {
   background-color: $md-red-800;
-}
-/*Message
-------------------------------------------------------------------------------*/
-.message{
-
-}
-.message .message-content{
-  padding: 20px 0px;
 }
 /*Quill
 ------------------------------------------------------------------------------*/
