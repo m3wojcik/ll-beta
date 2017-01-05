@@ -1,15 +1,39 @@
 body{
+  font-family: Lato, sans-serif;
   margin: 0px;
   padding: 0px;
   background-color: #f9f9f9;
 }
-
-// .navigation,
-// .navigation .md-list  {
-//     background-color: $md-blue-grey-800;
-// }
+*,h1, h2, h3, h4, h5, h6, button, input, textarea, html{
+  font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif
+}
+strong{
+  font-weight: 700;
+}
+.navigation-drawer{
+  color: #fff;
+  background: #3c4b5b;
+  text-shadow: 0 1px 1px rgba(0,0,0,.1);
+}
+.navigation{
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
 .navigation a{
+
     text-decoration: none;
+}
+.navigation a .md-text{
+  font-size: 1.1rem;
+  //color: rgba(0, 0, 0, 0.87);
+  color: #fff;
+  font-weight: 500;
+}
+.navigation a .md-icon{
+  color: #fff;
+  //color: rgba(0, 0, 0, 0.6);
+}
+.navigation-drawer header{
+  border-bottom-color: transparent;
 }
 // .navigation .md-icon{
 //   color: rgba(255,255,255,0.8);
@@ -31,6 +55,33 @@ body{
 }
 .content-no-padding.content-tabs{
   padding-top: 50px;
+}
+/*toolbar
+------------------------------------------------------------------------------*/
+.toolbar{
+  padding: 10px 20px;
+  min-height: 50px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.1)
+}
+.toolbar > button{
+  margin-right: 10px;
+}
+/*messages list
+------------------------------------------------------------------------------*/
+.message-list-item{
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.message-list-item.message-unread{
+  background-color: #fff;
+}
+/*file list
+------------------------------------------------------------------------------*/
+.file-list .md-subheader{
+  height: 40px;
+  line-height: 40px;
 }
 /* ProgressBar
 ------------------------------------------------------------------------------*/
@@ -85,6 +136,29 @@ body{
   color: rgba(0, 0, 0, 0.54);
   font-size: 14px;
 }
+/*breadcrubms
+------------------------------------------------------------------------------*/
+.breadcrumbs{
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.breadcrumbs > .crumb{
+  display: flex;
+}
+.breadcrumbs > .crumb > .crumb-divider{
+  padding: 10px 0px 5px;
+}
+.breadcrumbs > .crumb > .crumb-link{
+  padding: 10px 10px 5px;
+  line-height: 1.7;
+  font-weight: 700;
+}
+.crumb-clickable{
+  cursor: pointer;
+}
+.crumb-clickable:hover{
+  color: $md-primary-color;
+}
 /*helpers
 ------------------------------------------------------------------------------*/
 .no-shadow{
@@ -95,6 +169,9 @@ body{
 .clickable{
   cursor: pointer;
 }
+ul.list-nopadding{
+  padding: 0px;
+}
 ul.clean-list,
 ul.clean-list > li{
   margin: 0px;
@@ -103,6 +180,48 @@ ul.clean-list > li{
 }
 ul.clean-list > li{
   padding-bottom: 20px;
+}
+ul.list-white > li{
+  background-color: #fff;
+}
+ul.list-white > li.md-subheader{
+  background-color: rgba(0, 0, 0, 0.06);
+}
+ul.list-dividers > li{
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+ul.list-big > li > .md-list-tile{
+  height: 60px;
+}
+ul.list-white .md-text{
+  font-weight: 700;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.text-justify {
+  text-align: justify;
+}
+.text-nowrap {
+  white-space: nowrap;
+}
+.text-lowercase {
+  text-transform: lowercase;
+}
+.text-uppercase {
+  text-transform: uppercase;
+}
+.text-capitalize {
+  text-transform: capitalize;
+}
+.text-muted {
+  color: rgba(0,0,0,0.5);
 }
 /*Lists
 ------------------------------------------------------------------------------*/

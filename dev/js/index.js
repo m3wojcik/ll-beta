@@ -23,6 +23,7 @@ import MessageContainer from './containers/MessageContainer';
 import InboxContainer from './containers/InboxContainer';
 import CreateMessageContainer from './containers/CreateMessageContainer';
 import ClassesContainer from './containers/ClassesContainer';
+import FilesContainer from './containers/FilesContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -42,13 +43,12 @@ ReactDOM.render(
           <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />
           <Route path="marks" header="Marks" component={MarksContainer} />
           <Route path="attendance" header="Attendance" component={AttendanceContainer} />
-          <Route component={MessagesContainer} childComponents={[<InboxContainer />, <NotificationsContainer />]} >
-              <Route path="inbox" header="Inbox"/>
-              <Route path="send" header="Send"  />
-          </Route>
+          <Route path="inbox" header="Inbox" component={InboxContainer}/>
           <Route path="message/:messageId" component={MessageContainer} />
           <Route path="createmessage" component={CreateMessageContainer} />
           <Route path="classes" component={ClassesContainer} />
+          <Route path="files" component={FilesContainer} />
+          <Route path="files/:fileId" component={FilesContainer} />
         </Route>
       </Router>
     </IntlProvider>

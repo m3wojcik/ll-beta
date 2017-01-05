@@ -19,13 +19,6 @@ import Classes from '../components/Classes'
   };
 })
 export default class NotificationsContainer extends Component {
-
-  componentDidMount(){
-    this.props.dispatch(fetchUpcomingClasses(function () {
-      this.props.onLoad();
-    }.bind(this)));
-  }
-
   render(){
     const { classes, fetched } = this.props;
     if(!fetched){
@@ -37,7 +30,7 @@ export default class NotificationsContainer extends Component {
     }
     return(
       <div className="content content-tabs">
-        
+        notifications
       </div>
     )
   }

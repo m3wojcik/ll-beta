@@ -6,7 +6,7 @@ import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
 import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
 import Toolbar from 'react-md/lib/Toolbars';
-
+import {getParamFromPath, getCleanPath} from '../actions/Functions'
 import { setAppHeader, setActiveTabIndex, setTabsContainer, pageIsLoaded } from "../actions/AppActions"
 
 @connect((store) => {
@@ -42,7 +42,7 @@ export default class TabsNavigationContainer extends Component {
   componentWillMount() {
     //Ustawienia headera i aktywnej zakładki
     var pathName = this.props.routing.locationBeforeTransitions.pathname;
-    pathName = pathName.replace(/(\/|)[^\/]+\/(.+)/, "$2");
+    pathName = getCleanPath(pathName);
     this.props.tabs.tabs.forEach(function(tab, i){
       if(tab.path == pathName){
         this.props.dispatch(setAppHeader(this.props.tabs.tabs[i].header));

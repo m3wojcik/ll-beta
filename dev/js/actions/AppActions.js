@@ -1,3 +1,16 @@
+import axios from "axios";
+
+export function fetchAppData() {
+  return function(dispatch) {
+    axios.get("http://api.local/?q=getAppData")
+      .then((response) => {
+        dispatch({type: "FETCH_APP_DATA_FULFILLED", payload: response.data});
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_APP_DATA_REJECTED", payload: err})
+      })
+  }
+}
 export function setAppSettings(settings) {
   return {
     type: 'SET_APP_SETTINGS',
@@ -20,6 +33,12 @@ export function setTabs(index) {
   return {
     type: 'SET_TABS',
     payload: index,
+  }
+}
+export function setTabsFetch(fetched) {
+  return {
+    type: 'SET_TABS_FETCH',
+    payload: fetched,
   }
 }
 export function setTabsContent(content) {

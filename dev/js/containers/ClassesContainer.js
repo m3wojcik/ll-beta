@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 
-import { setAppHeader } from "../actions/AppActions";
+import { setAppSettings } from "../actions/AppActions";
 import { fetchUpcomingClasses } from "../actions/ClassesActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import Classes from '../components/Classes'
@@ -24,7 +24,7 @@ export default class DashboardClassesContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    this.props.dispatch(setAppHeader('Classes'));
+    this.props.dispatch(setAppSettings({header:"Classes", hasTabs: false}));
     this.props.dispatch(fetchUpcomingClasses(function () {
     }.bind(this)));
   }
@@ -43,7 +43,10 @@ export default class DashboardClassesContainer extends Component {
     }
     return(
       <div className="content">
-        <Classes classes={classes} onCardClick={this.handleClick}  />
+        <Classes
+          classes={classes}
+          onCardClick={this.handleClick}
+          headers  />
       </div>
     )
   }

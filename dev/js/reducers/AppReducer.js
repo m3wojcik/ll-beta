@@ -1,10 +1,23 @@
 export default function reducer(state={
+    appData:{
+      fetching: false,
+      fetched:true,
+      error: null,
+      user:{
+        firstName: null,
+        lastName: null
+      },
+      notifications:{
+        unreadMessages: 0
+      }
+    },
     toolbar: {
       header: null,
       hasTabs: false,
       hasBackButton: false
     },
     tabs:{
+      fetched:false,
       activeTabIndex: 0,
       tabs: [],
       tabsContent: [],
@@ -16,6 +29,27 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      case "FETCH_APP_DATA_REJECTED": {
+        return {
+          ...state,
+          appData: {fetching: false, error: action.payload}}
+      }
+      case "FETCH_APP_DATA_FULFILLED": {
+        return {
+          ...state,
+          appData : {
+            fetching: false,
+            fetched: true,
+            user: {
+              firstName: action.payload.user.firstName,
+              lastName: action.payload.user.lastName
+            },
+            notifications:{
+              unreadMessages: action.payload.notifications.unreadMessages
+            }
+          },
+        }
+      }
       case "SET_APP_SETTINGS": {
         return {
           ...state,
@@ -38,6 +72,12 @@ export default function reducer(state={
         return {
           ...state,
           tabs: {...state.tabs, activeTabIndex: action.payload},
+        }
+      }
+      case "SET_TABS_FETCH": {
+        return {
+          ...state,
+          tabs: {...state.tabs, fetched: action.payload},
         }
       }
       case "SET_TABS": {

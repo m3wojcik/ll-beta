@@ -1,13 +1,30 @@
-
+.md-toolbar--fixed{
+  background-color: #fff;
+  color: #404b55;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+  border-bottom: 2px solid #ffc107
+}
+.md-toolbar--fixed.no-shadow{
+  border-bottom: none;
+}
+nav header.md-divider-border{
+border-color: transparent;
+}
 .md-paper--2{
   // box-shadow: 0 1px 4px rgba(0,0,0,.15);
 }
 .md-paper--1 {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(0, 0, 0, 0.06);
-    // box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.09);
+    //box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5
 }
 .md-list{
-  // background-color: transparent;
+   background-color: transparent;
+}
+.md-list--menu{
+  background-color: #fff;
+  border-radius: .28571429rem;
+  border:1px solid rgba(34,36,38,.15);
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
 }
 .md-card{
   border-radius: .28571429rem;
@@ -22,4 +39,29 @@
   left: auto;
   top: auto;
   z-index: 14;
+}
+.md-tabs.md-background--primary{
+  background-color: #fff;
+  color: #404b55;
+  box-shadow: 0 1px 4px rgba(0,0,0,.15);
+}
+.md-tab--inactive{
+      color: rgba(0, 0, 0, 0.6);
+}
+h3, .md-title, h6, .md-body-2{
+  font-weight: 700;
+}
+.md-tile-text--primary{
+  color: $md-text-primary;
+}
+.md-tile-text--primary{
+  color: $md-text-primary;
+}
+.md-text--secondary{
+  color: $md-text-secondary;
+}
+@media screen and (min-width: 1025px){
+  .md-tile-text--primary{
+    font-size: 15px;
+  }
 }

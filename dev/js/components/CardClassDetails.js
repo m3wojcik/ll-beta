@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import Label from './helpers/Label'
 export default class CardClassDetails extends Component {
 
   render(){
@@ -13,15 +13,14 @@ export default class CardClassDetails extends Component {
     const statusElement = (
       status ?
         <li>
-          <span className="label" style={{backgroundColor: status.color}}>
-            {status.name}
-          </span>
+            <Label label={status.name} customColor={status.color} />
         </li>
       :null
     )
     return(
       <div className="card-section">
         <ul className="clean-list list-horizontal">
+
           {statusElement}
           {mappedDetails}
         </ul>

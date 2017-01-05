@@ -55,7 +55,6 @@ export default class CreateMessageContainer extends Component {
     const { addressBook }  = this.state;
     addressBook[receiverId].isSelected = false;
     this.setState({ addressBook: addressBook });
-
   }
   render(){
     const { fetched, reply, forward, message } = this.props;

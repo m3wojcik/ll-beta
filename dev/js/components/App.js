@@ -3,9 +3,6 @@ import { render } from 'react-dom';
 import { connect } from "react-redux";
 import WebFontLoader from 'webfontloader';
 import LayoutContainer from '../containers/LayoutContainer';
-
-
-
 require('../../scss/style.scss');
 WebFontLoader.load({
   google: {

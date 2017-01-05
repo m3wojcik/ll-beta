@@ -9,14 +9,20 @@ import FontIcon from 'react-md/lib/FontIcons';
 import CustomCardTitle from './CustomCardTitle';
 import CardClassDetails from './CardClassDetails';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
+import {getWeek} from '../actions/Functions'
 
 export default class Classes extends Component {
   render(){
-    const { classes } = this.props;
+    const { classes, headers } = this.props;
+    const today = new Date();
+    //getWeek(today) == getWeek(clas.date) ? <div>tak</div> : <div>nie</div>)
     const mappedClasses = classes.map(
       clas =>
-      <li key={clas.id} onClick={this.props.onCardClick.bind(this,clas.id, clas.name)}>
-        <Card className={clas.active ? 'clickable active': 'clickable inactive'} >
+      <li key={clas.id}>
+
+        <Card
+          onClick={this.props.onCardClick.bind(this,clas.id, clas.name)}
+          className={clas.active ? 'clickable active': 'clickable inactive'} >
           <CardTitle
             title={<CustomCardTitle left={<FormattedRelative value={clas.date}/>} right={<FormattedDate value={clas.date} day="numeric" month="long" year="numeric" />} />}
             subtitle={<div><FormattedTime value={clas.date} /> - <FormattedTime value={(new Date(clas.date)).getTime() + (clas.length * 1000 * 60) }  /></div>}
@@ -32,7 +38,6 @@ export default class Classes extends Component {
     );
     return(
       <ul className="clean-list">
-
         {mappedClasses}
       </ul>
     )

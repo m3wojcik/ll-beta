@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TabsNavigationContainer from '../containers/TabsNavigationContainer'
+import TabsNavigationContainer2 from '../containers/TabsNavigationContainer2'
 import { connect } from "react-redux";
 import { setTabs, setHasTabs, setTabsContent } from "../actions/AppActions";
 
@@ -11,17 +11,21 @@ import { setTabs, setHasTabs, setTabsContent } from "../actions/AppActions";
 })
 export default class MainContainer extends Component {
   componentWillMount() {
-    console.log(this.props);
+    const childComponents = this.props.route.childComponents;
+    const parent = this.props.route.path;
+    this.props.route.childRoutes.forEach(function(obj,i){
+      obj.content = childComponents[i]
+      obj.parent = parent
+    })
     this.props.dispatch(setHasTabs(true));
-    this.props.dispatch(setTabs(this.props.route.childRoutes));
-    this.props.dispatch(setTabsContent(this.props.route.childComponents));
+    // this.props.dispatch(setTabs(this.props.route.childRoutes));
+    // this.props.dispatch(setTabsContent(this.props.route.childComponents));
   }
   render(){
     return(
-      <div>
-        <TabsNavigationContainer />
-      </div>
-
+        <TabsNavigationContainer2
+          tabs={this.props.route.childRoutes}
+        />
     )
   }
 }

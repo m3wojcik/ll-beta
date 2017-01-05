@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 
-import { setAppHeader } from "../actions/AppActions";
-import { fetchUpcomingClasses } from "../actions/ClassesActions";
+import { setAppHeader, setTabsFetch } from "../actions/AppActions";
+import { fetchUpcomingClasses } from "../actions/DashboardClassesActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import Classes from '../components/Classes'
 
@@ -13,9 +13,9 @@ import Classes from '../components/Classes'
     routing: store.routing,
     page: store.app.page,
     tabs: store.app.tabs,
-    classes: store.classes.classes,
-    fetched: store.classes.fetched,
-    fetching: store.classes.fetching
+    dashboardClasses: store.dashboardClasses.dashboardClasses,
+    fetched: store.dashboardClasses.fetched,
+    fetching: store.dashboardClasses.fetching
   };
 })
 export default class DashboardClassesContainer extends Component {
@@ -24,8 +24,10 @@ export default class DashboardClassesContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    this.props.dispatch(fetchUpcomingClasses(function () {
-      this.props.onLoad();
+    
+    this.props.dispatch(setTabsFetch(false));
+    this.props.dispatch(fetchUpcomingClasses(function(){
+      this.props.dispatch(setTabsFetch(true));
     }.bind(this)));
   }
   handleClick(classId, className){
@@ -33,7 +35,7 @@ export default class DashboardClassesContainer extends Component {
     this.props.dispatch(push('classDetails/' + classId));
   }
   render(){
-    const { classes, fetched } = this.props;
+    const { dashboardClasses, fetched } = this.props;
     if(!fetched){
       return(
         <div className="content content-tabs">
@@ -43,7 +45,7 @@ export default class DashboardClassesContainer extends Component {
     }
     return(
       <div className="content content-tabs">
-        <Classes classes={classes} onCardClick={this.handleClick}  />
+        <Classes classes={dashboardClasses} onCardClick={this.handleClick}  />
       </div>
     )
   }
