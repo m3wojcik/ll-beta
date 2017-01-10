@@ -15,7 +15,15 @@ export default class Tests extends Component {
   render(){
     const { tests } = this.props;
     const mappedTests = tests.map(function(test){
-      let cardActions= [];
+      let cardInfo = []
+      if(test.duration){
+        cardInfo.push(
+          <li key="duration">
+            <FontIcon>access_time</FontIcon> {test.duration}
+          </li>
+        )
+      }
+      let cardActions = [];
       if(test.completed){
         cardActions.push(<Button key="show" flat label="Show" onClick={this.props.onShowClick.bind(this, test)} />)
       }
@@ -31,9 +39,12 @@ export default class Tests extends Component {
             title={<CustomCardTitle left={test.name} right={<div>sdsd</div>} />}
             subtitle={<div><FontIcon>share</FontIcon><FormattedRelative value={test.shareDate}/></div>}
             />
-          <List className="md-divider-border md-divider-border--top">
-            <ListItem disabled primaryText={test.checkingTeacher} leftIcon={<FontIcon>face</FontIcon>}  />
-          </List>
+          <ul className="card-list">
+            <li>
+              <FontIcon>face</FontIcon> {test.checkingTeacher}
+            </li>
+            {cardInfo}
+          </ul>
           <CardActions className="md-divider-border ">
             {cardActions}
           </CardActions>

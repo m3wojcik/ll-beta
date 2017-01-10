@@ -270,6 +270,19 @@ ul.list-horizontal > li{
   padding-right: 5px;
   padding-bottom: 5px;
 }
+/*card-list
+------------------------------------------------------------------------------*/
+ul.card-list{
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+ul.card-list > li{
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
 /*Cards
 ------------------------------------------------------------------------------*/
 .md-card.inactive{
