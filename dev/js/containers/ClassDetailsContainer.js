@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { setAppSettings } from "../actions/AppActions";
+import { setHasTabs } from "../actions/AppActions";
 import { fetchClassDetails } from "../actions/ClassDetailsActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import ClassDetails from '../components/ClassDetails'
@@ -10,12 +10,12 @@ import ClassDetails from '../components/ClassDetails'
     routing: store.routing,
     classDetails: store.classDetails.classDetails,
     fetched: store.classDetails.fetched,
-    fetching: store.classDetails.fetching
+    fetching: store.classes.fetching
   };
 })
 export default class ClassDetailsContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(setAppSettings({hasTabs: false}));
+    this.props.dispatch(setHasTabs(false));
     this.props.dispatch(fetchClassDetails(this.props.params.classId));
   }
   render(){
@@ -28,7 +28,7 @@ export default class ClassDetailsContainer extends Component {
       )
     }
     return(
-      <div className="content">
+      <div className="content-no-padding">
         <ClassDetails clas={classDetails} />
       </div>
     )

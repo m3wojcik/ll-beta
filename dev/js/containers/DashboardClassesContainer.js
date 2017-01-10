@@ -24,7 +24,6 @@ export default class DashboardClassesContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    
     this.props.dispatch(setTabsFetch(false));
     this.props.dispatch(fetchUpcomingClasses(function(){
       this.props.dispatch(setTabsFetch(true));

@@ -14,15 +14,21 @@ export default class ClassDetails extends Component {
      const mappedClass = (
        clas ?
       <li key={clas.id}>
+        <div className={clas.active ? 'class active': 'class inactive'}>
+          <div className="class-header">
+              <CardTitle title={<CustomCardTitle left={clas.weekday} right={clas.date} />} subtitle={clas.startTime + ' - ' +clas.endTime}   />
+              <CardClassDetails status={clas.status} details={clas.details} />
+        </div>
         <Card className={clas.active ? 'active': 'inactive'}>
-          <CardTitle title={<CustomCardTitle left={clas.weekday} right={clas.date} />} subtitle={clas.startTime + ' - ' +clas.endTime}   />
-          <CardClassDetails status={clas.status} details={clas.details} />
+
+
           <List className="md-divider-border md-divider-border--top">
             <ListItem disabled primaryText={clas.name} leftIcon={<FontIcon>event</FontIcon>} />
             <ListItem disabled primaryText={clas.teacher} leftIcon={<FontIcon>face</FontIcon>}  />
             <ListItem disabled primaryText={clas.room} leftIcon={<FontIcon>place</FontIcon>}  />
           </List>
         </Card>
+      </div>
       </li>
       : null
     );

@@ -24,6 +24,7 @@ import InboxContainer from './containers/InboxContainer';
 import CreateMessageContainer from './containers/CreateMessageContainer';
 import ClassesContainer from './containers/ClassesContainer';
 import FilesContainer from './containers/FilesContainer';
+import TestsContainer from './containers/TestsContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -49,6 +50,7 @@ ReactDOM.render(
           <Route path="classes" component={ClassesContainer} />
           <Route path="files" component={FilesContainer} />
           <Route path="files/:fileId" component={FilesContainer} />
+          <Route path="tests" component={TestsContainer} />
         </Route>
       </Router>
     </IntlProvider>

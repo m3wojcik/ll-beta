@@ -10,6 +10,7 @@ import InboxReducer from './InboxReducer';
 import MessageReducer from './MessageReducer';
 import CreateMessageReducer from './CreateMessageReducer';
 import FilesReducer from './FilesReducer';
+import TestsReducer from './TestsReducer';
 
 const allReducers = combineReducers({
   routing: routerReducer,
@@ -22,7 +23,8 @@ const allReducers = combineReducers({
   inbox: InboxReducer,
   message: MessageReducer,
   createMessage: CreateMessageReducer,
-  files: FilesReducer
+  files: FilesReducer,
+  tests: TestsReducer
 });
 
 export default allReducers;

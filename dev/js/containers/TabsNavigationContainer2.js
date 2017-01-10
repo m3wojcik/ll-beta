@@ -65,9 +65,6 @@ export default class TabsNavigationContainer2 extends Component {
     if (this.tabsContainer) {
       this.tabsContainer.forceUpdate();
     }
-    // if (this.tabs.tabsContainer) {
-    //     this.tabs.tabsContainer.forceUpdate();
-    // }
   }
   render(){
     const {tabs} = this.props;

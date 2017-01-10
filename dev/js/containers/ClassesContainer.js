@@ -29,6 +29,7 @@ export default class DashboardClassesContainer extends Component {
     }.bind(this)));
   }
   handleClick(classId, className){
+    this.props.dispatch(setAppSettings({header:className, hasTabs: false}));
     this.props.dispatch(push('classDetails/' + classId));
   }
   render(){

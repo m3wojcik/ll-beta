@@ -53,7 +53,11 @@ export default function reducer(state={
       case "SET_APP_SETTINGS": {
         return {
           ...state,
-          toolbar: {...state.toolbar, header: action.payload.header, hasTabs: action.payload.hasTabs, hasBackButton: action.payload.hasBackButton},
+          toolbar: {...state.toolbar,
+            header: action.payload.header,
+            hasTabs: action.payload.hasTabs,
+            hasBackButton: action.payload.hasBackButton
+          },
         }
       }
       case "SET_APP_HEADER": {
