@@ -8,21 +8,15 @@ import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import CustomCardTitle from './CustomCardTitle';
-import CardClassDetails from './CardClassDetails';
-import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
+import IconText from './helpers/IconText';
+import SquareLabel from './helpers/SquareLabel';
+import TestInfo from './helpers/TestInfo';
+import {FormattedRelative} from 'react-intl';
 
 export default class Tests extends Component {
   render(){
     const { tests } = this.props;
     const mappedTests = tests.map(function(test){
-      let cardInfo = []
-      if(test.duration){
-        cardInfo.push(
-          <li key="duration">
-            <FontIcon>access_time</FontIcon> {test.duration}
-          </li>
-        )
-      }
       let cardActions = [];
       if(test.completed){
         cardActions.push(<Button key="show" flat label="Show" onClick={this.props.onShowClick.bind(this, test)} />)
@@ -33,29 +27,20 @@ export default class Tests extends Component {
         cardActions.push(<Button key="solve" flat label="Solve" onClick={this.props.onSolveClick.bind(this, test)} />)
       }
       let output = [
-      <li key={test.id}>
+      <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone" key={test.id}>
         <Card>
-          <CardTitle
-            title={<CustomCardTitle left={test.name} right={<div>sdsd</div>} />}
-            subtitle={<div><FontIcon>share</FontIcon><FormattedRelative value={test.shareDate}/></div>}
-            />
-          <ul className="card-list">
-            <li>
-              <FontIcon>face</FontIcon> {test.checkingTeacher}
-            </li>
-            {cardInfo}
-          </ul>
-          <CardActions className="md-divider-border ">
+            <TestInfo test={test} />
+          <CardActions className="md-divider-border md-divider-border--top">
             {cardActions}
           </CardActions>
         </Card>
-      </li>]
+      </div>]
       return output;
     }.bind(this));
     return(
-      <ul className="clean-list">
+      <div className="md-grid">
         {mappedTests}
-      </ul>
+      </div>
     )
   }
 }

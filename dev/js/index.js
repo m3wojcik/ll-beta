@@ -25,6 +25,7 @@ import CreateMessageContainer from './containers/CreateMessageContainer';
 import ClassesContainer from './containers/ClassesContainer';
 import FilesContainer from './containers/FilesContainer';
 import TestsContainer from './containers/TestsContainer';
+import TestContainer from './containers/TestContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -51,6 +52,7 @@ ReactDOM.render(
           <Route path="files" component={FilesContainer} />
           <Route path="files/:fileId" component={FilesContainer} />
           <Route path="tests" component={TestsContainer} />
+          <Route path="test/:testId" component={TestContainer} />
         </Route>
       </Router>
     </IntlProvider>

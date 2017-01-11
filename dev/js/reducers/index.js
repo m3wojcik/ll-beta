@@ -11,6 +11,7 @@ import MessageReducer from './MessageReducer';
 import CreateMessageReducer from './CreateMessageReducer';
 import FilesReducer from './FilesReducer';
 import TestsReducer from './TestsReducer';
+import TestReducer from './TestReducer';
 
 const allReducers = combineReducers({
   routing: routerReducer,
@@ -24,7 +25,8 @@ const allReducers = combineReducers({
   message: MessageReducer,
   createMessage: CreateMessageReducer,
   files: FilesReducer,
-  tests: TestsReducer
+  tests: TestsReducer,
+  test: TestReducer
 });
 
 export default allReducers;

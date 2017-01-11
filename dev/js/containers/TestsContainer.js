@@ -18,7 +18,7 @@ import {getParamFromPath, getCleanPath} from '../actions/Functions'
      fetching: store.tests.fetching
   };
 })
-export default class FilesContainer extends Component {
+export default class TestsContainer extends Component {
   constructor(props){
     super(props);
     this.handleSolveClick = this.handleSolveClick.bind(this);
@@ -29,10 +29,11 @@ export default class FilesContainer extends Component {
     this.props.dispatch(fetchTests());
   }
   handleSolveClick(test){
-    console.log('click', test.id);
+    this.props.dispatch(setAppSettings({header:test.name, hasTabs: false}));
+    this.props.dispatch(push('test/' + test.id));
   }
   handleShowClick(test){
-    console.log('click', test.id);
+
   }
   render(){
     const { fetched, tests } = this.props;
@@ -44,11 +45,11 @@ export default class FilesContainer extends Component {
       )
     }
     return(
-      <div className="content">
+      <div className="content-no-padding">
         <Tests
           tests={tests}
           onSolveClick={this.handleSolveClick}
-          onShowClick={this.handleShowClick} 
+          onShowClick={this.handleShowClick}
           />
       </div>
     )
