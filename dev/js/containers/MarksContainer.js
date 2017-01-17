@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-
-import { setAppHeader, setHasTabs } from "../actions/AppActions";
 import { fetchMarks } from "../actions/MarksActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import Marks from '../components/Marks'
 
-
 @connect((store) => {
    return {
-    page: store.app.page,
-    toolbar: store.app.toolbar,
     marks: store.marks.marks,
     fetched: store.marks.fetched,
     fetching: store.marks.fetching
@@ -19,8 +14,6 @@ import Marks from '../components/Marks'
 })
 export default class MarksContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(setHasTabs(false));
-    this.props.dispatch(setAppHeader('Marks'));
     this.props.dispatch(fetchMarks());
   }
   render(){

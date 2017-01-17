@@ -1,7 +1,6 @@
 import axios from "axios";
 
 export function fetchFiles(folderId) {
-  console.log("filesActions",folderId);
   return function(dispatch) {
     dispatch({type: "FETCH_FILES", payload: folderId});
     axios.get("http://api.local/?q=getFiles"+"&id="+folderId)

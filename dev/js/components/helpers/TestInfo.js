@@ -4,41 +4,32 @@ import {FormattedRelative} from 'react-intl';
 import CustomCardTitle from '../CustomCardTitle';
 import IconText from './IconText';
 import FontIcon from 'react-md/lib/FontIcons';
-import SquareLabel from './SquareLabel';
+
 export default class TestInfo extends Component {
 
   render(){
     const { test} = this.props;
     let cardInfo = [];
     if(test.duration){
+      let duration = test.duration / 60;
       cardInfo.push(
         <li key="duration">
-          <IconText icon={<FontIcon>access_time</FontIcon>} text={test.duration} />
+          <IconText icon={<FontIcon className="icon-yellow">access_time</FontIcon>} text={duration} />
         </li>
       )
     }
     if(test.multipleSolving){
       cardInfo.push(
         <li key="multipleSolving">
-          <IconText icon={<FontIcon>replay</FontIcon>} text="Multiple solving" />
+          <IconText icon={<FontIcon className="icon-green">replay</FontIcon>} text="Multiple solving" />
         </li>
-      )
-    }
-    let textResult = [];
-    if(test.result){
-      textResult.push(
-          <SquareLabel key="result" value={test.result} displayValue={test.result + "%"} />
       )
     }
     return(
       <div>
-        <CardTitle
-          title={<CustomCardTitle left={test.name} right={textResult} />}
-          subtitle={<FormattedRelative value={test.shareDate}/>}
-          />
         <ul className="card-list">
           <li>
-            <IconText icon={<FontIcon>face</FontIcon>} text={test.checkingTeacher} />
+            <IconText icon={<FontIcon className="icon-blue">face</FontIcon>} text={test.checkingTeacher} />
           </li>
           {cardInfo}
         </ul>

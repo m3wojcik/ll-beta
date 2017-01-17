@@ -5,7 +5,6 @@ import {push} from 'react-router-redux';
 import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
 import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
-import Toolbar from 'react-md/lib/Toolbars';
 import {getParamFromPath, getCleanPath} from '../actions/Functions'
 import { setAppHeader, setActiveTabIndex, setTabsContainer, pageIsLoaded } from "../actions/AppActions"
 

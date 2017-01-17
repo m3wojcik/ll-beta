@@ -7,7 +7,7 @@ export default class CardClassDetails extends Component {
     const mappedDetails = details.map(
       (detail, i) =>
       <li key={i}>
-        <span className={'label ' + detail.class}>{detail.name}</span>
+        <Label label={detail.name} className={detail.class} />
       </li>
     );
     const statusElement = (
@@ -20,7 +20,6 @@ export default class CardClassDetails extends Component {
     return(
       <div className="card-section">
         <ul className="clean-list list-horizontal">
-
           {statusElement}
           {mappedDetails}
         </ul>

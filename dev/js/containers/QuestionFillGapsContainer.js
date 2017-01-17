@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import QuestionFillGaps from '../components/QuestionFillGaps';
+import QuestionFillGapsView from '../components/QuestionFillGapsView';
 
 @connect((store) => {
    return {
@@ -11,9 +12,8 @@ export default class QuestionFillGapsContainer extends Component {
   constructor(props) {
       super(props);
       this.state = { html: []}
-      this.handleChange = this.handleChange.bind(this);
   }
-  handleChange(value, obj){
+  handleChange = (value, obj) =>{
     const { id, userAnswers } = this.props;
     let tmp = this.state.html;
     tmp[obj.id] = value;
@@ -22,7 +22,15 @@ export default class QuestionFillGapsContainer extends Component {
     this.setState({html: tmp});
   }
   render(){
-    const { textArray, id } = this.props;
+    const { textArray, id, view } = this.props;
+    if(view){
+      return(
+          <QuestionFillGapsView
+            id={id}
+            textArray={textArray}
+          />
+      )
+    }
     return(
         <QuestionFillGaps
           id={id}

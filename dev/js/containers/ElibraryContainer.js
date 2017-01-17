@@ -1,0 +1,76 @@
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import {push} from 'react-router-redux';
+import Tabs from 'react-md/lib/Tabs/Tabs';
+import Tab from 'react-md/lib/Tabs/Tab';
+import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
+import ElibraryListContainer from './ElibraryListContainer'
+
+@connect((store) => {
+   return {
+    routing: store.routing
+  };
+})
+export default class ElibraryContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {activeTabIndex: 0, tabsArray : ['list','reserved','borrowed']}
+  }
+  componentWillMount(){
+    const {tabsArray} = this.state;
+    let index = tabsArray.indexOf(this.props.params.path);
+    if(index > -1){
+      this.setState({activeTabIndex: index});
+    }else{
+      this.setState({activeTabIndex: 0});
+    }
+  }
+  componentWillReceiveProps(nextProps){
+    const {tabsArray} = this.state;
+    let currentPath = this.props.params.path;
+    let nextPath = nextProps.params.path;
+    if(currentPath != nextPath){
+      let index = tabsArray.indexOf(nextProps.params.path);
+      if(index > -1){
+        this.setState({activeTabIndex: index});
+      }else{
+        this.setState({activeTabIndex: 0});
+      }
+    }
+  }
+  setTabsContainer = (tabsContainer) => {
+    this.tabsContainer = tabsContainer;
+  }
+  forceHeightCalculation = () => {
+    if (this.tabsContainer) {
+      this.tabsContainer.forceUpdate();
+    }
+  }
+  handleTabChange = (activeTabIndex, tabId, tabControlsId, tabChildren) => {
+    this.props.dispatch(push(tabId));
+  }
+  render(){
+    const {activeTabIndex} = this.state;
+    return(
+      <TabsContainer
+          onTabChange={this.handleTabChange}
+          activeTabIndex={activeTabIndex}
+          colored
+          fixed
+          ref={this.setTabsContainer}>
+            <Tabs tabId="tab" className="md-paper--2">
+              <Tab id="elibrary/list" label="List">
+                <div className="content-no-padding content-tabs">
+                  <ElibraryListContainer onLoad={this.forceHeightCalculation}   />
+                </div>
+              </Tab>
+              <Tab id="elibrary/reserved" label="Reserved">
+                 <div className="content-no-padding content-tabs">
+                   Rezerwacje
+                 </div>
+              </Tab>
+            </Tabs>
+        </TabsContainer>
+    )
+  }
+}

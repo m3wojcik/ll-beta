@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import QuestionFillGapsList from '../components/QuestionFillGapsList';
+import QuestionFillGapsView from '../components/QuestionFillGapsView';
 
 @connect((store) => {
    return {
@@ -8,24 +9,25 @@ import QuestionFillGapsList from '../components/QuestionFillGapsList';
   };
 })
 export default class QuestionFillGapsListContainer extends Component {
-  constructor(props) {
-      super(props);
-      //this.state = { selectedValues: []}
-      this.handleChange = this.handleChange.bind(this);
-  }
-  handleChange(value, index){
-    const { id, userAnswers } = this.props;
-    let tmp = []
-    if(userAnswers.length > 0){
-      tmp = userAnswers[id];
+
+  handleChange = (value, index) =>{
+    let { id, userAnswers } = this.props;
+    if(!userAnswers[id]) {
+      userAnswers[id] = [];
     }
-    tmp[index] = value;
-    userAnswers[id] = tmp;
+    userAnswers[id][index] = value;
     console.log(userAnswers);
-    //this.setState({selectedValues: tmp});
   }
   render(){
-    const { answers, textArray, id } = this.props;
+    const { answers, textArray, id ,view } = this.props;
+    if(view){
+      return(
+          <QuestionFillGapsView
+            id={id}
+            textArray={textArray}
+          />
+      )
+    }
     return(
         <QuestionFillGapsList
           id={id}

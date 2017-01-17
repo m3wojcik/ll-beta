@@ -12,6 +12,10 @@ import CreateMessageReducer from './CreateMessageReducer';
 import FilesReducer from './FilesReducer';
 import TestsReducer from './TestsReducer';
 import TestReducer from './TestReducer';
+import TestViewReducer from './TestViewReducer';
+import ProfileReducer from './ProfileReducer';
+import LoginHistoryReducer from './LoginHistoryReducer';
+import ElibraryListReducer from './ElibraryListReducer';
 
 const allReducers = combineReducers({
   routing: routerReducer,
@@ -26,7 +30,11 @@ const allReducers = combineReducers({
   createMessage: CreateMessageReducer,
   files: FilesReducer,
   tests: TestsReducer,
-  test: TestReducer
+  test: TestReducer,
+  testView: TestViewReducer,
+  profile: ProfileReducer,
+  loginHistory: LoginHistoryReducer,
+  elibraryList: ElibraryListReducer
 });
 
 export default allReducers;

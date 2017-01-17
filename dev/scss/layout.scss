@@ -1,3 +1,31 @@
+$red            : #DB2828;
+$orange         : #F2711C;
+$yellow         : #FBBD08;
+$olive          : #B5CC18;
+$green          : #21BA45;
+$teal           : #00B5AD;
+$blue           : #2185D0;
+$violet         : #6435C9;
+$purple         : #A333C8;
+$pink           : #E03997;
+$brown          : #A5673F;
+$grey           : #767676;
+$black          : #1B1C1D;
+
+$red-hover      : #d01919;
+$orange-hover   : #f26202;
+$yellow-hover   : #eaae00;
+$olive-hover    : #a7bd0d;
+$green-hover    : #16ab39;
+$teal-hover     : #009c95;
+$blue-hover     : #1678c2;
+$violet-hover   : #5829bb;
+$purple-hover   : #9627ba;
+$pink-hover     : #e61a8d;
+$brown-hover    : #975b33;
+$grey-hover     : #838383;
+$black-hover    : #27292a;
+
 body{
   font-family: Lato, sans-serif;
   margin: 0px;
@@ -7,33 +35,64 @@ body{
 *,h1, h2, h3, h4, h5, h6, button, input, textarea, html{
   font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif
 }
+a, a:link, a:visited {
+    color: $blue;
+    text-decoration: none;
+}
 strong{
   font-weight: 700;
+}
+.navigation{
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  a{
+    text-decoration: none;
+    .md-text{
+      font-size: 1.1rem;
+      color: #fff;
+      font-weight: 500;
+      .label{
+        padding-top: 0px;
+        padding-bottom: 0px;
+        line-height: 21px;
+        height: 21px;
+        display: inline-block;
+      }
+    }
+  }
 }
 .navigation-drawer{
   color: #fff;
   background: #3c4b5b;
   text-shadow: 0 1px 1px rgba(0,0,0,.1);
-}
-.navigation{
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-}
-.navigation a{
-
-    text-decoration: none;
-}
-.navigation a .md-text{
-  font-size: 1.1rem;
-  //color: rgba(0, 0, 0, 0.87);
-  color: #fff;
-  font-weight: 500;
-}
-.navigation a .md-icon{
-  color: #fff;
-  //color: rgba(0, 0, 0, 0.6);
-}
-.navigation-drawer header{
-  border-bottom-color: transparent;
+  header{
+    border-bottom-color: transparent;
+    height: auto;
+    background-color: #364351;
+    min-height: 90px;
+    .navigation-user{
+      padding: 20px;
+      display: flex;
+      a{
+        text-decoration: none;
+        color: #fff;
+      }
+      .navigation-user-avatar{
+        font-weight: normal;
+        margin-right: 10px;
+      }
+      .navigation-user-data{
+        .navigation-user-name{
+          font-size: 1.1em;
+        }
+        .navigation-user-login{
+          font-size: 0.9em;
+          a{
+            opacity: 0.6;
+          }
+        }
+      }
+    }
+  }
 }
 // .navigation .md-icon{
 //   color: rgba(255,255,255,0.8);
@@ -46,12 +105,15 @@ strong{
 // }
 .content{
   padding: 20px;
-}
-.content-no-padding{
-  padding: 0px;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .content.content-tabs{
   padding-top: 70px;
+}
+.content-no-padding{
+  padding: 0px;
 }
 .content-no-padding.content-tabs{
   padding-top: 50px;
@@ -68,6 +130,133 @@ strong{
 .toolbar > button{
   margin-right: 10px;
 }
+.md-drawer-relative{
+  .toolbar-expander{
+    margin-left: -256px !important;
+    padding-left: 256px !important;
+  }
+}
+.toolbar-expander{
+  display: flex;
+  background-color: #fff;
+  border-bottom: 2px solid $md-secondary-color;
+  .toolbar-expander-left{
+    display: inline-block;
+  }
+  .toolbar-expander-right{
+    margin-left: auto;
+    margin-right: 20px;
+  }
+}
+.toolbar-expander.toolbar-expander-padding{
+    padding: 10px 0px;
+}
+.toolbar-search-container {
+    margin-left: 20px;
+    div{
+      width: 100%;
+      input{
+        height: 100%;
+      }
+    }
+}
+@media screen and (min-width: 1025px){
+  .toolbar-search-container,
+  .toolbar-title {
+      margin-left: 276px;
+  }
+}
+.toolbar-children{
+  width: 100%;
+  display: flex;
+}
+/*custom tabs
+------------------------------------------------------------------------------*/
+.custom-tabs{
+  display: flex;
+  a{
+    padding: 12px 32px 11px;
+    font-weight: 700;
+    margin-bottom: -1px;
+    border: 1px solid transparent;
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: .25rem;
+    background-clip: padding-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+  a.selected{
+    border: 1px solid #e8e8e8;
+    background: #fff;
+    border-bottom-color: #fff;
+    color: #555459;
+    cursor: default;
+  }
+}
+.tab-pane{
+  background: #fff;
+  border-radius: .25rem;
+  padding: 2rem 2rem 1rem;
+  margin: 0 auto 3rem;
+  border: 1px solid #e8e8e8;
+}
+/*user photo
+------------------------------------------------------------------------------*/
+.user-photo{
+  width: 48px;
+  height: 48px;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: .25rem;
+  background-color: $md-blue-grey-100;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.user-photo.small{
+  width: 38px;
+  height: 38px;
+}
+.user-photo.medium{
+  width: 128px;
+  height: 128px;
+}
+.user-photo.large{
+  width: 192px;
+  height: 192px;
+}
+/*fake form
+------------------------------------------------------------------------------*/
+.fake-form{
+  margin-bottom: 20px;
+  .fake-form-control{
+    position: relative;
+    margin-bottom: 10px;
+    label{
+      color: $grey;
+      font-size: 1.1em;
+      font-weight: 700;
+    }
+    .fake-input{
+      padding: 10px 0 20px;
+      font-size: 1.4em;
+      .md-text-field{
+        font-size: 1.1em;
+      }
+    }
+  }
+  .fake-form-actions{
+    text-align: center;
+    button{
+      display: inline-block;
+      margin: 0 5px;
+    }
+  }
+}
 /*messages list
 ------------------------------------------------------------------------------*/
 .message-list-item{
@@ -79,23 +268,27 @@ strong{
 }
 /*message
 ------------------------------------------------------------------------------*/
-.message .message-header{
-  padding: 20px;
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-.message .message-content{
-  padding: 20px;
+.message{
+  .message-header{
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .message-content{
+    padding: 20px;
+  }
 }
 /*class
 ------------------------------------------------------------------------------*/
-.class .class-header{
-  padding: 20px;
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-.class .class-content{
-  padding: 20px;
+.class{
+  .class-header{
+    padding: 20px;
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  .class-content{
+    padding: 20px;
+  }
 }
 /*file list
 ------------------------------------------------------------------------------*/
@@ -127,6 +320,15 @@ strong{
   padding: 20px 20px;
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+}
+.block.block-correct{
+  border-left: 2px solid $green;
+  background-color: $md-light-green-50;
+}
+.block.block-incorrect{
+  border-left: 2px solid $orange;
+  background-color: $md-red-50;
 }
 /* Test items
 ------------------------------------------------------------------------------*/
@@ -138,6 +340,10 @@ li.test-page{
   padding-bottom: 20px;
   background-color: $md-blue-grey-50;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.test-bottom{
+  padding: 20px 20px 40px;
+  text-align: center;
 }
 .block-of-text{
     font-size: 1.15rem;
@@ -167,6 +373,12 @@ li.test-page{
   .fill-gap-gap:focus{
     border-bottom: 2px solid $md-primary-color;
     outline: none;
+  }
+  .fill-gap-gap.answer-correct{
+    border-bottom-color: $green;
+  }
+  .fill-gap-gap.answer-incorrect{
+    border-bottom-color: $red;
   }
   .fill-gap-select{
     margin: 0 5px;
@@ -394,6 +606,47 @@ ul.card-list > li{
 .icon-text > .icon-text-text{
   line-height: 1.7rem;
 }
+/*icon-colors
+------------------------------------------------------------------------------*/
+.icon-red{
+  color: $red;
+}
+.icon-orange{
+  color: $orange;
+}
+.icon-yellow{
+  color: $yellow;
+}
+.icon-olive{
+  color: $olive;
+}
+.icon-green{
+  color: $green;
+}
+.icon-teal{
+  color: $teal;
+}
+.icon-blue{
+  color: $blue;
+}
+.icon-violet{
+  color: $violet;
+}
+.icon-purple{
+  color: $purple;
+}
+.icon-pink{
+  color: $pink;
+}
+.icon-brown{
+  color: $brown;
+}
+.icon-grey{
+  color: $grey;
+}
+.icon-black{
+  color: $black;
+}
 /*Labels
 ------------------------------------------------------------------------------*/
 .label {
@@ -431,6 +684,45 @@ ul.card-list > li{
 .label-danger {
   background-color: $md-red-800;
 }
+.label-red{
+  background-color: $red;
+}
+.label-orange{
+  background-color: $orange;
+}
+.label-yellow{
+  background-color: $yellow;
+}
+.label-olive{
+  background-color: $olive;
+}
+.label-green{
+  background-color: $green;
+}
+.label-teal{
+  background-color: $teal;
+}
+.label-blue{
+  background-color: $blue;
+}
+.label-violet{
+  background-color: $violet;
+}
+.label-purple{
+  background-color: $purple;
+}
+.label-pink{
+  background-color: $pink;
+}
+.label-brown{
+  background-color: $brown;
+}
+.label-grey{
+  background-color: $grey;
+}
+.label-black{
+  background-color: $black;
+}
 /*Quill
 ------------------------------------------------------------------------------*/
 .quill{
@@ -452,6 +744,43 @@ ul.card-list > li{
 }
 .quill .ql-container .ql-editor{
   min-height: 100px;
+}
+/*countdown-timer
+------------------------------------------------------------------------------*/
+.countdown-timer{
+  padding: 6px 10px;
+  border-radius: 3px;
+  min-width: 20px;
+  height: auto;
+  line-height: 20px;
+  color: #fff;
+  background-color: $grey;
+  .md-icon{
+    vertical-align: middle;
+    color: #fff;
+    margin-right: 5px;
+    font-size: 21px;
+    margin-top: -3px;
+    position: relative;
+  }
+}
+.countdown-timer[data-percent^="0"],.countdown-timer[data-percent^="1"], .countdown-timer[data-percent^="2"] {
+    background-color: #D95C5C;
+}
+.countdown-timer[data-percent^="3"]{
+    background-color: #EFBC72;
+}
+.countdown-timer[data-percent^="4"],.countdown-timer[data-percent^="5"]{
+    background-color: #E6BB48;
+}
+.countdown-timer[data-percent^="6"]{
+    background-color: #DDC928;
+}
+.countdown-timer[data-percent^="7"],.countdown-timer[data-percent^="8"] {
+    background-color: #B4D95C;
+}
+.countdown-timer[data-percent^="9"],.countdown-timer[data-percent^="100"]{
+    background-color: #66DA81;
 }
 /*Animations
 ------------------------------------------------------------------------------*/

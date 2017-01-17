@@ -1,48 +1,101 @@
 import React, { Component } from 'react';
-import Button from 'react-md/lib/Buttons/Button';
+import { connect } from "react-redux";
+
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import MainNavigation from '../components/MainNavigation';
+import ToolbarContainer from './ToolbarContainer';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import { connect } from "react-redux";
-import { fetchAppData } from "../actions/AppActions";
+
+import { fetchAppData, setAppSettings } from "../actions/AppActions";
+import NavigationUserContainer from './NavigationUserContainer';
 
 @connect((store) => {
   return {
+    routing: store.routing,
     appData: store.app.appData,
+    toolbar: store.app.toolbar,
     hasTabs: store.app.toolbar.hasTabs,
-    header: store.app.toolbar.header,
-    hasBackButton: store.app.toolbar.hasBackButton
+    header: store.app.toolbar.header
   };
 })
 export default class LayoutContainer extends Component {
   componentDidMount(){
+    const { routing } = this.props;
+    const currentPath = routing.locationBeforeTransitions.pathname;
     this.props.dispatch(fetchAppData());
+    let settings = this.getAppSettings(currentPath);
+    this.props.dispatch(setAppSettings(settings));
   }
+  componentWillReceiveProps(nextProps){
+    const { routing } = this.props;
+    const currentPath = routing.locationBeforeTransitions.pathname;
+    const nextPath = nextProps.routing.locationBeforeTransitions.pathname;
+    if(currentPath != nextPath){
+      let settings = this.getAppSettings(nextPath);
+      this.props.dispatch(setAppSettings(settings));
+    }
+  }
+  getAppSettings = (pathname) =>{
+    let settings = {"header":"dupa  "};
+    if(/^\/files(\/.+|)/.test(pathname)){
+      settings = {"header":"Files", "hasTabs":false, "searchBtn": false}
+      return settings;
+    }
+    switch (pathname) {
+      case "/inbox":
+        settings = {"header":"Inbox", "hasTabs":false, "searchBtn": true}
+        break;
+      case "/createmessage":
+        settings = {"header":"Create", "hasTabs":false, "searchBtn": false}
+        break;
+      case "/attendance":
+        settings = {"header":"Attendance", "hasTabs":false, "searchBtn": false}
+        break;
+      case "/classes":
+        settings = {"header":"Classes", "hasTabs":false, "searchBtn": false}
+        break;
+      case "/marks":
+        settings = {"header":"Marks", "hasTabs":false, "searchBtn": false}
+        break;
+      case "/elibrary/list":
+        settings = {"header":"E-library", "hasTabs":true, "searchBtn": true}
+        break;
+      case "/elibrary/reserved":
+        settings = {"header":"Reserved", "hasTabs":true, "searchBtn": false}
+        break;
+    }
+    return settings;
+  }
+
   render(){
-      const {hasTabs, appData} = this.props;
-      var classess = hasTabs ? 'no-shadow' : '';
-      if(!appData.fetched){
-        return(
-          <div className="content">
-            <CircularProgress id="loading-classes-details" key="loading"  />
-          </div>
-        )
+    const {hasTabs, appData, toolbar, header} = this.props;
+
+
+    let classess = hasTabs ? 'no-shadow' : '';
+    if(!appData.fetched){
+      return(
+        <div className="content">
+          <CircularProgress id="loading-classes-details" key="loading"  />
+        </div>
+      )
     }
     return(
         <NavigationDrawer
-        drawerClassName="navigation-drawer"
-        contentClassName="md-grid"
-        includeDrawerHeader
-        drawerChildren = {<MainNavigation />}
-        drawerHeaderChildren={<div>{appData.user.firstName}</div>}
-        //toolbarChildren= {}
-        mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
-        tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT}
-        desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
-        toolbarTitle={this.props.header}
-        contentClassName=""
-        contentId="main-content-demo"
-        toolbarClassName={classess}
+          drawerClassName="navigation-drawer"
+          includeDrawerHeader
+          drawerChildren = {<MainNavigation />}
+          drawerHeaderChildren={<NavigationUserContainer userData={appData.user} />}
+
+          mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
+          tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT}
+          desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
+
+          toolbarThemeType="themed"
+          toolbarTitleClassName="toolbar-title"
+          toolbarChildren={<ToolbarContainer />}
+          contentClassName=""
+          contentId="main-content-demo"
+          toolbarClassName={classess}
         >
 
         {this.props.content}

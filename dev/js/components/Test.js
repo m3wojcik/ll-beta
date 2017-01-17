@@ -33,7 +33,13 @@ export default class Test extends Component {
               output = <QuestionContainer id={block.id} key={block.id} type="radio" text={block.question} answers={block.answers} />
               break;
             case "multiple":
-              output = <QuestionContainer id={block.id} key={block.id} type="checkbox" text={block.question} answers={block.answers} />
+              output = <QuestionContainer
+                id={block.id}
+                key={block.id}
+                type="checkbox"
+                text={block.question}
+                answers={block.answers}
+                />
               break;
             case "open":
               output = <QuestionOpenContainer id={block.id} key={block.id} text={block.text} />

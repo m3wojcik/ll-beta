@@ -27,7 +27,7 @@ export default class Files extends Component {
          <ListItem
            key={file.id}
            onClick={onClick.bind(this, file)}
-           leftIcon={file.type == 'folder' ? <FontIcon>folder</FontIcon> : <FileTypeIcon ext={file.extension} />}
+           leftIcon={file.type == 'folder' ? <FontIcon className="icon-yellow">folder</FontIcon> : <FileTypeIcon ext={file.extension} />}
            secondaryText={file.type == 'folder' ? "" : file.size}
            primaryText={file.type == 'folder' ? file.name : file.name + '.' + file.extension} />
        )

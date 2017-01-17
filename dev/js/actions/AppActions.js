@@ -65,3 +65,21 @@ export function setHasTabs(hasTabs) {
     payload: hasTabs,
   }
 }
+export function setSearchBtn(searchBtn) {
+  return {
+    type: 'SET_SEARCH_BTN',
+    payload: searchBtn,
+  }
+}
+export function setSearching(searching) {
+  return {
+    type: 'SET_SEARCHING',
+    payload: searching,
+  }
+}
+export function setSearchValue(value) {
+  return {
+    type: 'SET_SEARCH_VALUE',
+    payload: value,
+  }
+}

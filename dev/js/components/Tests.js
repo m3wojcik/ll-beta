@@ -26,9 +26,19 @@ export default class Tests extends Component {
       }else if(!test.completed){
         cardActions.push(<Button key="solve" flat label="Solve" onClick={this.props.onSolveClick.bind(this, test)} />)
       }
+      let textResult = [];
+      if(test.result){
+        textResult.push(
+            <SquareLabel key="result" value={test.result} displayValue={test.result + "%"} />
+        )
+      }
       let output = [
       <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone" key={test.id}>
         <Card>
+          <CardTitle
+            title={<CustomCardTitle left={test.name} right={textResult} />}
+            subtitle={<FormattedRelative value={test.shareDate}/>}
+            />
             <TestInfo test={test} />
           <CardActions className="md-divider-border md-divider-border--top">
             {cardActions}

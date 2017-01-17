@@ -26,6 +26,11 @@ import ClassesContainer from './containers/ClassesContainer';
 import FilesContainer from './containers/FilesContainer';
 import TestsContainer from './containers/TestsContainer';
 import TestContainer from './containers/TestContainer';
+import TestViewContainer from './containers/TestViewContainer';
+import ProfileContainer from './containers/ProfileContainer';
+import EditProfileContainer from './containers/EditProfileContainer';
+import LoginHistoryContainer from './containers/LoginHistoryContainer';
+import ElibraryContainer from './containers/ElibraryContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -53,6 +58,18 @@ ReactDOM.render(
           <Route path="files/:fileId" component={FilesContainer} />
           <Route path="tests" component={TestsContainer} />
           <Route path="test/:testId" component={TestContainer} />
+          <Route path="testview/:testId" component={TestViewContainer} />
+          <Route path="profile">
+            <IndexRedirect to="view" />
+            <Route path="view" component={ProfileContainer} />
+            <Route path="edit" component={EditProfileContainer} />
+            <Route path="loginHistory" component={LoginHistoryContainer} />
+          </Route>
+          <Route path="elibrary/:path" component={ElibraryContainer} />
+          <Route path="elibrary" component={ElibraryContainer} >
+            <IndexRedirect to="list" />
+            <Route path="elibrary/list" />
+          </Route>
         </Route>
       </Router>
     </IntlProvider>

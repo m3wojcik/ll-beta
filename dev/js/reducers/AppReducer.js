@@ -3,18 +3,15 @@ export default function reducer(state={
       fetching: false,
       fetched:true,
       error: null,
-      user:{
-        firstName: null,
-        lastName: null
-      },
-      notifications:{
-        unreadMessages: 0
-      }
+      user: {},
+      notifications: []
     },
     toolbar: {
       header: null,
       hasTabs: false,
-      hasBackButton: false
+      searchBtn: false,
+      searching: false,
+      searchValue: ""
     },
     tabs:{
       fetched:false,
@@ -40,23 +37,21 @@ export default function reducer(state={
           appData : {
             fetching: false,
             fetched: true,
-            user: {
-              firstName: action.payload.user.firstName,
-              lastName: action.payload.user.lastName
-            },
-            notifications:{
-              unreadMessages: action.payload.notifications.unreadMessages
-            }
+            user: action.payload.user,
+            notifications: action.payload.notifications
           },
         }
       }
       case "SET_APP_SETTINGS": {
+
         return {
           ...state,
           toolbar: {...state.toolbar,
             header: action.payload.header,
             hasTabs: action.payload.hasTabs,
-            hasBackButton: action.payload.hasBackButton
+            searchBtn: action.payload.searchBtn,
+            searching: false,
+            searchValue: ''
           },
         }
       }
@@ -70,6 +65,24 @@ export default function reducer(state={
         return {
           ...state,
           toolbar: {...state.toolbar, hasTabs: action.payload},
+        }
+      }
+      case "SET_SEARCH_BTN": {
+        return {
+          ...state,
+          toolbar: {...state.toolbar, searchBtn: action.payload},
+        }
+      }
+      case "SET_SEARCHING": {
+        return {
+          ...state,
+          toolbar: {...state.toolbar, searching: action.payload},
+        }
+      }
+      case "SET_SEARCH_VALUE": {
+        return {
+          ...state,
+          toolbar: {...state.toolbar, searchValue: action.payload},
         }
       }
       case "SET_ACTIVE_TAB_INDEX": {

@@ -29,11 +29,12 @@ export default class TestsContainer extends Component {
     this.props.dispatch(fetchTests());
   }
   handleSolveClick(test){
-    this.props.dispatch(setAppSettings({header:test.name, hasTabs: false}));
+    this.props.dispatch(setAppSettings({header:test.name, hasTabs: true}));
     this.props.dispatch(push('test/' + test.id));
   }
   handleShowClick(test){
-
+    this.props.dispatch(setAppSettings({header:test.name, hasTabs: true}));
+    this.props.dispatch(push('testview/' + test.id));
   }
   render(){
     const { fetched, tests } = this.props;

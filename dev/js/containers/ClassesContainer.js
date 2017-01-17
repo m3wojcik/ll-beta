@@ -10,9 +10,6 @@ import Classes from '../components/Classes'
 
 @connect((store) => {
    return {
-    routing: store.routing,
-    page: store.app.page,
-    tabs: store.app.tabs,
     classes: store.classes.classes,
     fetched: store.classes.fetched,
     fetching: store.classes.fetching
@@ -24,9 +21,7 @@ export default class DashboardClassesContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    this.props.dispatch(setAppSettings({header:"Classes", hasTabs: false}));
-    this.props.dispatch(fetchUpcomingClasses(function () {
-    }.bind(this)));
+    this.props.dispatch(fetchUpcomingClasses());
   }
   handleClick(classId, className){
     this.props.dispatch(setAppSettings({header:className, hasTabs: false}));

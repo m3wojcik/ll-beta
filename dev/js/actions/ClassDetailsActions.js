@@ -1,5 +1,4 @@
 import axios from "axios";
-import { setAppHeader } from './AppActions';
 
 export function fetchClassDetails(classId, callBack) {
   return function(dispatch) {

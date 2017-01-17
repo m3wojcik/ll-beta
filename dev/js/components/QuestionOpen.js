@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import TextField from 'react-md/lib/TextFields';
 
 export default class QuestionOpen extends Component {
-
   render(){
     const { text, id, onChange } = this.props;
     return(
@@ -18,7 +17,6 @@ export default class QuestionOpen extends Component {
             className="md-cell md-cell--12"
           />
         </div>
-
       </div>
     )
   }

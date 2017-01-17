@@ -9,20 +9,26 @@ import { Card } from 'semantic-ui-react'
 
 export default class Inbox extends Component {
   render(){
-    const { messages } = this.props;
-    const mappedMessages = messages.map(
-      message =>
-      <div key={message.id}>
-        <ListItem
-          className={message.read ? "message-list-item message-read" : "message-list-item message-unread"}
-          onClick={this.props.onMessageClick.bind(this,message.id)}
-          leftAvatar={<Avatar icon={message.sender.charAt(0).toUpperCase()} />}
-          rightIcon={<FormattedRelative value={message.date}/>}
-          primaryText={message.read ? message.sender : <strong>{message.sender}</strong>}
-          secondaryText={message.subject}
-        />
-      </div>
-    );
+    const { messages, searchValue, onMessageClick } = this.props;
+    const mappedMessages = messages.map(function(message){
+      let subject = message.subject.toLowerCase();
+      let sender = message.sender.toLowerCase();
+      let search = searchValue.toLowerCase();
+      if(subject.indexOf(search) != -1 || sender.indexOf(search) != -1 ){
+        return(
+          <div key={message.id}>
+            <ListItem
+              className={message.read ? "message-list-item message-read" : "message-list-item message-unread"}
+              onClick={onMessageClick.bind(this,message.id)}
+              leftAvatar={<Avatar icon={message.sender.charAt(0).toUpperCase()} />}
+              rightIcon={<FormattedRelative value={message.date}/>}
+              primaryText={message.read ? message.sender : <strong>{message.sender}</strong>}
+              secondaryText={message.subject}
+            />
+          </div>
+        )
+      }
+    }.bind(this));
     return(
       <List className="">
         <li>
