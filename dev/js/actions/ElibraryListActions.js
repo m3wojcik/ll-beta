@@ -21,18 +21,18 @@ export function changeElibraryItemStatus(id, status) {
   }
 }
 export function reserveElibraryItem(id, date) {
-  return function(dispatch) {
-    axios.post("http://api.local/?q=reserveElibraryItem",{
-      id: id,
-      date: date
-      })
-      .then((response) => {
-        dispatch({type: "RESERVE_ELIBRARY_ITEM_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "RESERVE_ELIBRARY_ITEM_REJECTED", payload: err})
-      })
-  }
+  // return function(dispatch) {
+  //   axios.post("http://api.local/?q=reserveElibraryItem",{
+  //     id: id,
+  //     date: date
+  //     })
+  //     .then((response) => {
+  //       dispatch({type: "RESERVE_ELIBRARY_ITEM_FULFILLED", payload: response.data});
+  //     })
+  //     .catch((err) => {
+  //       dispatch({type: "RESERVE_ELIBRARY_ITEM_REJECTED", payload: err})
+  //     })
+  // }
   // return {
   //   type: 'RESERVE_ELIBRARY_ITEM',
   //   payload: {

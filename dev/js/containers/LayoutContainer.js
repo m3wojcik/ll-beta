@@ -55,7 +55,7 @@ export default class LayoutContainer extends Component {
         settings = {"header":"Login history", "hasTabs":false, "searchBtn": false}
         break;
       case "/inbox":
-        settings = {"header":"Inbox", "hasTabs":false, "searchBtn": false}
+        settings = {"header":"Inbox", "hasTabs":false, "searchBtn": true}
         break;
       case "/createmessage":
         settings = {"header":"Create", "hasTabs":false, "searchBtn": false}
