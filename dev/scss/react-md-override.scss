@@ -20,6 +20,19 @@ border-color: transparent;
 .md-list{
    background-color: transparent;
 }
+.md-list.md-list-divider li.md-list-item{
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.md-list.md-list-divider li.md-list-item:last-child{
+  border-bottom-color: transparent;
+}
+.md-list-right{
+  display: flex;
+}
+.md-list-status{
+    padding: 12px;
+}
 .md-list--menu{
   background-color: #fff;
   border-radius: .28571429rem;
@@ -50,4 +63,16 @@ border-color: transparent;
 }
 h3, .md-title, h6, .md-body-2{
   font-weight: 700;
+}
+.actions-row{
+  width: 100%;
+  padding: 10px 20px;
+  background-color: rgba(0,0,0,0.1);
+  box-sizing: border-box;
+}
+.md-dialog--centered{
+  top: 49.9%;
+  left: 49.9%;
+  -webkit-transform: translate(-50.1%, -50.1%);
+  transform: translate(-50.1%, -50.1%);
 }

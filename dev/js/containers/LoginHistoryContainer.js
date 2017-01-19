@@ -15,7 +15,6 @@ import LoginHistory from '../components/LoginHistory';
 })
 export default class LoginHistoryContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(setAppSettings({header: 'Profile', hasTabs: false}));
     this.props.dispatch(fetchLoginHistory());
   }
   render(){

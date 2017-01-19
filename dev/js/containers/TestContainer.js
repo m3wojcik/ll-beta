@@ -19,10 +19,11 @@ import Button from 'react-md/lib/Buttons/Button';
      fetching: store.test.fetching
   };
 })
+
 export default class TestContainer extends Component {
   constructor(props){
     super(props);
-    this.state = {dialogVisible: false, dialogTitle: "", dialogDescription: ""}
+    this.state = {dialogVisible: false, dialogTitle: "", dialogDescription: "", dialogActions:[]}
   }
   componentDidMount(){
     this.props.dispatch(fetchTest(this.props.params.testId));

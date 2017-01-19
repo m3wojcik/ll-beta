@@ -36,14 +36,26 @@ export default class LayoutContainer extends Component {
     }
   }
   getAppSettings = (pathname) =>{
-    let settings = {"header":"dupa  "};
+    let settings = {};
     if(/^\/files(\/.+|)/.test(pathname)){
       settings = {"header":"Files", "hasTabs":false, "searchBtn": false}
       return settings;
     }
     switch (pathname) {
+      case "/profile/view":
+        settings = {"header":"Profile", "hasTabs":false, "searchBtn": false}
+        break;
+      case "/profile/edit":
+        settings = {"header":"Edit profile", "hasTabs":false, "searchBtn": false}
+        break;
+      case "/profile/changePassword":
+        settings = {"header":"Change password", "hasTabs":false, "searchBtn": false}
+        break;
+      case "/profile/loginHistory":
+        settings = {"header":"Login history", "hasTabs":false, "searchBtn": false}
+        break;
       case "/inbox":
-        settings = {"header":"Inbox", "hasTabs":false, "searchBtn": true}
+        settings = {"header":"Inbox", "hasTabs":false, "searchBtn": false}
         break;
       case "/createmessage":
         settings = {"header":"Create", "hasTabs":false, "searchBtn": false}
@@ -57,11 +69,14 @@ export default class LayoutContainer extends Component {
       case "/marks":
         settings = {"header":"Marks", "hasTabs":false, "searchBtn": false}
         break;
+      case "/tests":
+        settings = {"header":"Tests", "hasTabs":false, "searchBtn": false}
+        break;
       case "/elibrary/list":
-        settings = {"header":"E-library", "hasTabs":true, "searchBtn": true}
+        settings = {"header":"E-library", "hasTabs":false, "searchBtn": true}
         break;
       case "/elibrary/reserved":
-        settings = {"header":"Reserved", "hasTabs":true, "searchBtn": false}
+        settings = {"header":"Reserved", "hasTabs":false, "searchBtn": false}
         break;
     }
     return settings;

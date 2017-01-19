@@ -16,7 +16,6 @@ import CustomTabs from '../components/helpers/CustomTabs';
 })
 export default class ProfileContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(setAppSettings({header: 'Profile', hasTabs: false}));
     this.props.dispatch(fetchUserData());
   }
   render(){

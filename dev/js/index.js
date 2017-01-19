@@ -30,7 +30,7 @@ import TestViewContainer from './containers/TestViewContainer';
 import ProfileContainer from './containers/ProfileContainer';
 import EditProfileContainer from './containers/EditProfileContainer';
 import LoginHistoryContainer from './containers/LoginHistoryContainer';
-import ElibraryContainer from './containers/ElibraryContainer';
+import ElibraryListContainer from './containers/ElibraryListContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -65,10 +65,9 @@ ReactDOM.render(
             <Route path="edit" component={EditProfileContainer} />
             <Route path="loginHistory" component={LoginHistoryContainer} />
           </Route>
-          <Route path="elibrary/:path" component={ElibraryContainer} />
-          <Route path="elibrary" component={ElibraryContainer} >
+          <Route path="elibrary">
             <IndexRedirect to="list" />
-            <Route path="elibrary/list" />
+            <Route path="list" component={ElibraryListContainer}  />
           </Route>
         </Route>
       </Router>

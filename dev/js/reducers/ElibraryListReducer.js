@@ -17,6 +17,18 @@ export default function reducer(state={
           elibraryList: action.payload,
         }
       }
+      case "CHANGE_ELIBRARY_ITEM_STATUS": {
+        const newElibraryList = [...state.elibraryList];
+        newElibraryList.forEach(function(item){
+          if(item.id == action.payload.id){
+            item.status = action.payload.status
+          }
+        })
+        return {...state, elibraryList: newElibraryList}
+      }
+      case "SET_ELIBRARY_LIST": {
+        return {...state, elibraryList: action.payload}
+      }
     }
     return state
 }

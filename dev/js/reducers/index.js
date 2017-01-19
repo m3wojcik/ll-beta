@@ -16,6 +16,7 @@ import TestViewReducer from './TestViewReducer';
 import ProfileReducer from './ProfileReducer';
 import LoginHistoryReducer from './LoginHistoryReducer';
 import ElibraryListReducer from './ElibraryListReducer';
+import ElibraryDetailsReducer from './ElibraryDetailsReducer';
 
 const allReducers = combineReducers({
   routing: routerReducer,
@@ -34,7 +35,8 @@ const allReducers = combineReducers({
   testView: TestViewReducer,
   profile: ProfileReducer,
   loginHistory: LoginHistoryReducer,
-  elibraryList: ElibraryListReducer
+  elibraryList: ElibraryListReducer,
+  elibraryDetails: ElibraryDetailsReducer
 });
 
 export default allReducers;
