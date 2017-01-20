@@ -5,7 +5,6 @@ import FontIcon from 'react-md/lib/FontIcons';
 import Avatar from 'react-md/lib/Avatars';
 import Divider from 'react-md/lib/Dividers';
 import {FormattedRelative} from 'react-intl';
-import { Card } from 'semantic-ui-react'
 
 export default class Inbox extends Component {
   render(){

@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Dialog from 'react-md/lib/Dialogs';
-import { fetchElibraryList, fetchElibraryDetails, changeElibraryItemStatus } from "../actions/ElibraryListActions";
+import Drawer from 'react-md/lib/Drawers';
+import { fetchElibraryList, fetchElibraryDetails, changeElibraryObjectStatus, postReserveElibraryObject, setReserveElibraryObjectId } from "../actions/ElibraryListActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 import ElibraryList from '../components/ElibraryList'
 import CardWithHeader from '../components/helpers/CardWithHeader'
+import DrawerHeader from '../components/helpers/DrawerHeader'
+import DrawerBody from '../components/helpers/DrawerBody'
 import ElibraryDetailsContainer from './ElibraryDetailsContainer'
+import ElibraryReservationDateContainer from './ElibraryReservationDateContainer'
 
 @connect((store) => {
    return {
@@ -15,13 +19,17 @@ import ElibraryDetailsContainer from './ElibraryDetailsContainer'
      fetching: store.elibraryList.fetching,
      elibraryDetails: store.elibraryList.elibraryDetails,
      detailsFetching: store.elibraryList.detailsFetching,
-     detailsFetched: store.elibraryList.detailsFetched
+     detailsFetched: store.elibraryList.detailsFetched,
+     reservedObject:store.elibraryList.reservedObject
   };
 })
 export default class ElibraryListContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
+        drawerVisible: false,
+        drawerData: {},
+        drawerTitle: "",
       dialogVisible: false,
       dialogTitle: "",
       dialogData: {},
@@ -40,6 +48,12 @@ export default class ElibraryListContainer extends Component {
   openDialog = () => {
     this.setState({ dialogVisible: true });
   }
+  handleDrawerToggle = (visible) => {
+    this.setState({ drawerVisible: visible });
+  }
+  closeDrawer = () => {
+    this.setState({ drawerVisible: false });
+  }
   componentDidMount(){
     this.props.dispatch(fetchElibraryList());
   }
@@ -49,16 +63,17 @@ export default class ElibraryListContainer extends Component {
   //      //onLoad();
   //    }
   // }
-  handleReserveClick = (object) => {
+  handleReserveBtnClick = (object) => {
     this.setState({
-      dialogTitle: "Reservation",
-      dialogData: <ElibraryDetailsContainer id={object.id} />
+      drawerTitle: "Reservation",
+      drawerData: <ElibraryReservationDateContainer onCancelClick={this.closeDrawer} />
     })
-    this.openDialog();
-    this.props.dispatch(changeElibraryItemStatus(object.id,"reserved"));
+    this.props.dispatch(setReserveElibraryObjectId(object.id));
+    this.handleDrawerToggle(true);
+
   }
   handleCancelReservationClick = (object) => {
-    this.props.dispatch(changeElibraryItemStatus(object.id,"available"));
+    this.props.dispatch(changeElibraryObjectStatus(object.id,"available"));
   }
   handleDetailsClick = (object) => {
     this.setState({
@@ -112,7 +127,7 @@ export default class ElibraryListContainer extends Component {
     if(availableList.length > 0){
       blockAvailable = {
         available: true,
-        onReserveClick: this.handleReserveClick,
+        onReserveClick: this.handleReserveBtnClick,
         onDetailsClick: this.handleDetailsClick,
         searchValue: toolbar.searchValue,
         elibraryList: availableList
@@ -143,7 +158,16 @@ export default class ElibraryListContainer extends Component {
         >
           <div>{this.state.dialogData}</div>
         </Dialog>
+        <Drawer
+                  visible={this.state.drawerVisible}
+                  onVisibilityToggle={this.handleDrawerToggle}
+                  type={Drawer.DrawerTypes.TEMPORARY}
+                  header={<DrawerHeader>{this.state.drawerTitle}</DrawerHeader>}
+                  className="drawer-bottom"
 
+                >
+                <DrawerBody>{this.state.drawerData}</DrawerBody>
+                </Drawer>
         </div>
 
     )

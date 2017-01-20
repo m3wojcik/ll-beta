@@ -11,35 +11,41 @@ export function fetchElibraryList() {
       })
   }
 }
-export function changeElibraryItemStatus(id, status) {
+export function changeElibraryObjectStatus(id, status) {
   return {
-    type: 'CHANGE_ELIBRARY_ITEM_STATUS',
+    type: 'CHANGE_ELIBRARY_OBJECT_STATUS',
     payload: {
       id,
       status
     }
   }
 }
-export function reserveElibraryItem(id, date) {
-  // return function(dispatch) {
-  //   axios.post("http://api.local/?q=reserveElibraryItem",{
-  //     id: id,
-  //     date: date
-  //     })
-  //     .then((response) => {
-  //       dispatch({type: "RESERVE_ELIBRARY_ITEM_FULFILLED", payload: response.data});
-  //     })
-  //     .catch((err) => {
-  //       dispatch({type: "RESERVE_ELIBRARY_ITEM_REJECTED", payload: err})
-  //     })
-  // }
-  // return {
-  //   type: 'RESERVE_ELIBRARY_ITEM',
-  //   payload: {
-  //     id,
-  //     date
-  //   }
-  // }
+export function setReserveElibraryObjectId(objectId) {
+  return {
+    type: 'SET_RESERVE_ELIBRARY_OBJECT_ID',
+    payload: objectId
+  }
+}
+export function setReserveElibraryObjectDateFrom(dateFrom) {
+  return {
+    type: 'SET_RESERVE_ELIBRARY_OBJECT_DATE_FROM',
+    payload: dateFrom
+  }
+}
+export function postReserveElibraryObject(objectId, dateFrom) {
+  return function(dispatch) {
+    dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT", payload: true});
+    axios.post("http://api.local/?q=reserveElibraryItem",{
+      id: objectId,
+      date: dateFrom
+      })
+      .then((response) => {
+        dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_FULFILLED", payload: response.data});
+      })
+      .catch((err) => {
+        dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_REJECTED", payload: err})
+      })
+  }
 }
 export function setElibraryList(elibrary) {
   return {

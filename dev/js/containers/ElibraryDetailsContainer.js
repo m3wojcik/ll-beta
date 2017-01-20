@@ -13,7 +13,7 @@ import MediaLibItemDetails from '../components/MediaLibItemDetails'
   };
 })
 export default class ElibraryDetailsContainer extends Component {
-  componentDidMount(){
+  componentDidMount(){ 
     const {id} = this.props.id;
     this.props.dispatch(fetchElibraryDetails());
   }

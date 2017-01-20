@@ -7,6 +7,6 @@ $md-text-primary: #2c2d30;
 $md-text-secondary: #a0a0a2;
 @include react-md-everything;
 @import './react-md-override';
-@import '~react-quill/node_modules/quill/dist/quill.snow.css';
+//@import '~react-quill/node_modules/quill/dist/quill.snow.scss';
 @import './responsive-utilities';
 @import './layout';

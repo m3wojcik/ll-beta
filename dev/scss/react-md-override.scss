@@ -71,8 +71,29 @@ h3, .md-title, h6, .md-body-2{
   box-sizing: border-box;
 }
 .md-dialog--centered{
-  top: 49.9%;
-  left: 49.9%;
-  -webkit-transform: translate(-50.1%, -50.1%);
-  transform: translate(-50.1%, -50.1%);
+  // top: 49.9%;
+  // left: 49.9%;
+  // -webkit-transform: translate(-50.1%, -50.1%);
+  // transform: translate(-50.1%, -50.1%);
+}
+.drawer-bottom{
+    height: 200px;
+    bottom: 0px;
+    top: auto;
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 100vh;
+    transform: translate3d(0, 100vh, 0);
+}
+.md-drawer--active.drawer-bottom{
+    transform: translate3d(0, 0, 0);
+}
+.md-picker--inline{
+    // top: 49.9%;
+    //  left: 49.9%;
+    // -webkit-transform: translate(-50.1%, -50.1%);
+    // transform: translate(-50.1%, -50.1%);
+}
+button + button{
+    margin-left: 10px;
 }
