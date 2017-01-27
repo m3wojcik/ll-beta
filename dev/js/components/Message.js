@@ -33,7 +33,7 @@ export default class Message extends Component {
     );
     return(
       <div className="message">
-        <div className="message-header">
+        <div className="message-header md-paper--1">
           <CustomCardTitle left={<h2>{message.subject}</h2>} right={menu} />
           <div className="md-list-tile md-list-tile--two-lines">
             <div className="md-ink-container"></div>

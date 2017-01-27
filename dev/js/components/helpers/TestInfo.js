@@ -10,6 +10,19 @@ export default class TestInfo extends Component {
   render(){
     const { test} = this.props;
     let cardInfo = [];
+    if(test.checkingTeacher){
+      cardInfo.push(
+        <li key="checkingTeacher">
+          <IconText icon={<FontIcon className="icon-blue">face</FontIcon>} text={test.checkingTeacher} />
+        </li>
+      )
+    }else{
+      cardInfo.push(
+        <li key="sharedBy">
+          <IconText icon={<FontIcon className="icon-blue">face</FontIcon>} text={test.sharedBy} />
+        </li>
+      )
+    }
     if(test.duration){
       let duration = test.duration / 60;
       cardInfo.push(
@@ -28,9 +41,6 @@ export default class TestInfo extends Component {
     return(
       <div>
         <ul className="card-list">
-          <li>
-            <IconText icon={<FontIcon className="icon-blue">face</FontIcon>} text={test.checkingTeacher} />
-          </li>
           {cardInfo}
         </ul>
       </div>

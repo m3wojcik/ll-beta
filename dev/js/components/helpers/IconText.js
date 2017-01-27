@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
+
 
 export default class IconText extends Component {
 

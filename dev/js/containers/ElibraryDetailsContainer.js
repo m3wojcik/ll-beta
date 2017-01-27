@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { fetchElibraryDetails } from "../actions/ElibraryDetailsActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Loader from '../components/helpers/Loader'
 import MediaLibItemDetails from '../components/MediaLibItemDetails'
 
 @connect((store) => {
@@ -13,7 +13,7 @@ import MediaLibItemDetails from '../components/MediaLibItemDetails'
   };
 })
 export default class ElibraryDetailsContainer extends Component {
-  componentDidMount(){ 
+  componentDidMount(){
     const {id} = this.props.id;
     this.props.dispatch(fetchElibraryDetails());
   }
@@ -21,7 +21,7 @@ export default class ElibraryDetailsContainer extends Component {
     const { fetched,elibraryDetails } = this.props;
     if(!fetched){
       return(
-          <CircularProgress id="loading-classes" key="loading"  />
+          <Loader center key="loader" />
       )
     }
     return(

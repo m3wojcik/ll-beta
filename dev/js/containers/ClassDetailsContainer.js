@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { setHasTabs } from "../actions/AppActions";
 import { fetchClassDetails } from "../actions/ClassDetailsActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+
 import ClassDetails from '../components/ClassDetails'
+import Loader from '../components/helpers/Loader'
 
 @connect((store) => {
    return {
@@ -22,9 +23,7 @@ export default class ClassDetailsContainer extends Component {
     const { classDetails ,fetched } = this.props;
     if(!fetched){
       return(
-        <div className="content">
-          <CircularProgress id="loading-classes-details" key="loading"  />
-        </div>
+        <Loader center key="loader" />
       )
     }
     return(

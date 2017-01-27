@@ -31,9 +31,7 @@ export default class Attendance extends Component {
                 <TableColumn>Date</TableColumn>
               </TableRow>
             </TableHeader>
-            <TableBody>
               <AttendanceRows attendance={group.statuses} />
-            </TableBody>   
           </DataTable>
         </Card>
       </li>

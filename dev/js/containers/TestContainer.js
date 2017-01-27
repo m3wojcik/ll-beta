@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { setHasTabs, setAppHeader } from "../actions/AppActions";
 import { fetchTest } from "../actions/TestActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Loader from '../components/helpers/Loader'
 import Test from '../components/Test';
 import TestInfo from '../components/helpers/TestInfo';
 import ToolbarExpander from '../components/helpers/ToolbarExpander';
@@ -65,9 +65,7 @@ export default class TestContainer extends Component {
     let toolbarRight = [];
     if(!fetched){
       return(
-        <div className="content content-tabs">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
+        <Loader full />
       )
     }else{
       if(test.duration != null){

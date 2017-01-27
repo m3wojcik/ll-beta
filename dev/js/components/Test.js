@@ -11,6 +11,8 @@ import CustomCardTitle from './CustomCardTitle';
 import IconText from './helpers/IconText';
 import SquareLabel from './helpers/SquareLabel';
 import BlockOfText from './helpers/BlockOfText';
+import Youtube from './helpers/Youtube';
+import ListFilesContainer from '../containers/ListFilesContainer';
 import QuestionOpenContainer from '../containers/QuestionOpenContainer';
 import QuestionContainer from '../containers/QuestionContainer';
 import QuestionFillGapsContainer from '../containers/QuestionFillGapsContainer';
@@ -53,10 +55,16 @@ export default class Test extends Component {
             case "fill-gaps-predefined":
               output = <QuestionFillGapsPredefinedContainer id={block.id} key={block.id} textArray={block.textArray} />
               break;
+            case "youtube":
+              output = <Youtube id={block.id} key={block.id} url={block.url} />
+              break;
+            case "files":
+              output = <ListFilesContainer id={block.id} key={block.id} files={block.files} />
+              break;
           }
           return <div key={j} className="block">{output}</div>;
         })
-      return <li key={i} className="test-page">{mappedPages}</li>;
+      return <li key={i} className="test-page md-paper--1">{mappedPages}</li>;
     })
     return(
       <ul className="clean-list">

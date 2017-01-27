@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 import Button from 'react-md/lib/Buttons/Button';
 import ElibraryReservationDate from '../components/ElibraryReservationDate';
-import {setReserveElibraryObjectDateFrom, postReserveElibraryObject } from "../actions/ElibraryListActions";
+import {setReserveElibraryObjectDates, postReserveElibraryObject } from "../actions/ElibraryListActions";
+import {addDays} from '../actions/Functions'
+import { addToast, removeToast } from "../actions/ToastsActions";
 
 @connect((store) => {
    return {
@@ -17,24 +19,29 @@ export default class ElibraryReservationDateContainer extends Component {
     this.state ={date: today};
   }
   componentDidMount(){
-    this.props.dispatch(setReserveElibraryObjectDateFrom(this.state.date));
+    const {reservedObject} = this.props;
+    const dateTo = addDays(this.state.date, reservedObject.bookingPeriod);
+    this.props.dispatch(setReserveElibraryObjectDates(this.state.date, dateTo));
   }
   handleReserveClick = () =>{
-      const {reservedObject} = this.props;
-      console.log('reserve',reservedObject.id, reservedObject.dateFrom);
-      this.props.dispatch(postReserveElibraryObject(reservedObject.id, reservedObject.dateFrom));
+      const {reservedObject, onCancelClick} = this.props;
+      //onCancelClick();
+      this.props.dispatch(postReserveElibraryObject(reservedObject.id, reservedObject.dateFrom, reservedObject.dateTo, onCancelClick));
   }
   handleDateChange = (dateString, dateObject, event) =>{
-      this.props.dispatch(setReserveElibraryObjectDateFrom(dateObject));
-      this.setState({date: dateObject})
+    const {reservedObject} = this.props;
+    const dateTo = addDays(dateObject, reservedObject.bookingPeriod);
+    this.props.dispatch(setReserveElibraryObjectDates(dateObject, dateTo));
+    this.setState({date: dateObject})
   }
   render(){
-     const { onCancelClick , reservedObject} = this.props;
+    const { onCancelClick , reservedObject} = this.props;
     return(
         <ElibraryReservationDate
         value={this.state.date}
         onCancelClick={onCancelClick}
         onReserveClick={this.handleReserveClick}
+        inProgress={reservedObject.posting}
         onDateChange={this.handleDateChange} />
     )
   }

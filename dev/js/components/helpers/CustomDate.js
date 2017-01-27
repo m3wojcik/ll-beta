@@ -15,9 +15,9 @@ export default class CustomDate extends Component {
       output = <FormattedRelative value={time} />
     }
     return(
-      <div>
+      <span>
         {output}
-    </div>
+    </span>
     )
   }
 }

@@ -13,7 +13,9 @@ export default class ToolbarExpander extends Component {
     }
     return(
       <div className="md-paper md-paper--1 md-tabs-fixed-container toolbar-expander toolbar-expander-padding">
+        <div className="toolbar-expander-body">
         {output}
+        </div>
       </div>
     )
   }

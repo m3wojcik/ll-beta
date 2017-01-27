@@ -2,6 +2,7 @@ import axios from "axios";
 
 export function fetchAppData() {
   return function(dispatch) {
+    dispatch({type: "FETCH_APP_DATA", payload: true});
     axios.get("http://api.local/?q=getAppData")
       .then((response) => {
         dispatch({type: "FETCH_APP_DATA_FULFILLED", payload: response.data});

@@ -1,34 +1,32 @@
 import React, { Component } from 'react';
-import Button from 'react-md/lib/Buttons';
+
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import {FormattedRelative} from 'react-intl';
 import CustomListItem from './helpers/CustomListItem';
-import ActionsRow from './helpers/ActionsRow'
 import Label from './helpers/Label'
 import MediaLibItemDetails from './MediaLibItemDetails'
+import MediaLibItemActions from './MediaLibItemActions'
 
 import {FormattedDate} from 'react-intl';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default class ElibraryList extends Component {
   render(){
-    const { elibraryList, searchValue, onReserveClick, onDetailsClick, onCancelReservationClick, available, borrowed, reserved } = this.props;
+    const { elibraryList, searchValue, onReserveClick, onDetailsClick, onCancelReservationClick, available, borrowed, reserved, inProgress } = this.props;
     const mappedElibraryList = elibraryList.map(function(item){
     const expander =  <div>
                       <MediaLibItemDetails item={item} />
-                      <ActionsRow>
-                        {available ? <Button primary flat label="Reserve"
-                            onClick={onReserveClick.bind(this, item)}
-                          /> : null }
-                        {reserved ? <Button primary flat label="Cancel reservation"
-                            onClick={onCancelReservationClick.bind(this, item)}
-                           /> : null }
-                        <Button primary flat label="Details"
-                          onClick={onDetailsClick.bind(this, item)}
+                        <MediaLibItemActions
+                          item={item}
+                          available={available}
+                          reserved={reserved}
+                          inProgress={inProgress}
+                          onReserveClick={onReserveClick}
+                          onCancelReservationClick={onCancelReservationClick}
+                          onDetailsClick={onDetailsClick}
                           />
-                      </ActionsRow>
                     </div>
       let title = item.title.toLowerCase();
       let author = item.author.toLowerCase();

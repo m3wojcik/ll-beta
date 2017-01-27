@@ -4,7 +4,8 @@ export default function reducer(state={
       fetched:true,
       error: null,
       user: {},
-      notifications: []
+      notifications: [],
+      locales:[]
     },
     toolbar: {
       header: null,
@@ -26,6 +27,9 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      case "FETCH_APP_DATA": {
+        return {...state, appData: {fetching: true, fetched:false}}
+      }
       case "FETCH_APP_DATA_REJECTED": {
         return {
           ...state,
@@ -38,7 +42,8 @@ export default function reducer(state={
             fetching: false,
             fetched: true,
             user: action.payload.user,
-            notifications: action.payload.notifications
+            notifications: action.payload.notifications,
+            locales: action.payload.locales
           },
         }
       }

@@ -8,7 +8,8 @@ export default class QuestionOpenView extends Component {
     const display = userPoints + "/" + maxPoints;
     return(
       <div className="question">
-          <SquareLabel className="pull-right" displayValue={display} value={percent} />
+      {  userPoints ?
+          <SquareLabel className="pull-right" displayValue={display} value={percent} /> : null}
           <div className="question-text">{text}</div>
           <div className="md-cell md-cell--12" dangerouslySetInnerHTML={{__html:userAnswer}} />
       </div>

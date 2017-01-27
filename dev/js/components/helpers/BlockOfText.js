@@ -9,3 +9,6 @@ export default class BlockOfText extends Component {
     )
   }
 }
+BlockOfText.propTypes = {
+  text: React.PropTypes.string.isRequired
+}

@@ -5,9 +5,10 @@ import CardText from 'react-md/lib/Cards/CardText';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
+import FileTypeIcon from './FileTypeIcon';
 import Subheader from 'react-md/lib/Subheaders';
 import CustomCardTitle from './CustomCardTitle';
-import FileTypeIcon from './FileTypeIcon';
+
 
 export default class Files extends Component {
   render(){

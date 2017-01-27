@@ -9,15 +9,18 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import CustomCardTitle from './CustomCardTitle';
 import IconText from './helpers/IconText';
-import SquareLabel from './helpers/SquareLabel';
 import TestInfo from './helpers/TestInfo';
+import CircleProgressBar from './helpers/CircleProgressBar';
 import {FormattedRelative} from 'react-intl';
 
 export default class Tests extends Component {
   render(){
-    const { tests } = this.props;
+    const { tests, searchValue } = this.props;
     const mappedTests = tests.map(function(test){
       let cardActions = [];
+      let name = test.name.toLowerCase();
+      let sharedBy = test.sharedBy.toLowerCase();
+      let search = searchValue.toLowerCase();
       if(test.completed){
         cardActions.push(<Button key="show" flat label="Show" onClick={this.props.onShowClick.bind(this, test)} />)
       }
@@ -29,23 +32,36 @@ export default class Tests extends Component {
       let textResult = [];
       if(test.result){
         textResult.push(
-            <SquareLabel key="result" value={test.result} displayValue={test.result + "%"} />
+          <CircleProgressBar
+            key="circleProgress"
+            strokeWidth={4}
+            percentage={test.result}
+            />
+
         )
       }
       let output = [
       <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone" key={test.id}>
         <Card>
-          <CardTitle
-            title={<CustomCardTitle left={test.name} right={textResult} />}
-            subtitle={<FormattedRelative value={test.shareDate}/>}
-            />
+          <div class="card-with-right">
+            <CardTitle
+              title={<CustomCardTitle left={test.name} />}
+              subtitle={<FormattedRelative value={test.shareDate}/>}
+              />
+            <div className="card-right">
+              {textResult}
+            </div>
+          </div>
+
             <TestInfo test={test} />
           <CardActions className="md-divider-border md-divider-border--top">
             {cardActions}
           </CardActions>
         </Card>
       </div>]
-      return output;
+      if(name.indexOf(search) != -1 || sharedBy.indexOf(search) != -1 ){
+        return output;
+      }
     }.bind(this));
     return(
       <div className="md-grid">

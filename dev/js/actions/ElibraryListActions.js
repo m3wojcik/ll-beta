@@ -20,30 +20,67 @@ export function changeElibraryObjectStatus(id, status) {
     }
   }
 }
+export function setReserveElibraryObject(object) {
+  return {
+    type: 'SET_RESERVE_ELIBRARY_OBJECT',
+    payload: object
+  }
+}
 export function setReserveElibraryObjectId(objectId) {
   return {
     type: 'SET_RESERVE_ELIBRARY_OBJECT_ID',
     payload: objectId
   }
 }
-export function setReserveElibraryObjectDateFrom(dateFrom) {
+export function setReserveElibraryObjectDates(dateFrom, dateTo) {
+  //console.log('setReserveElibraryObjectDates',dateFrom, dateTo);
   return {
-    type: 'SET_RESERVE_ELIBRARY_OBJECT_DATE_FROM',
-    payload: dateFrom
+    type: 'SET_RESERVE_ELIBRARY_OBJECT_DATES',
+    payload: {dateFrom: dateFrom, dateTo: dateTo}
   }
 }
-export function postReserveElibraryObject(objectId, dateFrom) {
+export function postReserveElibraryObject(objectId, dateFrom, dateTo, callBack) {
   return function(dispatch) {
     dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT", payload: true});
     axios.post("http://api.local/?q=reserveElibraryItem",{
       id: objectId,
-      date: dateFrom
+      dateFrom: dateFrom,
+      dateTo: dateTo
       })
       .then((response) => {
-        dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_FULFILLED", payload: response.data});
+        if(callBack){
+          callBack();
+        }  
+        if(response.data == "200"){
+          dispatch({type: "ADD_TOAST", payload: {"text": "Item reserved"}});
+          dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_FULFILLED", payload: response.data});
+        }else{
+          dispatch({type: "ADD_TOAST", payload: {"text": "Item reservation fail"}});
+          dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_REJECTED", payload: response.data})
+        }
       })
       .catch((err) => {
         dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_REJECTED", payload: err})
+      })
+  }
+}
+export function postCancelReservationElibraryObject(objectId, unDoAction) {
+  return function(dispatch) {
+    dispatch({type: "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT", payload: objectId});
+    axios.post("http://api.local/?q=cancelReserveElibraryItem",{
+      id: objectId
+      })
+      .then((response) => {
+        if(response.data == "200"){
+          dispatch({type: "ADD_TOAST", payload: {"text": "Reservation canceled","action":unDoAction}});
+          dispatch({type: "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT_FULFILLED", payload: response.data});
+        }else{
+          dispatch({type: "ADD_TOAST", payload: {"text": "Cancel reservation fail"}});
+          dispatch({type: "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT_REJECTED", payload: response.data})
+        }
+      })
+      .catch((err) => {
+        dispatch({type: "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT_REJECTED", payload: err})
       })
   }
 }

@@ -4,14 +4,18 @@ import { connect } from "react-redux";
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import MainNavigation from '../components/MainNavigation';
 import ToolbarContainer from './ToolbarContainer';
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-
+import Loader from '../components/helpers/Loader'
+import Snackbar from 'react-md/lib/Snackbars';
+import Content from '../components/helpers/Content'
+import {getAppSettings, getCleanPath} from '../actions/Functions';
 import { fetchAppData, setAppSettings } from "../actions/AppActions";
+import { addToast, removeToast } from "../actions/ToastsActions";
 import NavigationUserContainer from './NavigationUserContainer';
 
 @connect((store) => {
   return {
     routing: store.routing,
+    toasts: store.toasts,
     appData: store.app.appData,
     toolbar: store.app.toolbar,
     hasTabs: store.app.toolbar.hasTabs,
@@ -21,77 +25,30 @@ import NavigationUserContainer from './NavigationUserContainer';
 export default class LayoutContainer extends Component {
   componentDidMount(){
     const { routing } = this.props;
-    const currentPath = routing.locationBeforeTransitions.pathname;
+    const currentPath = getCleanPath(routing.locationBeforeTransitions.pathname);
     this.props.dispatch(fetchAppData());
-    let settings = this.getAppSettings(currentPath);
+    let settings = getAppSettings(currentPath);
     this.props.dispatch(setAppSettings(settings));
   }
   componentWillReceiveProps(nextProps){
     const { routing } = this.props;
-    const currentPath = routing.locationBeforeTransitions.pathname;
-    const nextPath = nextProps.routing.locationBeforeTransitions.pathname;
+    const currentPath = getCleanPath(routing.locationBeforeTransitions.pathname);
+    const nextPath = getCleanPath(nextProps.routing.locationBeforeTransitions.pathname);
     if(currentPath != nextPath){
-      let settings = this.getAppSettings(nextPath);
+      let settings = getAppSettings(nextPath);
       this.props.dispatch(setAppSettings(settings));
     }
   }
-  getAppSettings = (pathname) =>{
-    let settings = {};
-    if(/^\/files(\/.+|)/.test(pathname)){
-      settings = {"header":"Files", "hasTabs":false, "searchBtn": false}
-      return settings;
-    }
-    switch (pathname) {
-      case "/profile/view":
-        settings = {"header":"Profile", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/profile/edit":
-        settings = {"header":"Edit profile", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/profile/changePassword":
-        settings = {"header":"Change password", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/profile/loginHistory":
-        settings = {"header":"Login history", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/inbox":
-        settings = {"header":"Inbox", "hasTabs":false, "searchBtn": true}
-        break;
-      case "/createmessage":
-        settings = {"header":"Create", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/attendance":
-        settings = {"header":"Attendance", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/classes":
-        settings = {"header":"Classes", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/marks":
-        settings = {"header":"Marks", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/tests":
-        settings = {"header":"Tests", "hasTabs":false, "searchBtn": false}
-        break;
-      case "/elibrary/list":
-        settings = {"header":"E-library", "hasTabs":false, "searchBtn": true}
-        break;
-      case "/elibrary/reserved":
-        settings = {"header":"Reserved", "hasTabs":false, "searchBtn": false}
-        break;
-    }
-    return settings;
+  removeToast = () => {
+    this.props.dispatch(removeToast());
   }
-
   render(){
-    const {hasTabs, appData, toolbar, header} = this.props;
-
+    const {hasTabs, appData, toolbar, header,toasts} = this.props;
 
     let classess = hasTabs ? 'no-shadow' : '';
     if(!appData.fetched){
       return(
-        <div className="content">
-          <CircularProgress id="loading-classes-details" key="loading"  />
-        </div>
+          <Loader fullPage />
       )
     }
     return(
@@ -114,6 +71,7 @@ export default class LayoutContainer extends Component {
         >
 
         {this.props.content}
+        <Snackbar {...toasts} onDismiss={this.removeToast} />
         </NavigationDrawer>
     )
   }

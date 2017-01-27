@@ -17,6 +17,11 @@ import ProfileReducer from './ProfileReducer';
 import LoginHistoryReducer from './LoginHistoryReducer';
 import ElibraryListReducer from './ElibraryListReducer';
 import ElibraryDetailsReducer from './ElibraryDetailsReducer';
+import ToastsReducer from './ToastsReducer';
+import SurveysReducer from './SurveysReducer';
+import SurveyReducer from './SurveyReducer';
+import SurveyViewReducer from './SurveyViewReducer';
+import PaymentsReducer from './PaymentsReducer';
 
 const allReducers = combineReducers({
   routing: routerReducer,
@@ -36,7 +41,12 @@ const allReducers = combineReducers({
   profile: ProfileReducer,
   loginHistory: LoginHistoryReducer,
   elibraryList: ElibraryListReducer,
-  elibraryDetails: ElibraryDetailsReducer
+  elibraryDetails: ElibraryDetailsReducer,
+  toasts: ToastsReducer,
+  surveys: SurveysReducer,
+  survey: SurveyReducer,
+  surveyView: SurveyViewReducer,
+  payments: PaymentsReducer
 });
 
 export default allReducers;

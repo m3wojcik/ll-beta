@@ -12,13 +12,14 @@ import IconText from './helpers/IconText';
 import SquareLabel from './helpers/SquareLabel';
 import ToolbarExpander from '../components/helpers/ToolbarExpander';
 import BlockOfText from './helpers/BlockOfText';
+import Youtube from './helpers/Youtube';
 import TestInfo from '../components/helpers/TestInfo';
 import QuestionOpenContainer from '../containers/QuestionOpenContainer';
 import QuestionContainer from '../containers/QuestionContainer';
 import QuestionFillGapsContainer from '../containers/QuestionFillGapsContainer';
 import QuestionFillGapsListContainer from '../containers/QuestionFillGapsListContainer';
 import QuestionFillGapsPredefinedContainer from '../containers/QuestionFillGapsPredefinedContainer';
-import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
+import ListFilesContainer from '../containers/ListFilesContainer';
 
 export default class TestView extends Component {
   render(){
@@ -93,14 +94,21 @@ export default class TestView extends Component {
                 textArray={block.textArray}
                 />
               break;
+            case "youtube":
+              output = <Youtube id={block.id} key={block.id} url={block.url} />
+              break;
+            case "files":
+              output = <ListFilesContainer id={block.id} key={block.id} files={block.files} />
+              break;
           }
           let blockCorrect;
-          if(block.type != "block-of-text" && block.type != "open"){
+          const neutralBlocksArray = ["block-of-text","open","youtube", "files"];
+          if(neutralBlocksArray.indexOf(block.type) == -1){
             blockCorrect = block.correct ? "block-correct" : "block-incorrect";
           }
           return <div key={j} className={"block " + blockCorrect}>{output}</div>;
         })
-      return <li key={i} className="test-page">{mappedPages}</li>;
+      return <li key={i} className="test-page md-paper--1">{mappedPages}</li>;
     })
     return(
       <div>
@@ -108,7 +116,7 @@ export default class TestView extends Component {
           left={<TestInfo  test={test} />}
           right={toolbarRight}
         />
-        <div className="content-no-padding content-tabs">
+        <div className="expander-body">
           <ul className="clean-list">
             {mappedTest}
           </ul>

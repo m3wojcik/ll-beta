@@ -39,8 +39,11 @@ export default class CustomListItem extends Component {
       right = <div className="md-tile-addon md-tile-addon--icon">{rightIcon}</div>
     }
     if(expander){
-      expanderOutput = <div className=" list-expander">{expander}</div>
+      expanderOutput = <Collapse collapsed={this.state.collapsed}><div className=" list-expander">{expander}</div></Collapse>
       right = <div className="md-list-right"><div className="md-list-status">{status}</div><Button icon className={this.state.collapsed ? "md-collapser" : "md-collapser md-collapser--flipped"}>keyboard_arrow_down</Button></div>
+    }else if(status){
+      right = <div className="md-list-right"><div className="md-list-status">{status}</div></div>
+    }else if(status){
     }
     return(
       <li className={liClassName}>
@@ -53,9 +56,9 @@ export default class CustomListItem extends Component {
           </div>
           {right}
         </div>
-        <Collapse collapsed={this.state.collapsed}>
+
           {expanderOutput}
-        </Collapse>
+
       </li>
     )
   }

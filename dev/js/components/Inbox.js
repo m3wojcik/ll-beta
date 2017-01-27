@@ -15,8 +15,7 @@ export default class Inbox extends Component {
       let search = searchValue.toLowerCase();
       if(subject.indexOf(search) != -1 || sender.indexOf(search) != -1 ){
         return(
-          <div key={message.id}>
-            <ListItem
+            <ListItem  key={message.id}
               className={message.read ? "message-list-item message-read" : "message-list-item message-unread"}
               onClick={onMessageClick.bind(this,message.id)}
               leftAvatar={<Avatar icon={message.sender.charAt(0).toUpperCase()} />}
@@ -24,14 +23,11 @@ export default class Inbox extends Component {
               primaryText={message.read ? message.sender : <strong>{message.sender}</strong>}
               secondaryText={message.subject}
             />
-          </div>
         )
       }
     }.bind(this));
     return(
-      <List className="">
-        <li>
-        </li>
+      <List className="white-list md-paper--1">
         {mappedMessages}
       </List>
     )

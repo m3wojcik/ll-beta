@@ -6,16 +6,19 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
-      case "FETCH_UPCOMING_DASHBOARD_CLASSES_REJECTED": {
-        return {...state, fetching: false, error: action.payload}
+      case "FETCH_DASHBOARD_CLASSES": {
+        return {...state, fetching: true, fetched:false}
       }
-      case "FETCH_UPCOMING_DASHBOARD_CLASSES_FULFILLED": {
+      case "FETCH_DASHBOARD_CLASSES_FULFILLED": {
         return {
           ...state,
           fetching: false,
           fetched: true,
           dashboardClasses: action.payload,
         }
+      }
+      case "FETCH_DASHBOARD_CLASSES_REJECTED": {
+        return {...state, fetching: false, error: action.payload}
       }
     }
     return state

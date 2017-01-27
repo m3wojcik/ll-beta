@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Dialog from 'react-md/lib/Dialogs';
 import Drawer from 'react-md/lib/Drawers';
-import { fetchElibraryList, fetchElibraryDetails, changeElibraryObjectStatus, postReserveElibraryObject, setReserveElibraryObjectId } from "../actions/ElibraryListActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import { fetchElibraryList, fetchElibraryDetails, postCancelReservationElibraryObject, postReserveElibraryObject, setReserveElibraryObject } from "../actions/ElibraryListActions";
 import ElibraryList from '../components/ElibraryList'
 import CardWithHeader from '../components/helpers/CardWithHeader'
+import Loader from '../components/helpers/Loader'
+import Content from '../components/helpers/Content'
 import DrawerHeader from '../components/helpers/DrawerHeader'
 import DrawerBody from '../components/helpers/DrawerBody'
 import ElibraryDetailsContainer from './ElibraryDetailsContainer'
@@ -57,23 +58,21 @@ export default class ElibraryListContainer extends Component {
   componentDidMount(){
     this.props.dispatch(fetchElibraryList());
   }
-  // componentWillReceiveProps(nextProps){
-  //    const { fetched, onLoad } = this.props;
-  //    if(fetched != nextProps.fetched){
-  //      //onLoad();
-  //    }
-  // }
   handleReserveBtnClick = (object) => {
     this.setState({
       drawerTitle: "Reservation",
       drawerData: <ElibraryReservationDateContainer onCancelClick={this.closeDrawer} />
     })
-    this.props.dispatch(setReserveElibraryObjectId(object.id));
+    this.props.dispatch(setReserveElibraryObject(object));
     this.handleDrawerToggle(true);
 
   }
   handleCancelReservationClick = (object) => {
-    this.props.dispatch(changeElibraryObjectStatus(object.id,"available"));
+    this.props.dispatch(postCancelReservationElibraryObject(object.id,{label: 'Undo', onClick: this.handleUnDoCancelReservation}));
+  }
+  handleUnDoCancelReservation = () =>{
+    const {reservedObject} = this.props
+    this.props.dispatch(postReserveElibraryObject(reservedObject.id, reservedObject.dateFrom, reservedObject.dateTo));
   }
   handleDetailsClick = (object) => {
     this.setState({
@@ -83,8 +82,12 @@ export default class ElibraryListContainer extends Component {
     this.openDialog();
 
   }
+  removeToast = () => {
+    const [, ...toasts] = this.state.toasts;
+    this.setState({ toasts: toasts });
+  }
   render(){
-    const { fetched, elibraryList, toolbar } = this.props;
+    const { fetched, elibraryList, toolbar, reservedObject } = this.props;
     let availableList = [], borrowedList = [], reservedList = [];
     elibraryList.forEach(function(item){
       if(item.status == "borrowed"){
@@ -95,10 +98,10 @@ export default class ElibraryListContainer extends Component {
         availableList.push(item);
       }
     });
-    let blockBorrowed, blockReserved, blockAvailable, output = [];
+    let propsBorrowed, propsReserved, propsAvailable, output = [];
 
     if(borrowedList.length > 0){
-      blockBorrowed = {
+      propsBorrowed = {
         borrowed: true,
         onDetailsClick: this.handleDetailsClick,
         searchValue: toolbar.searchValue,
@@ -106,13 +109,14 @@ export default class ElibraryListContainer extends Component {
       }
       output.push(
         <CardWithHeader key="Borrowed" header="Borrowed">
-          <ElibraryList {...blockBorrowed} />
+          <ElibraryList {...propsBorrowed} />
         </CardWithHeader>
       )
     }
     if(reservedList.length > 0){
-      blockReserved ={
+      propsReserved ={
         reserved: true,
+        inProgress:reservedObject.posting,
         onCancelReservationClick: this.handleCancelReservationClick,
         onDetailsClick: this.handleDetailsClick,
         searchValue: toolbar.searchValue,
@@ -120,12 +124,12 @@ export default class ElibraryListContainer extends Component {
       }
       output.push(
         <CardWithHeader key="Reserved" header="Reserved">
-          <ElibraryList {...blockReserved} />
+          <ElibraryList {...propsReserved} />
         </CardWithHeader>
       )
     }
     if(availableList.length > 0){
-      blockAvailable = {
+      propsAvailable = {
         available: true,
         onReserveClick: this.handleReserveBtnClick,
         onDetailsClick: this.handleDetailsClick,
@@ -134,19 +138,17 @@ export default class ElibraryListContainer extends Component {
       }
       output.push(
         <CardWithHeader key="List" header="List">
-          <ElibraryList {...blockAvailable} />
+          <ElibraryList {...propsAvailable} />
         </CardWithHeader>
       )
     }
     if(!fetched){
       return(
-        <div className="content">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
+        <Loader full />
       )
     }
     return(
-        <div className="content-no-padding">
+        <Content noPadding>
           {output}
           <Dialog
           id="simpleDialogExample"
@@ -159,16 +161,15 @@ export default class ElibraryListContainer extends Component {
           <div>{this.state.dialogData}</div>
         </Dialog>
         <Drawer
-                  visible={this.state.drawerVisible}
-                  onVisibilityToggle={this.handleDrawerToggle}
-                  type={Drawer.DrawerTypes.TEMPORARY}
-                  header={<DrawerHeader>{this.state.drawerTitle}</DrawerHeader>}
-                  className="drawer-bottom"
-
-                >
-                <DrawerBody>{this.state.drawerData}</DrawerBody>
-                </Drawer>
-        </div>
+          visible={this.state.drawerVisible}
+          onVisibilityToggle={this.handleDrawerToggle}
+          type={Drawer.DrawerTypes.TEMPORARY}
+          header={<DrawerHeader>{this.state.drawerTitle}</DrawerHeader>}
+          className="drawer-bottom"
+        >
+          <DrawerBody>{this.state.drawerData}</DrawerBody>
+        </Drawer>
+      </Content>
 
     )
   }

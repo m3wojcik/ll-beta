@@ -31,6 +31,10 @@ import ProfileContainer from './containers/ProfileContainer';
 import EditProfileContainer from './containers/EditProfileContainer';
 import LoginHistoryContainer from './containers/LoginHistoryContainer';
 import ElibraryListContainer from './containers/ElibraryListContainer';
+import SurveysContainer from './containers/SurveysContainer';
+import SurveyContainer from './containers/SurveyContainer';
+import SurveyViewContainer from './containers/SurveyViewContainer';
+import PaymentsContainer from './containers/PaymentsContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -42,11 +46,8 @@ ReactDOM.render(
       <Router history={history}>
         <Route path="/"  component={App}>
           <IndexRoute header="Dashboard"/>
-          <IndexRedirect to="dashboard/classes" />
-          <Route path="dashboard" component={MainContainer} childComponents={[<DashboardClassesContainer />, <NotificationsContainer />]} >
-              <Route path="classes" header="Classes"/>
-              <Route path="notifications" header="Notifications"  />
-          </Route>
+          <IndexRedirect to="dashboard" />
+          <Route path="dashboard" component={DashboardContainer} />
           <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />
           <Route path="marks" header="Marks" component={MarksContainer} />
           <Route path="attendance" header="Attendance" component={AttendanceContainer} />
@@ -69,6 +70,10 @@ ReactDOM.render(
             <IndexRedirect to="list" />
             <Route path="list" component={ElibraryListContainer}  />
           </Route>
+          <Route path="surveys" component={SurveysContainer} />
+          <Route path="survey/:surveyId" component={SurveyContainer} />
+          <Route path="surveyview/:surveyId" component={SurveyViewContainer} />
+          <Route path="payments" component={PaymentsContainer} />
         </Route>
       </Router>
     </IntlProvider>

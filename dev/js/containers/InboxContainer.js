@@ -3,12 +3,13 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { fetchInboxMessages } from "../actions/InboxActions";
 import { createNewMessageBtnClick } from "../actions/CreateMessageActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Loader from '../components/helpers/Loader'
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
 import Inbox from '../components/Inbox'
 import InboxToolbar from '../components/InboxToolbar'
-
+import Content from '../components/helpers/Content'
+import ToolbarExpander from '../components/helpers/ToolbarExpander';
 
 @connect((store) => {
    return {
@@ -42,25 +43,28 @@ export default class InboxContainer extends Component {
     const { inbox, fetched, toolbar } = this.props;
     if(!fetched){
       return(
-        <div className="content content-tabs">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
+        <Loader full />
       )
     }
     return(
-      <div className="content-no-padding">
-        <InboxToolbar onCreateClick={this.handleCreateClick} onSendClick={this.handleSendClick} onTrashClick={this.handleTrashClick} />
-        <Inbox messages={inbox} onMessageClick={this.handleClick} searchValue={toolbar.searchValue}  />
-          <Button
-            className="hidden-lg hidden-md"
-            onClick={this.handleCreateClick}
-            floating
-            primary
-            fixed
-          >
-            <FontIcon>create</FontIcon>
-          </Button>
-      </div>
+      <Content noPadding expander>
+        <ToolbarExpander
+          left={<InboxToolbar onCreateClick={this.handleCreateClick} onSendClick={this.handleSendClick} onTrashClick={this.handleTrashClick} />}
+        />
+        <div className="expander-body">
+
+          <Inbox messages={inbox} onMessageClick={this.handleClick} searchValue={toolbar.searchValue}  />
+            <Button
+              className="hidden-lg hidden-md"
+              onClick={this.handleCreateClick}
+              floating
+              primary
+              fixed
+            >
+              <FontIcon>create</FontIcon>
+            </Button>
+        </div>
+      </Content>
     )
   }
 }

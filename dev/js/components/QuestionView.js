@@ -11,6 +11,7 @@ export default class QuestionView extends Component {
           name={"question-" + type}
           type={type}
           controls={answers}
+          defaultValue={value}
           disabled
         />
     }else{

@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { setHasTabs, setAppHeader } from "../actions/AppActions";
 import { fetchViewTest } from "../actions/TestViewActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Loader from '../components/helpers/Loader'
 import TestView from '../components/TestView';
-
+import Content from '../components/helpers/Content'
 
 
 import Dialog from 'react-md/lib/Dialogs';
@@ -36,11 +36,13 @@ export default class TestViewContainer extends Component {
 
     if(!fetched){
       return(
-        <div className="content content-tabs">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
+        <Loader full />
       )
     }
-    return <TestView test={test} />
+    return (
+      <Content expander noPadding>
+        <TestView test={test} />
+      </Content>
+    )
   }
 }

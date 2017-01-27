@@ -9,7 +9,7 @@ export default class MediaLibItemDetails extends Component {
       bookingDetails.push({"label": "Reservation from","value": <FormattedDate value={item.dateFrom} day="numeric" month="numeric" year="numeric" />})
     }
     if(item.dateTo && item.status == "reserved"){
-      bookingDetails.push({"label": "Reservation from","value": <FormattedDate value={item.dateTo} day="numeric" month="numeric" year="numeric" />})
+      bookingDetails.push({"label": "Reservation to","value": <FormattedDate value={item.dateTo} day="numeric" month="numeric" year="numeric" />})
     }
     if(item.dateFrom && item.status == "borrowed"){
       bookingDetails.push({"label": "Reservation from","value": <FormattedDate value={item.dateFrom} day="numeric" month="numeric" year="numeric" />})
