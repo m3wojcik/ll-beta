@@ -8,9 +8,8 @@ import DataTable from 'react-md/lib/DataTables/DataTable';
 import TableHeader from 'react-md/lib/DataTables/TableHeader';
 import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import TableBody from 'react-md/lib/DataTables/TableBody';
+import AttendanceStatuses from './AttendanceStatuses'
 import FontIcon from 'react-md/lib/FontIcons';
-import AttendanceRows from './AttendanceRows'
 import ProgressBar from './ProgressBar'
 
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
@@ -31,7 +30,7 @@ export default class Attendance extends Component {
                 <TableColumn>Date</TableColumn>
               </TableRow>
             </TableHeader>
-              <AttendanceRows attendance={group.statuses} />
+              <AttendanceStatuses attendance={group.statuses} />
           </DataTable>
         </Card>
       </li>

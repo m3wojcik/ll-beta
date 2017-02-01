@@ -4,7 +4,7 @@ import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 export default class CustomDate extends Component {
 
   render(){
-    const { date, collored } = this.props;
+    const { date, collored, format } = this.props;
     const time = new Date(date).getTime();
     const now = new Date().getTime();
     const diffDays = Math.ceil(Math.abs(time - now) / (1000*60*60*24));
@@ -12,7 +12,13 @@ export default class CustomDate extends Component {
     if(diffDays > 4){
       output = <FormattedDate value={time} day="numeric" month="long" year="numeric" />
     }else{
-      output = <FormattedRelative value={time} />
+      let formatProps;
+      if(format){
+        formatProps = {
+          units: format
+        }
+      }
+      output = <FormattedRelative value={time} {...formatProps} />
     }
     return(
       <span>

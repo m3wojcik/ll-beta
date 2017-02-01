@@ -15,7 +15,9 @@ export default class RangeContainer extends Component {
   }
   componentDidMount(){
      const { id, userAnswers, minValue } = this.props;
-     userAnswers[id] = minValue;
+     if(userAnswers){
+       userAnswers[id] = minValue;
+     }
   }
   handleChangeValue = (value) =>{
     const { id, userAnswers, minValue } = this.props;

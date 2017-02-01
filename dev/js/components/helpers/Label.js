@@ -34,15 +34,17 @@ export default class Label extends Component {
            if(item.values.indexOf(value) != -1){
              colorClass = "label-" + item.color;
              break;
-           }else{
+           }else{;
              colorClass = this.getColor();
            }
          }else if(item.range){
            if(item.range[0] <= value && value <= item.range[1]){
              colorClass = "label-" + item.color;
+           }else{
+             colorClass = this.getColor();
            }
          }
-       };
+       }
      }else{
        colorClass = this.getColor();
      }

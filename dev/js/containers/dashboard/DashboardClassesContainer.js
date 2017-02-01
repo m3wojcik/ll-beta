@@ -14,9 +14,11 @@ import Content from '../../components/helpers/Content'
   };
 })
 export default class DashboardClassesContainer extends Component {
-
   componentDidMount(){
-    this.props.dispatch(fetchDashboardClasses());
+    const { fetched } = this.props;
+    if(!fetched){
+      this.props.dispatch(fetchDashboardClasses());
+    }
   }
   render(){
     const { fetched, dashboardClasses } = this.props;

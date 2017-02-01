@@ -2,6 +2,14 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
 import AppReducer from './AppReducer';
 import DashboardClassesReducer from './DashboardClassesReducer';
+import DashboardAttendancesReducer from './DashboardAttendancesReducer';
+import DashboardMarksReducer from './DashboardMarksReducer';
+import DashboardMessagesReducer from './DashboardMessagesReducer';
+import DashboardFilesReducer from './DashboardFilesReducer';
+import DashboardTestsReducer from './DashboardTestsReducer';
+import DashboardElibraryReducer from './DashboardElibraryReducer';
+import DashboardSurveysReducer from './DashboardSurveysReducer';
+import DashboardPaymentsReducer from './DashboardPaymentsReducer';
 import ClassesReducer from './ClassesReducer';
 import ClassDetailsReducer from './ClassDetailsReducer';
 import MarksReducer from './MarksReducer';
@@ -27,6 +35,14 @@ const allReducers = combineReducers({
   routing: routerReducer,
   app: AppReducer,
   dashboardClasses: DashboardClassesReducer,
+  dashboardAttendances: DashboardAttendancesReducer,
+  dashboardMarks: DashboardMarksReducer,
+  dashboardMessages: DashboardMessagesReducer,
+  dashboardFiles: DashboardFilesReducer,
+  dashboardTests: DashboardTestsReducer,
+  dashboardElibrary: DashboardElibraryReducer,
+  dashboardSurveys: DashboardSurveysReducer,
+  dashboardPayments: DashboardPaymentsReducer,
   classes: ClassesReducer,
   classDetails: ClassDetailsReducer,
   marks: MarksReducer,

@@ -33,7 +33,7 @@ export default function reducer(state={
       case "FETCH_APP_DATA_REJECTED": {
         return {
           ...state,
-          appData: {fetching: false, error: action.payload}}
+          appData: {fetching: false, fetched:false, error: action.payload}}
       }
       case "FETCH_APP_DATA_FULFILLED": {
         return {

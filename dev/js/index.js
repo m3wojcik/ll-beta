@@ -13,7 +13,6 @@ import allReducers from './reducers';
 import App from './components/App';
 import DashboardContainer from './containers/DashboardContainer';
 import MainContainer from './containers/MainContainer';
-import DashboardClassesContainer from './containers/DashboardClassesContainer';
 import NotificationsContainer from './containers/NotificationsContainer';
 import MarksContainer from './containers/MarksContainer';
 import AttendanceContainer from './containers/AttendanceContainer';
@@ -45,7 +44,6 @@ ReactDOM.render(
     <IntlProvider locale="en">
       <Router history={history}>
         <Route path="/"  component={App}>
-          <IndexRoute header="Dashboard"/>
           <IndexRedirect to="dashboard" />
           <Route path="dashboard" component={DashboardContainer} />
           <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />

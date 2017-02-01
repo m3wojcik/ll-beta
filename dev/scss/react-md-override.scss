@@ -1,8 +1,20 @@
+.md-text{
+  color: $md-blue-grey-700;
+}
+.md-text--secondary{
+  color: $md-blue-grey-400;
+}
 .md-toolbar--fixed{
   background-color: #fff;
   color: #404b55;
   box-shadow: 0 1px 4px rgba(0,0,0,.15);
-  border-bottom: 2px solid $md-secondary-color;
+  //border-bottom: 2px solid $md-secondary-color;
+  // background-color: #2185D0;
+  // color: #fff;
+  // box-shadow: 0 1px 4px rgba(0,0,0,.45);
+  // .md-title{
+  //   color: #fff;
+  // }
 }
 .md-toolbar--fixed.no-shadow{
   border-bottom: none;
@@ -27,29 +39,7 @@ border-color: transparent;
     margin-right: -8px;
   }
 }
-.md-list,
-.md-list .md-list:not(.md-list--menu){
-   background-color: transparent;
-}
-.md-list.md-list-divider li.md-list-item{
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-.md-list.md-list-divider li.md-list-item:last-child{
-  border-bottom-color: transparent;
-}
-.md-list-right{
-  display: flex;
-}
-.md-list-status{
-    padding: 12px;
-}
-.md-list--menu{
-  background-color: #fff;
-  border-radius: .28571429rem;
-  border:1px solid rgba(34,36,38,.15);
-  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
-}
+
 .md-card{
   border-radius: .28571429rem;
   .md-card-title--primary{

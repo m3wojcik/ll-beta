@@ -6,6 +6,7 @@ export default class RangeView extends Component {
     const { value, onChangeValue, maxValue, minValue, label, id } = this.props;
     const range = maxValue - minValue;
     const defaultValue = value - minValue;
+    
     return(
       <div className="question">
         <div className="question-text">{label}</div>
@@ -15,7 +16,7 @@ export default class RangeView extends Component {
               disabled
               defaultValue={defaultValue}
               max={range}
-              id={"slider-" + id}
+              id={"slider-range"}
               />
           </div>
           <div className="range-value">

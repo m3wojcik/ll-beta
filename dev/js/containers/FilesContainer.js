@@ -3,16 +3,18 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { setAppSettings } from "../actions/AppActions";
 import { fetchFiles } from "../actions/FilesActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Loader from '../components/helpers/Loader'
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
 import Files from '../components/Files'
 import Breadcrumbs from '../components/Breadcrumbs'
+import Content from '../components/helpers/Content'
 import {getParamFromPath, getCleanPath} from '../actions/Functions'
 
 @connect((store) => {
    return {
      routing: store.routing,
+     toolbar: store.app.toolbar,
      path: store.files.path,
      files: store.files.files,
      currentFolderId : store.files.currentFolderId,
@@ -27,7 +29,6 @@ export default class FilesContainer extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   componentDidMount(){
-    this.props.dispatch(setAppSettings({header:"Files", hasTabs: false}));
     this.props.dispatch(fetchFiles(this.props.params.fileId));
   }
   componentWillReceiveProps(nextProps){
@@ -50,24 +51,25 @@ export default class FilesContainer extends Component {
     this.props.dispatch(push("files/" + folderId));
   }
   render(){
-    const { fetched, path, files, currentFolderId } = this.props;
+    const { fetched, path, files, currentFolderId, toolbar } = this.props;
     if(!fetched){
       return(
-        <div className="content content-tabs">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
+          <Loader full />
       )
     }
     return(
-      <div className="content-no-padding">
+      <Content noPadding>
         <Breadcrumbs path={path} onClick={this.handleBackClick} />
-        <Files
-          files={files}
-          path={path}
-          goUpBtn
-          onBackClick={this.handleBackClick}
-          onClick={this.handleClick} />
-      </div>
+        <div className="content-card">
+          <Files
+            files={files}
+            path={path}
+            searchValue={toolbar.searchValue}
+            goUpBtn
+            onBackClick={this.handleBackClick}
+            onClick={this.handleClick} />
+        </div>
+      </Content>
     )
   }
 }

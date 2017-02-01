@@ -18,6 +18,15 @@ export default class ListFiles extends Component {
             <img src={file.src} role="presentation" className="img-responsive" />
           </li>
         )
+      }else if(file.extension == "mp3"){
+        mappedImages.push(
+          <li key={file.id} className="md-list-item">
+            <audio controls>
+              <source src={file.src} type="audio/mpeg" />
+              Your browser does not support the audio tag.
+            </audio>
+          </li>
+        )
       }else{
         mappedFiles.push(
           <ListItem

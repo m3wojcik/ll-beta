@@ -39,11 +39,9 @@ export default class TestInfo extends Component {
       )
     }
     return(
-      <div>
         <ul className="card-list">
           {cardInfo}
         </ul>
-      </div>
     )
   }
 }

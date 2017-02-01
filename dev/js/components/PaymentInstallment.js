@@ -3,6 +3,7 @@ import CustomListItem from './helpers/CustomListItem';
 import CustomDate from './helpers/CustomDate';
 import Label from './helpers/Label';
 import PaymentInstallmentDetails from './PaymentInstallmentDetails';
+import PaymentInstallmentStatus from './PaymentInstallmentStatus';
 
 export default class PaymentInstallment extends Component {
 
@@ -11,12 +12,10 @@ export default class PaymentInstallment extends Component {
     let props;
     if(installment.status =="paid"){
       props = {
-        status: <Label green label="Paid"  />,
-      primaryText: "Amount paid: " + installment.amountPaid
+        primaryText: "Amount paid: " + installment.amountPaid
       }
     }else if(installment.status =="partlyPaid"){
       props = {
-        status: <Label orange label="Partly paid"  />,
         primaryText: "Amount left pay: " + installment.leftToPay
       }
     }else{
@@ -28,9 +27,10 @@ export default class PaymentInstallment extends Component {
     return(
       <CustomListItem
         {...props}
+        status ={<PaymentInstallmentStatus installment={installment} />}
         clickable
         expander={expander}
-        secondaryText={<CustomDate date={installment.paymentDate} />}
+        secondaryText={<CustomDate date={installment.paymentDate} format="day" />}
       />
     )
   }

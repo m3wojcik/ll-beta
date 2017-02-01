@@ -334,7 +334,7 @@ strong{
   .message-header{
     padding: 20px;
     background-color: #fff;
-
+    border-radius: 3px;
   }
   .message-content{
     padding: 20px;
@@ -540,8 +540,8 @@ li.test-page{
 .box{
   border-radius: 3px;
   background-color: #fff;
-
-  padding: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
   .box-top{
     width: 100%;
     .box-title{
@@ -558,6 +558,8 @@ li.test-page{
   }
   .box-body{
     display: flex;
+    max-height: 350px;
+    overflow-x: auto;
     .box-left{
       display: flex;
       align-items: center;
@@ -567,10 +569,13 @@ li.test-page{
       margin-left: auto;
     }
   }
-
-
   .box-bottom{
     width: 100%;
+  }
+  .box-subtitle{
+    color: $md-blue-grey-400;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 }
 .box.no-flex{
@@ -578,11 +583,16 @@ li.test-page{
     display: block;
   }
 }
+.box.no-padding{
+  padding: 0px;
+  .box-title{
+    padding: 10px;
+  }
+}
 /*breadcrubms
 ------------------------------------------------------------------------------*/
 .breadcrumbs{
   display: flex;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 .breadcrumbs > .crumb{
   display: flex;
@@ -800,6 +810,9 @@ ul.list-white > li.md-subheader{
 }
 ul.list-dividers > li{
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+ul.list-dividers > li:last-child{
+  border-bottom-color: transparent;
 }
 ul.list-big > li > .md-list-tile{
   height: 60px;
@@ -1084,6 +1097,95 @@ ul.card-list > li{
 .countdown-timer[data-percent^="9"],.countdown-timer[data-percent^="100"]{
     background-color: #66DA81;
 }
+/*icons-details
+------------------------------------------------------------------------------*/
+.icons-details{
+  display: flex;
+  flex-wrap: wrap;
+  color: rgba(0, 0, 0, 0.54);
+  padding: 10px 10px 15px;
+
+  .detail{
+    height: 20px;
+    line-height: 20px;
+    margin-right: 10px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    .md-icon{
+      vertical-align: middle;
+      margin-right: 2px;
+    }
+  }
+}
+/*Md list custom
+------------------------------------------------------------------------------*/
+.md-list,
+.md-list .md-list:not(.md-list--menu){
+   background-color: transparent;
+}
+.md-list.md-list-divider li.md-list-item{
+  background-color: #fff;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.md-list.md-list-divider li.md-list-item:last-child{
+  border-bottom-color: transparent;
+}
+.md-list-right{
+  display: flex;
+  .card-section{
+    padding: 0px;
+  }
+}
+.md-list-status{
+    padding: 12px;
+    span + span{
+      margin-left: 5px;
+    }
+}
+.md-list--menu{
+  background-color: #fff;
+  border-radius: .28571429rem;
+  border:1px solid rgba(34,36,38,.15);
+  box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+}
+.md-list-bottom{
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media screen and (min-width: 320px){
+  .md-list-tile--bottom-lines {
+    .md-tile-content{
+      height: 52px;
+    }
+    .md-list-tile{
+      padding-top: 15px;
+      height: 62px;
+    }
+  }
+  .md-list-tile--two-lines{
+      .md-list-tile{
+        height: 67px;
+      }
+  }
+}
+@media screen and (min-width: 1025px){
+  .md-list-tile--bottom-lines {
+    .md-tile-content{
+      height: 40px;
+    }
+    .md-list-tile{
+      padding-top: 15px;
+      height: 50px;
+      box-sizing: border-box;
+    }
+  }
+  .md-list-tile--two-lines{
+    .md-list-tile{
+        height: 55px;
+    }
+  }
+}
+
 /*CircularProgressbar
 ------------------------------------------------------------------------------*/
 .progress-tiny {

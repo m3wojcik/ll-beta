@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class TableActionsRow extends Component {
+export default class ActionsRow extends Component {
 
   render(){
     return(

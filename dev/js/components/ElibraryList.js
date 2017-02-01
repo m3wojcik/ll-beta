@@ -5,9 +5,10 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import {FormattedRelative} from 'react-intl';
 import CustomListItem from './helpers/CustomListItem';
-import Label from './helpers/Label'
+
 import MediaLibItemDetails from './MediaLibItemDetails'
 import MediaLibItemActions from './MediaLibItemActions'
+import ElibraryListStatus from './ElibraryListStatus'
 
 import {FormattedDate} from 'react-intl';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -31,25 +32,7 @@ export default class ElibraryList extends Component {
       let title = item.title.toLowerCase();
       let author = item.author.toLowerCase();
       let search = searchValue.toLowerCase();
-      let customListStatus = {}
-      if(available){
-        customListStatus = {
-          status: <Label blue label={item.availableUnits} value={item.availableUnits} colorValues={[{"values":[1],"color": "red"}, {"range":[2,3],"color": "orange"}]} />
-        }
-      }else if(reserved){
-        customListStatus = {
-          status: <div>
-            <FormattedDate value={item.dateFrom} day="numeric" month="numeric" />
-           -  <FormattedDate value={item.dateTo} day="numeric" month="numeric" year="numeric" />
-          </div>
-        }
-      }else if(borrowed){
-        customListStatus = {
-          status: <div>
-            <FormattedDate value={item.dateReturn} day="numeric" month="numeric" year="numeric" />
-          </div>
-        }
-      }
+
       if(title.indexOf(search) != -1 || author.indexOf(search) != -1 ){
         return (
             <CustomListItem
@@ -57,7 +40,7 @@ export default class ElibraryList extends Component {
               clickable
               expander={expander}
               primaryText={item.title}
-              {...customListStatus}
+              status = {<ElibraryListStatus item={item} />}
               secondaryText={item.author}
             />
         )

@@ -24,6 +24,7 @@ import NavigationUserContainer from './NavigationUserContainer';
 })
 export default class LayoutContainer extends Component {
   componentDidMount(){
+    console.log('fetch app data');
     const { routing } = this.props;
     const currentPath = getCleanPath(routing.locationBeforeTransitions.pathname);
     this.props.dispatch(fetchAppData());
@@ -45,7 +46,7 @@ export default class LayoutContainer extends Component {
   render(){
     const {hasTabs, appData, toolbar, header,toasts} = this.props;
 
-    let classess = hasTabs ? 'no-shadow' : '';
+    let toolbarClassName = hasTabs ? 'no-shadow' : '';
     if(!appData.fetched){
       return(
           <Loader fullPage />
@@ -67,9 +68,8 @@ export default class LayoutContainer extends Component {
           toolbarChildren={<ToolbarContainer />}
           contentClassName=""
           contentId="main-content-demo"
-          toolbarClassName={classess}
+          toolbarClassName={toolbarClassName}
         >
-
         {this.props.content}
         <Snackbar {...toasts} onDismiss={this.removeToast} />
         </NavigationDrawer>

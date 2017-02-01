@@ -15,6 +15,26 @@ export function addDays(date, days) {
     result.setDate(result.getDate() + days);
     return result;
 }
+export function getDays(date) {
+  const oneDay = 1000*60*60*24;
+  const timeZoneOffset = new Date(date).getTimezoneOffset() * 60 *1000;
+  return Math.floor((new Date(date).getTime() - timeZoneOffset)/oneDay);
+}
+export function compareDates(date1, date2, precision) {
+    const d1 = new Date(date1).getTime();
+    const d2 = new Date(date2).getTime();
+    let result = d2 - d1;
+    if(precision == "d"){
+      result = result /(1000*60*60*24);
+    }else if(precision == "h"){
+      result = result /(1000*60*60);
+    }else if(precision == "m"){
+      result = result /(1000*60);
+    }else if(precision == "s"){
+      result = result /(1000);
+    }
+    return Math.floor(result);
+}
 export function getAppSettings(pathname){
   let settings = {};
   switch (pathname) {
@@ -65,7 +85,7 @@ export function getAppSettings(pathname){
       break;
     default:
       if(/^files(\/.+|)/.test(pathname)){
-        settings = {"header":"Files", "hasTabs":false, "searchBtn": false}
+        settings = {"header":"Files", "hasTabs":false, "searchBtn": true}
       }else if(/^testview(\/.+|)/.test(pathname)){
         settings = {"header":"Test", "hasTabs":true, "searchBtn": false}
       }else if(/^test(\/.+|)/.test(pathname)){

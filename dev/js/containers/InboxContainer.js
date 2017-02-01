@@ -13,7 +13,7 @@ import ToolbarExpander from '../components/helpers/ToolbarExpander';
 
 @connect((store) => {
    return {
-     toolbar: store.app.toolbar,
+    toolbar: store.app.toolbar,
     inbox: store.inbox.inboxMessages,
     fetched: store.inbox.fetched,
     fetching: store.inbox.fetching

@@ -15,19 +15,19 @@ import {FormattedRelative} from 'react-intl';
 
 export default class Tests extends Component {
   render(){
-    const { tests, searchValue } = this.props;
+    const { tests, searchValue,onShowClick,onSolveClick } = this.props;
     const mappedTests = tests.map(function(test){
       let cardActions = [];
       let name = test.name.toLowerCase();
       let sharedBy = test.sharedBy.toLowerCase();
       let search = searchValue.toLowerCase();
       if(test.completed){
-        cardActions.push(<Button key="show" flat label="Show" onClick={this.props.onShowClick.bind(this, test)} />)
+        cardActions.push(<Button key="show" flat label="Show" onClick={onShowClick.bind(this, test)} />)
       }
       if(test.multipleSolving && test.completed){
-        cardActions.push(<Button key="resolve" flat label="Resolve" onClick={this.props.onSolveClick.bind(this, test)} />)
+        cardActions.push(<Button key="resolve" flat label="Resolve" onClick={onSolveClick.bind(this, test)} />)
       }else if(!test.completed){
-        cardActions.push(<Button key="solve" flat label="Solve" onClick={this.props.onSolveClick.bind(this, test)} />)
+        cardActions.push(<Button key="solve" flat label="Solve" onClick={onSolveClick.bind(this, test)} />)
       }
       let textResult = [];
       if(test.result){
