@@ -24,6 +24,7 @@ export default class DashboardFiles extends Component {
 
     return(
       <Box
+        isScrolled
         className="no-flex no-padding"
         title="New files"
         titleIcon={<FontIcon className="icon-orange">folder</FontIcon>}>

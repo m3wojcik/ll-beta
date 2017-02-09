@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export default class BlockOfText extends Component {
+export default class DashboardWelcome extends Component {
 
   render(){
     const { appData } = this.props;
@@ -9,6 +9,6 @@ export default class BlockOfText extends Component {
     )
   }
 }
-BlockOfText.propTypes = {
+DashboardWelcome.propTypes = {
   appData: React.PropTypes.object.isRequired
 }

@@ -5,8 +5,6 @@ import FontIcon from 'react-md/lib/FontIcons';
 import AttendanceStatuses from './../AttendanceStatuses'
 import BoxSubtitle from './../helpers/BoxSubtitle'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import {getWeek} from '../../actions/Functions';
-import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 export default class DashboardAttendances extends Component {
 
   render(){

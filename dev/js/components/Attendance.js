@@ -10,7 +10,7 @@ import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import AttendanceStatuses from './AttendanceStatuses'
 import FontIcon from 'react-md/lib/FontIcons';
-import ProgressBar from './ProgressBar'
+import ProgressBar from './helpers/ProgressBar'
 
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 

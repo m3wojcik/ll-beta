@@ -44,9 +44,9 @@ export default class PaymentsContainer extends Component {
                   left={<h2>Amount paid</h2>}
                   right={<CircleProgressBar
                     key="circleProgress"
-                    strokeWidth={4}
+                    strokeWidth={6}
                     size="large"
-                    color="green"
+                    color="teal"
                     textForPercentage={(percentage) => `${amountPaid} ${locales.currencyCode}`}
                     percentage={percentPaid}
                     />}
@@ -57,7 +57,7 @@ export default class PaymentsContainer extends Component {
                   left={<h2>Amount left to pay</h2>}
                   right={<CircleProgressBar
                     key="circleProgress"
-                    strokeWidth={4}
+                    strokeWidth={6}
                     size="large"
                     color="orange"
                     textForPercentage={(percentage) => `${leftToPay} ${locales.currencyCode}`}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
-import MarksList from './../MarksList'
+import MarksList from '../marks/MarksList'
 import BoxSubtitle from './../helpers/BoxSubtitle'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class DashboardMarks extends Component {
@@ -14,7 +14,7 @@ export default class DashboardMarks extends Component {
         return (
           <div key={group.groupId}>
             <BoxSubtitle text={group.groupName} />
-            <MarksList marks={group.marks} />
+            <MarksList gradeType={group.gradeType} marks={group.marks} />
           </div>
       )
     })

@@ -46,7 +46,7 @@ strong{
   font-weight: 700;
 }
 .navigation{
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  // border-top: 1px solid rgba(0, 0, 0, 0.12);
   a{
     text-decoration: none;
     .md-text{
@@ -65,7 +65,12 @@ strong{
 }
 .navigation-drawer{
   color: #fff;
-  background: #3c4b5b;
+   background: #3c4b5b;
+  // background: #2185d0; /* Old browsers */
+  // background: -moz-linear-gradient(top, #2185d0 0%, #0078ce 100%); /* FF3.6-15 */
+  // background: -webkit-linear-gradient(top, #2185d0 0%,#0078ce 100%); /* Chrome10-25,Safari5.1-6 */
+  // background: linear-gradient(to bottom, #2185d0 0%,#0078ce 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2185d0', endColorstr='#0078ce',GradientType=0 );
   text-shadow: 0 1px 1px rgba(0,0,0,.1);
   header{
     border-bottom-color: transparent;
@@ -376,6 +381,13 @@ strong{
     }
   }
 }
+/* News
+------------------------------------------------------------------------------*/
+.news-content{
+  padding: 0px 16px 16px;
+  color: $md-blue-grey-600;
+  font-size: 1em;
+}
 /* block
 ------------------------------------------------------------------------------*/
 .block{
@@ -558,8 +570,7 @@ li.test-page{
   }
   .box-body{
     display: flex;
-    max-height: 350px;
-    overflow-x: auto;
+
     .box-left{
       display: flex;
       align-items: center;
@@ -576,6 +587,41 @@ li.test-page{
     color: $md-blue-grey-400;
     padding-left: 16px;
     padding-right: 16px;
+    text-transform: uppercase;
+
+  }
+  .box-footer{
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    background-color: $md-blue-grey-50;
+    border-top: 1px solid $md-blue-grey-100;
+    .box-sum{
+      display: flex;
+      .box-sum-percent{
+        margin-right: 10px;
+      }
+      .box-sum-right{
+        .box-sum-label{
+          font-size: 0.8em;
+          text-transform: uppercase;
+          color: $md-blue-grey-300;
+        }
+        .box-sum-value{
+          font-size: 1.3em;
+          color: $md-blue-grey-600;
+        }
+      }
+    }
+    .box-sum + .box-sum{
+      margin-left: 20px;
+    }
+  }
+}
+.box.box-scrolled{
+  .box-body{
+    max-height: 350px;
+    overflow-x: auto;
   }
 }
 .box.no-flex{
@@ -587,6 +633,28 @@ li.test-page{
   padding: 0px;
   .box-title{
     padding: 10px;
+  }
+}
+/*Chart
+------------------------------------------------------------------------------*/
+.chart-container{
+  color: $md-blue-grey-400;
+  .chart-title{
+    padding: 10px 16px 5px;
+    font-size: 0.9em;
+    text-transform: uppercase;
+  }
+  .chart{
+    padding: 16px;
+    .chart-labels{
+      display: flex;
+      justify-content: space-around;
+      font-size: 0.8em;
+      div{
+        text-align: center;
+        flex: 1;
+      }
+    }
   }
 }
 /*breadcrubms
@@ -808,11 +876,8 @@ ul.list-white > li{
 ul.list-white > li.md-subheader{
   background-color: rgba(0, 0, 0, 0.06);
 }
-ul.list-dividers > li{
+ul.list-dividers > li:not(:last-child){
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-ul.list-dividers > li:last-child{
-  border-bottom-color: transparent;
 }
 ul.list-big > li > .md-list-tile{
   height: 60px;
@@ -962,6 +1027,9 @@ ul.card-list > li{
 .icon-black{
   color: $black;
 }
+.icon-white{
+  color: #fff;
+}
 /*Labels
 ------------------------------------------------------------------------------*/
 .label {
@@ -1037,6 +1105,24 @@ ul.card-list > li{
 }
 .label-black{
   background-color: $black;
+}
+.label[data-percent^="1"], .label[data-percent^="2"] {
+    background-color: #D95C5C;
+}
+.label[data-percent^="3"]{
+    background-color: #EFBC72;
+}
+.label[data-percent^="4"], .label[data-percent^="5"]{
+    background-color: #E6BB48;
+}
+.label[data-percent^="6"]{
+    background-color: #DDC928;
+}
+.label[data-percent^="7"], .label[data-percent^="8"]{
+    background-color: #B4D95C;
+}
+.label[data-percent^="9"], .label[data-percent^="100"]{
+    background-color: #66DA81;
 }
 /*Quill
 ------------------------------------------------------------------------------*/
@@ -1123,12 +1209,9 @@ ul.card-list > li{
 .md-list .md-list:not(.md-list--menu){
    background-color: transparent;
 }
-.md-list.md-list-divider li.md-list-item{
+.md-list.md-list-divider li.md-list-item:not(:last-child){
   background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-}
-.md-list.md-list-divider li.md-list-item:last-child{
-  border-bottom-color: transparent;
 }
 .md-list-right{
   display: flex;
@@ -1219,6 +1302,7 @@ ul.card-list > li{
 
 .CircularProgressbar .CircularProgressbar-trail {
   stroke: $md-blue-grey-100;
+  stroke-width: 2px;
 }
 
 .CircularProgressbar .CircularProgressbar-text {

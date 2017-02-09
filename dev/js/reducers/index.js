@@ -10,6 +10,7 @@ import DashboardTestsReducer from './DashboardTestsReducer';
 import DashboardElibraryReducer from './DashboardElibraryReducer';
 import DashboardSurveysReducer from './DashboardSurveysReducer';
 import DashboardPaymentsReducer from './DashboardPaymentsReducer';
+import DashboardNewsReducer from './DashboardNewsReducer';
 import ClassesReducer from './ClassesReducer';
 import ClassDetailsReducer from './ClassDetailsReducer';
 import MarksReducer from './MarksReducer';
@@ -43,6 +44,7 @@ const allReducers = combineReducers({
   dashboardElibrary: DashboardElibraryReducer,
   dashboardSurveys: DashboardSurveysReducer,
   dashboardPayments: DashboardPaymentsReducer,
+  dashboardNews: DashboardNewsReducer,
   classes: ClassesReducer,
   classDetails: ClassDetailsReducer,
   marks: MarksReducer,

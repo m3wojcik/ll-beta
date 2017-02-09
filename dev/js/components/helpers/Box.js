@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 export default class Box extends Component {
 
   render(){
-    const { left, right, bottom, title, titleIcon, className } = this.props;
+    const { left, right, bottom, title, titleIcon, className, isScrolled } = this.props;
     let output=[], titleOutput = [], bottomOutput= [];
     let classProps = "box md-paper--1";
     if(className){
       classProps += " "+className;
+    }
+    if(isScrolled){
+      classProps += " box-scrolled";
     }
     if(title){
       let titleText = title;
@@ -48,9 +51,7 @@ export default class Box extends Component {
     return(
       <div className={classProps}>
         {titleOutput}
-        <div className="box-body">
           {output}
-        </div>
         {bottomOutput}
       </div>
     )

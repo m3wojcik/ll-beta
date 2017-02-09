@@ -79,7 +79,8 @@ h3, .md-title, h6, .md-body-2{
 .actions-row{
   width: 100%;
   padding: 10px 20px;
-  background-color: rgba(0,0,0,0.1);
+  background-color: $md-blue-grey-50;
+  border-top: 1px solid $md-blue-grey-100;
   box-sizing: border-box;
 }
 .md-dialog--centered{

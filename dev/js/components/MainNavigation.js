@@ -66,7 +66,7 @@ export default class MainNavigation extends Component {
         }
       }
       return(
-        <List className="navigation">
+      <List className="navigation">
         <IndexLink  key="dashboard" to="/" activeClassName="active-main" >
           <ListItem
             primaryText="Dashboard"

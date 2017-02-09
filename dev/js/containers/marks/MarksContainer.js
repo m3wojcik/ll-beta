@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import { fetchMarks } from "../actions/MarksActions";
+import { fetchMarks } from "../../actions/MarksActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import Marks from '../components/Marks'
+import Marks from '../../components/marks/Marks'
 
 @connect((store) => {
    return {

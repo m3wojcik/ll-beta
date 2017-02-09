@@ -14,7 +14,7 @@ import App from './components/App';
 import DashboardContainer from './containers/DashboardContainer';
 import MainContainer from './containers/MainContainer';
 import NotificationsContainer from './containers/NotificationsContainer';
-import MarksContainer from './containers/MarksContainer';
+import MarksContainer from './containers/marks/MarksContainer';
 import AttendanceContainer from './containers/AttendanceContainer';
 import ClassDetailsContainer from './containers/ClassDetailsContainer';
 import MessagesContainer from './containers/MessagesContainer';

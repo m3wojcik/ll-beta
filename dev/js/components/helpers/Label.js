@@ -49,7 +49,7 @@ export default class Label extends Component {
        colorClass = this.getColor();
      }
      classProp += " " + colorClass;
-     return <span className={classProp}>{label}</span>
+     return <span className={classProp} data-percent={value}>{label}</span>
 
   }
 }
