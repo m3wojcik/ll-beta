@@ -1,14 +1,7 @@
 export default function reducer(state={
   marks: [],
   marksClassByColumn: [],
-  // marksClassByColumn:{
-  //   columnId: null,
-  //   name: "",
-  //   gradeType: "",
-  //   marks: [],
-  //   fetching: false,
-  //   fetched: false,
-  // },
+  marksClassAverage:[],
   fetching: false,
   fetched: false,
   error: null,
@@ -30,7 +23,7 @@ export default function reducer(state={
         }
       }
       case "FETCH_MARKS_CLASS_BY_COLUMN": {
-        let newMarksClassByColumn = state.marksClassByColumn;
+        let newMarksClassByColumn = state.marksClassByColumn.slice();
         newMarksClassByColumn[action.payload] = {fetching: true, fetched:false}
         return {...state, marksClassByColumn: newMarksClassByColumn}
       }
@@ -38,7 +31,7 @@ export default function reducer(state={
         return {...state, marksClassByColumn:{fetching: false}, error: action.payload}
       }
       case "FETCH_MARKS_CLASS_BY_COLUMN_FULFILLED": {
-        let newMarksClassByColumn = state.marksClassByColumn;
+        let newMarksClassByColumn =   state.marksClassByColumn.slice();
         newMarksClassByColumn[action.payload.columnId] = {
           columnId: action.payload.columnId,
           name: action.payload.name,
@@ -50,6 +43,28 @@ export default function reducer(state={
         return {
           ...state,
           marksClassByColumn: newMarksClassByColumn
+        }
+      }
+      case "FETCH_MARKS_CLASS_AVERAGE": {
+        let newMarksClassAverage = state.marksClassAverage.slice();
+        newMarksClassAverage[action.payload] = {fetching: true, fetched:false}
+        return {...state, marksClassAverage: newMarksClassAverage}
+      }
+      case "FETCH_MARKS_CLASS_AVERAGE_REJECTED": {
+        return {...state, marksClassAverage:{fetching: false}, error: action.payload}
+      }
+      case "FETCH_MARKS_CLASS_AVERAGE_FULFILLED": {
+        let newMarksClassAverage =   state.marksClassAverage.slice();
+        newMarksClassAverage[action.payload.groupId] = {
+          groupId: action.payload.groupId,
+          gradeType: action.payload.gradeType,
+          averages: action.payload.averages,
+          fetching: false,
+          fetched:true
+        }
+        return {
+          ...state,
+          marksClassAverage: newMarksClassAverage
         }
       }
     }

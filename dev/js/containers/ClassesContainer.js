@@ -15,7 +15,7 @@ import Classes from '../components/Classes'
     fetching: store.classes.fetching
   };
 })
-export default class DashboardClassesContainer extends Component {
+export default class ClassesContainer extends Component {
   constructor(props){
     super(props);
     this.handleClick = this.handleClick.bind(this);

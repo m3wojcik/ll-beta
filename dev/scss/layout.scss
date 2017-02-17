@@ -486,13 +486,13 @@ li.test-page{
     background-color: #E6BB48;
 }
 .square-label[data-percent^="6"]{
-    background-color: #DDC928;
+    background-color: $yellow;
 }
 .square-label[data-percent^="7"], .square-label[data-percent^="8"]{
-    background-color: #B4D95C;
+    background-color: $olive;
 }
 .square-label[data-percent^="9"], .square-label[data-percent^="100"]{
-    background-color: #66DA81;
+    background-color: $green;
 }
 /* ProgressBar
 ------------------------------------------------------------------------------*/
@@ -531,13 +531,13 @@ li.test-page{
     background-color: #E6BB48;
 }
 .indicating.progress-bar[data-percent^="6"] .bar{
-    background-color: #DDC928;
+    background-color: $yellow;
 }
 .indicating.progress-bar[data-percent^="7"] .bar,.indicating.progress-bar[data-percent^="8"] .bar{
-    background-color: #B4D95C;
+    background-color: $olive;
 }
 .indicating.progress-bar[data-percent^="9"] .bar,.indicating.progress-bar[data-percent^="100"] .bar {
-    background-color: #66DA81;
+    background-color: $green;
 }
 .progress-container .progress-title{
   color: rgba(0, 0, 0, 0.87);
@@ -556,16 +556,16 @@ li.test-page{
   margin-bottom: 20px;
   .box-top{
     width: 100%;
-    .box-title{
-      font-size: 1.2em;
-      padding-bottom: 10px;
-      font-weight: 700;
-      color: $md-blue-grey-700;
-      .md-icon{
-        vertical-align: top;
-        font-size: 24px;
-        margin-right: 5px;
-      }
+  }
+  .box-title{
+    font-size: 1.2em;
+    padding-bottom: 10px;
+    font-weight: 700;
+    color: $md-blue-grey-700;
+    .md-icon{
+      vertical-align: top;
+      font-size: 24px;
+      margin-right: 5px;
     }
   }
   .box-body{
@@ -617,6 +617,9 @@ li.test-page{
       margin-left: 20px;
     }
   }
+  .progress-container{
+    padding: 0px 16px 20px;
+  }
 }
 .box.box-scrolled{
   .box-body{
@@ -638,6 +641,7 @@ li.test-page{
 /*Chart
 ------------------------------------------------------------------------------*/
 .chart-container{
+  position: relative;
   color: $md-blue-grey-400;
   .chart-title{
     padding: 10px 16px 5px;
@@ -646,6 +650,17 @@ li.test-page{
   }
   .chart{
     padding: 16px;
+    .axis{
+      text{
+        fill: $md-blue-grey-400;
+        font-size: 10px;
+      }
+      .tick{
+        circle{
+          display: none;
+        }
+      }
+    }
     .chart-labels{
       display: flex;
       justify-content: space-around;
@@ -654,7 +669,64 @@ li.test-page{
         text-align: center;
         flex: 1;
       }
+
     }
+  }
+  .area-chart{
+    .chart-labels{
+      margin-left: 30px;
+      div:last-child{
+        text-align: right;
+      }
+      div:first-child{
+        text-align: left;
+      }
+    }
+  }
+  .chart-tooltip{
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    z-index: 1070;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    word-wrap: normal;
+    white-space: normal;
+    padding: 5px 0;
+    display: none;
+    .tooltip-inner{
+      max-width: 200px;
+      padding: 3px 8px;
+      color: #fff;
+      text-align: center;
+      background-color: $md-blue-grey-700;
+      border-radius: 4px;
+    }
+    .tooltip-arrow {
+        display: none;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        bottom: 0;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px 5px 0;
+        border-top-color: $md-blue-grey-700;
+    }
+  }
+  .chart-tooltip.visible{
+    display: block;
   }
 }
 /*breadcrubms
@@ -694,6 +766,11 @@ li.test-page{
 }
 /*helpers
 ------------------------------------------------------------------------------*/
+.content-header{
+  font-size: 1.4em;
+  font-weight: 700;
+  color: $md-blue-grey-700;
+}
 .img-responsive,
 .thumbnail > img,
 .thumbnail a > img,
@@ -925,10 +1002,26 @@ ul.list-horizontal > li{
   padding-right: 5px;
   padding-bottom: 5px;
 }
-.list-expander{
-
+ul.list-horizontal.list-with-bullets{
+  .bullet{
+    .md-icon{
+      font-size: .4em;
+      position: relative;
+      top: -2px;
+      color: $md-blue-grey-100;
+    }
+  }
+}
+ul.list-horizontal.list-with-bullets > li{
+  padding: 0px;
 }
 
+ul.list-horizontal.list-with-bullets > li:not(:first-child){
+  padding-left: 10px;
+}
+ul.list-horizontal.list-with-bullets > li:not(:last-child){
+  padding-right: 10px;
+}
 /*card-list
 ------------------------------------------------------------------------------*/
 ul.card-list{
@@ -1209,9 +1302,11 @@ ul.card-list > li{
 .md-list .md-list:not(.md-list--menu){
    background-color: transparent;
 }
+.md-list.md-list-divider li.md-list-item{
+    background-color: #fff;
+}
 .md-list.md-list-divider li.md-list-item:not(:last-child){
-  background-color: #fff;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 }
 .md-list-right{
   display: flex;

@@ -21,11 +21,7 @@ export default class Box extends Component {
       )
     }
     if(this.props.children){
-      output.push(
-        <div key="body" className="box-body">
-          {this.props.children}
-        </div>
-      )
+      output.push(this.props.children)
     }
     if(left){
       output.push(
@@ -51,7 +47,9 @@ export default class Box extends Component {
     return(
       <div className={classProps}>
         {titleOutput}
+        <div key="body" className="box-body">
           {output}
+        </div>
         {bottomOutput}
       </div>
     )

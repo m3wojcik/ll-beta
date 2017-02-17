@@ -19,6 +19,12 @@
 .md-toolbar--fixed.no-shadow{
   border-bottom: none;
 }
+.md-tab-label{
+  color: $md-blue-grey-400
+}
+.md-tab-indicator{
+  background: $blue;
+}
 nav header.md-divider-border{
 border-color: transparent;
 }

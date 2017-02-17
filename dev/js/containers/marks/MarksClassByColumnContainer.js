@@ -11,20 +11,20 @@ import MarksClassByColumn from '../../components/marks/MarksClassByColumn'
   };
 })
 export default class MarksClassByColumnContainer extends Component {
-  componentWillMount(){
+  componentDidMount(){
     const { columnId } = this.props;
     this.props.dispatch(fetchMarksClassByColumn(columnId));
   }
   render(){
-    const { marksClassByColumn, columnId } = this.props;
-    console.log(marksClassByColumn[columnId].fetched);
-    if(!marksClassByColumn[columnId].fetched){
-      return(<Loader key="loader" centerPadding />)
-    }else{
+    const { marksClassByColumn, columnId, title } = this.props;
+    if(marksClassByColumn[columnId] && marksClassByColumn[columnId].fetched){
       return(<MarksClassByColumn
           gradeType={marksClassByColumn[columnId].gradeType}
           marks={marksClassByColumn[columnId].marks}
+          title={title}
         />)
+    }else{
+      return(<Loader key="loader" centerPadding />)
     }
   }
 }

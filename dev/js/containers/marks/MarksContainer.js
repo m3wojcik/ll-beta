@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { fetchMarks } from "../../actions/MarksActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Loader from '../../components/helpers/Loader'
+import Content from '../../components/helpers/Content'
 import Marks from '../../components/marks/Marks'
 
 @connect((store) => {
@@ -19,16 +20,12 @@ export default class MarksContainer extends Component {
   render(){
     const { fetched, marks } = this.props;
     if(!fetched){
-      return(
-        <div className="content">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
-      )
+      return(<Loader full />)
     }
     return(
-      <div className="content">
+      <Content >
           <Marks marks={marks} />
-      </div>
+      </Content>
     )
   }
 }

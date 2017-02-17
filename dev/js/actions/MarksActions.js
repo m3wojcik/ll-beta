@@ -24,3 +24,15 @@ export function fetchMarksClassByColumn(columnId) {
       })
   }
 }
+export function fetchMarksClassAverage(groupId) {
+  return function(dispatch) {
+    dispatch({type: "FETCH_MARKS_CLASS_AVERAGE", payload: groupId});
+    axios.get("http://api.local/?q=getMarksClassAverage"+"&id="+groupId)
+      .then((response) => {
+        dispatch({type: "FETCH_MARKS_CLASS_AVERAGE_FULFILLED", payload: response.data});
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_MARKS_CLASS_AVERAGE_REJECTED", payload: err})
+      })
+  }
+}

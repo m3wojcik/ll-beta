@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
-
-import Card from 'react-md/lib/Cards/Card';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import CardText from 'react-md/lib/Cards/CardText';
 import CardActions from 'react-md/lib/Cards/CardActions';
-import DataTable from 'react-md/lib/DataTables/DataTable';
-import TableHeader from 'react-md/lib/DataTables/TableHeader';
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import FontIcon from 'react-md/lib/FontIcons';
-import MarksRows from './MarksRows'
-import ProgressBar from '../helpers/ProgressBar'
+
+
+import MarksData from './MarksData'
+
+import Box from '../helpers/Box';
+
+import Header from '../helpers/Header';
 
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
@@ -20,19 +18,10 @@ export default class Marks extends Component {
     const marksGroupsRows = marks.map(
       (group) =>
       <li key={group.groupId}>
-        <Card>
-          <CardTitle title={group.groupName}  />
-          <ProgressBar title={group.percent + "%"} subtitle="Percent result"  value={group.percent} />
-          <DataTable plain>
-            <TableHeader>
-              <TableRow>
-                <TableColumn>Name</TableColumn>
-                <TableColumn>Mark</TableColumn>
-              </TableRow>
-            </TableHeader>
-              <MarksRows marks={group.marks} />
-          </DataTable>
-        </Card>
+          <Header header={group.groupName}  />
+          <Box className="no-flex no-padding">
+            <MarksData groupId={group.groupId} gradeType={group.gradeType} marks={group.marks} />
+          </Box>
       </li>
     );
     return(
