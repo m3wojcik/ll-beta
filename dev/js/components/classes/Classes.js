@@ -4,32 +4,33 @@ import {getWeek, getDaysDiference, addDays, getDay} from '../../actions/Function
 import ClassItem from './ClassItem';
 import ListHeader from './../helpers/ListHeader';
 
-var headers ={
-  first: false,
-  lastWeek: false,
-  thisWeek: false,
-  nextWeek: false,
-  next: false
-}
+
 export default class Classes extends Component {
   componentDidMount(){
     const mainToolbar = document.getElementsByClassName("main-toolbar")[0];
     const offsetHeight = mainToolbar.offsetHeight + 19;
-    if(headers.thisWeek){
+    if(document.getElementById('this-week')){
       let offsetTop = document.getElementById('this-week').offsetTop - offsetHeight
       window.scrollTo( 0, offsetTop );
-    }else if(headers.nextWeek){
+    }else if(document.getElementById('next-week')){
       let offsetTop = document.getElementById('next-week').offsetTop - offsetHeight
       window.scrollTo( 0, offsetTop );
-    }else if(headers.next){
+    }else if(document.getElementById('next')){
       let offsetTop = document.getElementById('next').offsetTop - offsetHeight
       window.scrollTo( 0, offsetTop );
-    }else if(headers.lastWeek){
+    }else if(document.getElementById('last-week')){
       let offsetTop = document.getElementById('last-week').offsetTop - offsetHeight
       window.scrollTo( 0, offsetTop );
     }
   }
   render(){
+    var headers ={
+      first: false,
+      lastWeek: false,
+      thisWeek: false,
+      nextWeek: false,
+      next: false
+    }
     const { classes } = this.props;
     const today = new Date();
     const weekStartDate = addDays(today, -getDay(today))
