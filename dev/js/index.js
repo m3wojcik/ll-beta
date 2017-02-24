@@ -15,13 +15,13 @@ import DashboardContainer from './containers/DashboardContainer';
 import MainContainer from './containers/MainContainer';
 import NotificationsContainer from './containers/NotificationsContainer';
 import MarksContainer from './containers/marks/MarksContainer';
-import AttendanceContainer from './containers/AttendanceContainer';
+import AttendanceContainer from './containers/attendance/AttendanceContainer';
 import ClassDetailsContainer from './containers/ClassDetailsContainer';
 import MessagesContainer from './containers/MessagesContainer';
 import MessageContainer from './containers/MessageContainer';
 import InboxContainer from './containers/InboxContainer';
 import CreateMessageContainer from './containers/CreateMessageContainer';
-import ClassesContainer from './containers/ClassesContainer';
+import ClassesContainer from './containers/classes/ClassesContainer';
 import FilesContainer from './containers/FilesContainer';
 import TestsContainer from './containers/TestsContainer';
 import TestContainer from './containers/TestContainer';
@@ -53,6 +53,7 @@ ReactDOM.render(
           <Route path="message/:messageId" component={MessageContainer} />
           <Route path="createmessage" component={CreateMessageContainer} />
           <Route path="classes" component={ClassesContainer} />
+          <Route path="classes/:groupId" component={ClassesContainer} />
           <Route path="files" component={FilesContainer} />
           <Route path="files/:fileId" component={FilesContainer} />
           <Route path="tests" component={TestsContainer} />

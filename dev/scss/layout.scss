@@ -220,6 +220,18 @@ strong{
       }
     }
 }
+.toolbar-select{
+  vertical-align: middle;
+  .md-text-field{
+    padding-bottom: 7px;
+    padding-left: 0px;
+    padding-right: 16px;
+    padding-top: 0px;
+    font-size: 20px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
 @media screen and (min-width: 1025px){
   .toolbar-search-container,
   .toolbar-title {
@@ -817,6 +829,17 @@ hr {
   font-weight: 700;
   margin-bottom: 0px;
   padding: 10px 20px;
+}
+li.list-header{
+  color: #555459;
+  font-size: 1em;
+  font-weight: 700;
+  margin-bottom: 0px;
+}
+li.list-header > span{
+  color: #555459;
+  font-size: 1em;
+  font-weight: 700;
 }
 .loader{
   svg{
@@ -1505,6 +1528,60 @@ ul.card-list > li{
 .circular-black{
   .CircularProgressbar-path{
     stroke: $black;
+  }
+}
+/*calendar
+------------------------------------------------------------------------------*/
+.DayPicker.calendar-attendances{
+  padding: 20px;
+  .DayPicker-Month{
+    width: 100%;
+    margin: 0px;
+    box-sizing: border-box;
+  }
+  .DayPicker-WeekdaysRow{
+    .DayPicker-Weekday{
+      width: 14.2857%;
+      box-sizing: border-box;
+    }
+  }
+  .DayPicker-Day{
+    height: 60px;
+
+    width: 14.2857%;
+    position: relative;
+    div{
+      line-height: 60px;
+      color: $md-blue-grey-600;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      bottom: 0px;
+      right: 0px;
+      .statuses-calendar{
+        position: absolute;
+        bottom: -2px;
+        left: 0px;
+        right: 0px;
+      }
+    }
+    div.has-status{
+      background-color: $blue;
+      color: #fff;
+    }
+  }
+}
+.statuses-calendar{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+}
+.statuses-calendar > li{
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+  .md-icon{
+    font-size: 14px;
   }
 }
 /*Animations

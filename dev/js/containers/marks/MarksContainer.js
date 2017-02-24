@@ -23,7 +23,7 @@ export default class MarksContainer extends Component {
       return(<Loader full />)
     }
     return(
-      <Content >
+      <Content>
           <Marks marks={marks} />
       </Content>
     )

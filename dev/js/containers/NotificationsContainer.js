@@ -5,7 +5,6 @@ import {push} from 'react-router-redux';
 import { setAppHeader } from "../actions/AppActions";
 import { fetchUpcomingClasses } from "../actions/ClassesActions";
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import Classes from '../components/Classes'
 
 
 @connect((store) => {

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
-import AttendanceStatuses from './../AttendanceStatuses'
 import BoxSubtitle from './../helpers/BoxSubtitle'
 import CustomListItem from './../helpers/CustomListItem';
 import NewsContent from './../helpers/NewsContent';

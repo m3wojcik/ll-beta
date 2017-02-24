@@ -2,7 +2,24 @@ export function getWeek(date) {
   var d = new Date(date);
   d.setHours(0,0,0,0);
   d.setDate(d.getDate()+4-(d.getDay()||7));
+  console.log('getWeek',d);
   return Math.ceil((((d-new Date(d.getFullYear(),0,1))/8.64e7)+1)/7);
+}
+export function getDay(date) {
+  var d = new Date(date);
+  var day = d.getDay();
+  if(day == 0) day = 6
+  else day = day -1
+  return day
+}
+export function getDaysDiference(date1, date2) {
+  var d1 = new Date(date1);
+  var d2 = new Date(date2);
+  const oneDay = 1000*60*60*24;
+  const timeZoneOffset = new Date(d1).getTimezoneOffset() * 60 *1000;
+  d1.setHours(0,0,0,0);
+  d2.setHours(0,0,0,0);
+  return Math.floor((d2-d1 - timeZoneOffset)/oneDay);
 }
 export function getParamFromPath(path){
   return path.replace(/^(\/|)[^\/]+(\/(.+)|)/, "$3");
@@ -19,6 +36,15 @@ export function getDays(date) {
   const oneDay = 1000*60*60*24;
   const timeZoneOffset = new Date(date).getTimezoneOffset() * 60 *1000;
   return Math.floor((new Date(date).getTime() - timeZoneOffset)/oneDay);
+}
+export function getShortMonth(montNumber) {
+  var monthNames = [
+       "Jan", "Feb", "Mar",
+       "Apr", "May", "June", "July",
+       "Aug", "Sep", "Oct",
+       "Nov", "Dec"
+     ];
+     return monthNames[montNumber];
 }
 export function compareDates(date1, date2, precision) {
     const d1 = new Date(date1).getTime();

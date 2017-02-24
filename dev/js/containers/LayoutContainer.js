@@ -46,7 +46,7 @@ export default class LayoutContainer extends Component {
   render(){
     const {hasTabs, appData, toolbar, header,toasts} = this.props;
 
-    let toolbarClassName = hasTabs ? 'no-shadow' : '';
+    let toolbarClassName = hasTabs ? 'main-toolbar no-shadow' : 'main-toolbar';
     if(!appData.fetched){
       return(
           <Loader fullPage />
@@ -66,7 +66,6 @@ export default class LayoutContainer extends Component {
           toolbarThemeType="themed"
           toolbarTitleClassName="toolbar-title"
           toolbarChildren={<ToolbarContainer />}
-          contentClassName=""
           contentId="main-content-demo"
           toolbarClassName={toolbarClassName}
         >

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchAttendance } from "../actions/AttendanceActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import Attendance from '../components/Attendance'
+import { fetchAttendance } from "../../actions/AttendanceActions";
+import Loader from '../../components/helpers/Loader'
+import Content from '../../components/helpers/Content'
+import Attendance from '../../components/attendance/Attendance'
 
 
 @connect((store) => {
@@ -19,16 +20,12 @@ export default class AttendanceContainer extends Component {
   render(){
     const { fetched, attendance } = this.props;
     if(!fetched){
-      return(
-        <div className="content">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
-      )
+      return(<Loader full />)
     }
     return(
-      <div className="content">
+      <Content>
           <Attendance attendance={attendance} />
-      </div>
+      </Content>
     )
   }
 }

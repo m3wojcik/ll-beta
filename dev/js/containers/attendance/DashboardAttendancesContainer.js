@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { fetchDashboardAttendances } from "../../actions/DashboardAttendancesActions";
 
-import DashboardAttendances from '../../components/dashboard/DashboardAttendances'
+import DashboardAttendances from '../../components/attendance/DashboardAttendances'
 import Content from '../../components/helpers/Content'
 
 @connect((store) => {

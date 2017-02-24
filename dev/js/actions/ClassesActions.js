@@ -1,15 +1,15 @@
 import axios from "axios";
-import { setAppHeader } from './AppActions';
 
-export function fetchUpcomingClasses(callBack) {
+export function fetchClasses(groupId) {
+  console.log('fetchClasses',groupId);
   return function(dispatch) {
-    axios.get("http://api.local/?q=getUpcomingClasses")
+    dispatch({type: "FETCH_CLASSES", payload: groupId});
+    axios.get("http://api.local/?q=getClasses")
       .then((response) => {
-        dispatch({type: "FETCH_UPCOMING_CLASSES_FULFILLED", payload: response.data});
-        callBack();
+        dispatch({type: "FETCH_CLASSES_FULFILLED", payload: response.data});
       })
       .catch((err) => {
-        dispatch({type: "FETCH_UPCOMING_CLASSES_REJECTED", payload: err})
+        dispatch({type: "FETCH_CLASSES_REJECTED", payload: err})
       })
   }
 }

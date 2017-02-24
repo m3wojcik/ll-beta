@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import FontIcon from 'react-md/lib/FontIcons';
+import AttendanceStatuses from './AttendanceStatuses'
 import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
-import FontIcon from 'react-md/lib/FontIcons';
-import AttendanceStatuses from './../AttendanceStatuses'
 import BoxSubtitle from './../helpers/BoxSubtitle'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 export default class DashboardAttendances extends Component {
 
   render(){

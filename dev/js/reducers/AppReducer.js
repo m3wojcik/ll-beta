@@ -1,11 +1,12 @@
 export default function reducer(state={
     appData:{
       fetching: false,
-      fetched:true,
+      fetched: false,
       error: null,
       user: {},
       notifications: [],
-      locales:[]
+      locales:[],
+      groups:[]
     },
     toolbar: {
       header: null,
@@ -43,7 +44,8 @@ export default function reducer(state={
             fetched: true,
             user: action.payload.user,
             notifications: action.payload.notifications,
-            locales: action.payload.locales
+            locales: action.payload.locales,
+            groups: action.payload.groups
           },
         }
       }

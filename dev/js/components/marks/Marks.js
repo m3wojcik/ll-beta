@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import CardActions from 'react-md/lib/Cards/CardActions';
-
-
 import MarksData from './MarksData'
-
 import Box from '../helpers/Box';
-
 import Header from '../helpers/Header';
 
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';

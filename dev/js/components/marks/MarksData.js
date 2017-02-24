@@ -4,6 +4,7 @@ import FontIcon from 'react-md/lib/FontIcons';
 import Tabs from 'react-md/lib/Tabs/Tabs';
 import Tab from 'react-md/lib/Tabs/Tab';
 import TabsContainer from 'react-md/lib/Tabs/TabsContainer';
+import {getShortMonth} from '../../actions/Functions';
 import ProgressBar from '../helpers/ProgressBar'
 import AreaChartWrapper from '../helpers/AreaChartWrapper'
 import ChartContainer from '../helpers/ChartContainer';
@@ -18,12 +19,7 @@ export default class MarksData extends Component {
     let useWeight = false, progressTitle, progressBarProps, progressBarTitle, marksInTime = [], averageInTime = [], weightedAverageInTime = [];
     var percent = 0, average = 0, averageNom = 0, weightedAverageNom = 0, weightedAverage = 0, weightedAverageWeights = 0, range;
     const marksLength = marks.length;
-    var monthNames = [
-         "Jan", "Feb", "Mar",
-         "Apr", "May", "June", "July",
-         "Aug", "Sep", "Oct",
-         "Nov", "Dec"
-       ];
+
     marks.reverse();
     marks.forEach(function(mark,i){
       //Check if they use mark weight
@@ -41,7 +37,7 @@ export default class MarksData extends Component {
       //Prepare date format
       const markDate = new Date(mark.date);
       const shortYear = Number(markDate.getFullYear()) - 2000
-      const markDateString = markDate.getDate()+"-"+monthNames[markDate.getMonth()]+"-"+shortYear
+      const markDateString = markDate.getDate()+"-"+getShortMonth(markDate.getMonth())+"-"+shortYear
 
       //Push values into data tables
       marksInTime.push({x: i, y: mark.value, label: markDateString})
