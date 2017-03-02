@@ -28,9 +28,9 @@ export default class ClassesListContainer extends Component {
       this.props.dispatch(fetchClasses(nextProps.groupId));
     }
   }
-  handleClick = (classId, className) => {
-    this.props.dispatch(setAppSettings({header:className, hasTabs: false}));
-    this.props.dispatch(push('classDetails/' + classId));
+  handleClassClick = (classId, className) => {
+     this.props.dispatch(setAppSettings({header:className, hasTabs: false}));
+     this.props.dispatch(push('classDetails/' + classId));
   }
   render(){
     const { classes, fetched } = this.props;
@@ -38,10 +38,10 @@ export default class ClassesListContainer extends Component {
       return(<Loader full />)
     }
     return(
-      <Content>
+      <Content noPadding>
         <Classes
           classes={classes}
-          onCardClick={this.handleClick}
+          onClassClick={this.handleClassClick}
           headers  />
       </Content>
     )

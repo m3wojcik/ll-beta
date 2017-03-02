@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { setHasTabs } from "../actions/AppActions";
 import { fetchClassDetails } from "../actions/ClassDetailsActions";
 
-import ClassDetails from '../components/ClassDetails'
+import ClassDetails from '../components/classes/ClassDetails'
 import Loader from '../components/helpers/Loader'
 
 @connect((store) => {

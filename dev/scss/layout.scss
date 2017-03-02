@@ -101,6 +101,23 @@ strong{
       }
     }
   }
+  .navigation-body{
+    position: relative;
+    height: calc(100% - 90px);
+    box-sizing: border-box;
+    .navigation-bottom{
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      height: auto;
+      .ll-logo{
+        width: 140px;
+        margin: auto;
+        padding-bottom: 20px;
+      }
+    }
+  }
 }
 // .navigation .md-icon{
 //   color: rgba(255,255,255,0.8);
@@ -829,6 +846,11 @@ hr {
   font-weight: 700;
   margin-bottom: 0px;
   padding: 10px 20px;
+  span{
+    color: #555459;
+    font-size: 1em;
+    font-weight: 700;
+  }
 }
 li.list-header{
   color: #555459;
@@ -948,6 +970,10 @@ li.list-header > span{
     font-size: 1.2em;
     margin-bottom: 10px;
     border-bottom: none;
+    span{
+      font-weight: normal;
+      font-size: 1.2em;
+    }
   }
 }
 .no-shadow{
@@ -1319,6 +1345,17 @@ ul.card-list > li{
     }
   }
 }
+/*Avatar
+------------------------------------------------------------------------------*/
+.avatar-weekdays{
+  background: $md-blue-grey-50;
+  border-color: rgba(0,0,0,0.06);
+  color: $md-blue-grey-500;
+  .md-avatar-content{
+    font-size: 14px;
+    font-weight: 700;
+  }
+}
 /*Md list custom
 ------------------------------------------------------------------------------*/
 .md-list,
@@ -1343,6 +1380,9 @@ ul.card-list > li{
       margin-left: 5px;
     }
 }
+.md-list-item.inactive{
+  background-color: $md-blue-grey-50 !important;
+}
 .md-list--menu{
   background-color: #fff;
   border-radius: .28571429rem;
@@ -1351,6 +1391,9 @@ ul.card-list > li{
 }
 .md-list-bottom{
   padding-left: 16px;
+  padding-right: 16px;
+}
+.md-tile-left{
   padding-right: 16px;
 }
 @media screen and (min-width: 320px){

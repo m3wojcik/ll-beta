@@ -6,8 +6,6 @@ import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import Subheader from 'react-md/lib/Subheaders';
-import CustomCardTitle from './CustomCardTitle';
-import CardClassDetails from './CardClassDetails';
 
 export default class Breadcrumbs extends Component {
   render(){

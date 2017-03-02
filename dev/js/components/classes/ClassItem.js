@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import CardActions from 'react-md/lib/Cards/CardActions';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import FontIcon from 'react-md/lib/FontIcons';
-import CustomCardTitle from '../CustomCardTitle';
-import CardClassDetails from '../CardClassDetails';
+import Avatar from 'react-md/lib/Avatars';
+import CustomListItem from './../helpers/CustomListItem';
+import CustomDate from './../helpers/CustomDate';
+import ListHorizontal from './../helpers/ListHorizontal';
+import CardClassDetails from './CardClassDetails';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
 
 export default class ClassItem extends Component {
   render(){
-    const { clas, onCardClick } = this.props;
+    const { clas, inactive, onClassClick } = this.props;
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const d = new Date(clas.date);
+    const listHorizontalElements = [
+      <div><FormattedTime value={clas.date} /> - <FormattedTime value={(new Date(clas.date)).getTime() + (clas.length * 1000 * 60) }  /></div>
+    ]
     return(
-        <Card
-          onClick={onCardClick.bind(this,clas.id, clas.name)}
-          className={clas.active ? 'clickable active': 'clickable inactive'} >
-          <CardTitle
-            title={<CustomCardTitle left={<FormattedRelative value={clas.date}/>} right={<FormattedDate value={clas.date} day="numeric" month="long" year="numeric" />} />}
-            subtitle={<div><FormattedTime value={clas.date} /> - <FormattedTime value={(new Date(clas.date)).getTime() + (clas.length * 1000 * 60) }  /></div>}
-            />
-          <CardClassDetails status={clas.status} details={clas.details} />
-          <List className="md-divider-border md-divider-border--top">
-            <ListItem disabled primaryText={clas.name} leftIcon={<FontIcon>event</FontIcon>} />
-            <ListItem disabled primaryText={clas.teacher} leftIcon={<FontIcon>face</FontIcon>}  />
-            <ListItem disabled primaryText={clas.room} leftIcon={<FontIcon>place</FontIcon>}  />
-          </List>
-        </Card>
+        <CustomListItem
+          inactive={inactive}
+          key={clas.id}
+          onClick={onClassClick.bind(this,clas.id,clas.name)}
+          leftIcon={<Avatar className="avatar-weekdays" icon={days[d.getDay()]} />}
+          primaryText={<ListHorizontal elements={listHorizontalElements} />}
+          secondaryText={<FormattedDate value={clas.date} year='numeric' month='long' day='2-digit' />}
+          status={<CardClassDetails status={clas.status} details={clas.details} />}
+          clickable
+        />
     )
   }
 }

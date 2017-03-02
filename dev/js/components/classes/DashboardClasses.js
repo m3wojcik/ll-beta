@@ -4,7 +4,7 @@ import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
 import CustomListItem from '../helpers/CustomListItem';
 import CustomDate from '../helpers/CustomDate';
-import CardClassDetails from '../CardClassDetails';
+import CardClassDetails from './CardClassDetails';
 import DashboardClassDetails from'./DashboardClassDetails';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {getWeek} from '../../actions/Functions';

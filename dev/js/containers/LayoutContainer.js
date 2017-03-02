@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import MainNavigation from '../components/MainNavigation';
+import MainLogo from '../components/MainLogo';
 import ToolbarContainer from './ToolbarContainer';
 import Loader from '../components/helpers/Loader'
 import Snackbar from 'react-md/lib/Snackbars';
@@ -56,7 +57,7 @@ export default class LayoutContainer extends Component {
         <NavigationDrawer
           drawerClassName="navigation-drawer"
           includeDrawerHeader
-          drawerChildren = {<MainNavigation />}
+          drawerChildren = {<div className="navigation-body"><MainNavigation /><MainLogo /></div>}
           drawerHeaderChildren={<NavigationUserContainer userData={appData.user} />}
 
           mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}

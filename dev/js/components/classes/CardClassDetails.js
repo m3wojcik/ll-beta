@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Label from './helpers/Label'
+import Label from './../helpers/Label'
 export default class CardClassDetails extends Component {
 
   render(){

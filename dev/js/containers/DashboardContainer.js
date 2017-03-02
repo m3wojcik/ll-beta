@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Content from '../components/helpers/Content'
 import DashboardWelcome from '../components/dashboard/DashboardWelcome'
-import DashboardClassesContainer from './dashboard/DashboardClassesContainer'
+import DashboardClassesContainer from './classes/DashboardClassesContainer'
 import DashboardNewsContainer from './dashboard/DashboardNewsContainer'
 import DashboardAttendancesContainer from './attendance/DashboardAttendancesContainer'
 import DashboardMarksContainer from './marks/DashboardMarksContainer'

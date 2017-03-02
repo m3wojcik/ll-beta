@@ -12,6 +12,18 @@ export function getDay(date) {
   else day = day -1
   return day
 }
+export function isToday(date) {
+  var d = new Date(date).setHours(0,0,0,0);
+  var today = new Date().setHours(0,0,0,0);
+  if(d==today) return true
+  return false
+}
+export function isDateLowerThanToday(date) {
+  var d = new Date(date).setHours(0,0,0,0);
+  var today = new Date().setHours(0,0,0,0);
+  if(d < today) return true
+  return false
+}
 export function getDaysDiference(date1, date2) {
   var d1 = new Date(date1);
   var d2 = new Date(date2);

@@ -5,7 +5,7 @@ import CardText from 'react-md/lib/Cards/CardText';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
-import CustomCardTitle from './CustomCardTitle';
+import CustomCardTitle from './../CustomCardTitle';
 import CardClassDetails from './CardClassDetails';
 
 export default class ClassDetails extends Component {

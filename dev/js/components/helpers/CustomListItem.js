@@ -15,14 +15,14 @@ export default class CustomListItem extends Component {
     const {active} = this.state;
     if(active)this.setState({active: false});
   }
-  handleClick = () =>{
+  handleCollapseClick = () =>{
     const { collapsed} = this.state;
     if(collapsed) this.setState({collapsed: false});
     else this.setState({collapsed: true});
   }
   render(){
-    const { primaryText,rightIcon,secondaryText, bottomText, clickable, expander, status } = this.props;
-    let output, right, className, liClassName, expanderOutput, bottomOutput;
+    const { primaryText, rightIcon, secondaryText, bottomText, clickable, expander, status, leftIcon, inactive, onClick } = this.props;
+    let output, right, left, className, liClassName, expanderOutput, bottomOutput, onClickProp;
     className ="";
     liClassName = "md-list-item";
     if(clickable){
@@ -30,6 +30,12 @@ export default class CustomListItem extends Component {
       if(this.state.active){
         className +=" md-list-tile--active"
       }
+    }
+    if(inactive){
+      liClassName += " inactive";
+    }
+    if(leftIcon){
+      left = <div className="md-tile-addon md-tile-left">{leftIcon}</div>
     }
     if(secondaryText && !bottomText){
       className += " md-list-tile--two-lines"
@@ -43,15 +49,24 @@ export default class CustomListItem extends Component {
       right = <div className="md-list-right">{rightIcon}</div>
     }
     if(expander){
+      onClickProp = {
+        onClick: this.handleCollapseClick
+      }
       expanderOutput = <Collapse collapsed={this.state.collapsed}><div className=" list-expander">{expander}</div></Collapse>
       right = <div className="md-list-right"><div className="md-list-status">{status}</div><Button icon className={this.state.collapsed ? "md-collapser" : "md-collapser md-collapser--flipped"}>keyboard_arrow_down</Button></div>
     }else if(status){
       right = <div className="md-list-right">{status}</div>
     }
+    if(onClick){
+      onClickProp = {
+        onClick: onClick
+      }
+    }
     return(
       <li className={liClassName}>
-        <div onClick={this.handleClick} onMouseOver={this.handleMouseOver} onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}  className={className}>
+        <div {...onClickProp} onMouseOver={this.handleMouseOver} onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}  className={className}>
           <div className="md-list-body md-list-tile md-fake-button">
+            {left}
             <div className="md-tile-content">
               <div className="md-tile-text--primary md-text">
                 {primaryText}
