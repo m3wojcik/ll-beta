@@ -1,9 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchDashboardMessages() {
   return function(dispatch) {
     dispatch({type: "FETCH_DASHBOARD_MESSAGES", payload: true});
-    axios.get("http://api.local/?q=getMessagesDashboard")
+    instance.get("?q=getMessagesDashboard")
       .then((response) => {
         dispatch({type: "FETCH_DASHBOARD_MESSAGES_FULFILLED", payload: response.data});
       })

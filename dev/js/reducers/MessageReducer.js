@@ -6,6 +6,9 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      case "FETCH_MESSAGE": {
+        return {...state, fetching: true, fetched: false}
+      }
       case "FETCH_MESSAGE_REJECTED": {
         return {...state, fetching: false, error: action.payload}
       }

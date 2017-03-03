@@ -1,9 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchMarks() {
   return function(dispatch) {
     dispatch({type: "FETCH_MARKS", payload: true});
-    axios.get("http://api.local/?q=getMarks")
+    instance.get("?q=getMarks")
       .then((response) => {
         dispatch({type: "FETCH_MARKS_FULFILLED", payload: response.data});
       })
@@ -15,7 +15,7 @@ export function fetchMarks() {
 export function fetchMarksClassByColumn(columnId) {
   return function(dispatch) {
     dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN", payload: columnId});
-    axios.get("http://api.local/?q=getMarksClassByColumn"+"&id="+columnId)
+    instance.get("?q=getMarksClassByColumn"+"&id="+columnId)
       .then((response) => {
         dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN_FULFILLED", payload: response.data});
       })
@@ -27,7 +27,7 @@ export function fetchMarksClassByColumn(columnId) {
 export function fetchMarksClassAverage(groupId) {
   return function(dispatch) {
     dispatch({type: "FETCH_MARKS_CLASS_AVERAGE", payload: groupId});
-    axios.get("http://api.local/?q=getMarksClassAverage"+"&id="+groupId)
+    instance.get("?q=getMarksClassAverage"+"&id="+groupId)
       .then((response) => {
         dispatch({type: "FETCH_MARKS_CLASS_AVERAGE_FULFILLED", payload: response.data});
       })

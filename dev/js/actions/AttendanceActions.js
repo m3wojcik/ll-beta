@@ -1,8 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchAttendance() {
   return function(dispatch) {
-    axios.get("http://api.local/?q=getAttendance")
+    dispatch({type: "FETCH_ATTENDANCE", payload: true});
+    instance.get("?q=getAttendance")
       .then((response) => {
         dispatch({type: "FETCH_ATTENDANCE_FULFILLED", payload: response.data});
       })

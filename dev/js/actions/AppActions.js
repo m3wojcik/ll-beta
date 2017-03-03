@@ -1,10 +1,15 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchAppData() {
   return function(dispatch) {
     dispatch({type: "FETCH_APP_DATA", payload: true});
-    axios.get("http://api.local/?q=getAppData")
+    instance.get("?q=getAppData")
       .then((response) => {
+    //       console.log("response.data");
+    // console.log(response.status);
+    // console.log(response.statusText);
+    // console.log(response.headers);
+    // console.log(response.config);
         dispatch({type: "FETCH_APP_DATA_FULFILLED", payload: response.data});
       })
       .catch((err) => {

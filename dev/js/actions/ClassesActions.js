@@ -1,10 +1,10 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchClasses(groupId) {
   console.log('fetchClasses',groupId);
   return function(dispatch) {
     dispatch({type: "FETCH_CLASSES", payload: groupId});
-    axios.get("http://api.local/?q=getClasses")
+    instance.get("?q=getClasses")
       .then((response) => {
         dispatch({type: "FETCH_CLASSES_FULFILLED", payload: response.data});
       })

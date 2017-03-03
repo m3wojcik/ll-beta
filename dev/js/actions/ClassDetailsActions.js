@@ -1,8 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchClassDetails(classId, callBack) {
   return function(dispatch) {
-    axios.get("http://api.local/?q=getClassDetails")
+    dispatch({type: "FETCH_UPCOMING_CLASS_DETAILS", payload: true});
+    instance.get("?q=getClassDetails")
       .then((response) => {
         dispatch({type: "FETCH_UPCOMING_CLASS_DETAILS_FULFILLED", payload: response.data});
       })

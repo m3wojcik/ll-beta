@@ -1,8 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchAddressBook(callBack) {
   return function(dispatch) {
-    axios.get("http://api.local/?q=getAddressBook")
+      dispatch({type: "FETCH_ADDRESS_BOOK", payload: true});
+    instance.get("?q=getAddressBook")
       .then((response) => {
         dispatch({type: "FETCH_ADDRESS_BOOK_FULFILLED", payload: response.data});
         callBack();

@@ -1,8 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchMessage(messageId) {
   return function(dispatch) {
-    axios.get("http://api.local/?q=getMessage")
+    dispatch({type: "FETCH_MESSAGE", payload: true});
+    instance.get("?q=getMessage")
       .then((response) => {
         dispatch({type: "FETCH_MESSAGE_FULFILLED", payload: response.data});
       })

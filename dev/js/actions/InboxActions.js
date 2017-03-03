@@ -1,8 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchInboxMessages(callBack) {
   return function(dispatch) {
-    axios.get("http://api.local/?q=getInboxMessages")
+      dispatch({type: "FETCH_INBOX_MESSAGES", payload: true});
+    instance.get("?q=getInboxMessages")
       .then((response) => {
         dispatch({type: "FETCH_INBOX_MESSAGES_FULFILLED", payload: response.data});
         callBack();

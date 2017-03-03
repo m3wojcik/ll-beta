@@ -1,9 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchFiles(folderId) {
   return function(dispatch) {
     dispatch({type: "FETCH_FILES", payload: folderId});
-    axios.get("http://api.local/?q=getFiles"+"&id="+folderId)
+    instance.get("?q=getFiles"+"&id="+folderId)
       .then((response) => {
         dispatch({type: "FETCH_FILES_FULFILLED", payload: response.data});
       })

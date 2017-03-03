@@ -1,9 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchElibraryDetails() {
   return function(dispatch) {
     dispatch({type: "FETCH_ELIBRARY_DETAILS", payload: true});
-    axios.get("http://api.local/?q=getElibraryDetails")
+    instance.get("?q=getElibraryDetails")
       .then((response) => {
         dispatch({type: "FETCH_ELIBRARY_DETAILS_FULFILLED", payload: response.data});
       })

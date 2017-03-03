@@ -1,9 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchDashboardNews() {
   return function(dispatch) {
     dispatch({type: "FETCH_DASHBOARD_NEWS", payload: true});
-    axios.get("http://api.local/?q=getNewsDashboard")
+    instance.get("?q=getNewsDashboard")
       .then((response) => {
         dispatch({type: "FETCH_DASHBOARD_NEWS_FULFILLED", payload: response.data});
       })

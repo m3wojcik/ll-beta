@@ -1358,12 +1358,42 @@ ul.card-list > li{
 }
 /*Md list custom
 ------------------------------------------------------------------------------*/
-.md-list,
-.md-list .md-list:not(.md-list--menu){
-   background-color: transparent;
+.md-list{
+     > li{
+
+     }
+    background-color: transparent;
+    .md-list:not(.md-list--menu){
+       background-color: transparent;
+    }
+}
+
+@media screen and (min-width: 1025px){
+    .md-list {
+        padding-bottom: 0px;
+        padding-top: 0px;
+        > li:first-child{
+            padding-top: 4px;
+        }
+        > li:last-child{
+            padding-bottom: 4px;
+        }
+    }
+}
+@media screen and (min-width: 320px){
+    .md-list {
+        padding-bottom: 0px;
+        padding-top: 0px;
+        > li:first-child{
+            padding-top: 8px;
+        }
+        > li:last-child{
+            padding-bottom: 8px;
+        }
+    }
 }
 .md-list.md-list-divider li.md-list-item{
-    background-color: #fff;
+    /* background-color: #fff; */
 }
 .md-list.md-list-divider li.md-list-item:not(:last-child){
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);

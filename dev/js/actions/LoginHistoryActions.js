@@ -1,8 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchLoginHistory() {
   return function(dispatch) {
-    axios.get("http://api.local/?q=getLoginHistory")
+    dispatch({type: "FETCH_LOGIN_HISTORY", payload: true});  
+    instance.get("?q=getLoginHistory")
       .then((response) => {
         dispatch({type: "FETCH_LOGIN_HISTORY_FULFILLED", payload: response.data});
       })

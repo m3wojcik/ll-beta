@@ -1,8 +1,9 @@
-import axios from "axios";
+import {instance} from './config'
 
 export function fetchElibraryList() {
   return function(dispatch) {
-    axios.get("http://api.local/?q=getElibraryList")
+    dispatch({type: "FETCH_ELIBRARY_LIST", payload: true});
+    instance.get("?q=getElibraryList")
       .then((response) => {
         dispatch({type: "FETCH_ELIBRARY_LIST_FULFILLED", payload: response.data});
       })
@@ -50,7 +51,7 @@ export function postReserveElibraryObject(objectId, dateFrom, dateTo, callBack) 
       .then((response) => {
         if(callBack){
           callBack();
-        }  
+        }
         if(response.data == "200"){
           dispatch({type: "ADD_TOAST", payload: {"text": "Item reserved"}});
           dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_FULFILLED", payload: response.data});
