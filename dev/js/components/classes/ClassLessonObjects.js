@@ -1,33 +1,28 @@
 import React, { Component } from 'react';
 import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
+import LessonObject from './LessonObject';
 import FontIcon from 'react-md/lib/FontIcons';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Files from '../Files'
-export default class DashboardFiles extends Component {
+export default class ClassLessonObjects extends Component {
 
   render(){
-    const { files, path, fetched, onClick, boxTitle } = this.props;
+    const { lessonObjects, fetched } = this.props;
     let output = []
-
-    if(fetched){
-      output.push(
-        <Files
-          key="dashboard-files"
-          files={files}
-          path={path}
-          onClick={onClick} />
-      )
-    }else{
+    const lessonObjectsMapped = lessonObjects.map(
+      (object,i) =>
+        <LessonObject key={i} label={object.label} content={object.content} />
+    )
+    if(!fetched){
       output.push(<Loader key="loader" centerPadding />)
+    }else{
+      output.push(<div key="lessonObjectsMapped" className="lesson-objects">{lessonObjectsMapped}</div>)
     }
-
     return(
       <Box
-        isScrolled
         className="no-flex no-padding"
-        title={boxTitle}
-        titleIcon={<FontIcon className="icon-orange">folder</FontIcon>}>
+        title="Class details"
+        titleIcon={<FontIcon className="icon-green">event</FontIcon>}>
         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
           {output}
         </ReactCSSTransitionGroup>
@@ -35,7 +30,7 @@ export default class DashboardFiles extends Component {
     )
   }
 }
-DashboardFiles.propTypes = {
-  files: React.PropTypes.array.isRequired,
+ClassLessonObjects.propTypes = {
+  lessonObjects: React.PropTypes.array.isRequired,
   fetched: React.PropTypes.bool.isRequired
 }

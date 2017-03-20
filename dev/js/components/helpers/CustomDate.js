@@ -23,7 +23,7 @@ export default class CustomDate extends Component {
     return(
       <span>
         {output}
-    </span>
+      </span>
     )
   }
 }

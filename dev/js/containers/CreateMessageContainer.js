@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { setAppSettings } from "../actions/AppActions";
+
 import { fetchAddressBook, updateReceivers, updateFiltredReceivers } from "../actions/CreateMessageActions";
 import { uniqBy } from 'lodash/array';
 import Autocomplete from 'react-md/lib/Autocompletes';
@@ -10,6 +10,8 @@ import ReceiverChips from '../components/ReceiverChips'
 import Divider from 'react-md/lib/Dividers';
 import ReactQuill from 'react-quill';
 import Button from 'react-md/lib/Buttons/Button';
+import Content from '../components/helpers/Content'
+import Loader from '../components/helpers/Loader'
 import '../../scss/quill.snow.scss';
 
 @connect((store) => {
@@ -30,7 +32,7 @@ export default class CreateMessageContainer extends Component {
     this.addReceiverById = this.addReceiverById.bind(this);
   }
   componentDidMount(){
-    this.props.dispatch(setAppSettings({header: 'Create', hasTabs: false}));
+
     this.props.dispatch(fetchAddressBook(function(){
       this.setState({addressBook: this.props.addressBook});
       if (this.props.reply) {
@@ -61,10 +63,7 @@ export default class CreateMessageContainer extends Component {
     const { addressBook } = this.state;
     let subjectdefaultValue =''
     if(!fetched){
-      return(
-        <div className="content">
-          <CircularProgress id="loading-classes-details" key="loading"  />
-        </div>
+      return(<Loader full key="loader" />
       )
     }
     let filtredReceivers = [], receivers = [];
@@ -77,7 +76,7 @@ export default class CreateMessageContainer extends Component {
       subjectdefaultValue = 'Fwd: ' + message.subject;
     }
     return(
-      <div className="content">
+      <Content >
         <ReceiverChips receivers={receivers} remove={this.handleRemove.bind(this)} />
         <Autocomplete
           paddedBlock
@@ -96,7 +95,7 @@ export default class CreateMessageContainer extends Component {
         />
         <ReactQuill theme="snow" value={this.state.message} />
         <Button raised primary label="Send" />
-      </div>
+      </Content>
     )
   }
 }

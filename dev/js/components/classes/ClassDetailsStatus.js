@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import Label from './../helpers/Label'
-export default class CardClassDetails extends Component {
+export default class ClassDetailsStatus extends Component {
 
   render(){
     const { status, details } = this.props;
     const mappedDetails = details.map(
       (detail, i) =>
       <li key={i}>
-        <Label label={detail.name} className={detail.class} />
+        <Label label={detail.label} className={detail.class} />
       </li>
     );
     const statusElement = (
       status ?
         <li>
-            <Label label={status.name} customColor={status.color} />
+            <Label label={status.label} customColor={status.color} />
         </li>
       :null
     )

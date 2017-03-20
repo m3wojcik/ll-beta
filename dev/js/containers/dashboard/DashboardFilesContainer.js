@@ -34,6 +34,7 @@ export default class DashboardFilesContainer extends Component {
     const { fetched, files, path } = this.props;
     return(
       <DashboardFiles
+        boxTitle="New files"
         fetched={fetched}
         files={files}
         path={path}

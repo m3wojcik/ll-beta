@@ -209,7 +209,7 @@ strong{
 .toolbar-expander{
 
   background-color: #fff;
-  border-bottom: 2px solid $md-secondary-color;
+  /*border-bottom: 2px solid $md-secondary-color;*/
   .toolbar-expander-body{
     display: flex;
     max-width: 1024px;
@@ -250,9 +250,9 @@ strong{
   }
 }
 @media screen and (min-width: 1025px){
-  .toolbar-search-container,
-  .toolbar-title {
-      margin-left: 276px;
+
+  .toolbar-children {
+      margin-left: 256px;
   }
 }
 .toolbar-children{
@@ -585,6 +585,20 @@ li.test-page{
   margin-bottom: 20px;
   .box-top{
     width: 100%;
+    display: flex;
+     align-items: center;
+    .box-top-right{
+      margin-left: auto;
+    }
+  }
+  .box-top.box-top-icon{
+    padding-left: 13px;
+    .box-title{
+      padding-left: 5px;
+    }
+    .md-avatar{
+      margin-right: 8px;
+    }
   }
   .box-title{
     font-size: 1.2em;
@@ -595,6 +609,11 @@ li.test-page{
       vertical-align: top;
       font-size: 24px;
       margin-right: 5px;
+    }
+    .box-title-subtitle{
+      font-size: 0.87em;
+      padding-top: 3px;
+      color: $md-blue-grey-300;
     }
   }
   .box-body{
@@ -618,6 +637,16 @@ li.test-page{
     padding-right: 16px;
     text-transform: uppercase;
 
+  }
+  .box-text{
+    font-size: 14px;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: $md-blue-grey-600;
+    p{
+      color: $md-blue-grey-600;
+      font-size: 14px;
+    }
   }
   .box-footer{
     display: flex;
@@ -664,7 +693,15 @@ li.test-page{
 .box.no-padding{
   padding: 0px;
   .box-title{
-    padding: 10px;
+    padding: 16px;
+  }
+}
+/*lesson object
+------------------------------------------------------------------------------*/
+.lesson-objects{
+  padding: 5px 0px 5px;
+  .lesson-object{
+    margin-bottom: 20px;
   }
 }
 /*Chart

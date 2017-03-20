@@ -23,11 +23,6 @@ import {getParamFromPath, getCleanPath} from '../actions/Functions'
   };
 })
 export default class FilesContainer extends Component {
-  constructor(props){
-    super(props);
-    this.handleBackClick = this.handleBackClick.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
   componentDidMount(){
     this.props.dispatch(fetchFiles(this.props.params.fileId));
   }
@@ -40,14 +35,14 @@ export default class FilesContainer extends Component {
        this.props.dispatch(fetchFiles(fileId));
      }
   }
-  handleClick(file){
+  handleClick = (file)=>{
     if(file.type == "folder"){
       this.props.dispatch(push("files/" + file.id));
     }else if (file.type =="file") {
 
     }
   }
-  handleBackClick(folderId){
+  handleBackClick = (folderId) =>{
     this.props.dispatch(push("files/" + folderId));
   }
   render(){

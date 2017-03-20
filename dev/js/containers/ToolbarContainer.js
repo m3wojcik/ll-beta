@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import {push, goBack} from 'react-router-redux';
 import Button from 'react-md/lib/Buttons/Button';
 import ToolbarSearch from '../components/helpers/ToolbarSearch';
 import { setSearching, setSearchValue } from "../actions/AppActions";
@@ -7,7 +8,9 @@ import { setSearching, setSearchValue } from "../actions/AppActions";
 @connect((store) => {
   return {
     toolbar: store.app.toolbar,
-    header: store.app.toolbar.header
+    header: store.app.toolbar.header,
+    backBtn: store.app.toolbar.backBtn,
+    backPath: store.app.toolbar.backPath
   };
 })
 export default class ToolbarContainer extends Component {
@@ -21,10 +24,21 @@ export default class ToolbarContainer extends Component {
   handleChange = (event) => {
     this.props.dispatch(setSearchValue(event.target.value));
   }
-  render(){
-    const {toolbar, header} = this.props;
-    let toolbarActions, toolbarChildren;
+  handleBackClick = () => {
+    const {backPath} = this.props;
+    if(backPath){
+      this.props.dispatch(push(backPath));
+    }else{
+      this.props.dispatch(goBack());
+    }
 
+  }
+  render(){
+    const {toolbar, header, backBtn} = this.props;
+    let toolbarActions, toolbarChildren, backBtnOutput;
+    if(backBtn){
+      backBtnOutput = <Button onClick={this.handleBackClick} className="md-btn--toolbar  md-toolbar--action-left" icon>keyboard_arrow_left</Button>
+    }
     if(toolbar.searchBtn){
       toolbarActions = <Button className="md-btn--toolbar" onClick={this.showSearch}  icon>search</Button>
       if(toolbar.searching){
@@ -38,6 +52,7 @@ export default class ToolbarContainer extends Component {
     }
     return(
       <div className="toolbar-children">
+        {backBtnOutput}
         {toolbarChildren}
         <div className="md-cell--right md-toolbar--action-right">{toolbarActions}</div>
       </div>

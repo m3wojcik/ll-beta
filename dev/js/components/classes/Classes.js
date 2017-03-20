@@ -4,12 +4,13 @@ import {getWeek, getDaysDiference, addDays, getDay, isDateLowerThanToday} from '
 import CardWithHeader from './../helpers/CardWithHeader'
 import ClassItem from './ClassItem';
 import ListHeader from './../helpers/ListHeader';
+import ToolbarExpander from './../helpers/ToolbarExpander'
 
 
 export default class Classes extends Component {
   componentDidMount(){
     const mainToolbar = document.getElementsByClassName("main-toolbar")[0];
-    const offsetHeight = mainToolbar.offsetHeight + 19;
+    const offsetHeight = mainToolbar.offsetHeight + 39;
     if(document.getElementById('this-week')){
       let offsetTop = document.getElementById('this-week').offsetTop - offsetHeight
       window.scrollTo( 0, offsetTop );
@@ -106,6 +107,16 @@ export default class Classes extends Component {
         </CardWithHeader>
       )
     }
-    return(<div>{outputClasses}</div>)
+    return(
+      <div>
+        <ToolbarExpander
+          left={<div>sdsd</div>}
+          right={<div>sdsd</div>}
+        />
+        <div className="expander-body">
+          {outputClasses}
+        </div>
+      </div>
+    )
   }
 }

@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 export default class Box extends Component {
 
   render(){
-    const { left, right, bottom, title, titleIcon, className, isScrolled } = this.props;
-    let output=[], titleOutput = [], bottomOutput= [];
+    const { left, right, bottom, title, subtitle, titleIcon, className, isScrolled, topRight } = this.props;
+    let output=[], titleOutput = [], bottomOutput= [], topOutput, subtitleOutput;
     let classProps = "box md-paper--1";
     if(className){
       classProps += " "+className;
@@ -14,9 +14,16 @@ export default class Box extends Component {
     }
     if(title){
       let titleText = title;
+      if(topRight){
+        topOutput = <div className="box-top-right">{topRight}</div>
+      }
+      if(subtitle){
+        subtitleOutput = <div className="box-title-subtitle">{subtitle}</div>
+      }
       titleOutput.push(
-        <div key="title" className="box-top">
-          <div class="box-title">{titleIcon ? titleIcon : null}{titleText}</div>
+        <div key="title" className={titleIcon ? "box-top box-top-icon" : "box-top"}>
+          {titleIcon ? titleIcon : null} <div class="box-title">{titleText}{subtitleOutput}</div>
+          {topOutput}
         </div>
       )
     }
@@ -56,7 +63,10 @@ export default class Box extends Component {
   }
 }
 Box.propTypes = {
-  title: React.PropTypes.string,
+  title: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.object
+  ]),
   className: React.PropTypes.string,
   left: React.PropTypes.oneOfType([
     React.PropTypes.string,
@@ -67,6 +77,10 @@ Box.propTypes = {
     React.PropTypes.object
   ]),
   bottom: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.object
+  ]),
+  topRight: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.object
   ])

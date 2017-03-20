@@ -4,7 +4,7 @@ import {push} from 'react-router-redux';
 import SelectField from 'react-md/lib/SelectFields';
 import Loader from '../../components/helpers/Loader'
 import Content from '../../components/helpers/Content'
-import { setAppSettings, setAppHeader } from "../../actions/AppActions";
+import { setAppSettings } from "../../actions/AppActions";
 import { fetchClasses } from "../../actions/ClassesActions";
 import Classes from '../../components/classes/Classes'
 
@@ -38,7 +38,7 @@ export default class ClassesListContainer extends Component {
       return(<Loader full />)
     }
     return(
-      <Content noPadding>
+      <Content expander noPadding>
         <Classes
           classes={classes}
           onClassClick={this.handleClassClick}

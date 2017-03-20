@@ -12,6 +12,18 @@ export function getDay(date) {
   else day = day -1
   return day
 }
+export function getShortDayName(date) {
+  const d = new Date(date);
+  const day = d.getDay();
+  const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  return days[day]
+}
+export function getDayName(date) {
+  const d = new Date(date);
+  const day = d.getDay();
+  const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  return days[day]
+}
 export function isToday(date) {
   var d = new Date(date).setHours(0,0,0,0);
   var today = new Date().setHours(0,0,0,0);
@@ -95,13 +107,13 @@ export function getAppSettings(pathname){
       settings = {"header":"Inbox", "hasTabs":true, "searchBtn": true}
       break;
     case "createmessage":
-      settings = {"header":"Create", "hasTabs":false, "searchBtn": false}
+      settings = {"header":"Create", "hasTabs":false, "searchBtn": false, backBtn: true, backPath: "inbox" }
       break;
     case "attendance":
       settings = {"header":"Attendance", "hasTabs":false, "searchBtn": false}
       break;
     case "classes":
-      settings = {"header":"Classes", "hasTabs":false, "searchBtn": false}
+      settings = {"hasTabs":true, "searchBtn": false}
       break;
     case "marks":
       settings = {"header":"Marks", "hasTabs":false, "searchBtn": false}
@@ -130,6 +142,8 @@ export function getAppSettings(pathname){
         settings = {"header":"Test", "hasTabs":true, "searchBtn": false}
       }else if(/^survey(\/.+|)/.test(pathname)){
         settings = {"header":"Survey", "hasTabs":true, "searchBtn": false}
+      }else if(/^classDetails(\/.+|)/.test(pathname)){
+        settings = {"hasTabs":false, "searchBtn": false, backBtn: true, backPath: "classes"}
       }
   }
   return settings;

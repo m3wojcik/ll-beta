@@ -9,12 +9,12 @@ import ActionsRow from '../helpers/ActionsRow'
 import Button from 'react-md/lib/Buttons';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
-export default class DashboardTests extends Component {
+export default class TestsList extends Component {
 
   render(){
-    const { dashboardTests, fetched, onSolveClick } = this.props;
+    const { tests, fetched, onSolveClick } = this.props;
     let output = []
-    const mappedTests = dashboardTests.map(function(test){
+    const mappedTests = tests.map(function(test){
         return (
           <CustomListItem
             clickable
@@ -54,7 +54,7 @@ export default class DashboardTests extends Component {
     )
   }
 }
-DashboardTests.propTypes = {
+TestsList.propTypes = {
   dashboardTests: React.PropTypes.array.isRequired,
   fetched: React.PropTypes.bool.isRequired
 }

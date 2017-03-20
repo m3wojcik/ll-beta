@@ -4,7 +4,7 @@ import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
 import CustomListItem from '../helpers/CustomListItem';
 import CustomDate from '../helpers/CustomDate';
-import CardClassDetails from './CardClassDetails';
+import ClassDetailsStatus from './ClassDetailsStatus';
 import DashboardClassDetails from'./DashboardClassDetails';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {getWeek} from '../../actions/Functions';
@@ -27,7 +27,7 @@ export default class DashboardClasses extends Component {
           key={clas.id}
           primaryText={<div><FormattedTime value={clas.date} /> - <FormattedTime value={(new Date(clas.date)).getTime() + (clas.length * 1000 * 60) }  /></div>}
           clickable
-          status={<CardClassDetails status={clas.status} details={clas.details} />}
+          status={<ClassDetailsStatus status={clas.status} details={clas.details} />}
           secondaryText={<CustomDate date={clas.date} />}
           expander={<DashboardClassDetails details={details} />}
         />

@@ -13,7 +13,8 @@ export default function reducer(state={
       hasTabs: false,
       searchBtn: false,
       searching: false,
-      searchValue: ""
+      searchValue: "",
+      backBtn: false,
     },
     tabs:{
       fetched:false,
@@ -50,15 +51,13 @@ export default function reducer(state={
         }
       }
       case "SET_APP_SETTINGS": {
-
         return {
           ...state,
-          toolbar: {...state.toolbar,
-            header: action.payload.header,
-            hasTabs: action.payload.hasTabs,
-            searchBtn: action.payload.searchBtn,
-            searching: false,
-            searchValue: ''
+          toolbar: {
+            ...state.toolbar,
+            ...action.payload,
+            backBtn: action.payload.backBtn,
+            backPath: action.payload.backPath
           },
         }
       }
