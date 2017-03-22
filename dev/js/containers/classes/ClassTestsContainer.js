@@ -4,7 +4,6 @@ import {push} from 'react-router-redux';
 import { fetchClassTests } from "../../actions/ClassDetailsActions";
 import Loader from './../../components/helpers/Loader'
 import ClassTests from './../../components/tests/ClassTests'
-import Content from '../../components/helpers/Content'
 
 @connect((store) => {
    return {

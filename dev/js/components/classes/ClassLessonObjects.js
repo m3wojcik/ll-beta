@@ -7,24 +7,18 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class ClassLessonObjects extends Component {
 
   render(){
-    const { lessonObjects, fetched } = this.props;
-    let output = []
-    const lessonObjectsMapped = lessonObjects.map(
+    const { id, lessonObjects } = this.props;
+    const lessonObjectsMapped = lessonObjects[id].objects.map(
       (object,i) =>
         <LessonObject key={i} label={object.label} content={object.content} />
     )
-    if(!fetched){
-      output.push(<Loader key="loader" centerPadding />)
-    }else{
-      output.push(<div key="lessonObjectsMapped" className="lesson-objects">{lessonObjectsMapped}</div>)
-    }
     return(
       <Box
         className="no-flex no-padding"
         title="Class details"
         titleIcon={<FontIcon className="icon-green">event</FontIcon>}>
         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
-          {output}
+          <div key="lessonObjectsMapped" className="lesson-objects">{lessonObjectsMapped}</div>
         </ReactCSSTransitionGroup>
       </Box>
     )
@@ -32,5 +26,5 @@ export default class ClassLessonObjects extends Component {
 }
 ClassLessonObjects.propTypes = {
   lessonObjects: React.PropTypes.array.isRequired,
-  fetched: React.PropTypes.bool.isRequired
+  id: React.PropTypes.number.isRequired
 }

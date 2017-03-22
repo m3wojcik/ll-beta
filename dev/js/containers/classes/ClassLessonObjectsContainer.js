@@ -2,16 +2,12 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { fetchClassLessonObjects } from "../../actions/ClassDetailsActions";
-
+import Loader from './../../components/helpers/Loader'
 import ClassLessonObjects from './../../components/classes/ClassLessonObjects'
-import Content from '../../components/helpers/Content'
 
 @connect((store) => {
    return {
-     classId: store.classDetails.lessonObjects.classId,
-     lessonObjects: store.classDetails.lessonObjects.objects,
-     fetched: store.classDetails.lessonObjects.fetched,
-     fetching: store.classDetails.lessonObjects.fetching
+     lessonObjects: store.classDetails.lessonObjects
   };
 })
 export default class ClassLessonObjectsContainer extends Component {
@@ -24,9 +20,13 @@ export default class ClassLessonObjectsContainer extends Component {
   }
 
   render(){
-    const { fetched, fetching, lessonObjects } = this.props;
-    return(
-      <ClassLessonObjects fetched={fetched} lessonObjects={lessonObjects} />
-      )
+    const { id, lessonObjects } = this.props;
+    if(lessonObjects[id] && lessonObjects[id].fetched){
+      return(
+        <ClassLessonObjects id={id} lessonObjects={lessonObjects} />
+        )
+    }else{
+      return(<Loader key="loader" centerPadding />)
+    }
   }
 }

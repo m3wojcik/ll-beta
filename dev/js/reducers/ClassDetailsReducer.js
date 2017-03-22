@@ -3,19 +3,21 @@ export default function reducer(state={
   fetching: false,
   fetched: false,
   error: null,
-  lessonObjects:{
-    classId: null,
-    objects: [],
-    fetching: false,
-    fetched: false,
-  },
+  lessonObjects:[],
+  // lessonObjects:{
+  //   classId: null,
+  //   objects: [],
+  //   fetching: false,
+  //   fetched: false,
+  // },
   classTests:[],
-  classFiles:{
-    files: [],
-    path: [],
-    fetching: false,
-    fetched: false,
-  }
+  classFiles: []
+  // classFiles:{
+  //   files: [],
+  //   path: [],
+  //   fetching: false,
+  //   fetched: false,
+  // }
 }, action) {
 
     switch (action.type) {
@@ -35,15 +37,23 @@ export default function reducer(state={
       }
 
       case "FETCH_CLASS_LESSON_OBJECTS": {
-        return {...state, lessonObjects: {classId: action.payload, objects: [], fetching: true, fetched: false}}
+        let newLessonObjects = state.lessonObjects.slice();
+        newLessonObjects[action.payload] = {fetching: true, fetched:false}
+        return {...state, lessonObjects: newLessonObjects}
       }
       case "FETCH_CLASS_LESSON_OBJECTS_REJECTED": {
         return {...state, lessonObjects: {fetching: false}, error: action.payload}
       }
       case "FETCH_CLASS_LESSON_OBJECTS_FULFILLED": {
+        let newLessonObjects = state.lessonObjects.slice();
+        newLessonObjects[action.payload.classId] = {
+          objects: action.payload.lessonObjects,
+          fetching: false,
+          fetched: true
+        }
         return {
           ...state,
-          lessonObjects: {classId: action.payload.classId, objects: action.payload.lessonObjects, fetching: false, fetched: true}
+          lessonObjects: newLessonObjects
         }
       }
 
@@ -69,15 +79,24 @@ export default function reducer(state={
       }
 
       case "FETCH_CLASS_FILES": {
-        return {...state, classFiles: { files: [], path: [], fetching: true, fetched: false}}
+        let newClassFiles = state.classFiles.slice();
+        newClassFiles[action.payload] = {fetching: true, fetched:false}
+        return {...state, classFiles: newClassFiles}
       }
       case "FETCH_CLASS_FILES_REJECTED": {
         return {...state, classFiles: {fetching: false}, error: action.payload}
       }
       case "FETCH_CLASS_FILES_FULFILLED": {
+        let newClassFiles = state.classFiles.slice();
+        newClassFiles[action.payload.classId] = {
+          files: action.payload.files,
+          path: action.payload.path,
+          fetching: false,
+          fetched: true
+        }
         return {
           ...state,
-          classFiles: {files: action.payload.files, path: action.payload.path, fetching: false, fetched: true}
+          classFiles: newClassFiles
         }
       }
     }
