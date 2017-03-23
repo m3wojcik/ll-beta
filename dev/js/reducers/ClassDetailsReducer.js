@@ -1,16 +1,17 @@
 export default function reducer(state={
-  classDetails: null,
-  fetching: false,
-  fetched: false,
+  classDetails: [],
+  // classDetails: null,
+  // fetching: false,
+  // fetched: false,
   error: null,
-  lessonObjects:[],
+  lessonObjects: [],
   // lessonObjects:{
   //   classId: null,
   //   objects: [],
   //   fetching: false,
   //   fetched: false,
   // },
-  classTests:[],
+  classTests: [],
   classFiles: []
   // classFiles:{
   //   files: [],
@@ -22,17 +23,23 @@ export default function reducer(state={
 
     switch (action.type) {
       case "FETCH_CLASS_DETAILS": {
-        return {...state, fetching: true, fetched: false, classDetails: null}
+        let newClassDetails = state.classDetails.slice();
+        newClassDetails[action.payload] = {fetching: true, fetched:false}
+        return {...state, classDetails: newClassDetails}
       }
       case "FETCH_CLASS_DETAILS_REJECTED": {
         return {...state, fetching: false, error: action.payload}
       }
       case "FETCH_CLASS_DETAILS_FULFILLED": {
+        let newClassDetails = state.classDetails.slice();
+        newClassDetails[action.payload.id] = {
+          details: action.payload,
+          fetching: false,
+          fetched: true
+        }
         return {
           ...state,
-          fetching: false,
-          fetched: true,
-          classDetails: action.payload,
+          classDetails: newClassDetails
         }
       }
 

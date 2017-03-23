@@ -18,6 +18,7 @@ import ClassFilesContainer from './../../containers/classes/ClassFilesContainer'
 export default class ClassDetails extends Component {
   render(){
      const { classDetails } = this.props;
+     console.log("class det render", classDetails);
      const date = new Date(classDetails.date)
      const listHorizontalElements = [
        <div><FormattedTime value={date} /> - <FormattedTime value={date.getTime() + (classDetails.length * 1000 * 60) }  /></div>

@@ -9,9 +9,7 @@ import Loader from '../../components/helpers/Loader'
 @connect((store) => {
    return {
     routing: store.routing,
-    classDetails: store.classDetails.classDetails,
-    fetched: store.classDetails.fetched,
-    fetching: store.classes.fetching
+    classDetails: store.classDetails.classDetails
   };
 })
 export default class ClassDetailsContainer extends Component {
@@ -24,16 +22,16 @@ export default class ClassDetailsContainer extends Component {
     }
   }
   render(){
-    const { classDetails ,fetched } = this.props;
-    if(!fetched){
+    const { classDetails } = this.props;
+    console.log("classDetails", classDetails);
+    if(classDetails[this.props.params.classId] && classDetails[this.props.params.classId].fetched){
       return(
-        <Loader full key="loader" />
-      )
+        <Content noPadding>
+          <ClassDetails classDetails={classDetails[this.props.params.classId].details} />
+        </Content>
+        )
+    }else{
+      return(<Loader full key="loader" />)
     }
-    return(
-      <Content noPadding>
-        <ClassDetails classDetails={classDetails} />
-      </Content>
-    )
   }
 }
