@@ -9,11 +9,6 @@ WebFontLoader.load({
     families: ['Lato:300,400,500,700', 'Material Icons'],
   },
 });
-@connect((store) => {
-   return {
-    header: store.app.toolbar.header,
-  };
-})
 export default class App extends React.Component{
   render(){
     const { header } = this.props;

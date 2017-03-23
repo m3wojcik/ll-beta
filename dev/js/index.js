@@ -34,6 +34,7 @@ import SurveysContainer from './containers/SurveysContainer';
 import SurveyContainer from './containers/SurveyContainer';
 import SurveyViewContainer from './containers/SurveyViewContainer';
 import PaymentsContainer from './containers/PaymentsContainer';
+import LoginContainer from './containers/LoginContainer';
 
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
@@ -46,6 +47,7 @@ ReactDOM.render(
         <Route path="/"  component={App}>
           <IndexRedirect to="dashboard" />
           <Route path="dashboard" component={DashboardContainer} />
+          <Route path="login" component={LoginContainer} />
           <Route path="marks" header="Marks" component={MarksContainer} />
           <Route path="classes" component={ClassesContainer} />
           <Route path="classDetails/:classId" header="Class details" component={ClassDetailsContainer} />
