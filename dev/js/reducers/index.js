@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux'
 import AppReducer from './AppReducer';
+import AuthReducer from './AuthReducer';
 import DashboardClassesReducer from './DashboardClassesReducer';
 import DashboardAttendancesReducer from './DashboardAttendancesReducer';
 import DashboardMarksReducer from './DashboardMarksReducer';
@@ -33,6 +34,7 @@ import SurveyViewReducer from './SurveyViewReducer';
 import PaymentsReducer from './PaymentsReducer';
 
 const allReducers = combineReducers({
+  auth: AuthReducer,
   routing: routerReducer,
   app: AppReducer,
   dashboardClasses: DashboardClassesReducer,

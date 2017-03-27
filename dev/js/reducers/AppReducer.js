@@ -1,3 +1,7 @@
+import {FETCH_APP_DATA,
+        FETCH_APP_DATA_FULFILLED,
+        FETCH_APP_DATA_REJECTED} from './../actions/config'
+
 export default function reducer(state={
     appData:{
       fetching: false,
@@ -29,15 +33,15 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
-      case "FETCH_APP_DATA": {
+      case FETCH_APP_DATA: {
         return {...state, appData: {fetching: true, fetched:false}}
       }
-      case "FETCH_APP_DATA_REJECTED": {
+      case FETCH_APP_DATA_REJECTED: {
         return {
           ...state,
           appData: {fetching: false, fetched:false, error: action.payload}}
       }
-      case "FETCH_APP_DATA_FULFILLED": {
+      case FETCH_APP_DATA_FULFILLED: {
         return {
           ...state,
           appData : {

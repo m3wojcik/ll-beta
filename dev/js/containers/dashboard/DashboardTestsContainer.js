@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { fetchDashboardTests } from "../../actions/DashboardTestsActions";
 
-import ClassTests from '../../components/tests/ClassTests'
+import DashboardTests from '../../components/tests/DashboardTests'
 import Content from '../../components/helpers/Content'
 
 @connect((store) => {
@@ -27,7 +27,7 @@ export default class DashboardTestsContainer extends Component {
   render(){
     const { fetched, fetching, dashboardTests } = this.props;
     return(
-      <ClassTests boxTitle="New tests" fetched={fetched} tests={dashboardTests} onSolveClick={this.handleSolveClick}  />
+      <DashboardTests fetched={fetched} dashboardTests={dashboardTests} onSolveClick={this.handleSolveClick}  />
       )
   }
 }

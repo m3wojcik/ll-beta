@@ -43,7 +43,7 @@ export function setReserveElibraryObjectDates(dateFrom, dateTo) {
 export function postReserveElibraryObject(objectId, dateFrom, dateTo, callBack) {
   return function(dispatch) {
     dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT", payload: true});
-    axios.post("http://api.local/?q=reserveElibraryItem",{
+    instance.post("?q=reserveElibraryItem",{
       id: objectId,
       dateFrom: dateFrom,
       dateTo: dateTo
@@ -68,7 +68,7 @@ export function postReserveElibraryObject(objectId, dateFrom, dateTo, callBack) 
 export function postCancelReservationElibraryObject(objectId, unDoAction) {
   return function(dispatch) {
     dispatch({type: "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT", payload: objectId});
-    axios.post("http://api.local/?q=cancelReserveElibraryItem",{
+    instance.post("?q=cancelReserveElibraryItem",{
       id: objectId
       })
       .then((response) => {
