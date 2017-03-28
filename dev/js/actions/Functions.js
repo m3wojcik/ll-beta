@@ -87,8 +87,9 @@ export function compareDates(date1, date2, precision) {
 }
 export function getAppSettings(pathname){
   let settings = {};
+  console.log('path',pathname);
   switch (pathname) {
-    case "dashboard":
+    case "":
       settings = {"header":"Dashboard", "hasTabs":false, "searchBtn": false}
       break;
     case "profile/view":

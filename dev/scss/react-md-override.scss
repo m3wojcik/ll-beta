@@ -20,6 +20,9 @@
   border-bottom: none;
   box-shadow: none;
 }
+.md-toolbar--action-right{
+    display: flex;
+}
 .md-tab-label{
   color: $md-blue-grey-400
 }

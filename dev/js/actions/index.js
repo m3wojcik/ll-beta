@@ -1,7 +1,8 @@
 import { instance } from './config'
 import axios from 'axios';
-import cookie from 'react-cookie';
-const API_URL = 'http://localhost:3000/api';
+import {push} from 'react-router-redux';
+//import cookie from 'react-cookie';
+const API_URL = 'https://test.langlion.com/api';
 const CLIENT_ROOT_URL = '';
 import { AUTH_USER,
          AUTH_ERROR,
@@ -9,16 +10,15 @@ import { AUTH_USER,
          PROTECTED_TEST} from './config'
 
 export function errorHandler(dispatch, error, type) {
+    console.log('error');
   let errorMessage = '';
-
   if(error.data.error) {
     errorMessage = error.data.error;
-  } else if(error.data{
+  } else if(error.data){
     errorMessage = error.data;
   } else {
     errorMessage = error;
   }
-
   if(error.status === 401) {
     dispatch({
       type: type,
@@ -32,15 +32,32 @@ export function errorHandler(dispatch, error, type) {
     });
   }
 }
-export function loginUser({ email, password }) {
+export function loginUser(login, password) {
   return function(dispatch) {
-    axios.post(`${API_URL}/auth/login`, { email, password })
+    axios.post(`${API_URL}/login`,
+        {
+        grant_type: 'password',
+        username: login,
+        password: password
+    },{
+        auth: {
+          username: 'mobile',
+          password: 'mobile123'
+        }
+    })
     .then(response => {
-      cookie.save('token', response.data.token, { path: '/' });
-      dispatch({ type: AUTH_USER });
-      window.location.href = CLIENT_ROOT_URL + '/dashboard';
+        console.log('auth-response',response);
+        if(response.data.error){
+            errorHandler(dispatch, response, AUTH_ERROR)
+        }else{
+            localStorage.setItem('access_token',response.data.access_token);
+            localStorage.setItem('refresh_token',response.data.refresh_token);
+            dispatch({ type: AUTH_USER });
+            dispatch(push("/"));
+        }
     })
     .catch((error) => {
+        console.log('error',error);
       errorHandler(dispatch, error.response, AUTH_ERROR)
     });
     }
@@ -49,7 +66,7 @@ export function loginUser({ email, password }) {
   return function(dispatch) {
     axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
     .then(response => {
-      cookie.save('token', response.data.token, { path: '/' });
+      //cookie.save('token', response.data.token, { path: '/' });
       dispatch({ type: AUTH_USER });
       window.location.href = CLIENT_ROOT_URL + '/dashboard';
     })
@@ -62,16 +79,16 @@ export function loginUser({ email, password }) {
 export function logoutUser() {
   return function (dispatch) {
     dispatch({ type: UNAUTH_USER });
-    cookie.remove('token', { path: '/' });
-
-    window.location.href = CLIENT_ROOT_URL + '/login';
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    dispatch(push("/login"));
   }
 }
 
 export function protectedTest() {
   return function(dispatch) {
     axios.get(`${API_URL}/protected`, {
-      headers: { 'Authorization': cookie.load('token') }
+      //headers: { 'Authorization': cookie.load('token') }
     })
     .then(response => {
       dispatch({

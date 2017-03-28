@@ -12,11 +12,14 @@ import { IntlProvider} from 'react-intl';
 import allReducers from './reducers';
 import routes from './routes';
 
-
 const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
 const store = createStore(allReducers, middleware);
 const history = syncHistoryWithStore(hashHistory, store);
 
+const token = localStorage.getItem('access_token');
+if (token) {
+  store.dispatch({ type: "AUTH_USER" });
+}
 ReactDOM.render(
   <Provider store={store} >
     <IntlProvider locale="en">
