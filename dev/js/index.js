@@ -11,8 +11,9 @@ import { syncHistoryWithStore, routerMiddleware } from 'react-router-redux'
 import { IntlProvider} from 'react-intl';
 import allReducers from './reducers';
 import routes from './routes';
+import api from './middleware/api'
 
-const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, logger());
+const middleware = applyMiddleware(promise(),routerMiddleware(hashHistory), thunk, api, logger());
 const store = createStore(allReducers, middleware);
 const history = syncHistoryWithStore(hashHistory, store);
 
