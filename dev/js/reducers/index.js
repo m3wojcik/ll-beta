@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import { routerReducer } from 'react-router-redux'
+import { routerReducer } from 'react-router-redux';
+import { reducer as formReducer } from 'redux-form';
+
 import AppReducer from './AppReducer';
 import AuthReducer from './AuthReducer';
 import DashboardClassesReducer from './DashboardClassesReducer';
@@ -37,6 +39,7 @@ const allReducers = combineReducers({
   auth: AuthReducer,
   routing: routerReducer,
   app: AppReducer,
+  form: formReducer, 
   dashboardClasses: DashboardClassesReducer,
   dashboardAttendances: DashboardAttendancesReducer,
   dashboardMarks: DashboardMarksReducer,
