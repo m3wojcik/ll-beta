@@ -26,7 +26,7 @@ import SurveysContainer from './containers/SurveysContainer';
 import SurveyContainer from './containers/SurveyContainer';
 import SurveyViewContainer from './containers/SurveyViewContainer';
 import PaymentsContainer from './containers/PaymentsContainer';
-import LoginContainer from './containers/LoginContainer';
+import LoginContainer from './containers/login/LoginContainer';
 import Authentication from './components/Authentication';
 
 export default (

@@ -12,7 +12,6 @@ import { AUTH_USER,
          PROTECTED_TEST} from './config'
 
 export function errorHandler(dispatch, error, type) {
-    console.log('error');
   let errorMessage = '';
   if(error.data.error) {
     errorMessage = error.data.error;
@@ -64,7 +63,7 @@ export function loginUser(login, password) {
         }
     })
     .catch((error) => {
-        console.log('error',error);
+      console.log('error',error);
       errorHandler(dispatch, error.response, AUTH_ERROR)
     });
     }
