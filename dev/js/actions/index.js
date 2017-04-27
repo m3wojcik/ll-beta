@@ -12,6 +12,7 @@ import { AUTH_USER,
          PROTECTED_TEST} from './config'
 
 export function errorHandler(dispatch, error, type) {
+  console.log('error',dispatch, error, type);
   let errorMessage = '';
   if(error.data.error) {
     errorMessage = error.data.error;

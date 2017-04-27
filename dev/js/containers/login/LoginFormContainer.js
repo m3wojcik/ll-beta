@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import LoginForm from '../../components/login/LoginForm'
-import ErrorMessage from '../../components/helpers/ErrorMessage'
 import {loginUser} from '../../actions/index'
+import {errorMessage} from '../../actions/config'
 
 @connect((store) => {
   return {
@@ -19,7 +19,7 @@ export default class LoginFormContainer extends Component {
     const { error } = this.props;
     return(
       <div>
-        <ErrorMessage error={error} />
+        <span>{errorMessage[error]}</span>
         <LoginForm onSubmit={this.handleSubmit} />
       </div>
     )
