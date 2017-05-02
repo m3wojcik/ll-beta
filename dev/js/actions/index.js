@@ -36,9 +36,10 @@ export function errorHandler(dispatch, error, type) {
 }
 export function loginUser(login, password) {
   return function(dispatch) {
+      console.log('loginUser', login, password);
     axios(
       {
-        url: '/login',
+        url: '/login?api_version=1',
         baseURL: API_URL,
         method: 'post',
         data:{
@@ -64,7 +65,7 @@ export function loginUser(login, password) {
         }
     })
     .catch((error) => {
-      console.log('error',error);
+      console.dir(error);
       errorHandler(dispatch, error.response, AUTH_ERROR)
     });
     }

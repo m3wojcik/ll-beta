@@ -43,6 +43,12 @@ border-color: transparent;
   padding-left: 0px;
   padding-right: 0px;
 }
+
+.md-grid{
+    .md-cell--50{
+        width: calc(50% - 16px);
+    }
+}
 @media screen and (min-width: 1280px){
   .md-grid.md-row{
     margin-left: -8px;
