@@ -7,26 +7,27 @@ import ForgotPassFormContainer from './ForgotPassFormContainer'
 export default class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { collapsed: false };
+    this.state = { collapsed: true };
   }
   handleForgotClick = () =>{
       console.log('forgot');
-      this.setState({collapsed: true });
+      this.setState({collapsed: false });
   }
   handleSignInClick  = () =>{
       console.log('back');
-      this.setState({collapsed: false });
+      this.setState({collapsed: true });
   }
   render(){
-      const {collapsed} = this.state;
+    const {collapsed} = this.state;
+    let output = <LoginFormContainer onForgotClick={this.handleForgotClick} />
+    if(!collapsed) output = <ForgotPassFormContainer onSignInClick={this.handleSignInClick} />
     return(
-      <Content>
-        <Collapse collapsed={collapsed}>
-           <LoginFormContainer onForgotClick={this.handleForgotClick} />
-        </Collapse>
-        <Collapse collapsed={!collapsed}>
-            <ForgotPassFormContainer onSignInClick={this.handleSignInClick} />
-        </Collapse>
+      <Content noPadding>
+          <div className="login-page">
+            <div className="login-page-left">{output}</div>
+            <div className="login-page-right"></div>
+          </div>
+
       </Content>
     )
   }

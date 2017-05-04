@@ -9,8 +9,10 @@ class ForgotPassForm extends Component {
       <form className="ui form login-form" onSubmit={handleSubmit}>
         <div className="md-grid">
             <div className="md-cell md-cell--12">
-              <label htmlFor="login">E-mail</label>
-              <Field name="E-mail" component="input" type="text"/>
+              <div className="field">
+                  <label htmlFor="login">E-mail</label>
+                  <Field name="E-mail" component="input" type="text"/>
+              </div>
             </div>
             <div className="md-cell md-cell--50">
                 <a onClick={onSignInClick}>Sign in</a>

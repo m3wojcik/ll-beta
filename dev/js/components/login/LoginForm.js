@@ -9,12 +9,16 @@ class LoginForm extends Component {
       <form className="ui form login-form" onSubmit={handleSubmit}>
         <div className="md-grid">
             <div className="md-cell md-cell--12">
-              <label htmlFor="login">Login</label>
-              <Field name="login" component="input" type="text"/>
+              <div className="field">
+                <label htmlFor="login">Login</label>
+                <Field name="login" component="input" type="text"/>
+              </div>
             </div>
             <div className="md-cell md-cell--12">
-              <label htmlFor="password">Password</label>
-              <Field name="password" component="input" type="password"/>
+              <div className="field">
+                <label htmlFor="password">Password</label>
+                <Field name="password" component="input" type="password"/>
+              </div>
             </div>
             <div className="md-cell md-cell--50">
                 <a onClick={onForgotClick}>Forgot password?</a>
