@@ -6,7 +6,6 @@ export default class MainLogo extends Component {
 
     return(
       <div className="navigation-bottom">
-        
            <div className="ll-logo" dangerouslySetInnerHTML={{__html: Logo}} />
       </div>
     )

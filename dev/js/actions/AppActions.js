@@ -1,11 +1,9 @@
 import {instance} from './config'
-import {FETCH_APP_DATA,
-        FETCH_APP_DATA_FULFILLED,
-        FETCH_APP_DATA_REJECTED} from './config'
+
 
 export function fetchAppData() {
   return function(dispatch) {
-    dispatch({type: FETCH_APP_DATA, payload: true});
+    dispatch({type: "FETCH_APP_DATA", payload: true});
     instance.get("?q=getAppData")
       .then((response) => {
     //       console.log("response.data");
@@ -13,10 +11,10 @@ export function fetchAppData() {
     // console.log(response.statusText);
     // console.log(response.headers);
     // console.log(response.config);
-        dispatch({type: FETCH_APP_DATA_FULFILLED, payload: response.data});
+        dispatch({type: "FETCH_APP_DATA_FULFILLED", payload: response.data});
       })
       .catch((err) => {
-        dispatch({type: FETCH_APP_DATA_REJECTED, payload: err})
+        dispatch({type: "FETCH_APP_DATA_REJECTED", payload: err})
       })
   }
 }
