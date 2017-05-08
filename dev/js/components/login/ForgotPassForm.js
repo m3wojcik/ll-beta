@@ -15,7 +15,7 @@ class ForgotPassForm extends Component {
               </div>
             </div>
             <div className="md-cell md-cell--50">
-                <a onClick={onSignInClick}>Sign in</a>
+                <a href="javascript:void(0)" onClick={onSignInClick}>Sign in</a>
             </div>
             <div className="md-cell md-cell--50 text-right">
                 <Button raised primary label="Send" type="submit" />

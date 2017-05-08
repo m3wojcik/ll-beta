@@ -25,7 +25,11 @@ export default class LoginFormContainer extends Component {
         <Alert text={errorMessage[error]} type="danger" />
         <span>{errorMessage[error]}</span>
         <LoginForm onSubmit={this.handleSubmit} onForgotClick={onForgotClick} />
-        <Divider text="or" />
+        <div className="md-grid">
+          <div className="md-cell md-cell--12">
+            <Divider text="or" />
+          </div>
+        </div>
       </div>
     )
   }

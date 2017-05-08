@@ -1,7 +1,35 @@
 @import '~react-md/src/scss/react-md';
+$red            : #DB2828;
+$orange         : #F2711C;
+$yellow         : #FBBD08;
+$olive          : #B5CC18;
+$green          : #21BA45;
+$teal           : #00B5AD;
+$blue           : #2185D0;
+$violet         : #6435C9;
+$purple         : #A333C8;
+$pink           : #E03997;
+$brown          : #A5673F;
+$grey           : #767676;
+$black          : #1B1C1D;
+
+$red-hover      : #d01919;
+$orange-hover   : #f26202;
+$yellow-hover   : #eaae00;
+$olive-hover    : #a7bd0d;
+$green-hover    : #16ab39;
+$teal-hover     : #009c95;
+$blue-hover     : #1678c2;
+$violet-hover   : #5829bb;
+$purple-hover   : #9627ba;
+$pink-hover     : #e61a8d;
+$brown-hover    : #975b33;
+$grey-hover     : #838383;
+$black-hover    : #27292a;
+
 $md-font-name: Lato !default;
 $md-font-family: Lato, sans-serif !default;
-$md-primary-color: $md-light-blue-900;
+$md-primary-color: $blue;
 $md-secondary-color: $md-amber-500;
 $md-text-primary: #2c2d30;
 $md-text-secondary: #a0a0a2;

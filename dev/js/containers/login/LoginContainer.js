@@ -22,13 +22,16 @@ export default class LoginContainer extends Component {
     let output = <LoginFormContainer onForgotClick={this.handleForgotClick} />
     if(!collapsed) output = <ForgotPassFormContainer onSignInClick={this.handleSignInClick} />
     return(
-      <Content noPadding>
+
           <div className="login-page">
-            <div className="login-page-left">{output}</div>
+            <div className="login-page-left">
+              <div className="login-page-content">
+                {output}
+              </div>
+            </div>
             <div className="login-page-right"></div>
           </div>
 
-      </Content>
     )
   }
 }
