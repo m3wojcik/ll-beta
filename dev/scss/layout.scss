@@ -770,18 +770,7 @@ li.test-page{
     display: block;
   }
 }
-/*login-form
-------------------------------------------------------------------------------*/
-.login-form{
-    max-width: 600px;
-    a:link, a:visited{
-        color: $md-blue-grey-200;
-    }
-    a:hover{
-        color: $md-blue-grey-400;
-        text-decoration: underline;;
-    }
-}
+
 /*breadcrubms
 ------------------------------------------------------------------------------*/
 .breadcrumbs{
@@ -1433,7 +1422,7 @@ ul.card-list > li{
     min-height: 100vh;
     display: flex;
     .login-page-left{
-        width: 34%;
+        width: 400px;
         min-height: 100%;
         background-color: #ffffff;
         display: flex;
@@ -1444,8 +1433,25 @@ ul.card-list > li{
         }
     }
     .login-page-right{
-        width: 66%;
+        width: calc(100% - 400px);
         min-height: 100%;
+        background-image: url("./../img/main.jpg");
+        background-size: cover;
+    }
+    .login-logo{
+      width: 150px;
+    }
+}
+/*login-form
+------------------------------------------------------------------------------*/
+.login-form{
+    max-width: 600px;
+    a:link, a:visited{
+        color: $md-blue-grey-200;
+    }
+    a:hover{
+        color: $md-blue-grey-400;
+        text-decoration: underline;;
     }
 }
 /*Avatar

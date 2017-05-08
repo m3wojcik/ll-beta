@@ -5,6 +5,7 @@ import Divider from '../../components/helpers/Divider'
 import Alert from '../../components/helpers/Alert'
 import {loginUser} from '../../actions/index'
 import {errorMessage} from '../../actions/config'
+import Logo from './../../../img/logo-blue.svg' // relative path to image
 
 @connect((store) => {
   return {
@@ -22,8 +23,8 @@ export default class LoginFormContainer extends Component {
     const { error, onForgotClick } = this.props;
     return(
       <div>
+        <div className="login-logo" dangerouslySetInnerHTML={{__html: Logo}} />
         <Alert text={errorMessage[error]} type="danger" />
-        <span>{errorMessage[error]}</span>
         <LoginForm onSubmit={this.handleSubmit} onForgotClick={onForgotClick} />
         <div className="md-grid">
           <div className="md-cell md-cell--12">

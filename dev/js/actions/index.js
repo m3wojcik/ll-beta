@@ -60,13 +60,13 @@ export function loginUser(login, password) {
         }else{
             localStorage.setItem('access_token',response.data.access_token);
             localStorage.setItem('refresh_token',response.data.refresh_token);
-            dispatch({ type: AUTH_USER });
+            dispatch({ type: "AUTH_USER" });
             dispatch(push("/"));
         }
     })
     .catch((error) => {
       console.dir(error);
-      errorHandler(dispatch, error.response, AUTH_ERROR)
+      errorHandler(dispatch, error.response, "AUTH_ERROR")
     });
     }
   }
@@ -102,37 +102,19 @@ export function loginUser(login, password) {
     axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })
     .then(response => {
       //cookie.save('token', response.data.token, { path: '/' });
-      dispatch({ type: AUTH_USER });
+      dispatch({ type: "AUTH_USER" });
       window.location.href = CLIENT_ROOT_URL + '/dashboard';
     })
     .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
+      errorHandler(dispatch, error.response, "AUTH_ERROR")
     });
   }
 }
-
 export function logoutUser() {
   return function (dispatch) {
-    dispatch({ type: UNAUTH_USER });
+    dispatch({ type: "UNAUTH_USER" });
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
     dispatch(push("/login"));
-  }
-}
-
-export function protectedTest() {
-  return function(dispatch) {
-    axios.get(`${API_URL}/protected`, {
-      //headers: { 'Authorization': cookie.load('token') }
-    })
-    .then(response => {
-      dispatch({
-        type: PROTECTED_TEST,
-        payload: response.data.content
-      });
-    })
-    .catch((error) => {
-      errorHandler(dispatch, error.response, AUTH_ERROR)
-    });
   }
 }
