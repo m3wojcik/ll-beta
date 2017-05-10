@@ -328,6 +328,45 @@ strong{
     }
   }
 }
+/*input group
+------------------------------------------------------------------------------*/
+.input-group {
+    position: relative;
+    display: table;
+    border-collapse: separate;
+    .input-group-addon {
+      display: table-cell;
+      width: 1%;
+      padding: 6px 10px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1;
+      color: #dfe1e4;
+      text-align: center;
+      background-color: #fff;
+      border: 1px solid #dfe1e4;
+      border-radius: 4px;
+      white-space: nowrap;
+      vertical-align: middle;
+      .md-icon{
+        font-size: 18px;
+        color: #dfe1e4;
+      }
+    }
+    .input-group-addon:first-child{
+      border-right: 0px;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    input{
+      display: table-cell;
+      width: 100%;
+    }
+    input:last-child{
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+    }
+}
 /*messages list
 ------------------------------------------------------------------------------*/
 .message-list-item{
@@ -1429,7 +1468,7 @@ ul.card-list > li{
         justify-content: center;
         align-items: center;
         .login-page-content{
-            padding: 0px 20px;
+            padding: 0px 50px;
         }
     }
     .login-page-right{
@@ -1439,7 +1478,8 @@ ul.card-list > li{
         background-size: cover;
     }
     .login-logo{
-      width: 150px;
+      width: 130px;
+      margin-bottom: 20px;
     }
 }
 /*login-form

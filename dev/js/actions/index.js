@@ -6,10 +6,6 @@ import { CALL_API } from '../middleware/api'
 //import cookie from 'react-cookie';
 const API_URL = 'https://test.langlion.com/api';
 const CLIENT_ROOT_URL = '';
-import { AUTH_USER,
-         AUTH_ERROR,
-         UNAUTH_USER,
-         PROTECTED_TEST} from './config'
 
 export function errorHandler(dispatch, error, type) {
   console.log('error',dispatch, error, type);
@@ -39,7 +35,7 @@ export function loginUser(login, password) {
       console.log('loginUser', login, password);
     axios(
       {
-        url: '/login?api_version=1',
+        url: '/login',
         baseURL: API_URL,
         method: 'post',
         data:{
@@ -56,7 +52,7 @@ export function loginUser(login, password) {
     .then(response => {
         console.log('auth-response',response);
         if(response.data.error){
-            errorHandler(dispatch, response, AUTH_ERROR)
+            errorHandler(dispatch, response, "AUTH_ERROR")
         }else{
             localStorage.setItem('access_token',response.data.access_token);
             localStorage.setItem('refresh_token',response.data.refresh_token);

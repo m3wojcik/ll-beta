@@ -39,6 +39,33 @@ border-color: transparent;
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.09);
     //box-shadow: 0 1px 3px 0 #D4D4D5, 0 0 0 1px #D4D4D5
 }
+.md-grid.md-grid-no-padding{
+  padding: 0px !important;
+}
+.md-grid.md-grid-cell-no-padding{
+  .md-cell{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+  .md-cell--50{
+    width: 50%;
+  }
+}
+@media screen and (min-width: 840px){
+  .md-cell--12, .md-cell--12-desktop.md-cell--12-desktop{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 839px) and (min-width: 600px){
+  .md-cell--12, .md-cell--12-desktop.md-cell--12-desktop{
+    width: 100%;
+  }
+}
+@media screen and (max-width: 599px){
+  .md-cell--12, .md-cell--12-desktop.md-cell--12-desktop{
+    width: 100%;
+  }
+}
 .md-grid.md-row{
   padding-left: 0px;
   padding-right: 0px;

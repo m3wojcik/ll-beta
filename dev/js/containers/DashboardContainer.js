@@ -48,14 +48,14 @@ export default class DashboardContainer extends Component {
         <DashboardWelcome appData={appData} />
         <Button raised primary label="test" onClick={this.handleTestClick} />
         <DashboardClassesContainer />
-          <div className="md-grid md-row">
-            <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
-
-            </div>
-            <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
-              
-            </div>
+        <div className="md-grid md-row">
+          <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
+            {dashboardCardsLeft}
           </div>
+          <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
+            {dashboardCardsRight}
+          </div>
+        </div>
       </Content>
     )
   }

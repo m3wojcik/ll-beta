@@ -26,7 +26,7 @@ export default class LoginFormContainer extends Component {
         <div className="login-logo" dangerouslySetInnerHTML={{__html: Logo}} />
         <Alert text={errorMessage[error]} type="danger" />
         <LoginForm onSubmit={this.handleSubmit} onForgotClick={onForgotClick} />
-        <div className="md-grid">
+        <div className="md-grid md-grid-no-padding md-grid-cell-no-padding">
           <div className="md-cell md-cell--12">
             <Divider text="or" />
           </div>
