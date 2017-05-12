@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import { SubmissionError } from 'redux-form'
 import { setAppSettings} from "../actions/AppActions";
-import { fetchUserData, setUserData } from "../actions/ProfileActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import { fetchUserData, saveUserData } from "../actions/ProfileActions";
+import Content from '../components/helpers/Content'
+import Loader from '../components/helpers/Loader'
 import EditProfile from '../components/EditProfile';
 import CustomTabs from '../components/helpers/CustomTabs';
 
 @connect((store) => {
    return {
     userData: store.profile.userData,
+    form: store.form.EditProfile,
     fetched: store.profile.fetched,
     fetching: store.profile.fetching
   };
@@ -17,29 +20,26 @@ export default class EditProfileContainer extends Component {
   componentDidMount(){
     this.props.dispatch(fetchUserData());
   }
-  handleFormChange = (type, value, object) => {
-    let {userData} = this.props;
-    switch (type) {
-      case "phone":
-        userData.phone = value;
-      break;
-      case "email":
-        userData.email = value;
-      break;
+  handleSubmit = (values) =>{
+    console.log(values);
+    const params = {
+      email: values.email,
+      phone: values.phone
     }
-  }
-  validateForm = (type, value) => {
-    switch (type) {
-      case "phone":
-        userData.phone = value;
-      break;
-      case "email":
-        userData.email = value;
-      break;
-    }
+    throw new SubmissionError({ email: 'Invalid email address', _error: 'Update profile failed!' })
+    //this.props.dispatch(saveUserData(params));
   }
   render(){
-    const { fetched, userData } = this.props;
+    const { fetched, userData, form } = this.props;
+    let formError = {};
+    if(form){
+      if(form.error){
+        formError = {
+          error: form.error,
+          submitErrors: form.submitErrors
+        }
+      }
+    }
     const tabs = [
       {"label": "Profile", "link": "profile", "active": false},
       {"label": "Edit profile", "link": "profile/edit", "active": true},
@@ -47,19 +47,15 @@ export default class EditProfileContainer extends Component {
       {"label": "Login history", "link": "profile/loginHistory", "active": false},
     ]
     if(!fetched){
-      return(
-        <div className="content">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
-      )
+      return( <Loader full />)
     }
     return(
-      <div className="content">
+      <Content>
           <CustomTabs tabs={tabs} />
           <section className="tab-pane">
-            <EditProfile userData={userData} onFormChange={this.handleFormChange} />
+            <EditProfile userData={userData} onSubmit={this.handleSubmit} formError={formError} />
           </section>
-      </div>
+      </Content>
     )
   }
 }

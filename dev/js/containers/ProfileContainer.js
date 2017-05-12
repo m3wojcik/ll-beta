@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { setAppSettings} from "../actions/AppActions";
 import { fetchUserData } from "../actions/ProfileActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import Content from '../components/helpers/Content'
+import Loader from '../components/helpers/Loader'
 import FontIcon from 'react-md/lib/FontIcons';
 import Profile from '../components/Profile';
 import CustomTabs from '../components/helpers/CustomTabs';
@@ -27,19 +28,15 @@ export default class ProfileContainer extends Component {
       {"label": "Login history", "link": "profile/loginHistory", "active": false},
     ]
     if(!fetched){
-      return(
-        <div className="content">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
-      )
+      return(<Loader full />)
     }
     return(
-      <div className="content">
+      <Content>
           <CustomTabs tabs={tabs} />
           <section className="tab-pane">
             <Profile userData={userData} />
           </section>
-      </div>
+      </Content>
     )
   }
 }

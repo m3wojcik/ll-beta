@@ -4,14 +4,13 @@ import UserPhoto from './helpers/UserPhoto';
 
 export default class Profile extends Component {
   render(){
-     const { userData } = this.props;
-
+    const { userData } = this.props;
     return(
       <div className="fake-form">
         <div className="md-grid">
           <div className="md-cell md-cell--6">
-            <FakeFormControl label="First Name" value={userData.firstName} />
-            <FakeFormControl label="Last Nname" value={userData.lastName} />
+            <FakeFormControl label="First Name" value={userData.firstname} />
+            <FakeFormControl label="Last Nname" value={userData.lastname} />
             <FakeFormControl label="Login" value={userData.login} />
             <FakeFormControl label="Phone" value={userData.phone} />
             <FakeFormControl label="E-mail" value={userData.email} />

@@ -6,6 +6,9 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      case "FETCH_USER_DATA": {
+        return {...state, fetching: true, fetched:false}
+      }
       case "FETCH_USER_DATA_REJECTED": {
         return {...state, fetching: false, error: action.payload}
       }
@@ -14,7 +17,7 @@ export default function reducer(state={
           ...state,
           fetching: false,
           fetched: true,
-          userData: action.payload,
+          userData: action.payload.userProfile
         }
       }
       case "SET_USER_DATA": {
