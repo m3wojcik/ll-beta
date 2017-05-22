@@ -5,25 +5,24 @@ import FakeFormControl from './helpers/FakeFormControl';
 import TextField from 'react-md/lib/TextFields';
 import UserPhoto from './helpers/UserPhoto';
 import Button from 'react-md/lib/Buttons/Button';
-import Alert from './helpers/Alert'
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-  <div className={touched ? "field error":"field"}>
-    <label>{label}</label>
-    <input {...input} placeholder={label} type={type}/>
-    {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
-  </div>
-)
-const email = value =>
-  value && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value) ?
-  'Invalid email address' : undefined
+import {RenderField} from './helpers/RenderField'
+import {email} from './helpers/Validate'
+
 
 class EditProfile extends Component {
   render(){
-     const { userData, handleSubmit, formError } = this.props;
-     console.log('error', formError);
+    const { userData, saveUserData, handleSubmit } = this.props;
+    let buttonProps = {
+      raised: true,
+      primary: true,
+      label: "Save",
+      type: "submit"
+    }
+    if(saveUserData.fetching){
+      buttonProps.disabled = true
+    }
     return(
       <div className="fake-form">
-        <Alert text={formError ? formError.error : null} type="danger" />
         <form className="ui form login-form" onSubmit={handleSubmit}>
           <div className="md-grid">
             <div className="md-cell md-cell--6">
@@ -44,7 +43,7 @@ class EditProfile extends Component {
                 <Field placeholder="Phone" name="phone" component="input" type="text"/>
               </div>
               <Field name="email" type="email"
-                component={renderField} label="Email"
+                component={RenderField} label="Email"
                 validate={email}
               />
             </div>
@@ -55,7 +54,7 @@ class EditProfile extends Component {
             </div>
           </div>
           <div className="fake-form-actions">
-            <Button raised primary label="Save" type="submit" />
+            <Button {...buttonProps} />
           </div>
         </form>
       </div>

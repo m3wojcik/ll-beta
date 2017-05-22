@@ -114,7 +114,7 @@ export function getAppSettings(pathname){
       settings = {"header":"Attendance", "hasTabs":false, "searchBtn": false}
       break;
     case "classes":
-      settings = {"hasTabs":true, "searchBtn": false}
+      settings = {"hasTabs":false, "searchBtn": false}
       break;
     case "marks":
       settings = {"header":"Marks", "hasTabs":false, "searchBtn": false}

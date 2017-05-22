@@ -5,12 +5,6 @@ import NavigationDrawer from 'react-md/lib/NavigationDrawers';
 import MainNavigation from '../components/MainNavigation';
 import MainLogo from '../components/MainLogo';
 import ToolbarContainer from './ToolbarContainer';
-
-import Snackbar from 'react-md/lib/Snackbars';
-import Content from '../components/helpers/Content'
-
-
-import { addToast, removeToast } from "../actions/ToastsActions";
 import NavigationUserContainer from './NavigationUserContainer';
 
 @connect((store) => {
@@ -19,9 +13,7 @@ import NavigationUserContainer from './NavigationUserContainer';
   };
 })
 export default class LayoutContainer extends Component {
-  removeToast = () => {
-    this.props.dispatch(removeToast());
-  }
+
   render(){
     const {hasTabs, appData, header, toasts} = this.props;
 
@@ -45,7 +37,7 @@ export default class LayoutContainer extends Component {
           toolbarClassName={toolbarClassName}
         >
         {this.props.content}
-        <Snackbar {...toasts} onDismiss={this.removeToast} />
+
         </NavigationDrawer>
     )
   }

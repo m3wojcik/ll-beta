@@ -30,14 +30,14 @@ export default class DashboardContainer extends Component {
     const { appData, notifications } = this.props;
     let dashboardCards = [],dashboardCardsLeft = [],dashboardCardsRight = [];
       if(notifications.news > 0) dashboardCards.push(<DashboardNewsContainer key="DashboardNewsContainer" />);
-    if(notifications.newInMarks > 0) dashboardCards.push(<DashboardMarksContainer key="DashboardMarksContainer" />);
-    if(notifications.newInAttendance > 0) dashboardCards.push(<DashboardAttendancesContainer key="DashboardAttendancesContainer" />);
-    if(notifications.newInMessages > 0) dashboardCards.push(<DashboardMessagesContainer key="DashboardMessagesContainer" />);
-    if(notifications.newInFiles > 0) dashboardCards.push(<DashboardFilesContainer key="DashboardFilesContainer" />);
-    if(notifications.newInTests > 0) dashboardCards.push(<DashboardTestsContainer key="DashboardTestsContainer" />);
-    if(notifications.newInElibrary > 0) dashboardCards.push(<DashboardElibraryContainer key="DashboardElibraryContainer" />);
-    if(notifications.newInSurveys > 0) dashboardCards.push(<DashboardSurveysContainer key="DashboardSurveysContainer" />);
-    if(notifications.newInPayments > 0) dashboardCards.push(<DashboardPaymentsContainer  key="DashboardPaymentsContainer"/>);
+    if(notifications.newMarks > 0) dashboardCards.push(<DashboardMarksContainer key="DashboardMarksContainer" />);
+    if(notifications.newAttendance > 0) dashboardCards.push(<DashboardAttendancesContainer key="DashboardAttendancesContainer" />);
+    if(notifications.newMessages > 0) dashboardCards.push(<DashboardMessagesContainer key="DashboardMessagesContainer" />);
+    if(notifications.newFiles > 0) dashboardCards.push(<DashboardFilesContainer key="DashboardFilesContainer" />);
+    if(notifications.newTests > 0) dashboardCards.push(<DashboardTestsContainer key="DashboardTestsContainer" />);
+    if(notifications.newLibrary > 0) dashboardCards.push(<DashboardElibraryContainer key="DashboardElibraryContainer" />);
+    if(notifications.newSurveys > 0) dashboardCards.push(<DashboardSurveysContainer key="DashboardSurveysContainer" />);
+    if(notifications.newPayments > 0) dashboardCards.push(<DashboardPaymentsContainer  key="DashboardPaymentsContainer"/>);
     dashboardCards.forEach(function(card,i){
       if(i%2==0){
         dashboardCardsLeft.push(card)

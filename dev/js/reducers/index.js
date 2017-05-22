@@ -3,6 +3,7 @@ import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 
 import AppReducer from './AppReducer';
+import ErrorReducer from './ErrorReducer';
 import AuthReducer from './AuthReducer';
 import DashboardClassesReducer from './DashboardClassesReducer';
 import DashboardAttendancesReducer from './DashboardAttendancesReducer';
@@ -38,8 +39,9 @@ import PaymentsReducer from './PaymentsReducer';
 const allReducers = combineReducers({
   auth: AuthReducer,
   routing: routerReducer,
+  error: ErrorReducer,
   app: AppReducer,
-  form: formReducer, 
+  form: formReducer,
   dashboardClasses: DashboardClassesReducer,
   dashboardAttendances: DashboardAttendancesReducer,
   dashboardMarks: DashboardMarksReducer,

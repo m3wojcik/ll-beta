@@ -1,15 +1,13 @@
-import {instance} from './config'
+import { CALL_API } from '../middleware/api'
 
-export function fetchClasses(groupId) {
-  console.log('fetchClasses',groupId);
-  return function(dispatch) {
-    dispatch({type: "FETCH_CLASSES", payload: groupId});
-    instance.get("?q=getClasses")
-      .then((response) => {
-        dispatch({type: "FETCH_CLASSES_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_CLASSES_REJECTED", payload: err})
-      })
+export function fetchClasses(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/classes',
+      types: ["FETCH_CLASSES", "FETCH_CLASSES_FULFILLED", "FETCH_CLASSES_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params:{...params}
+    }
   }
 }

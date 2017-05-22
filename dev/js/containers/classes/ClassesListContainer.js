@@ -20,12 +20,12 @@ export default class ClassesListContainer extends Component {
 
   componentDidMount(){
     const {groupId} = this.props;
-    this.props.dispatch(fetchClasses(groupId));
+    this.props.dispatch(fetchClasses({"group_id": groupId}));
   }
   componentWillReceiveProps(nextProps){
     const {groupId} = this.props;
     if(groupId != nextProps.groupId){
-      this.props.dispatch(fetchClasses(nextProps.groupId));
+      this.props.dispatch(fetchClasses({"group_id": nextProps.groupId}));
     }
   }
   handleClassClick = (classId, className) => {
@@ -38,7 +38,7 @@ export default class ClassesListContainer extends Component {
       return(<Loader full />)
     }
     return(
-      <Content expander noPadding>
+      <Content noPadding>
         <Classes
           classes={classes}
           onClassClick={this.handleClassClick}

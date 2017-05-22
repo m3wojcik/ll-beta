@@ -4,7 +4,6 @@ import {getWeek, getDaysDiference, addDays, getDay, isDateLowerThanToday} from '
 import CardWithHeader from './../helpers/CardWithHeader'
 import ClassItem from './ClassItem';
 import ListHeader from './../helpers/ListHeader';
-import ToolbarExpander from './../helpers/ToolbarExpander'
 
 
 export default class Classes extends Component {
@@ -109,13 +108,7 @@ export default class Classes extends Component {
     }
     return(
       <div>
-        <ToolbarExpander
-          left={<div>sdsd</div>}
-          right={<div>sdsd</div>}
-        />
-        <div className="expander-body">
           {outputClasses}
-        </div>
       </div>
     )
   }

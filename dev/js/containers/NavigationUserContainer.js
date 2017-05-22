@@ -6,8 +6,8 @@ export default class NavigationUserContainer extends Component {
   render(){
     const { userData } = this.props;
     let avatar;
-    if(userData.avatar != null){
-      avatar = <UserPhoto src={userData.avatar} />
+    if(userData.photo != null){
+      avatar = <UserPhoto src={userData.photo} />
     }else {
       avatar = <UserPhoto />
     }
@@ -19,7 +19,7 @@ export default class NavigationUserContainer extends Component {
         <div className="navigation-user-data">
           <div className="navigation-user-name">
             <Link to="profile">
-              {userData.firstName} {userData.lastName}
+              {userData.firstname} {userData.lastname}
             </Link>
           </div>
           <div className="navigation-user-login">

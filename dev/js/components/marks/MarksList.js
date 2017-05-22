@@ -13,15 +13,15 @@ export default class MarksList extends Component {
     const { marks,gradeType } = this.props;
     let usingWeight = false;
     marks.forEach(function(mark, i){
-      if(mark.weight != 1) usingWeight = true
+      if(mark.importance != 1) usingWeight = true
     })
     const mappedMarks = marks.map(function(mark , i){
       let secondaryText, statusProps;
       if(gradeType =="percent"){
-        let percent = (mark.value / mark.maxValue) * 100;
+        let percent = (mark.value / mark.max) * 100;
         statusProps = {
           blue: true,
-          label: mark.value +"/"+mark.maxValue,
+          label: mark.value +"/"+mark.max,
           value: percent
         }
       }else{
@@ -33,7 +33,7 @@ export default class MarksList extends Component {
       if(usingWeight){
         const listHorizontalElements = [
           <FormattedDate value={mark.date} day="numeric" month="numeric" year="numeric" />,
-          <div>weight: {mark.weight}</div>
+          <div>weight: {mark.importance}</div>
         ]
         secondaryText = <ListHorizontal elements={listHorizontalElements} />
       }else{

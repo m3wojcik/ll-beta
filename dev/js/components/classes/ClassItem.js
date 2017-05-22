@@ -11,10 +11,9 @@ import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 export default class ClassItem extends Component {
   render(){
     const { clas, inactive, onClassClick } = this.props;
-
-    const d = new Date(clas.date);
+    const d = new Date(clas.date +" "+ clas.time);
     const listHorizontalElements = [
-      <div><FormattedTime value={clas.date} /> - <FormattedTime value={(new Date(clas.date)).getTime() + (clas.length * 1000 * 60) }  /></div>
+      <div><FormattedTime value={d} /> - <FormattedTime value={(new Date(d)).getTime() + (clas.length * 1000 * 60) }  /></div>
     ]
     return(
         <CustomListItem
@@ -23,7 +22,7 @@ export default class ClassItem extends Component {
           onClick={onClassClick.bind(this,clas.id,clas.name)}
           leftIcon={<Avatar className="avatar-weekdays" icon={getShortDayName(d)} />}
           primaryText={<ListHorizontal elements={listHorizontalElements} />}
-          secondaryText={<FormattedDate value={clas.date} year='numeric' month='long' day='2-digit' />}
+          secondaryText={<FormattedDate value={d} year='numeric' month='long' day='2-digit' />}
           status={<ClassDetailsStatus status={clas.status} details={clas.details} />}
           clickable
         />

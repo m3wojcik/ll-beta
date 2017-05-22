@@ -53,7 +53,7 @@ export function postReserveElibraryObject(objectId, dateFrom, dateTo, callBack) 
           callBack();
         }
         if(response.data == "200"){
-          dispatch({type: "ADD_TOAST", payload: {"text": "Item reserved"}});
+          dispatch({type: "ADD_TOAST", payload: {"text": "Item reserved"}}); 
           dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_FULFILLED", payload: response.data});
         }else{
           dispatch({type: "ADD_TOAST", payload: {"text": "Item reservation fail"}});

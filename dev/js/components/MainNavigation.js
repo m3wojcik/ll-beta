@@ -18,51 +18,51 @@ export default class MainNavigation extends Component {
       const {appData , notifications} = this.props;
       let attendanceProps, marksProps, messagesProps, testsProps, filesProps, elibraryProps, surveysProps, paymentsProps;
       //ATENDANCE
-      if(notifications.newInAttendance && notifications.newInAttendance > 0){
+      if(notifications.newAttendance && notifications.newAttendance > 0){
         attendanceProps = {
-          rightIcon: <Label red label={notifications.newInAttendance} />
+          rightIcon: <Label red label={notifications.newAttendance} />
         }
       }
       //MARKS
-      if(notifications.newInMarks && notifications.newInMarks > 0){
+      if(notifications.newMarks && notifications.newMarks > 0){
         marksProps = {
-          rightIcon: <Label red label={notifications.newInMarks} />
+          rightIcon: <Label red label={notifications.newMarks} />
         }
       }
       //MESSAGES
-      if(notifications.newInMessages && notifications.newInMessages > 0){
+      if(notifications.newMessages && notifications.newMessages > 0){
         messagesProps = {
-          rightIcon: <Label red label={notifications.newInMessages} />
+          rightIcon: <Label red label={notifications.newMessages} />
         }
       }
       //FILES
-      if(notifications.newInFiles && notifications.newInFiles > 0){
+      if(notifications.newFiles && notifications.newFiles > 0){
         filesProps = {
-          rightIcon: <Label red label={notifications.newInFiles} />
+          rightIcon: <Label red label={notifications.newFiles} />
         }
       }
       //TESTS
-      if(notifications.newInTests && notifications.newInTests > 0){
+      if(notifications.newTests && notifications.newTests > 0){
         testsProps = {
-          rightIcon: <Label red label={notifications.newInTests} />
+          rightIcon: <Label red label={notifications.newTests} />
         }
       }
       //E-LIBRARY
-      if(notifications.newInElibrary && notifications.newInElibrary > 0){
+      if(notifications.newLibrary && notifications.newLibrary > 0){
         elibraryProps = {
-          rightIcon: <Label red label={notifications.newInElibrary} />
+          rightIcon: <Label red label={notifications.newLibrary} />
         }
       }
       //SURVEYS
-      if(notifications.newInSurveys && notifications.newInSurveys > 0){
+      if(notifications.newSurveys && notifications.newSurveys > 0){
         surveysProps = {
-          rightIcon: <Label red label={notifications.newInSurveys} />
+          rightIcon: <Label red label={notifications.newSurveys} />
         }
       }
       //PAYMENTS
-      if(notifications.newInPayments && notifications.newInPayments > 0){
+      if(notifications.newPayments && notifications.newPayments > 0){
         paymentsProps = {
-          rightIcon: <Label red label={notifications.newInPayments} />
+          rightIcon: <Label red label={notifications.newPayments} />
         }
       }
       return(

@@ -11,6 +11,7 @@ import CustomTabs from '../components/helpers/CustomTabs';
 @connect((store) => {
    return {
     userData: store.profile.userData,
+    saveUserData: store.profile.saveUserData,
     form: store.form.EditProfile,
     fetched: store.profile.fetched,
     fetching: store.profile.fetching
@@ -21,25 +22,15 @@ export default class EditProfileContainer extends Component {
     this.props.dispatch(fetchUserData());
   }
   handleSubmit = (values) =>{
-    console.log(values);
     const params = {
       email: values.email,
       phone: values.phone
     }
-    throw new SubmissionError({ email: 'Invalid email address', _error: 'Update profile failed!' })
-    //this.props.dispatch(saveUserData(params));
+    // throw new SubmissionError({ email: 'Invalid email address', _error: 'Update profile failed!' })
+    this.props.dispatch(saveUserData(params));
   }
   render(){
-    const { fetched, userData, form } = this.props;
-    let formError = {};
-    if(form){
-      if(form.error){
-        formError = {
-          error: form.error,
-          submitErrors: form.submitErrors
-        }
-      }
-    }
+    const { fetched, userData, form, saveUserData } = this.props;
     const tabs = [
       {"label": "Profile", "link": "profile", "active": false},
       {"label": "Edit profile", "link": "profile/edit", "active": true},
@@ -53,7 +44,7 @@ export default class EditProfileContainer extends Component {
       <Content>
           <CustomTabs tabs={tabs} />
           <section className="tab-pane">
-            <EditProfile userData={userData} onSubmit={this.handleSubmit} formError={formError} />
+            <EditProfile userData={userData} onSubmit={this.handleSubmit} saveUserData={saveUserData} />
           </section>
       </Content>
     )

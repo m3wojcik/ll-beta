@@ -23,15 +23,15 @@ export default class MarksData extends Component {
     marks.reverse();
     marks.forEach(function(mark,i){
       //Check if they use mark weight
-      if(mark.weight != 1) useWeight = true;
+      if(mark.importance != 1) useWeight = true;
 
       //Calculate average
       averageNom += Number(mark.value);
       average = averageNom / (i + 1);
 
       //Calculate weighted average
-      weightedAverageNom = weightedAverageNom + Number(mark.value) * mark.weight;
-      weightedAverageWeights += mark.weight;
+      weightedAverageNom = weightedAverageNom + Number(mark.value) * mark.importance;
+      weightedAverageWeights += mark.importance;
       weightedAverage = weightedAverageNom / weightedAverageWeights;
 
       //Prepare date format

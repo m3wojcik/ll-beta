@@ -1,14 +1,12 @@
-import {instance} from './config'
+import { CALL_API } from '../middleware/api'
 
 export function fetchDashboardClasses() {
-  return function(dispatch) {
-    dispatch({type: "FETCH_DASHBOARD_CLASSES", payload: true});
-    instance.get("?q=getClassesDashboard")
-      .then((response) => {
-        dispatch({type: "FETCH_DASHBOARD_CLASSES_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_DASHBOARD_CLASSES_REJECTED", payload: err})
-      })
+  return {
+    [CALL_API]: {
+      endpoint: '/classes',
+      types: ["FETCH_DASHBOARD_CLASSES", "FETCH_DASHBOARD_CLASSES_FULFILLED", "FETCH_DASHBOARD_CLASSES_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
   }
 }

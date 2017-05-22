@@ -1,21 +1,13 @@
-import {instance} from './config'
-
+import { CALL_API } from '../middleware/api'
 
 export function fetchAppData() {
-  return function(dispatch) {
-    dispatch({type: "FETCH_APP_DATA", payload: true});
-    instance.get("?q=getAppData")
-      .then((response) => {
-    //       console.log("response.data");
-    // console.log(response.status);
-    // console.log(response.statusText);
-    // console.log(response.headers);
-    // console.log(response.config);
-        dispatch({type: "FETCH_APP_DATA_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_APP_DATA_REJECTED", payload: err})
-      })
+  return {
+    [CALL_API]: {
+      endpoint: '/appData',
+      types: ["FETCH_APP_DATA", "FETCH_APP_DATA_FULFILLED", "FETCH_APP_DATA_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
   }
 }
 export function setAppSettings(settings) {
