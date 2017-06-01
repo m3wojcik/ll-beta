@@ -1,6 +1,7 @@
 import axios from 'axios';
 import querystring  from "query-string";
-const BASE_URL = 'https://test.langlion.com/api/'
+
+export const BASE_URL = 'https://test.langlion.com/api/'
 //const BASE_URL = 'http://api.local/'
 
 function callApi(endpoint, authenticated, params, method) {
@@ -62,7 +63,7 @@ export default store => next => action => {
   }
   let { endpoint, types, authenticated, params, method, successToast } = callAPI
   const [ requestType, successType, errorType ] = types
-  next({type:requestType});
+  next({type:requestType, payload: params});
   // Passing the authenticated boolean back in our data will let us distinguish between normal and secret quotes
   return callApi(endpoint, authenticated, params, method, successToast).then(
     response => {
@@ -74,6 +75,7 @@ export default store => next => action => {
       if(successToast){
          next({type: "ADD_TOAST", payload: successToast})
       }
+
     },
     error => {
       next({

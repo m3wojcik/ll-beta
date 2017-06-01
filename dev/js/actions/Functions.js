@@ -85,9 +85,19 @@ export function compareDates(date1, date2, precision) {
     }
     return Math.floor(result);
 }
+export function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
 export function getAppSettings(pathname){
   let settings = {};
-  console.log('path',pathname);
   switch (pathname) {
     case "":
       settings = {"header":"Dashboard", "hasTabs":false, "searchBtn": false}
@@ -106,6 +116,12 @@ export function getAppSettings(pathname){
       break;
     case "inbox":
       settings = {"header":"Inbox", "hasTabs":true, "searchBtn": true}
+      break;
+    case "sent":
+      settings = {"header":"Sent", "hasTabs":true, "searchBtn": true}
+      break;
+    case "trash":
+      settings = {"header":"Trash", "hasTabs":true, "searchBtn": true}
       break;
     case "createmessage":
       settings = {"header":"Create", "hasTabs":false, "searchBtn": false, backBtn: true, backPath: "inbox" }
@@ -145,6 +161,8 @@ export function getAppSettings(pathname){
         settings = {"header":"Survey", "hasTabs":true, "searchBtn": false}
       }else if(/^classDetails(\/.+|)/.test(pathname)){
         settings = {"hasTabs":false, "searchBtn": false, backBtn: true, backPath: "classes"}
+      }else if(/^message(\/.+|)/.test(pathname)){
+        settings = {"header":"Message", "hasTabs":false, backBtn: true, backPath: "inbox", "searchBtn": false}
       }
   }
   return settings;

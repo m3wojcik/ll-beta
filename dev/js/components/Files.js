@@ -12,23 +12,28 @@ import CustomCardTitle from './CustomCardTitle';
 
 export default class Files extends Component {
   render(){
-    const {path, files, goUpBtn, onBackClick, onClick, searchValue} = this.props;
-    const backId = path.length > 1 ? path[path.length - 2].id : null;
+    const {path, files, filesHeader, goUpBtn, onBackClick, onClick, searchValue} = this.props;
+    const backId = path && path.length > 1 ? path[path.length - 2].id : null;
     let fileHeader = false;
+    let filesHeaderText = "Files"
     let search = "";
     if(searchValue){
       search = searchValue.toLowerCase();
     }
+    if(filesHeader){
+      filesHeaderText = filesHeader
+    }
     let mappedFiles= [];
-    if(goUpBtn && path.length > 1){
-      console.log('goBack');
-      mappedFiles.push(<ListItem key="back-btn" onClick={onBackClick.bind(this, backId)} leftIcon={<FontIcon>keyboard_return</FontIcon>} primaryText=". . ." />)
+    if(goUpBtn && path){
+      if(path.length > 1){
+        mappedFiles.push(<ListItem key="back-btn" onClick={onBackClick.bind(this, backId)} leftIcon={<FontIcon>keyboard_return</FontIcon>} primaryText=". . ." />)
+      }
     }
     files.forEach(function(file, i){
       let fileName = file.name.toLowerCase();
       if(file.type != 'folder' && !fileHeader){
         fileHeader = true;
-        mappedFiles.push(<Subheader key="files" primaryText="Files" className="text-uppercase" />)
+        mappedFiles.push(<Subheader key="files" primaryText={filesHeaderText} className="text-uppercase" />)
       }
       if(fileName.indexOf(search) != -1){
          mappedFiles.push(
@@ -46,7 +51,7 @@ export default class Files extends Component {
         <List className="list-nopadding list-white list-dividers list-big file-list">
         {mappedFiles}
         </List>
-      
+
     )
   }
 }

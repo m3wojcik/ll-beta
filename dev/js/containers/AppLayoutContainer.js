@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
+import {push} from 'react-router-redux';
 import LayoutContainer from './LayoutContainer';
 import Loader from '../components/helpers/Loader'
 import Snackbar from 'react-md/lib/Snackbars';
 import {getAppSettings, getCleanPath} from '../actions/Functions';
 import { fetchAppData, setAppSettings } from "../actions/AppActions";
-import { addToast, removeToast } from "../actions/ToastsActions";
+import { removeToast } from "../actions/ToastsActions";
 
 @connect((store) => {
   return {
@@ -35,7 +36,6 @@ export default class AppLayoutContainer extends Component {
         let settings = getAppSettings(nextPath);
         this.props.dispatch(setAppSettings(settings));
       }
-
     }
     removeToast = () => {
       this.props.dispatch(removeToast());

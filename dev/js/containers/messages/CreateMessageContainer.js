@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-
-import { fetchAddressBook, updateReceivers, updateFiltredReceivers } from "../actions/CreateMessageActions";
 import { uniqBy } from 'lodash/array';
 import Autocomplete from 'react-md/lib/Autocompletes';
 import TextField from 'react-md/lib/TextFields'
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import ReceiverChips from '../components/ReceiverChips'
 import Divider from 'react-md/lib/Dividers';
 import ReactQuill from 'react-quill';
 import Button from 'react-md/lib/Buttons/Button';
-import Content from '../components/helpers/Content'
-import Loader from '../components/helpers/Loader'
-import '../../scss/quill.snow.scss';
+import { fetchAddressBook, updateReceivers, updateFiltredReceivers } from "../../actions/CreateMessageActions";
+
+import ReceiverChips from '../../components/ReceiverChips'
+
+import Content from '../../components/helpers/Content'
+import Loader from '../../components/helpers/Loader'
+import AddressBook from '../../components/messages/AddressBook'
+import '../../../scss/quill.snow.scss';
 
 @connect((store) => {
    return {
@@ -75,26 +76,28 @@ export default class CreateMessageContainer extends Component {
     }else if (forward) {
       subjectdefaultValue = 'Fwd: ' + message.subject;
     }
+    // <ReceiverChips receivers={receivers} remove={this.handleRemove.bind(this)} />
+    // <Autocomplete
+    //   paddedBlock
+    //   id="receivers"
+    //   label="Receivers"
+    //   data={filtredReceivers}
+    //   dataLabel="name"
+    //   onAutocomplete={this.addReceiver}
+    //   clearOnAutocomplete
+    // />
+    // <TextField
+    //   id="subject"
+    //   label="Subject"
+    //   defaultValue={subjectdefaultValue}
+    //   maxLength={80}
+    // />
+    // <ReactQuill theme="snow" value={this.state.message} />
+    // <Button raised primary label="Send" />
     return(
       <Content >
-        <ReceiverChips receivers={receivers} remove={this.handleRemove.bind(this)} />
-        <Autocomplete
-          paddedBlock
-          id="receivers"
-          label="Receivers"
-          data={filtredReceivers}
-          dataLabel="name"
-          onAutocomplete={this.addReceiver}
-          clearOnAutocomplete
-        />
-        <TextField
-          id="subject"
-          label="Subject"
-          defaultValue={subjectdefaultValue}
-          maxLength={80}
-        />
-        <ReactQuill theme="snow" value={this.state.message} />
-        <Button raised primary label="Send" />
+        <AddressBook data={addressBook} />
+
       </Content>
     )
   }

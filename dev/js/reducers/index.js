@@ -19,8 +19,7 @@ import ClassesReducer from './ClassesReducer';
 import ClassDetailsReducer from './ClassDetailsReducer';
 import MarksReducer from './MarksReducer';
 import AttendanceReducer from './AttendanceReducer';
-import InboxReducer from './InboxReducer';
-import MessageReducer from './MessageReducer';
+import MessagesReducer from './MessagesReducer';
 import CreateMessageReducer from './CreateMessageReducer';
 import FilesReducer from './FilesReducer';
 import TestsReducer from './TestsReducer';
@@ -56,8 +55,7 @@ const allReducers = combineReducers({
   classDetails: ClassDetailsReducer,
   marks: MarksReducer,
   attendance: AttendanceReducer,
-  inbox: InboxReducer,
-  message: MessageReducer,
+  messages: MessagesReducer,
   createMessage: CreateMessageReducer,
   files: FilesReducer,
   tests: TestsReducer,

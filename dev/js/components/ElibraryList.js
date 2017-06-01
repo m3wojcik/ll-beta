@@ -38,6 +38,7 @@ export default class ElibraryList extends Component {
             <CustomListItem
               key={item.id}
               clickable
+              expanderBreaks
               expander={expander}
               primaryText={item.title}
               status = {<ElibraryListStatus item={item} />}

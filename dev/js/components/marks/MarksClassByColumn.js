@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import {Legend} from 'react-easy-chart';
-
+import { dynamicSort } from "../../actions/Functions";
 import CircleProgressBar from '../helpers/CircleProgressBar';
 import ChartContainer from '../helpers/ChartContainer';
 import BarChartWrapper from '../helpers/BarChartWrapper';
 
 export default class MarksClassByColumn extends Component {
   render(){
-    const { marks, gradeType, title } = this.props;
+    const { marks, gradeType, title, weight, userValue } = this.props;
+    const sortedMarks = marks.sort(dynamicSort("value"))
     const legend = [
       {key: 'Your score', value:1},
       {key: 'Others', value:2},
@@ -19,10 +20,9 @@ export default class MarksClassByColumn extends Component {
       {color: '#21BA45'}
     ];
     const mappedMarks = [], lineData = [];
-    let yRange = [0,100], average = 0, averageNum = 0, averageDen = 0, averageLabel;
+    let yRange = [0,100], average = 0, averageNum = 0, averageDen = 0, averageLabel, findUser = false;
     if(gradeType!="percent") yRange = [0,6]
-
-    marks.map(function(mark , i){
+    sortedMarks.map(function(mark , i){
       let status, displayLabel;
       if(gradeType=="percent") displayLabel = mark.value+"%"
       else{
@@ -30,15 +30,17 @@ export default class MarksClassByColumn extends Component {
           displayLabel = mark.displayValue
         }else displayLabel = mark.value.toString()
       }
-      if(mark.user){
+      if(mark.value == userValue && !findUser){
+        findUser = true;
         status = {x: i, y: mark.value, color: "#2185D0", label: displayLabel}
       }else{
         status = {x: i, y: mark.value, color: "#eceff1", label:""}
       }
-      averageNum += (mark.value * mark.weight);
-      averageDen += mark.weight;
+      averageNum += (mark.value * weight);
+      averageDen += weight;
       mappedMarks.push(status)
-    });
+    }.bind(this));
+
     average = averageNum / averageDen
     if(gradeType=="percent"){
       averageLabel = average.toFixed() + "%";
@@ -46,6 +48,7 @@ export default class MarksClassByColumn extends Component {
       averageLabel = average.toFixed();
     }
     mappedMarks.push({x: marks.length, y: average, color: "#21BA45", label: averageLabel})
+
     return(
       <ChartContainer title={title}>
         <BarChartWrapper

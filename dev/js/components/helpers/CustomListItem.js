@@ -21,10 +21,10 @@ export default class CustomListItem extends Component {
     else this.setState({collapsed: true});
   }
   render(){
-    const { primaryText, rightIcon, secondaryText, bottomText, clickable, expander, status, leftIcon, inactive, onClick } = this.props;
+    const { primaryText, rightIcon, secondaryText, bottomText, clickable, expander, expanderBreaks, status, leftIcon, inactive, onClick } = this.props;
     let output, right, left, className, liClassName, expanderOutput, bottomOutput, onClickProp;
     className ="";
-    liClassName = "md-list-item";
+    liClassName = expanderBreaks ? "md-list-item custom-list-item" : "md-list-item"
     if(clickable){
       className+=" clickable"
       if(this.state.active){
@@ -63,7 +63,7 @@ export default class CustomListItem extends Component {
       }
     }
     return(
-      <li className={liClassName}>
+      <li className={this.state.collapsed ? liClassName : liClassName + " md-expansion-panel--expanded"}>
         <div {...onClickProp} onMouseOver={this.handleMouseOver} onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}  className={className}>
           <div className="md-list-body md-list-tile md-fake-button">
             {left}

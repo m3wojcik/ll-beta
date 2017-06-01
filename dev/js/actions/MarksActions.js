@@ -11,6 +11,17 @@ export function fetchMarks() {
     }
   }
 }
+export function fetchMarksClassByColumn(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/marksByColumn',
+      types: ["FETCH_MARKS_CLASS_BY_COLUMN", "FETCH_MARKS_CLASS_BY_COLUMN_FULFILLED", "FETCH_MARKS_CLASS_BY_COLUMN_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
 // export function fetchMarks() {
 //   return function(dispatch) {
 //     dispatch({type: "FETCH_MARKS", payload: true});
@@ -23,18 +34,18 @@ export function fetchMarks() {
 //       })
 //   }
 // }
-export function fetchMarksClassByColumn(columnId) {
-  return function(dispatch) {
-    dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN", payload: columnId});
-    instance.get("?q=getMarksClassByColumn"+"&id="+columnId)
-      .then((response) => {
-        dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN_REJECTED", payload: err})
-      })
-  }
-}
+// export function fetchMarksClassByColumn(columnId) {
+//   return function(dispatch) {
+//     dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN", payload: columnId});
+//     instance.get("?q=getMarksClassByColumn"+"&id="+columnId)
+//       .then((response) => {
+//         dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN_FULFILLED", payload: response.data});
+//       })
+//       .catch((err) => {
+//         dispatch({type: "FETCH_MARKS_CLASS_BY_COLUMN_REJECTED", payload: err})
+//       })
+//   }
+// }
 export function fetchMarksClassAverage(groupId) {
   return function(dispatch) {
     dispatch({type: "FETCH_MARKS_CLASS_AVERAGE", payload: groupId});

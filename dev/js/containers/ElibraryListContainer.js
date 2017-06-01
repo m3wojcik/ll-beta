@@ -4,7 +4,7 @@ import Dialog from 'react-md/lib/Dialogs';
 import Drawer from 'react-md/lib/Drawers';
 import { fetchElibraryList, fetchElibraryDetails, postCancelReservationElibraryObject, postReserveElibraryObject, setReserveElibraryObject } from "../actions/ElibraryListActions";
 import ElibraryList from '../components/ElibraryList'
-import CardWithHeader from '../components/helpers/CardWithHeader'
+import ListWithHeader from '../components/helpers/ListWithHeader'
 import Loader from '../components/helpers/Loader'
 import Content from '../components/helpers/Content'
 import DrawerHeader from '../components/helpers/DrawerHeader'
@@ -108,9 +108,9 @@ export default class ElibraryListContainer extends Component {
         elibraryList: borrowedList
       }
       output.push(
-        <CardWithHeader key="Borrowed" header="Borrowed">
+        <ListWithHeader key="Borrowed" header="Borrowed">
           <ElibraryList {...propsBorrowed} />
-        </CardWithHeader>
+        </ListWithHeader>
       )
     }
     if(reservedList.length > 0){
@@ -123,9 +123,9 @@ export default class ElibraryListContainer extends Component {
         elibraryList: reservedList
       }
       output.push(
-        <CardWithHeader key="Reserved" header="Reserved">
+        <ListWithHeader key="Reserved" header="Reserved">
           <ElibraryList {...propsReserved} />
-        </CardWithHeader>
+        </ListWithHeader>
       )
     }
     if(availableList.length > 0){
@@ -137,9 +137,9 @@ export default class ElibraryListContainer extends Component {
         elibraryList: availableList
       }
       output.push(
-        <CardWithHeader key="List" header="List">
+        <ListWithHeader key="List" header="List">
           <ElibraryList {...propsAvailable} />
-        </CardWithHeader>
+        </ListWithHeader>
       )
     }
     if(!fetched){

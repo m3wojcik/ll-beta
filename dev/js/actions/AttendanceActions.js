@@ -1,14 +1,12 @@
-import {instance} from './config'
+import { CALL_API } from '../middleware/api'
 
 export function fetchAttendance() {
-  return function(dispatch) {
-    dispatch({type: "FETCH_ATTENDANCE", payload: true});
-    instance.get("?q=getAttendance")
-      .then((response) => {
-        dispatch({type: "FETCH_ATTENDANCE_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_ATTENDANCE_REJECTED", payload: err})
-      })
+  return {
+    [CALL_API]: {
+      endpoint: '/attendance',
+      types: ["FETCH_ATTENDANCE", "FETCH_ATTENDANCE_FULFILLED", "FETCH_ATTENDANCE_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
   }
 }

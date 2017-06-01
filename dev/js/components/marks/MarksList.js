@@ -40,10 +40,10 @@ export default class MarksList extends Component {
         secondaryText = <FormattedDate value={mark.date} day="numeric" month="numeric" year="numeric" />
       }
       return (<CustomListItem
-        key={mark.columnId}
+        key={mark.mark_group_id}
         primaryText={mark.name}
         status={<Label {...statusProps}/>}
-        expander={<MarksClassByColumnContainer columnId={mark.columnId} title="Your score in class" />}
+        expander={<MarksClassByColumnContainer userValue={mark.value} columnId={mark.mark_group_id} title="Your score in class" />}
         secondaryText={secondaryText}
       />)
     });

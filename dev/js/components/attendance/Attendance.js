@@ -17,25 +17,25 @@ export default class Attendance extends Component {
     let attendancesInTime = [];
     const attendanceGroupsRows = attendance.map(function(group,i){
       return(
-        <li key={group.groupId}>
-          <Header header={group.groupName}  />
+        <li key={group.group_id}>
+          <Header header={group.group_name}  />
           <Box className="no-flex no-padding">
             <BoxTitle
               title="Attendance percent result"
               titleIcon={<FontIcon className="icon-olive">equalizer</FontIcon>}
             />
-            <ProgressBar title={group.attendance + "%"}  value={group.attendance} />
+          <ProgressBar title={Math.round(group.attendance) + "%"}  value={group.attendance} />
               <BoxTitle
                 title="Statuses"
                 titleIcon={<FontIcon className="icon-olive">dns</FontIcon>}
               />
-            <AttendanceStatuses attendance={group.statuses} />
-              
+            <AttendanceStatuses attendance={group.details} />
+
               <BoxTitle
                 title="Calendar"
                 titleIcon={<FontIcon className="icon-olive">event</FontIcon>}
               />
-            <AttendanceCalendar attendance={group.statuses} />
+            <AttendanceCalendar attendance={group.details} />
           </Box>
         </li>
       )

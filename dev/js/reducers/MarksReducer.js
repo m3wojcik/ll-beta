@@ -32,11 +32,12 @@ export default function reducer(state={
       }
       case "FETCH_MARKS_CLASS_BY_COLUMN_FULFILLED": {
         let newMarksClassByColumn =   state.marksClassByColumn.slice();
-        newMarksClassByColumn[action.payload.columnId] = {
-          columnId: action.payload.columnId,
-          name: action.payload.name,
-          gradeType: action.payload.gradeType,
-          marks: action.payload.marks,
+        newMarksClassByColumn[action.payload.marksByColumn.mark_group_id] = {
+          columnId: action.payload.marksByColumn.mark_group_id,
+          name: action.payload.marksByColumn.name,
+          gradeType: action.payload.marksByColumn.point_system_type,
+          weight: action.payload.marksByColumn.importance, 
+          marks: action.payload.marksByColumn.marks,
           fetching: false,
           fetched:true
         }

@@ -11,7 +11,7 @@ export default class Inboxtoolbar extends Component {
           </Button>
         </li>
         <li>
-          <Button flat label="Send" className="text-muted" onClick={this.props.onSendClick}>
+          <Button flat label="Sent" className="text-muted" onClick={this.props.onSendClick}>
             send
           </Button>
         </li>
