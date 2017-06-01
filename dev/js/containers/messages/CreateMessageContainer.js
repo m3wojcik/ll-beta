@@ -12,7 +12,7 @@ import ReceiverChips from '../../components/ReceiverChips'
 
 import Content from '../../components/helpers/Content'
 import Loader from '../../components/helpers/Loader'
-import AddressBook from '../../components/messages/AddressBook'
+import AddressBookContainer from './AddressBookContainer'
 import '../../../scss/quill.snow.scss';
 
 @connect((store) => {
@@ -34,15 +34,15 @@ export default class CreateMessageContainer extends Component {
   }
   componentDidMount(){
 
-    this.props.dispatch(fetchAddressBook(function(){
-      this.setState({addressBook: this.props.addressBook});
-      if (this.props.reply) {
-        this.addReceiverById(this.props.message.senderId);
-        this.setState({message: '<br /><br />' + this.props.message.sender + ' wrote: <br />' + this.props.message.message})
-      }else if(this.props.forward){
-        this.setState({message: '<br /><br />' + this.props.message.sender + ' wrote: <br />' + this.props.message.message})
-      }
-    }.bind(this)));
+    // this.props.dispatch(fetchAddressBook(function(){
+    //   this.setState({addressBook: this.props.addressBook});
+    //   if (this.props.reply) {
+    //     this.addReceiverById(this.props.message.senderId);
+    //     this.setState({message: '<br /><br />' + this.props.message.sender + ' wrote: <br />' + this.props.message.message})
+    //   }else if(this.props.forward){
+    //     this.setState({message: '<br /><br />' + this.props.message.sender + ' wrote: <br />' + this.props.message.message})
+    //   }
+    // }.bind(this)));
   }
   addReceiver(receiver, receiverIndex, receivers){
     const { addressBook } = this.state;
@@ -63,10 +63,6 @@ export default class CreateMessageContainer extends Component {
     const { fetched, reply, forward, message } = this.props;
     const { addressBook } = this.state;
     let subjectdefaultValue =''
-    if(!fetched){
-      return(<Loader full key="loader" />
-      )
-    }
     let filtredReceivers = [], receivers = [];
     for(var key in addressBook){
       addressBook[key].isSelected ? receivers.push({"name": addressBook[key].name,"id": addressBook[key].id}) :  filtredReceivers.push({"name": addressBook[key].name,"id": addressBook[key].id})
@@ -96,8 +92,7 @@ export default class CreateMessageContainer extends Component {
     // <Button raised primary label="Send" />
     return(
       <Content >
-        <AddressBook data={addressBook} />
-
+        <AddressBookContainer />
       </Content>
     )
   }

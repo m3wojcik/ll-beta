@@ -3,28 +3,29 @@ import Button from 'react-md/lib/Buttons/Button';
 import AddressBookListElement from './AddressBookListElement'
 
 export default class AddressBook extends Component {
-  handleLabelClick = (label) =>{
-    console.log('click',label);
-  }
-  renderTree = (data) =>{
+  renderTree = (data, parentCnt) =>{
+    const {onElementClick} = this.props
     const lastElement = data.length - 1
-    let treeNode = data.map(function(element, i){
-      let node = null, renderdElement
+    let treeNode = data.map(function(element, cnt){
+      element.path = parentCnt != null ? parentCnt +", " + cnt : cnt
+      let node = null, renderdElement, checked = false
       if(element.contacts){
-        node = this.renderTree(element.contacts)
+        node = this.renderTree(element.contacts, element.path)
       }
+      if(element.checked) checked = true
       return <AddressBookListElement
-        onlabelClick={this.handleLabelClick.bind(this, element.label)}
-        key={i} label={element.label}
+        onElementClick={onElementClick.bind(this,element)}
+        checked={checked}
+        key={cnt} label={element.label}
         node={node} />
     }.bind(this))
     return <ul>{treeNode}</ul>
   }
   render(){
     const {data} = this.props
-    let output = this.renderTree(data)
+    let output = data ? this.renderTree(data, null) : null
     return(
-      <div>
+      <div className="address-book">
         {output}
       </div>
     )

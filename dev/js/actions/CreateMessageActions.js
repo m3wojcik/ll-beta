@@ -1,13 +1,12 @@
 import {instance} from './config'
 import { CALL_API } from '../middleware/api'
 
-export function fetchAddressBook(callBack) {
+export function fetchAddressBook() {
   return function(dispatch) {
       dispatch({type: "FETCH_ADDRESS_BOOK", payload: true});
     instance.get("?q=getAddressBook2")
       .then((response) => {
         dispatch({type: "FETCH_ADDRESS_BOOK_FULFILLED", payload: response.data});
-        callBack();
       })
       .catch((err) => {
         dispatch({type: "FETCH_ADDRESS_BOOK_REJECTED", payload: err})

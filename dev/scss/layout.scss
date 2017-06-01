@@ -1666,6 +1666,28 @@ ul.card-list > li{
     border-radius: 3px;
   }
 }
+/* Address book
+------------------------------------------------------------------------------*/
+.address-book{
+  ul{
+    list-style: none;
+    padding: 0px;
+    margin: 0px 0px 0px 30px;
+  }
+  .list-tree-element{
+    list-style: none;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    height: 42px;
+  }
+  .list-tree-element:first-child{
+    // border-top: 1px solid #e8e8e8;
+  }
+  .list-tree-element:last-child{
+    // border-bottom: 1px solid #e8e8e8;
+  }
+}
+
 /*CircularProgressbar
 ------------------------------------------------------------------------------*/
 .progress-tiny {
