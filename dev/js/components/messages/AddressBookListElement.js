@@ -9,7 +9,7 @@ export default class AddressBookListElement extends Component {
       <li>
         <div className="list-tree-element" >
         <Checkbox
-          id="c"
+          id={label}
           name={label}
           label={label}
           onChange={onElementClick.bind(this)}
