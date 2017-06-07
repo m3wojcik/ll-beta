@@ -15,6 +15,7 @@ export default class AddressBook extends Component {
         node = this.renderTree(element.contacts, path)
       }
       if(element.checked) checked = true
+      console.log(element);
       return <AddressBookListElement
         onElementClick={onElementClick.bind(this,element)}
         checked={checked}

@@ -25,11 +25,12 @@ export default class AddressBookContainer extends Component {
       this.setState({addressBook: nextProps.addressBook})
     }
   }
-  deleteReceiver = (array, id) =>{
-    const filtredArray = array.filter(function(el) {
+  deleteReceiver = (id) =>{
+    const {receivers} = this.state
+    const filtredArray = receivers.filter(function(el) {
         return el.id !== id;
     });
-    return filtredArray
+    this.setState({receivers: filtredArray})
   }
   toggleChildren = (book, checked) =>{
     const {receivers} = this.state
@@ -38,7 +39,7 @@ export default class AddressBookContainer extends Component {
         this.toggleChildren(element.contacts, checked)
       }else{
         if(checked) receivers.push(element)
-        //TODO
+        else console.warn('deleteElement', element);
       }
       element.checked = checked
       return element
@@ -47,7 +48,6 @@ export default class AddressBookContainer extends Component {
   }
   handleElementClick = (element) =>{
     const {addressBook, receivers} = this.state
-    let tmpReceivers = receivers;
     let tmp = addressBook[element.path[0]], cnt = 1;
     while(element.path[cnt] !== undefined) {
       tmp = tmp.contacts[element.path[cnt]];
@@ -56,18 +56,18 @@ export default class AddressBookContainer extends Component {
     if(tmp.checked){
       tmp.checked = false
       if(tmp.contacts) tmp.contacts = this.toggleChildren(tmp.contacts, false)
-      else tmpReceivers = this.deleteReceiver(tmpReceivers, element.id)
+      else this.deleteReceiver(element.id)
     }else {
       tmp.checked = true
       if(tmp.contacts) tmp.contacts = this.toggleChildren(tmp.contacts, true)
       else receivers.push(element)
     }
-    console.log('receivers', tmpReceivers);
-    this.setState({receivers: tmpReceivers})
+  //  this.setState({receivers: tmpReceivers})
     this.setState({addressBook: addressBook})
   }
   render(){
     const {addressBook, fetched} = this.props
+    console.log('receivers', this.state.receivers);
     if(!fetched){
       return(<Loader full key="loader" />
       )
