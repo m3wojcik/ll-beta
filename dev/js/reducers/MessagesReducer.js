@@ -29,6 +29,17 @@ export default function reducer(state={
     restored: false,
     restoring: false,
     error: null,
+  },
+  createMessage: {
+    addressBook: [],
+    receivers: [],
+    message: null,
+    fetching: false,
+    fetched: false,
+    reply : false,
+    forward : false,
+    delete : false,
+    error: null
   }
   }, action) {
 
@@ -151,7 +162,39 @@ export default function reducer(state={
             }
           }
         }
-
+      }
+      case "FETCH_ADDRESS_BOOK": {
+        return {...state, createMessage: {...state.createMessage, fetching: true, fetched: false}}
+      }
+      case "FETCH_ADDRESS_BOOK_REJECTED": {
+        return {...state, createMessage: {...state.createMessage, fetching: false, error: action.payload}}
+      }
+      case "FETCH_ADDRESS_BOOK_FULFILLED": {
+        return {
+          ...state,
+          createMessage: {
+            ...state.createMessage,
+            fetching: false,
+            fetched: true,
+            addressBook: action.payload
+          }
+        }
+      }
+      case "UPDATE_ADDRESSBOOK": {
+        return {...state,
+          createMessage: {
+            ...state.createMessage,
+            addressBook: action.payload
+          }
+        }
+      }
+      case "UPDATE_RECEIVERS": {
+        return {...state,
+          createMessage: {
+            ...state.createMessage,
+            receivers: action.payload
+          }
+        }
       }
     }
     return state

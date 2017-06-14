@@ -68,3 +68,33 @@ export function restoreMessage(params) {
     }
   }
 }
+// export function fetchAddressBook() {
+//   return {
+//     [CALL_API]: {
+//       endpoint: '/addressBook',
+//       types: ["FETCH_ADDRESS_BOOK", "FETCH_ADDRESS_BOOK_FULFILLED", "FETCH_ADDRESS_BOOK_REJECTED"],
+//       authenticated: true,
+//       method: 'get'
+//     }
+//   }
+// }
+
+import {instance} from './config'
+export function fetchAddressBook() {
+  return function(dispatch) {
+      dispatch({type: "FETCH_ADDRESS_BOOK", payload: true});
+    instance.get("?q=getAddressBook2")
+      .then((response) => {
+        dispatch({type: "FETCH_ADDRESS_BOOK_FULFILLED", payload: response.data});
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_ADDRESS_BOOK_REJECTED", payload: err})
+      })
+  }
+}
+export function updateReceivers(receivers) {
+    return {type: "UPDATE_RECEIVERS", payload: receivers};
+}
+export function updateAddressBook(addressBook) {
+    return {type: "UPDATE_ADDRESSBOOK", payload: addressBook};
+}

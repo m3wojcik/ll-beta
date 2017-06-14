@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
+import TextField from 'react-md/lib/TextFields';
 import AddressBookListElement from './AddressBookListElement'
 
 export default class AddressBook extends Component {
@@ -7,28 +8,34 @@ export default class AddressBook extends Component {
     const {onElementClick} = this.props
     const lastElement = data.length - 1
     let treeNode = data.map(function(element, cnt){
-      let path = parentPath === null ? [] : parentPath.slice();
+      let path = parentPath === null ? [] : parentPath.slice()
+      let node = null, display
       path.push(cnt)
       element.path = path
-      let node = null, renderdElement, checked = false
-      if(element.contacts){
-        node = this.renderTree(element.contacts, path)
-      }
-      if(element.checked) checked = true
-      console.log(element);
+      if(element.contacts) node = this.renderTree(element.contacts, path)
       return <AddressBookListElement
-        onElementClick={onElementClick.bind(this,element)}
-        checked={checked}
-        key={cnt} label={element.label}
-        node={node} />
+          onElementClick={onElementClick.bind(this,element)}
+          checked={element.checked}
+          key={cnt}
+          display={element.display}
+          label={element.label}
+          node={node} />
+
     }.bind(this))
     return <ul>{treeNode}</ul>
   }
   render(){
-    const {data} = this.props
+    const {data, search, onSearchChange} = this.props
     let output = data ? this.renderTree(data, null) : null
     return(
       <div className="address-book">
+        <TextField
+          onChange={onSearchChange}
+              placeholder="search"
+              customSize="title"
+              lineDirection="right"
+              value={search}
+            />
         {output}
       </div>
     )

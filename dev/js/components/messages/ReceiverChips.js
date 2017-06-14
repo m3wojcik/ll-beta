@@ -4,15 +4,15 @@ import Chip from 'react-md/lib/Chips';
 
 export default class ReceiverChips extends Component {
   render(){
-     const { receivers, remove } = this.props;
-     const chips = receivers.map(
+     const { receivers, removeChip } = this.props;
+     const chips = receivers.reverse().map(
        (receiver, i) => (
          <li key={receiver.id}>
            <Chip
-             label={receiver.name}
-             onClick={remove.bind(this,i,receiver.id)}
+             label={receiver.label}
+             onClick={removeChip.bind(this, receiver)}
              removable
-             avatar={<Avatar random>{receiver.name.charAt(0)}</Avatar>}
+             avatar={<Avatar >{receiver.label.charAt(0)}</Avatar>}
            />
          </li>
      ));

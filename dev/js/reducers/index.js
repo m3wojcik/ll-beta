@@ -20,7 +20,6 @@ import ClassDetailsReducer from './ClassDetailsReducer';
 import MarksReducer from './MarksReducer';
 import AttendanceReducer from './AttendanceReducer';
 import MessagesReducer from './MessagesReducer';
-import CreateMessageReducer from './CreateMessageReducer';
 import FilesReducer from './FilesReducer';
 import TestsReducer from './TestsReducer';
 import TestReducer from './TestReducer';
@@ -56,7 +55,6 @@ const allReducers = combineReducers({
   marks: MarksReducer,
   attendance: AttendanceReducer,
   messages: MessagesReducer,
-  createMessage: CreateMessageReducer,
   files: FilesReducer,
   tests: TestsReducer,
   test: TestReducer,
