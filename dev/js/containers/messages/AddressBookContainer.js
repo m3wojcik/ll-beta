@@ -3,12 +3,13 @@ import Button from 'react-md/lib/Buttons/Button';
 import { connect } from "react-redux";
 import { fetchAddressBook, updateAddressBook, updateReceivers } from "../../actions/MessagesActions";
 import AddressBook from '../../components/messages/AddressBook'
+import ReceiverChips from '../../components/messages/ReceiverChips'
 import Loader from '../../components/helpers/Loader'
 
 @connect((store) => {
    return {
      addressBook: store.messages.createMessage.addressBook,
-     receivers: store.messages.createMessage.receivers,
+     receivers: store.messages.sendMessage.receivers,
      fetched: store.messages.createMessage.fetched,
      fetching: store.messages.createMessage.fetching
   };
@@ -16,7 +17,7 @@ import Loader from '../../components/helpers/Loader'
 export default class AddressBookContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = { addressBook: [], search: ""};
+    this.state = { addressBook: [], search: "", addressBookOpen: false};
   }
   componentDidMount(){
     this.props.dispatch(fetchAddressBook());
@@ -125,29 +126,70 @@ export default class AddressBookContainer extends Component {
     })
 
   }
-  handleSearchChange = (value) =>{
+  handleSearchChange = (event) =>{
+    this.searchBook(event.target.value)
+  }
+  searchBook = (searchValue) =>{
     const {addressBook} = this.props
-    const search = value.toLowerCase()
+    const search = searchValue.toLowerCase()
     const results = this.searchTree(addressBook, search)
     this.buildAddressBook(results)
     this.setState({
-      "search": value
+      "search": searchValue
     });
   }
+  handleRemoveChip = (receiver) =>{
+    const { addressBook, receivers }  = this.props
+    let tmpNode = addressBook, cnt = 0
+    //Remove receiver from receivers table
+    let tmpReceivers = receivers.filter(function(el) {
+        if(el.id != receiver.id) return el
+    })
+    while(receiver.path[cnt] !== undefined) {
+      if(tmpNode[receiver.path[cnt]].contacts) tmpNode = tmpNode[receiver.path[cnt]].contacts
+      else tmpNode[receiver.path[cnt]].checked = false
+      cnt++
+    }
+    this.props.dispatch(updateReceivers(tmpReceivers));
+  }
+  handleToggleBook = (target) =>{
+    const {addressBookOpen} = this.state
+    if(!addressBookOpen){
+      this.searchInput.focus()
+      this.setState({"addressBookOpen": true})
+    }else if(target == 'list'){
+      this.searchInput.focus()
+    }else{
+      this.searchBook("");
+      this.setState({"addressBookOpen": false})
+    }
+  }
   render(){
-    const {addressBook, fetched} = this.props
-    const {search} = this.state
+    const {addressBook, fetched, receivers} = this.props
+    const {search, addressBookOpen} = this.state
     if(!fetched){
       return(<Loader full key="loader" />
       )
     }
     return(
-      <AddressBook
-        search={search}
-        onSearchChange={this.handleSearchChange}
-        data={this.state.addressBook}
-        onElementClick={this.handleElementClick}
-        />
+
+      <div className={addressBookOpen == true ? "address-book-list md-paper--1 address-book-list-open" : "address-book-list"}>
+        <ReceiverChips
+          receivers={receivers}
+          removeChip={this.handleRemoveChip}
+          search={search}
+          onSearchChange={this.handleSearchChange}
+          toggleBook={this.handleToggleBook}
+          searchRef={el => this.searchInput = el}
+          open={addressBookOpen}
+          />
+        <AddressBook
+          open={addressBookOpen}
+          data={this.state.addressBook}
+          onElementClick={this.handleElementClick}
+          />
+      </div>
+
     )
   }
 }

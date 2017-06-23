@@ -32,7 +32,6 @@ export default function reducer(state={
   },
   createMessage: {
     addressBook: [],
-    receivers: [],
     message: null,
     fetching: false,
     fetched: false,
@@ -40,7 +39,15 @@ export default function reducer(state={
     forward : false,
     delete : false,
     error: null
-  }
+  },
+  sendMessage:{
+    receivers: [],
+    message: null,
+    fetching: false,
+    fetched: false,
+    error: null
+  },
+  feedback: []
   }, action) {
 
     switch (action.type) {
@@ -190,10 +197,40 @@ export default function reducer(state={
       }
       case "UPDATE_RECEIVERS": {
         return {...state,
-          createMessage: {
-            ...state.createMessage,
+          sendMessage: {
+            ...state.sendMessage,
             receivers: action.payload
           }
+        }
+      }
+      case "SEND_MESSAGE": {
+        return {...state, sendMessage: {...state.sendMessage, fetching: true, fetched: false}}
+      }
+      case "SEND_MESSAGE_REJECTED": {
+        return {...state, sendMessage: {...state.sendMessage, fetching: false, error: action.payload}}
+      }
+      case "SEND_MESSAGE_FULFILLED": {
+        return {
+          ...state,
+          sendMessage: {
+            ...state.sendMessage,
+            fetching: false,
+            fetched: true,
+            message: action.payload
+          }
+        }
+      }
+      case "ADD_FEEDBACK": {
+        let tmpFeedback = state.feedback.slice()
+        tmpFeedback.push(action.payload)
+        return {...state,
+          feedback: tmpFeedback
+        }
+      }
+      case "REMOVE_FEEDBACK": {
+        const [, ...feedback] = state.feedback;
+        return {...state,
+          feedback: feedback
         }
       }
     }

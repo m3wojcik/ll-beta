@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
-import { fetchInboxMessages } from "../../actions/MessagesActions";
+import { fetchInboxMessages, removeFeedback } from "../../actions/MessagesActions";
 import { addToast } from "../../actions/ToastsActions";
 import { createNewMessageBtnClick } from "../../actions/CreateMessageActions";
 import Loader from '../../components/helpers/Loader'
@@ -20,7 +20,9 @@ import ToolbarExpander from '../../components/helpers/ToolbarExpander';
     fetched: store.messages.inbox.fetched,
     fetching: store.messages.inbox.fetching,
     singleMessage: store.messages.singleMessage,
-    deleteMessage: store.messages.deleteMessage
+    deleteMessage: store.messages.deleteMessage,
+    sendMessage: store.messages.sendMessage,
+    feedback: store.messages.feedback
   };
 })
 export default class InboxContainer extends Component {
@@ -28,17 +30,26 @@ export default class InboxContainer extends Component {
     super(props);
   }
   componentDidMount(){
+    const {feedback} = this.props
     this.props.dispatch(fetchInboxMessages());
+    //TODO
+    if(feedback.length > 0){
+      console.log('feedback',feedback);
+      this.props.dispatch(addToast(feedback[feedback.length - 1]))
+      this.props.dispatch(removeFeedback());
+    }
   }
   componentWillReceiveProps(nextProps){
-    const {singleMessage, deleteMessage} = this.props
+    const {singleMessage, deleteMessage, feedback} = this.props
     if(singleMessage.message != null){
       const propsRestored = deleteMessage.restored
       const nextRestored = nextProps.deleteMessage.restored
       if(nextRestored && propsRestored != nextRestored){
-        this.props.dispatch(addToast("Message restored"));
+        this.props.dispatch(addToast("Message restored"))
       }
     }
+
+
   }
   handleClick = (messageId) => {
     this.props.dispatch(push('message/' + messageId));

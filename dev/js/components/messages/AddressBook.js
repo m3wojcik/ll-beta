@@ -25,17 +25,10 @@ export default class AddressBook extends Component {
     return <ul>{treeNode}</ul>
   }
   render(){
-    const {data, search, onSearchChange} = this.props
+    const {data, open} = this.props
     let output = data ? this.renderTree(data, null) : null
     return(
-      <div className="address-book">
-        <TextField
-          onChange={onSearchChange}
-              placeholder="search"
-              customSize="title"
-              lineDirection="right"
-              value={search}
-            />
+      <div className={open ? "address-book address-book-open" : "address-book address-book-closed" }>
         {output}
       </div>
     )

@@ -33,8 +33,8 @@ export default class MessageContainer extends Component {
       this.props.dispatch(addToast("Message deleted",{"label":"undo","onClick": this.handleRestoreMessage.bind(this,next)}));
     }
     if(next.restored && props.restored != next.restored){
-      this.props.dispatch(push("inbox"));
       this.props.dispatch(addToast("Message restored"));
+      this.props.dispatch(push("inbox"));
     }
   }
   handleReplayBtnClick = (message) => {

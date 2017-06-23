@@ -37,7 +37,7 @@ export default class AppLayoutContainer extends Component {
         this.props.dispatch(setAppSettings(settings));
       }
     }
-    removeToast = () => {
+    handleRemoveToast = () => {
       this.props.dispatch(removeToast());
     }
     render(){
@@ -46,14 +46,14 @@ export default class AppLayoutContainer extends Component {
       if(!appData.fetched){
         return(
           <div>
-            <Snackbar {...toasts} onDismiss={this.removeToast} />
+            <Snackbar {...toasts} onDismiss={this.handleRemoveToast} />
             <Loader fullPage />
           </div>
         )
       }
       return(
         <div>
-          <Snackbar {...toasts} onDismiss={this.removeToast} />
+          <Snackbar {...toasts} onDismiss={this.handleRemoveToast} />
           <LayoutContainer
             header={header}
             content={this.props.children}

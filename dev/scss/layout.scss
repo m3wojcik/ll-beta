@@ -1668,6 +1668,16 @@ ul.card-list > li{
 }
 /* Address book
 ------------------------------------------------------------------------------*/
+.address-book-list{
+  background: #FFFFFF;
+  border: 1px solid #dfe1e4;
+  border-radius:0.28571429rem;
+
+}
+.address-book-list.address-book-list-open{
+  border-color: #85B7D9;
+    padding-bottom: 10px;
+}
 .address-book{
   ul{
     list-style: none;
@@ -1676,7 +1686,6 @@ ul.card-list > li{
   }
   .list-tree-element{
     list-style: none;
-    background-color: #fff;
     border-bottom: 1px solid #e5e5e5;
     height: 42px;
   }
@@ -1689,6 +1698,37 @@ ul.card-list > li{
 }
 .address-book > ul{
   margin-left: 0px;
+}
+.address-book.address-book-closed{
+  display: none;
+}
+/* Chips list
+------------------------------------------------------------------------------*/
+.chips-list-wrapper{
+  position: relative;
+  color: rgba(0, 0, 0, 0.87);
+  padding-right: 30px;
+  .chips-list-toggle-btn{
+    position: absolute;
+    right: -5px;
+    top: -5px;
+  }
+}
+ul.chips-list{
+
+  padding: 5px 5px 0px;
+  box-sizing: border-box;
+  min-height: 36px;
+  li{
+    input[type="text"].search-input{
+      height: 20px;
+      padding: 0px;
+      width: 1em;
+      box-sizing: border-box;
+      height: 26px;
+      border: none;
+    }
+  }
 }
 /*CircularProgressbar
 ------------------------------------------------------------------------------*/

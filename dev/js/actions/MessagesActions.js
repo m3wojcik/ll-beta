@@ -68,27 +68,40 @@ export function restoreMessage(params) {
     }
   }
 }
-// export function fetchAddressBook() {
-//   return {
-//     [CALL_API]: {
-//       endpoint: '/addressBook',
-//       types: ["FETCH_ADDRESS_BOOK", "FETCH_ADDRESS_BOOK_FULFILLED", "FETCH_ADDRESS_BOOK_REJECTED"],
-//       authenticated: true,
-//       method: 'get'
-//     }
-//   }
-// }
+export function fetchAddressBook() {
+  return {
+    [CALL_API]: {
+      endpoint: '/addressBook',
+      types: ["FETCH_ADDRESS_BOOK", "FETCH_ADDRESS_BOOK_FULFILLED", "FETCH_ADDRESS_BOOK_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
+  }
+}
 
 import {instance} from './config'
-export function fetchAddressBook() {
+// export function fetchAddressBook() {
+//   return function(dispatch) {
+//       dispatch({type: "FETCH_ADDRESS_BOOK", payload: true});
+//     instance.get("?q=getAddressBook2")
+//       .then((response) => {
+//         dispatch({type: "FETCH_ADDRESS_BOOK_FULFILLED", payload: response.data});
+//       })
+//       .catch((err) => {
+//         dispatch({type: "FETCH_ADDRESS_BOOK_REJECTED", payload: err})
+//       })
+//   }
+// }
+export function sendMessage(params) {
   return function(dispatch) {
-      dispatch({type: "FETCH_ADDRESS_BOOK", payload: true});
-    instance.get("?q=getAddressBook2")
+      dispatch({type: "SEND_MESSAGE", payload: true});
+      instance.get("?q=sendMessage&"+"params="+params)
       .then((response) => {
-        dispatch({type: "FETCH_ADDRESS_BOOK_FULFILLED", payload: response.data});
+        console.log("send", params);
+        dispatch({type: "SEND_MESSAGE_FULFILLED", payload: response.data});
       })
       .catch((err) => {
-        dispatch({type: "FETCH_ADDRESS_BOOK_REJECTED", payload: err})
+        dispatch({type: "SEND_MESSAGE_REJECTED", payload: err})
       })
   }
 }
@@ -97,4 +110,10 @@ export function updateReceivers(receivers) {
 }
 export function updateAddressBook(addressBook) {
     return {type: "UPDATE_ADDRESSBOOK", payload: addressBook};
+}
+export function addFeedback(object) {
+    return {type: "ADD_FEEDBACK", payload: object};
+}
+export function removeFeedback() {
+  return {type: 'REMOVE_FEEDBACK',payload: true}
 }
