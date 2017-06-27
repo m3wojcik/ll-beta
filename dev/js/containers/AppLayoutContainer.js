@@ -21,7 +21,6 @@ import { removeToast } from "../actions/ToastsActions";
 })
 export default class AppLayoutContainer extends Component {
     componentDidMount(){
-      console.log('fetch app data');
       const { routing } = this.props;
       const currentPath = getCleanPath(routing.locationBeforeTransitions.pathname);
       this.props.dispatch(fetchAppData());

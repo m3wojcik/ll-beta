@@ -25,11 +25,9 @@ export default class LayoutContainer extends Component {
           includeDrawerHeader
           drawerChildren = {<div className="navigation-body"><MainNavigation /><MainLogo /></div>}
           drawerHeaderChildren={<NavigationUserContainer userData={appData.user} />}
-
           mobileDrawerType={NavigationDrawer.DrawerTypes.TEMPORARY}
           tabletDrawerType={NavigationDrawer.DrawerTypes.PERSISTENT}
           desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
-
           toolbarThemeType="themed"
           toolbarTitleClassName="toolbar-title"
           toolbarChildren={<ToolbarContainer />}

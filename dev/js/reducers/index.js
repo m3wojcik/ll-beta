@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
+import { snackbarReducer } from 'react-redux-snackbar';
 
 import AppReducer from './AppReducer';
 import ErrorReducer from './ErrorReducer';
@@ -64,6 +65,7 @@ const allReducers = combineReducers({
   elibraryList: ElibraryListReducer,
   elibraryDetails: ElibraryDetailsReducer,
   toasts: ToastsReducer,
+  snackbar: snackbarReducer,
   surveys: SurveysReducer,
   survey: SurveyReducer,
   surveyView: SurveyViewReducer,
