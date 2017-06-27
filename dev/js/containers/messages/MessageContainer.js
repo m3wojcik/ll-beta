@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import { setAppSettings } from "../../actions/AppActions";
-import { addToast } from "../../actions/ToastsActions";
+import { showSnack } from 'react-redux-snackbar';
+
 import { fetchMessage, deleteMessage, restoreMessage } from "../../actions/MessagesActions";
 import {BASE_URL} from "../../middleware/api"
 import Loader from '../../components/helpers/Loader'
@@ -19,7 +19,6 @@ import Message from '../../components/messages/Message';
 })
 export default class MessageContainer extends Component {
   componentDidMount(){
-    //this.props.dispatch(setAppSettings({header: 'Inbox', hasTabs: false}));
     this.props.dispatch(fetchMessage({"id": this.props.params.messageId, "mark_as_read": true}));
   }
   componentWillReceiveProps(nextProps){
@@ -30,10 +29,10 @@ export default class MessageContainer extends Component {
       if(singleMessage.message.mailbox !="trash"){
         this.props.dispatch(push("inbox"));
       }else this.props.dispatch(push("trash"));
-      this.props.dispatch(addToast("Message deleted",{"label":"undo","onClick": this.handleRestoreMessage.bind(this,next)}));
+      this.props.dispatch(showSnack('message_deleted', {label: 'Message deleted', timeout: 3000, button:{label: "UNDO", action: this.handleRestoreMessage.bind(this,next)}}));
     }
     if(next.restored && props.restored != next.restored){
-      this.props.dispatch(addToast("Message restored"));
+      this.props.dispatch(showSnack('message_restored', {label: 'Message restored', timeout: 3000}));
       this.props.dispatch(push("inbox"));
     }
   }

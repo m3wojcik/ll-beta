@@ -111,9 +111,3 @@ export function updateReceivers(receivers) {
 export function updateAddressBook(addressBook) {
     return {type: "UPDATE_ADDRESSBOOK", payload: addressBook};
 }
-export function addFeedback(object) {
-    return {type: "ADD_FEEDBACK", payload: object};
-}
-export function removeFeedback() {
-  return {type: 'REMOVE_FEEDBACK',payload: true}
-}

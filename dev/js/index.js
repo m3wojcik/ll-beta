@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from "react-dom";
 import {Provider} from 'react-redux';
+import { Snackbar } from 'react-redux-snackbar';
 import {applyMiddleware,createStore} from 'redux';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
@@ -24,8 +25,12 @@ if (token) {
 ReactDOM.render(
   <Provider store={store} >
     <IntlProvider locale="en">
+    <div>
       <Router history={history} routes={routes} />
+      <Snackbar />
+      </div>
     </IntlProvider>
+
   </Provider>,
   document.getElementById('root')
 );

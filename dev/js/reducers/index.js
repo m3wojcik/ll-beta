@@ -4,6 +4,7 @@ import { reducer as formReducer } from 'redux-form';
 import { snackbarReducer } from 'react-redux-snackbar';
 
 import AppReducer from './AppReducer';
+import AlertReducer from './AlertReducer';
 import ErrorReducer from './ErrorReducer';
 import AuthReducer from './AuthReducer';
 import DashboardClassesReducer from './DashboardClassesReducer';
@@ -37,6 +38,7 @@ import PaymentsReducer from './PaymentsReducer';
 
 const allReducers = combineReducers({
   auth: AuthReducer,
+  alert: AlertReducer,
   routing: routerReducer,
   error: ErrorReducer,
   app: AppReducer,

@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import TextField from 'react-md/lib/TextFields'
+import { showSnack } from 'react-redux-snackbar';
 //import ReactQuill from 'react-quill';
 import Button from 'react-md/lib/Buttons/Button';
-import { sendMessage, addFeedback } from "../../actions/MessagesActions";
+import { addAlert } from "../../actions/AlertActions";
+import { sendMessage } from "../../actions/MessagesActions";
 import Content from '../../components/helpers/Content'
 import Loader from '../../components/helpers/Loader'
 import AddressBookContainer from './AddressBookContainer'
+import AlertContainer from '../AlertContainer'
 //import '../../../scss/quill.snow.scss';
 
 @connect((store) => {
@@ -27,7 +30,7 @@ export default class CreateMessageContainer extends Component {
     const props = sendMessage
     const next = nextProps.sendMessage
     if(next.fetched && props.fetched != next.fetched){
-      this.props.dispatch(addFeedback("Message send"));
+      this.props.dispatch(showSnack('message_send', {label: 'Message send', timeout: 3000}));
       this.props.dispatch(push("inbox"));
     }
   }
@@ -35,18 +38,23 @@ export default class CreateMessageContainer extends Component {
     const subject = this.subject.value
     const message = this.message.value
     const receivers = this.props.sendMessage.receivers.map(rec => rec.id)
-    this.props.dispatch(sendMessage(
-      {
-      //"ids": receivers,
-      "subject": subject,
-      "message": message
-      }
-    ));
+    if(receivers.length < 1){
+      this.props.dispatch(addAlert({id: "create_message_receivers", text: "Receivers not picked", type:"danger"}))
+    }else{
+      this.props.dispatch(sendMessage(
+        {
+        //"ids": receivers,
+        "subject": subject,
+        "message": message
+        }
+      ));
+    }
   }
   render(){
     const { fetched, reply, forward, message, sendMessage } = this.props;
     return(
       <Content >
+        <AlertContainer />
         {sendMessage.fetching ? <Loader centerPadding /> : null}
         <form class="ui form">
           <div className="field">
