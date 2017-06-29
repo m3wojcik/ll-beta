@@ -1,14 +1,13 @@
-import {instance} from './config'
+import { CALL_API } from '../middleware/api'
 
-export function fetchFiles(folderId) {
-  return function(dispatch) {
-    dispatch({type: "FETCH_FILES", payload: folderId});
-    instance.get("?q=getFiles"+"&id="+folderId)
-      .then((response) => {
-        dispatch({type: "FETCH_FILES_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_FILES_REJECTED", payload: err})
-      })
+export function fetchFiles(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/files',
+      types: ["FETCH_FILES", "FETCH_FILES_FULFILLED", "FETCH_FILES_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
   }
 }

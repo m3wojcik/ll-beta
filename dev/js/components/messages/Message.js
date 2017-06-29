@@ -4,7 +4,7 @@ import Button from 'react-md/lib/Buttons';
 import Avatar from 'react-md/lib/Avatars';
 import {FormattedRelative} from 'react-intl';
 import CustomCardTitle from '../CustomCardTitle';
-import Files from '../Files'
+import Files from '../files/Files'
 import MessageMenu from './MessageMenu'
 
 export default class Message extends Component {

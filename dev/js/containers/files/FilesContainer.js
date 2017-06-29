@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import { setAppSettings } from "../actions/AppActions";
-import { fetchFiles } from "../actions/FilesActions";
-import Loader from '../components/helpers/Loader'
+import { fetchFiles } from "../../actions/FilesActions";
+import {getParamFromPath, getCleanPath} from '../../actions/Functions'
+import {BASE_URL} from "../../middleware/api"
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
-import Files from '../components/Files'
-import Breadcrumbs from '../components/Breadcrumbs'
-import Content from '../components/helpers/Content'
-import {getParamFromPath, getCleanPath} from '../actions/Functions'
+import Loader from '../../components/helpers/Loader'
+import Files from '../../components/files/Files'
+import Breadcrumbs from '../../components/Breadcrumbs'
+import Content from '../../components/helpers/Content'
+
 
 @connect((store) => {
    return {
@@ -24,7 +25,7 @@ import {getParamFromPath, getCleanPath} from '../actions/Functions'
 })
 export default class FilesContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(fetchFiles(this.props.params.fileId));
+    this.props.dispatch(fetchFiles({parent_path_id: this.props.params.fileId}));
   }
   componentWillReceiveProps(nextProps){
      let currentPath = getCleanPath(this.props.routing.locationBeforeTransitions.pathname);
@@ -32,14 +33,17 @@ export default class FilesContainer extends Component {
      let fileId = getParamFromPath(nextPath);
      nextPath = nextPath.replace(/^\/|\/$/g, '');
     if(currentPath != nextPath){
-       this.props.dispatch(fetchFiles(fileId));
+       this.props.dispatch(fetchFiles({parent_path_id: fileId}));
      }
   }
   handleClick = (file)=>{
-    if(file.type == "folder"){
+    if(file.type == "directory"){
       this.props.dispatch(push("files/" + file.id));
     }else if (file.type =="file") {
-
+      const fileId = file.id
+      const accessToken = localStorage.getItem('access_token')
+      const downloadString = BASE_URL + "files?access_token="+ accessToken +"&file_id="+fileId
+      window.open(downloadString)
     }
   }
   handleBackClick = (folderId) =>{

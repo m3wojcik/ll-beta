@@ -41,6 +41,7 @@ function callApi(endpoint, authenticated, params, method) {
       })
     }
   }
+  console.log('get', BASE_URL, axios_config);
   return axios(axios_config)
   .then(response => {
     if (response.data.error) {
@@ -73,7 +74,7 @@ export default store => next => action => {
         type: successType
       })
       if(successToast){
-         next({type: "ADD_TOAST", payload: successToast})
+         next({type: "RRS_SHOW_SNACK", payload: successToast})
       }
 
     },
@@ -82,8 +83,9 @@ export default store => next => action => {
       payload: error || 'There was an error.',
       type: errorType
       })
-      next({type: "ADD_ERROR", payload: error})
-      // next({type: "ADD_TOAST", payload: {"text":error.message,"autohide":false}})
+      next(
+        {type: "RRS_SHOW_SNACK", payload: {id: "error", data: {label: error.message, button: {label: "Dismiss"}}}}
+      )
     }
   )
 }

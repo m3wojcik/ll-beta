@@ -5,9 +5,10 @@ export default class Youtube extends Component {
 
   render(){
     const { url } = this.props;
+    const parseUrl = url.replace("watch?v=", "embed/");
     return(
       <Media>
-        <iframe allowFullScreen src={url} />
+        <iframe allowFullScreen src={parseUrl} />
       </Media>
 
     )

@@ -5,7 +5,7 @@ import { setHasTabs, setAppHeader } from "../actions/AppActions";
 import { fetchViewSurvey } from "../actions/SurveyViewActions";
 import Loader from '../components/helpers/Loader'
 import SurveyView from '../components/SurveyView';
-import TestInfo from '../components/helpers/TestInfo';
+import TestInfo from '../components/tests/TestInfo';
 import ToolbarExpander from '../components/helpers/ToolbarExpander';
 import CountdownTimer from '../components/helpers/CountdownTimer';
 import Dialog from 'react-md/lib/Dialogs';

@@ -13,7 +13,7 @@ import SquareLabel from './helpers/SquareLabel';
 import ToolbarExpander from '../components/helpers/ToolbarExpander';
 import BlockOfText from './helpers/BlockOfText';
 import Youtube from './helpers/Youtube';
-import TestInfo from '../components/helpers/TestInfo';
+import TestInfo from '../components/tests/TestInfo';
 import QuestionOpenContainer from '../containers/QuestionOpenContainer';
 import QuestionContainer from '../containers/QuestionContainer';
 import QuestionFillGapsContainer from '../containers/QuestionFillGapsContainer';

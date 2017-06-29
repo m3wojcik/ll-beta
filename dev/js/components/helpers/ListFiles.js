@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
-import FileTypeIcon from '../FileTypeIcon';
+import FileTypeIcon from '../files/FileTypeIcon';
 
 export default class ListFiles extends Component {
 

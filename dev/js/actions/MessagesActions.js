@@ -92,17 +92,28 @@ import {instance} from './config'
 //       })
 //   }
 // }
+// export function sendMessage(params) {
+//   return function(dispatch) {
+//       dispatch({type: "SEND_MESSAGE", payload: true});
+//       instance.get("?q=sendMessage&"+"params="+params)
+//       .then((response) => {
+//         console.log("send", params);
+//         dispatch({type: "SEND_MESSAGE_FULFILLED", payload: response.data});
+//       })
+//       .catch((err) => {
+//         dispatch({type: "SEND_MESSAGE_REJECTED", payload: err})
+//       })
+//   }
+// }
 export function sendMessage(params) {
-  return function(dispatch) {
-      dispatch({type: "SEND_MESSAGE", payload: true});
-      instance.get("?q=sendMessage&"+"params="+params)
-      .then((response) => {
-        console.log("send", params);
-        dispatch({type: "SEND_MESSAGE_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "SEND_MESSAGE_REJECTED", payload: err})
-      })
+  return {
+    [CALL_API]: {
+      endpoint: '/sendMessage',
+      types: ["SEND_MESSAGE", "SEND_MESSAGE_FULFILLED", "SEND_MESSAGE_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
   }
 }
 export function updateReceivers(receivers) {

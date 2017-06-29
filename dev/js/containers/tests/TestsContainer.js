@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import { fetchTests } from "../actions/TestsActions";
-import { setAppSettings } from "../actions/AppActions";
-import Loader from '../components/helpers/Loader'
+import { fetchTests } from "../../actions/TestsActions";
+import { setAppSettings } from "../../actions/AppActions";
+import Loader from '../../components/helpers/Loader'
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
-import Tests from '../components/Tests'
-import Breadcrumbs from '../components/Breadcrumbs'
-import Content from '../components/helpers/Content'
-import {getParamFromPath, getCleanPath} from '../actions/Functions'
+import Tests from '../../components/tests/Tests'
+import Breadcrumbs from '../../components/Breadcrumbs'
+import Content from '../../components/helpers/Content'
+import {getParamFromPath, getCleanPath} from '../../actions/Functions'
 
 @connect((store) => {
    return {
@@ -25,11 +25,11 @@ export default class TestsContainer extends Component {
     this.props.dispatch(fetchTests());
   }
   handleSolveClick = (test) =>{
-    this.props.dispatch(setAppSettings({header:test.name, hasTabs: true}));
+    //this.props.dispatch(setAppSettings({header:test.name, hasTabs: true}));
     this.props.dispatch(push('test/' + test.id));
   }
   handleShowClick = (test) => {
-    this.props.dispatch(setAppSettings({header:test.name, hasTabs: true}));
+    //this.props.dispatch(setAppSettings({header:test.name, hasTabs: true}));
     this.props.dispatch(push('testview/' + test.id));
   }
   render(){

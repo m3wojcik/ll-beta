@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
-import FakeFormControl from './helpers/FakeFormControl';
 import TextField from 'react-md/lib/TextFields';
-import UserPhoto from './helpers/UserPhoto';
+import UserPhoto from './../helpers/UserPhoto';
 import Button from 'react-md/lib/Buttons/Button';
-import {RenderField} from './helpers/RenderField'
-import {email} from './helpers/Validate'
+import FakeFormControl from './../helpers/FakeFormControl';
+import {RenderField} from './../helpers/RenderField'
+import {email} from './../helpers/Validate'
 
 
 class EditProfile extends Component {

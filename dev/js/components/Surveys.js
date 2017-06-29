@@ -10,7 +10,7 @@ import FontIcon from 'react-md/lib/FontIcons';
 import CustomCardTitle from './CustomCardTitle';
 import IconText from './helpers/IconText';
 import Label from './helpers/Label';
-import TestInfo from './helpers/TestInfo';
+import TestInfo from './tests/TestInfo';
 import CustomDate from './helpers/CustomDate';
 
 export default class Surveys extends Component {

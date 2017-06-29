@@ -6,12 +6,19 @@ export default class Question extends Component {
   render(){
     const { text, type, answers, value, onChangeValue, view } = this.props;
     let output;
+    const mappedAnswers = answers.map(function(answer){
+      return {
+        id: answer.id,
+        value: answer.id.toString(),
+        label: answer.data
+      }
+    })
     if(type=="radio"){
       if(view){
         output = <SelectionControlGroup
           name={"question-" + type}
           type={type}
-          controls={answers}
+          controls={mappedAnswers}
           disabled
         />
       }else{
@@ -19,8 +26,7 @@ export default class Question extends Component {
           name={"question-" + type}
           type={type}
           onChange={onChangeValue.bind(this)}
-          controls={answers}
-          value={value}
+          controls={mappedAnswers}
         />
       }
     }else{
@@ -28,7 +34,7 @@ export default class Question extends Component {
         output = <SelectionControlGroup
           name={"question-" + type}
           type={type}
-          controls={answers}
+          controls={mappedAnswers}
           defaultValue={value}
           disabled
         />
@@ -37,7 +43,7 @@ export default class Question extends Component {
           name={"question-" + type}
           type={type}
           onChange={onChangeValue.bind(this)}
-          controls={answers}
+          controls={mappedAnswers}
         />
       }
     }

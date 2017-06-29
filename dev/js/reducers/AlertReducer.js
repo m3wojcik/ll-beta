@@ -11,7 +11,10 @@ export default function reducer(state={
         }
       }
       case "@@router/LOCATION_CHANGE": {
-        console.warn('clear');
+        return {
+          ...state,
+          alerts: []
+        }
       }
       case "REMOVE_ALERT": {
         const [, ...alerts] = state.alerts;

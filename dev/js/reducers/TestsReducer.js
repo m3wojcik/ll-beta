@@ -17,7 +17,7 @@ export default function reducer(state={
           ...state,
           fetching: false,
           fetched: true,
-          tests: action.payload,
+          tests: action.payload.tests,
         }
       }
     }

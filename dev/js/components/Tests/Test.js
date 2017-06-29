@@ -7,44 +7,49 @@ import CardActions from 'react-md/lib/Cards/CardActions';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
-import CustomCardTitle from './CustomCardTitle';
-import IconText from './helpers/IconText';
-import SquareLabel from './helpers/SquareLabel';
-import BlockOfText from './helpers/BlockOfText';
-import Youtube from './helpers/Youtube';
-import ListFilesContainer from '../containers/ListFilesContainer';
-import QuestionOpenContainer from '../containers/QuestionOpenContainer';
-import QuestionContainer from '../containers/QuestionContainer';
-import QuestionFillGapsContainer from '../containers/QuestionFillGapsContainer';
-import QuestionFillGapsListContainer from '../containers/QuestionFillGapsListContainer';
-import QuestionFillGapsPredefinedContainer from '../containers/QuestionFillGapsPredefinedContainer';
+import CustomCardTitle from './../CustomCardTitle';
+import IconText from './../helpers/IconText';
+import SquareLabel from './../helpers/SquareLabel';
+import BlockOfText from './../helpers/BlockOfText';
+import Youtube from './../helpers/Youtube';
+import ListFilesContainer from '../../containers/ListFilesContainer';
+import QuestionOpenContainer from '../../containers/QuestionOpenContainer';
+import QuestionContainer from '../../containers/QuestionContainer';
+import QuestionFillGapsContainer from '../../containers/QuestionFillGapsContainer';
+import QuestionFillGapsListContainer from '../../containers/QuestionFillGapsListContainer';
+import QuestionFillGapsPredefinedContainer from '../../containers/QuestionFillGapsPredefinedContainer';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
 export default class Test extends Component {
   render(){
-    const { test } = this.props;
-    const testData = test.testData;
-    const mappedTest = testData.pages.map(function(page, i){
-      const mappedPages = page.blocks.map(function(block, j){
+    const { test, pages } = this.props;
+    const mappedTest = pages.map(function(page, i){
+      const mappedPages = page.map(function(block, j){
           let output;
           switch (block.type) {
             case "block-of-text":
-              output = <BlockOfText id={block.id} key={block.id} text={block.text} />
+              output = <BlockOfText id={block.id} key={block.id} text={block.data} />
               break;
-            case "single":
-              output = <QuestionContainer id={block.id} key={block.id} type="radio" text={block.question} answers={block.answers} />
+            case "question_one":
+              output = <QuestionContainer
+                id={block.id}
+                key={block.id}
+                type="radio"
+                text={block.data}
+                answers={block.answers}
+                />
               break;
-            case "multiple":
+            case "question_many":
               output = <QuestionContainer
                 id={block.id}
                 key={block.id}
                 type="checkbox"
-                text={block.question}
+                text={block.data}
                 answers={block.answers}
                 />
               break;
-            case "open":
-              output = <QuestionOpenContainer id={block.id} key={block.id} text={block.text} />
+            case "question_open":
+              output = <QuestionOpenContainer id={block.id} key={block.id} text={block.data} />
               break;
             case "fill-gaps":
               output = <QuestionFillGapsContainer id={block.id} key={block.id} textArray={block.textArray} />
@@ -52,11 +57,11 @@ export default class Test extends Component {
             case "fill-gaps-list":
               output = <QuestionFillGapsListContainer id={block.id} key={block.id} answers={block.answers} textArray={block.textArray} />
               break;
-            case "fill-gaps-predefined":
+            case "TODO question_prefdef":
               output = <QuestionFillGapsPredefinedContainer id={block.id} key={block.id} textArray={block.textArray} />
               break;
             case "youtube":
-              output = <Youtube id={block.id} key={block.id} url={block.url} />
+              output = <Youtube id={block.id} key={block.id} url={block.data} />
               break;
             case "files":
               output = <ListFilesContainer id={block.id} key={block.id} files={block.files} />

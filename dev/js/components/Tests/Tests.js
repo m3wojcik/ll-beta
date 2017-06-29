@@ -7,10 +7,10 @@ import CardActions from 'react-md/lib/Cards/CardActions';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
-import CustomCardTitle from './CustomCardTitle';
-import IconText from './helpers/IconText';
-import TestInfo from './helpers/TestInfo';
-import CircleProgressBar from './helpers/CircleProgressBar';
+import CustomCardTitle from './../CustomCardTitle';
+import IconText from './../helpers/IconText';
+import TestInfo from './TestInfo';
+import CircleProgressBar from './../helpers/CircleProgressBar';
 import {FormattedRelative} from 'react-intl';
 
 export default class Tests extends Component {
@@ -46,13 +46,12 @@ export default class Tests extends Component {
           <div class="card-with-right">
             <CardTitle
               title={<CustomCardTitle left={test.name} />}
-              subtitle={<FormattedRelative value={test.shareDate}/>}
+              subtitle={<FormattedRelative value={test.sharedDate}/>}
               />
             <div className="card-right">
               {textResult}
             </div>
           </div>
-
             <TestInfo test={test} />
           <CardActions className="md-divider-border md-divider-border--top">
             {cardActions}

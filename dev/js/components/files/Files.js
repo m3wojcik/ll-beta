@@ -7,7 +7,8 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import FileTypeIcon from './FileTypeIcon';
 import Subheader from 'react-md/lib/Subheaders';
-import CustomCardTitle from './CustomCardTitle';
+import CustomCardTitle from './../CustomCardTitle';
+import { humanFileSize } from '../../actions/Functions';
 
 
 export default class Files extends Component {
@@ -31,7 +32,7 @@ export default class Files extends Component {
     }
     files.forEach(function(file, i){
       let fileName = file.name.toLowerCase();
-      if(file.type != 'folder' && !fileHeader){
+      if(file.type != 'directory' && !fileHeader){
         fileHeader = true;
         mappedFiles.push(<Subheader key="files" primaryText={filesHeaderText} className="text-uppercase" />)
       }
@@ -40,9 +41,9 @@ export default class Files extends Component {
            <ListItem
              key={file.id}
              onClick={onClick.bind(this, file)}
-             leftIcon={file.type == 'folder' ? <FontIcon className="icon-yellow">folder</FontIcon> : <FileTypeIcon ext={file.extension} />}
-             secondaryText={file.type == 'folder' ? "" : file.size}
-             primaryText={file.type == 'folder' ? file.name : file.name + '.' + file.extension} />
+             leftIcon={file.type == 'directory' ? <FontIcon className="icon-yellow">folder</FontIcon> : <FileTypeIcon ext={file.extension} />}
+             secondaryText={file.type == 'directory' ? "" : humanFileSize(file.size)}
+             primaryText={file.type == 'directory' ? file.name : file.name + '.' + file.extension} />
          )
        }
     })

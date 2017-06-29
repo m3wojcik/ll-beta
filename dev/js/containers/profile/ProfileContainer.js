@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { setAppSettings} from "../actions/AppActions";
-import { fetchUserData } from "../actions/ProfileActions";
-import Content from '../components/helpers/Content'
-import Loader from '../components/helpers/Loader'
+import { fetchUserData } from "../../actions/ProfileActions";
+import Content from '../../components/helpers/Content'
+import Loader from '../../components/helpers/Loader'
 import FontIcon from 'react-md/lib/FontIcons';
-import Profile from '../components/Profile';
-import CustomTabs from '../components/helpers/CustomTabs';
+import Profile from '../../components/profile/Profile';
+import CustomTabs from '../../components/helpers/CustomTabs';
 
 @connect((store) => {
    return {

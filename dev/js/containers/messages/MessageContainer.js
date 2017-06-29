@@ -52,7 +52,8 @@ export default class MessageContainer extends Component {
     this.props.dispatch(restoreMessage({"ids": [message.id]}));
   }
   handleFileClick = (file) => {
-    const messageId = this.props.message.id
+    const { singleMessage } = this.props
+    const messageId = singleMessage.message.id
     const attachmentId = file.id
     const accessToken = localStorage.getItem('access_token')
     const downloadString = BASE_URL + "attachment?access_token="+ accessToken +"&attachment_id="+attachmentId+"&message_id="+messageId

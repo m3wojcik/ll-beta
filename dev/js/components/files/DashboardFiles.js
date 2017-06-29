@@ -3,7 +3,7 @@ import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Files from '../Files'
+import Files from './Files'
 export default class DashboardFiles extends Component {
 
   render(){

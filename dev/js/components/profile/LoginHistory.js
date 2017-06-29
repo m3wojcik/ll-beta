@@ -6,7 +6,7 @@ import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import TableBody from 'react-md/lib/DataTables/TableBody';
 import FontIcon from 'react-md/lib/FontIcons';
-import Label from '../components/helpers/Label';
+import Label from './../helpers/Label';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
 export default class LoginHistory extends Component {

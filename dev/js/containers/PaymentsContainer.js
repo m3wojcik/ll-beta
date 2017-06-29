@@ -4,7 +4,6 @@ import { fetchPayments } from "../actions/PaymentsActions";
 import Loader from '../components/helpers/Loader'
 import Content from '../components/helpers/Content'
 import Payments from '../components/Payments'
-import TestInfo from '../components/helpers/TestInfo';
 import CircleProgressBar from '../components/helpers/CircleProgressBar';
 import Box from '../components/helpers/Box';
 import Locales from '../components/helpers/Locales';

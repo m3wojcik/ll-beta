@@ -1,6 +1,6 @@
 export default function reducer(state={
   test: null,
-  userAnswers: null,
+  userAnswers: {},
   fetching: false,
   fetched: false,
   error: null,
@@ -18,8 +18,9 @@ export default function reducer(state={
           ...state,
           fetching: false,
           fetched: true,
-          test: action.payload,
-          userAnswers: []
+          test: action.payload.test,
+          pages: action.payload.pages,
+          userAnswers: {}
         }
       }
     }

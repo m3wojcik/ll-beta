@@ -11,7 +11,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 export default class Inbox extends Component {
   render(){
     const { messages, searchValue, onMessageClick, sent } = this.props;
-    const mappedMessages = messages.messages.map(function(message){
+    const mappedMessages = messages.messages.reverse().map(function(message){
       let subject = message.subject.toLowerCase();
       let sender = sent ? message.recipients.toLowerCase() : message.sender.toLowerCase()
       let search = searchValue.toLowerCase();

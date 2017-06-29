@@ -4,7 +4,7 @@ import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
 import Label from '../helpers/Label';
 import CustomListItem from '../helpers/CustomListItem';
-import TestInfo from '../helpers/TestInfo';
+import TestInfo from '../tests/TestInfo';
 import ActionsRow from '../helpers/ActionsRow'
 import Button from 'react-md/lib/Buttons';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';

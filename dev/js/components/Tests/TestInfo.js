@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import CardTitle from 'react-md/lib/Cards/CardTitle';
 import {FormattedRelative} from 'react-intl';
 import CustomCardTitle from '../CustomCardTitle';
-import IconText from './IconText';
+import IconText from './../helpers/IconText';
 import FontIcon from 'react-md/lib/FontIcons';
 
 export default class TestInfo extends Component {
@@ -23,7 +23,7 @@ export default class TestInfo extends Component {
         </li>
       )
     }
-    if(test.duration){
+    if(test.duration && test.duration > 0){
       let duration = test.duration / 60;
       cardInfo.push(
         <li key="duration">

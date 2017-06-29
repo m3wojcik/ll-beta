@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import { setHasTabs, setAppHeader } from "../actions/AppActions";
-import { fetchTest } from "../actions/TestActions";
-import Loader from '../components/helpers/Loader'
-import Test from '../components/Test';
-import TestInfo from '../components/helpers/TestInfo';
-import ToolbarExpander from '../components/helpers/ToolbarExpander';
-import CountdownTimer from '../components/helpers/CountdownTimer';
+import { setHasTabs, setAppHeader } from "../../actions/AppActions";
+import { fetchTest } from "../../actions/TestActions";
 import Dialog from 'react-md/lib/Dialogs';
 import Button from 'react-md/lib/Buttons/Button';
+import Loader from '../../components/helpers/Loader'
+import Test from '../../components/tests/Test';
+import TestInfo from '../../components/tests/TestInfo';
+import ToolbarExpander from '../../components/helpers/ToolbarExpander';
+import CountdownTimer from '../../components/helpers/CountdownTimer';
+
 
 @connect((store) => {
    return {
      routing: store.routing,
      test: store.test.test,
+     pages: store.test.pages,
      fetched: store.test.fetched,
      fetching: store.test.fetching
   };
@@ -26,8 +28,8 @@ export default class TestContainer extends Component {
     this.state = {dialogVisible: false, dialogTitle: "", dialogDescription: "", dialogActions:[]}
   }
   componentDidMount(){
-    this.props.dispatch(fetchTest(this.props.params.testId));
-    this.props.dispatch(setHasTabs(true));
+    this.props.dispatch(fetchTest({id: this.props.params.testId}));
+    //this.props.dispatch(setHasTabs(true));
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.fetched !=this.props.fetched){
@@ -60,7 +62,7 @@ export default class TestContainer extends Component {
     this.openDialog();
   }
   render(){
-    const { fetched, test } = this.props;
+    const { fetched, test, pages } = this.props;
     const { dialogVisible, dialogTitle, dialogDescription } = this.state;
     let toolbarRight = [];
     if(!fetched){
@@ -68,7 +70,7 @@ export default class TestContainer extends Component {
         <Loader full />
       )
     }else{
-      if(test.duration != null){
+      if(test.duration != null && test.duration > 0){
         toolbarRight.push(<CountdownTimer key="timer" icon totalTime={test.duration} secondsRemaining={test.timeLeft} onEndTime={this.handleEndTime} />)
       }
     }
@@ -78,11 +80,11 @@ export default class TestContainer extends Component {
           <div className="mask"></div>
         </div>
         <ToolbarExpander
-          left={<TestInfo  test={test} />}
+          left={<TestInfo test={test} />}
           right={toolbarRight}
         />
         <div className="content-no-padding content-tabs">
-          <Test test={test} />
+          <Test test={test} pages={pages} />
           <div className="test-bottom">
             <Button raised primary label="Finish" onClick={this.finishTest}></Button>
           </div>

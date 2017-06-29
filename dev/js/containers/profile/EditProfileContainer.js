@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { SubmissionError } from 'redux-form'
-import { setAppSettings} from "../actions/AppActions";
-import { fetchUserData, saveUserData } from "../actions/ProfileActions";
-import Content from '../components/helpers/Content'
-import Loader from '../components/helpers/Loader'
-import EditProfile from '../components/EditProfile';
-import CustomTabs from '../components/helpers/CustomTabs';
+import { fetchUserData, saveUserData } from "../../actions/ProfileActions";
+import Content from '../../components/helpers/Content'
+import Loader from '../../components/helpers/Loader'
+import EditProfile from '../../components/profile/EditProfile';
+import CustomTabs from '../../components/helpers/CustomTabs';
 
 @connect((store) => {
    return {

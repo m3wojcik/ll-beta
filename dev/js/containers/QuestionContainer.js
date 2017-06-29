@@ -15,6 +15,7 @@ export default class QuestionContainer extends Component {
       this.state = { value: null };
   }
   handleChangeValue = (value) =>{
+    console.log('click', value);
     const { id, userAnswers } = this.props;
     userAnswers[id] = value;
     console.log(userAnswers);
@@ -38,6 +39,7 @@ export default class QuestionContainer extends Component {
           type={type}
           text={text}
           answers={answers}
+          value={value}
           onChangeValue={this.handleChangeValue}
         />
       )

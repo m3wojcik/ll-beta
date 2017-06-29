@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import FakeFormControl from './helpers/FakeFormControl';
-import UserPhoto from './helpers/UserPhoto';
+import FakeFormControl from './../helpers/FakeFormControl';
+import UserPhoto from './../helpers/UserPhoto';
 
 export default class Profile extends Component {
   render(){

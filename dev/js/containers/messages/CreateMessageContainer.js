@@ -30,22 +30,25 @@ export default class CreateMessageContainer extends Component {
     const props = sendMessage
     const next = nextProps.sendMessage
     if(next.fetched && props.fetched != next.fetched){
-      this.props.dispatch(showSnack('message_send', {label: 'Message send', timeout: 3000}));
+      this.props.dispatch(showSnack('message_send', {label: 'Message sent', timeout: 3000}));
       this.props.dispatch(push("inbox"));
     }
   }
   handleSendClick = () =>{
-    const subject = this.subject.value
-    const message = this.message.value
+    const subject = this.subjectInput.value
+    const content = this.messageInput.value
     const receivers = this.props.sendMessage.receivers.map(rec => rec.id)
+    console.log('receivers', receivers);
     if(receivers.length < 1){
       this.props.dispatch(addAlert({id: "create_message_receivers", text: "Receivers not picked", type:"danger"}))
+    }else if(subject == ""){
+      this.props.dispatch(addAlert({id: "create_message_subject", text: "No text in subject", type:"danger"}))
     }else{
       this.props.dispatch(sendMessage(
         {
-        //"ids": receivers,
+        "userIds": receivers,
         "subject": subject,
-        "message": message
+        "content": content
         }
       ));
     }
@@ -63,11 +66,11 @@ export default class CreateMessageContainer extends Component {
           </div>
           <div className="field">
             <label>Subject</label>
-            <input ref={(input) => { this.subject = input; }} name="subject" type="text"/>
+            <input ref={(input) => { this.subjectInput = input; }} name="subject" type="text"/>
           </div>
           <div className="field">
             <label>Message</label>
-            <textarea ref={(input) => { this.message = input; }} ></textarea>
+            <textarea ref={(input) => { this.messageInput = input; }} ></textarea>
           </div>
           <Button raised primary label="Send" onClick={this.handleSendClick} />
         </form>

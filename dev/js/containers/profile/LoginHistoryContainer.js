@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { setAppSettings} from "../actions/AppActions";
-import { fetchLoginHistory } from "../actions/LoginHistoryActions";
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import CustomTabs from '../components/helpers/CustomTabs';
-import LoginHistory from '../components/LoginHistory';
+import { fetchLoginHistory } from "../../actions/LoginHistoryActions";
+import Loader from '../../components/helpers/Loader'
+import CustomTabs from '../../components/helpers/CustomTabs';
+import LoginHistory from '../../components/profile/LoginHistory';
 
 @connect((store) => {
    return {
@@ -26,11 +25,7 @@ export default class LoginHistoryContainer extends Component {
       {"label": "Login history", "link": "profile/loginHistory", "active": true},
     ]
     if(!fetched){
-      return(
-        <div className="content">
-          <CircularProgress id="loading-classes" key="loading"  />
-        </div>
-      )
+        return( <Loader full />)
     }
     return(
       <div className="content">

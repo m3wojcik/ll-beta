@@ -3,7 +3,7 @@ import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
 
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import Files from '../Files'
+import Files from '../files/Files'
 
 export default class ClassFiles extends Component {
 
