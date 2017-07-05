@@ -12,13 +12,13 @@ import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 export default class LoginHistory extends Component {
   render(){
     const { loginHistory } = this.props;
-    const mappedLoginHistory = loginHistory.map(
+    const mappedLoginHistory = loginHistory.reverse().map(
       (login, i) =>
       <TableRow key={i}>
         <TableColumn>{login.date}</TableColumn>
         <TableColumn>{login.ip}</TableColumn>
         <TableColumn>
-          {login.logSuccessfully ? <Label green label="Logged in successfully"/> : <Label orange label="Login error"/> }
+          {login.login_success ? <Label green label="Logged in successfully"/> : <Label orange label="Login error"/> }
         </TableColumn>
       </TableRow>
     );

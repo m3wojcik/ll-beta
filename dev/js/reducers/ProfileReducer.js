@@ -7,7 +7,13 @@ export default function reducer(state={
     fetching: false,
     fetched: false,
     error: null,
-    }
+  },
+  avatars: {
+    avatars:[],
+    fetching: false,
+    fetched: false,
+    error: null,
+  }
   }, action) {
 
     switch (action.type) {
@@ -35,6 +41,22 @@ export default function reducer(state={
         return {
           ...state,
           saveUserData: {
+            fetching: false,
+            fetched: true
+          }
+        }
+      }
+      case "FETCH_AVATARS": {
+        return {...state, avatars: {fetching: true, fetched:false}}
+      }
+      case "FETCH_AVATARS_REJECTED": {
+        return {...state, avatars: {fetching: false, error: action.payload}}
+      }
+      case "FETCH_AVATARS_FULFILLED": {
+        return {
+          ...state,
+          avatars: {
+            avatars: action.payload,
             fetching: false,
             fetched: true
           }

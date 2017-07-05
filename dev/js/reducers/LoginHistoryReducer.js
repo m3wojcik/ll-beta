@@ -1,5 +1,5 @@
 export default function reducer(state={
-  loginHistory: {},
+  loginHistory: [],
   fetching: false,
   fetched: false,
   error: null,
@@ -17,7 +17,7 @@ export default function reducer(state={
           ...state,
           fetching: false,
           fetched: true,
-          loginHistory: action.payload,
+          loginHistory: action.payload.loginHistory,
         }
       }
     }

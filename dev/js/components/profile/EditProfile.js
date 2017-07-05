@@ -6,12 +6,13 @@ import UserPhoto from './../helpers/UserPhoto';
 import Button from 'react-md/lib/Buttons/Button';
 import FakeFormControl from './../helpers/FakeFormControl';
 import {RenderField} from './../helpers/RenderField'
+import Avatar from './../helpers/Avatar'
 import {email} from './../helpers/Validate'
 
 
 class EditProfile extends Component {
   render(){
-    const { userData, saveUserData, handleSubmit } = this.props;
+    const { userData, saveUserData, handleSubmit, onChangeAvatarClick } = this.props;
     let buttonProps = {
       raised: true,
       primary: true,
@@ -49,8 +50,8 @@ class EditProfile extends Component {
             </div>
             <div className="md-cell md-cell--6">
               <FakeFormControl label="Avatar"
-                value={<UserPhoto large src={userData.avatar} />} />
-                <Button raised label="Change avatar" />
+                value={<Avatar w={200} h={200} src={userData.avatar} />} />
+              <Button onClick={onChangeAvatarClick} raised label="Change avatar" />
             </div>
           </div>
           <div className="fake-form-actions">

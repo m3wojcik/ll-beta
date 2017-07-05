@@ -104,69 +104,69 @@ export function getAppSettings(pathname){
   let settings = {};
   switch (pathname) {
     case "":
-      settings = {"header":"Dashboard", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Dashboard"}
       break;
     case "profile/view":
-      settings = {"header":"Profile", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Profile"}
       break;
     case "profile/edit":
-      settings = {"header":"Edit profile", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Edit profile"}
       break;
     case "profile/changePassword":
-      settings = {"header":"Change password", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Change password"}
       break;
     case "profile/loginHistory":
-      settings = {"header":"Login history", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Login history"}
       break;
     case "inbox":
-      settings = {"header":"Inbox", "hasTabs":true, "searchBtn": true}
+      settings = {header:"Inbox", hasTabs:true, searchBtn: true}
       break;
     case "sent":
-      settings = {"header":"Sent", "hasTabs":true, "searchBtn": true}
+      settings = {header:"Sent", hasTabs:true, searchBtn: true}
       break;
     case "trash":
-      settings = {"header":"Trash", "hasTabs":true, "searchBtn": true}
+      settings = {header:Trash, hasTabs:true, searchBtn: true}
       break;
     case "createmessage":
-      settings = {"header":"Create", "hasTabs":false, "searchBtn": false, backBtn: true, backPath: "inbox" }
+      settings = {header:"Create", backBtn: true, backPath: "inbox"}
       break;
     case "attendance":
-      settings = {"header":"Attendance", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Attendance"}
       break;
     case "classes":
-      settings = {"hasTabs":false, "searchBtn": false}
+      settings = {header:"Classes"}
       break;
     case "marks":
-      settings = {"header":"Marks", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Marks"}
       break;
     case "tests":
-      settings = {"header":"Tests", "hasTabs":false, "searchBtn": true}
+      settings = {header:"Tests", hasTabs:false, searchBtn: true}
       break;
     case "elibrary/list":
-      settings = {"header":"E-library", "hasTabs":false, "searchBtn": true}
+      settings = {header:"E-library", searchBtn: true}
       break;
     case "elibrary/reserved":
-      settings = {"header":"Reserved", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Reserved"}
       break;
     case "surveys":
-      settings = {"header":"Surveys", "hasTabs":false, "searchBtn": true}
+      settings = {header:"Surveys", searchBtn: true}
       break;
     case "payments":
-      settings = {"header":"Payments", "hasTabs":false, "searchBtn": false}
+      settings = {header:"Payments"}
       break;
     default:
       if(/^files(\/.+|)/.test(pathname)){
-        settings = {"header":"Files", "hasTabs":false, "searchBtn": true}
+        settings = {header:"Files", searchBtn: true}
       }else if(/^testview(\/.+|)/.test(pathname)){
-        settings = {"header":"Test", "hasTabs":true, "searchBtn": false}
+        settings = {header:"Test", hasTabs:true, backBtn: true, backPath: "tests" }
       }else if(/^test(\/.+|)/.test(pathname)){
-        settings = {"header":"Test", "hasTabs":true, "searchBtn": false}
+        settings = {header:"Test", hasTabs:true, backBtn: true, backPath: "tests" }
       }else if(/^survey(\/.+|)/.test(pathname)){
-        settings = {"header":"Survey", "hasTabs":true, "searchBtn": false}
+        settings = {header:"Survey", hasTabs:true}
       }else if(/^classDetails(\/.+|)/.test(pathname)){
-        settings = {"hasTabs":false, "searchBtn": false, backBtn: true, backPath: "classes"}
+        settings = {hasTabs:false, backBtn: true, backPath: "classes"}
       }else if(/^message(\/.+|)/.test(pathname)){
-        settings = {"header":"Message", "hasTabs":false, backBtn: true, backPath: "inbox", "searchBtn": false}
+        settings = {header:"Message", backBtn: true, backPath: "inbox"}
       }
   }
   return settings;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FakeFormControl from './../helpers/FakeFormControl';
-import UserPhoto from './../helpers/UserPhoto';
+import Avatar from './../helpers/Avatar'
 
 export default class Profile extends Component {
   render(){
@@ -16,7 +16,8 @@ export default class Profile extends Component {
             <FakeFormControl label="E-mail" value={userData.email} />
           </div>
           <div className="md-cell md-cell--6">
-            <FakeFormControl label="Avatar" value={<UserPhoto large src={userData.avatar} />} />
+            <FakeFormControl label="Avatar"
+              value={<Avatar w={200} h={200} src={userData.avatar} />} />
           </div>
         </div>
       </div>

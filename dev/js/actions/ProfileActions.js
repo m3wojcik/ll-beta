@@ -24,3 +24,16 @@ export function fetchUserData() {
     }
   }
 }
+import axios from "axios";
+export function fetchAvatars() {
+  return function(dispatch) {
+    dispatch({type: "FETCH_AVATARS", payload: null});
+    axios.get("http://api.local/?q=getAvatars")
+      .then((response) => {
+        dispatch({type: "FETCH_AVATARS_FULFILLED", payload: response.data});
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_AVATARS_REJECTED", payload: err})
+      })
+  }
+}

@@ -382,6 +382,17 @@ strong{
       border-bottom-left-radius: 0 !important;
     }
 }
+/*
+------------------------------------------------------------------------------*/
+.avatar{
+  width: 48px;
+  height: 48px;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: .25rem;
+  background-color: #cfd8dc;
+  background-size: cover;
+}
 /*messages list
 ------------------------------------------------------------------------------*/
 .message-list-item{
@@ -469,7 +480,6 @@ strong{
 ------------------------------------------------------------------------------*/
 .block{
   padding: 20px 20px;
-  background-color: #fff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.12);
 
 }
@@ -489,6 +499,7 @@ li.test-page{
 }
 @media screen and (min-width: 1280px){
   li.test-page{
+    border-radius: 5px;
     background-color: #fff;
   }
 }
@@ -520,6 +531,7 @@ li.test-page{
 }
 /*question fill gaps*/
 .question-fill-gaps{
+  line-height: 40px;
   font-size: 1.15rem;
   .fill-gap-gap{
     display: inline-block;
@@ -878,6 +890,48 @@ li.test-page{
 .width-100{
     width: 100%;
     box-sizing: border-box;
+}
+.with-padding{
+  padding: 20px
+}
+/*select
+------------------------------------------------------------------------------*/
+.select{
+  display: flex;
+  .select-obj{
+    padding: 3px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .select-obj.selected{
+    border-color: $blue;
+  }
+}
+/*Dropzone
+------------------------------------------------------------------------------*/
+.dropzone{
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center;
+  color: $md-blue-grey-300;
+  border: 2px dashed $md-blue-grey-100;
+  height: 80px;
+  border-radius: 6px;
+  margin: 5px;
+}
+.dropzone-active{
+  border-color: $blue;
+  background-color: $md-blue-50;
+}
+.dropzone-reject{
+  border-color: $red;
+  background-color: $md-red-50;
+}
+.label-center{
+  margin: 6px;
+  text-align: center;
+  color: $md-blue-grey-300;
 }
 /*helpers
 ------------------------------------------------------------------------------*/

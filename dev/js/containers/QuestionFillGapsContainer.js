@@ -22,12 +22,12 @@ export default class QuestionFillGapsContainer extends Component {
     this.setState({html: tmp});
   }
   render(){
-    const { textArray, id, view } = this.props;
+    const { text, id, view } = this.props;
     if(view){
       return(
           <QuestionFillGapsView
             id={id}
-            textArray={textArray}
+            text={text}
           />
       )
     }
@@ -35,7 +35,7 @@ export default class QuestionFillGapsContainer extends Component {
         <QuestionFillGaps
           id={id}
           html={this.state.html}
-          textArray={textArray}
+          text={text}
           onChange={this.handleChange} />
     )
   }

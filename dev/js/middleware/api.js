@@ -19,29 +19,24 @@ function callApi(endpoint, authenticated, params, method) {
       throw "No token saved!"
     }
   }
-  console.log('callApi', params);
+  axios_config = {
+    url: endpoint,
+    timeout: 3000,
+    baseURL: BASE_URL,
+    method: method
+  }
   if(method == 'get'){
-    axios_config = {
-      url: endpoint,
-      baseURL: BASE_URL,
-      method: method,
-      params: {
-        ...params,
-        ...config
-      }
+    axios_config.params = {
+      ...params,
+      ...config
     }
   }else{
-    axios_config = {
-      url: endpoint,
-      baseURL: BASE_URL,
-      method: method,
-      data: querystring.stringify({
+    axios_config.data = querystring.stringify({
         ...params,
         ...config
-      })
-    }
+    })
   }
-  console.log('get', BASE_URL, axios_config);
+  console.log('get', BASE_URL + endpoint, axios_config);
   return axios(axios_config)
   .then(response => {
     if (response.data.error) {

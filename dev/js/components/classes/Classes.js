@@ -46,7 +46,6 @@ export default class Classes extends Component {
               <ClassItem key={clas.id} onClassClick={onClassClick} clas={clas} />
           )
         }
-
       }else if(14 > dayDiff && dayDiff >= 7){
         nextWeekClasses.push(
             <ClassItem key={clas.id} onClassClick={onClassClick} clas={clas} />

@@ -49,16 +49,24 @@ export default class Test extends Component {
                 />
               break;
             case "question_open":
-              output = <QuestionOpenContainer id={block.id} key={block.id} text={block.data} />
+              output = <QuestionOpenContainer
+                id={block.id}
+                key={block.id}
+                text={JSON.parse(block.data).q} />
               break;
-            case "fill-gaps":
-              output = <QuestionFillGapsContainer id={block.id} key={block.id} textArray={block.textArray} />
+            case "fill_in":
+              if(block.data == 0){
+                output = <QuestionFillGapsContainer id={block.id} key={block.id} text={block.long_data} />
+              }else if(block.data == 1){
+                output = <QuestionFillGapsListContainer id={block.id} key={block.id} text={block.long_data} />
+              }
+
               break;
             case "fill-gaps-list":
               output = <QuestionFillGapsListContainer id={block.id} key={block.id} answers={block.answers} textArray={block.textArray} />
               break;
-            case "TODO question_prefdef":
-              output = <QuestionFillGapsPredefinedContainer id={block.id} key={block.id} textArray={block.textArray} />
+            case "question_prefdef":
+              output = <QuestionFillGapsPredefinedContainer id={block.id} key={block.id} text={block.long_data} />
               break;
             case "youtube":
               output = <Youtube id={block.id} key={block.id} url={block.data} />

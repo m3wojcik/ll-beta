@@ -3,23 +3,24 @@ import FillGapSelect from './helpers/FillGapSelect';
 
 export default class QuestionFillGapsList extends Component {
   render(){
-    const { answers, textArray, onChange, html } = this.props;
-    let j = 0;
-    const answersItems = [''].concat(answers);
-    const mappedQuestion = textArray.map(function(obj, i){
-      let output;
-        if(obj.type == "text"){
-          output = <span key={i} className="fill-gap-text">{obj.value}</span>
-        }else{
-          output = <FillGapSelect className="fill-gap-select" key={i} value={j} menuItems={answersItems} onChange={onChange} />
-          j++;
-        }
-
-      return output;
-    })
+    const { text, onChange, html } = this.props;
+    var matches, globalAnswers = [], textSplit, output = []
+    const regex = /<w:([^>]+?)>/ig
+    while (matches = regex.exec(text)) {
+        let str = matches[1].split('|')
+        globalAnswers.push(str[0]);
+    }
+    const regexSplit = /<w:[^>]+?>/ig
+    textSplit = text.split(regexSplit)
+    textSplit.forEach(function(el, i){
+      output.push(el)
+      if(i + 1 < textSplit.length){
+        output.push(<FillGapSelect className="fill-gap-select" key={i} value={i} menuItems={globalAnswers} onChange={onChange} />)
+      }
+    }.bind(this))
     return(
       <div className="question-fill-gaps">
-        {mappedQuestion}
+        {output}
       </div>
     )
   }

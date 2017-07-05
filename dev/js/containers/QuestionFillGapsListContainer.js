@@ -19,20 +19,19 @@ export default class QuestionFillGapsListContainer extends Component {
     console.log(userAnswers);
   }
   render(){
-    const { answers, textArray, id ,view } = this.props;
+    const { answers, text, id ,view } = this.props;
     if(view){
       return(
           <QuestionFillGapsView
             id={id}
-            textArray={textArray}
+            text={text}
           />
       )
     }
     return(
         <QuestionFillGapsList
           id={id}
-          answers={answers}
-          textArray={textArray}
+          text={text}
           onChange={this.handleChange} />
     )
   }

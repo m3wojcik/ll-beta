@@ -18,7 +18,7 @@ export default class QuestionFillGapsListContainer extends Component {
     console.log(userAnswers);
   }
   render(){
-    const { answers, textArray, id, view } = this.props;
+    const { answers, text, id, view } = this.props;
     if(view){
       return(
           <QuestionFillGapsView
@@ -30,7 +30,7 @@ export default class QuestionFillGapsListContainer extends Component {
     return(
         <QuestionFillGapsPredefined
           id={id}
-          textArray={textArray}
+          text={text}
           onChange={this.handleChange} />
     )
   }

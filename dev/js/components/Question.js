@@ -10,7 +10,7 @@ export default class Question extends Component {
       return {
         id: answer.id,
         value: answer.id.toString(),
-        label: answer.data
+        label: JSON.parse(answer.data).value
       }
     })
     if(type=="radio"){
@@ -22,9 +22,11 @@ export default class Question extends Component {
           disabled
         />
       }else{
+        console.log('mappedAnswers',mappedAnswers);
         output = <SelectionControlGroup
           name={"question-" + type}
           type={type}
+          defaultValue={null}
           onChange={onChangeValue.bind(this)}
           controls={mappedAnswers}
         />

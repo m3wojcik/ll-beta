@@ -55,7 +55,9 @@ export default function reducer(state={
           ...state,
           toolbar: {
             ...state.toolbar,
-            ...action.payload,
+            header: action.payload.header,
+            hasTabs: action.payload.hasTabs,
+            searchBtn: action.payload.searchBtn,
             backBtn: action.payload.backBtn,
             backPath: action.payload.backPath
           },
