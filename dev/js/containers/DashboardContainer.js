@@ -23,9 +23,6 @@ import {getTodaysClass} from '../actions/index'
   };
 })
 export default class DashboardContainer extends Component {
-  handleTestClick = (event) =>{
-      this.props.dispatch(getTodaysClass({user_id: 1}));
-  }
   render(){
     const { appData, notifications } = this.props;
     let dashboardCards = [],dashboardCardsLeft = [],dashboardCardsRight = [];
@@ -46,7 +43,6 @@ export default class DashboardContainer extends Component {
     return(
       <Content>
         <DashboardWelcome appData={appData} />
-        <Button raised primary label="test" onClick={this.handleTestClick} />
         <DashboardClassesContainer />
         <div className="md-grid md-row">
           <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import querystring  from "query-string";
+import {push} from 'react-router-redux';
 
 export const BASE_URL = 'https://test.langlion.com/api/'
 //const BASE_URL = 'http://api.local/'
@@ -39,9 +40,6 @@ function callApi(endpoint, authenticated, params, method) {
   console.log('get', BASE_URL + endpoint, axios_config);
   return axios(axios_config)
   .then(response => {
-    if (response.data.error) {
-      throw response.data.error
-    }
     return response.data
   })
   .catch((error) => {
@@ -71,9 +69,11 @@ export default store => next => action => {
       if(successToast){
          next({type: "RRS_SHOW_SNACK", payload: successToast})
       }
-
     },
     error => {
+      if(error.response.status == 401){
+        next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
+      }
       next({
       payload: error || 'There was an error.',
       type: errorType

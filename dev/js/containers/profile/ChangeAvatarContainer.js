@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchAvatars } from "../../actions/ProfileActions";
+import { avatars } from "../../actions/config"
 import Loader from '../../components/helpers/Loader'
 import ChangeAvatar from '../../components/profile/ChangeAvatar';
 
-@connect((store) => {
-   return {
-    avatars: store.profile.avatars.avatars,
-    fetched: store.profile.avatars.fetched,
-    fetching: store.profile.avatars.fetching
-  };
-})
 export default class ChangeAvatarContainer extends Component {
   constructor() {
     super()
@@ -19,9 +12,6 @@ export default class ChangeAvatarContainer extends Component {
       avatarType: null,
       files: []
     }
-  }
-  componentDidMount(){
-    this.props.dispatch(fetchAvatars());
   }
   handleChangeAvatar = ( index, value) =>{
     console.log( value);
@@ -41,11 +31,8 @@ export default class ChangeAvatarContainer extends Component {
     })
   }
   render(){
-    const { fetched, avatars, onCancelClick,  } = this.props;
+    const { onCancelClick,  } = this.props;
     const {selectedAvatar, avatarType} = this.state
-    if(!fetched){
-        return( <Loader center />)
-    }
     return(
           <ChangeAvatar
             selectedAvatar={selectedAvatar}

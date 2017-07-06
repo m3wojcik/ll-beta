@@ -20,8 +20,8 @@ export default function reducer(state={
           fetching: false,
           fetched: true,
           groups: action.payload.groups,
-          totalAmount: action.payload.totalAmount,
-          amountPaid: action.payload.amountPaid
+          totalAmount: action.payload.total,
+          amountPaid: action.payload.paid
         }
       }
     }

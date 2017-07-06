@@ -15,3 +15,9 @@ export const groupStatus = {
   "files_added": {"label": "Files added", "class": "label-blue"},
   "tests_added": {"label": "Tests added", "class": "label-blue"},
 }
+export const avatars = [
+  {id: 1, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av01.png"},
+  {id: 2, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av02.png"},
+  {id: 3, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av03.png"},
+  {id: 4, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av04.png"}
+]

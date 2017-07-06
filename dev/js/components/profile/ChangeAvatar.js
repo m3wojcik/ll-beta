@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from 'react-md/lib/Buttons/Button';
 import Avatar from '../helpers/Avatar'
 import Select from '../helpers/Select'
+import Canvas from '../helpers/Canvas'
 import Dropzone from 'react-dropzone'
 
 export default class ChangeAvatar extends Component {
@@ -9,15 +10,15 @@ export default class ChangeAvatar extends Component {
   render(){
     const { avatars, selectedAvatar, avatarType, onCancelClick, onSaveClick, onChangeAvatar, onDrop } = this.props
     const mappedAvatars = []
-    let avatarSrc;
+    let avatarSrc = avatars[0].src;
     if(selectedAvatar != null){
       if(avatarType == "prepared"){
         avatarSrc = avatars[selectedAvatar].src
       }else{
         avatarSrc = selectedAvatar.preview
       }
-
     }
+
     avatars.forEach(function(avatar){
       mappedAvatars.push(
           {
@@ -31,7 +32,8 @@ export default class ChangeAvatar extends Component {
       <div className="">
         <div className="md-grid">
           <div className="md-cell md-cell--6">
-            <Avatar w={200} h={200} src={avatarSrc} />
+            <Canvas src={avatarSrc} />
+            
           </div>
           <div className="md-cell md-cell--6">
             <Dropzone

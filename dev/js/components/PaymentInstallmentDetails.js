@@ -4,21 +4,24 @@ import TwoColumnTable from './helpers/TwoColumnTable'
 export default class PaymentInstallmentDetails extends Component {
   render(){
     const { installment } = this.props;
+    const amountPaid = installment.paid_value
+    const leftToPay = installment.value - installment.paid_value
+    const amountToPay = installment.value
     let paymentDetails = [];
-    if(installment.paymentDate){
-      paymentDetails.push({"label": "Payment date","value": <FormattedDate value={installment.paymentDate} day="numeric" month="numeric" year="numeric" />})
+    if(installment.paid_at){
+      paymentDetails.push({"label": "Payment date","value": <FormattedDate value={installment.paid_at} day="numeric" month="numeric" year="numeric" />})
     }
-    if(installment.dateOfPayment){
-      paymentDetails.push({"label": "Date of payment","value": <FormattedDate value={installment.dateOfPayment} day="numeric" month="numeric" year="numeric" />})
+    if(installment.paid_at){
+      paymentDetails.push({"label": "Date of payment","value": <FormattedDate value={installment.paid_at} day="numeric" month="numeric" year="numeric" />})
     }
-    if(installment.amountToPay){
-      paymentDetails.push({"label": "Amount to pay","value": installment.amountToPay})
+    if(installment.value){
+      paymentDetails.push({"label": "Amount to pay","value": amountToPay})
     }
-    if(installment.amountPaid){
-      paymentDetails.push({"label": "Amount paid","value": installment.amountPaid})
+    if(installment.paid_value){
+      paymentDetails.push({"label": "Amount paid","value": amountPaid})
     }
-    if(installment.leftToPay){
-      paymentDetails.push({"label": "Left to pay","value": installment.leftToPay})
+    if(installment.value){
+      paymentDetails.push({"label": "Left to pay","value": leftToPay})
     }
     return(
       <TwoColumnTable details = {paymentDetails} />
