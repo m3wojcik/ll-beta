@@ -32,8 +32,8 @@ export default class ChangeAvatar extends Component {
       <div className="">
         <div className="md-grid">
           <div className="md-cell md-cell--6">
-            <Canvas src={avatarSrc} />
-            
+            <Canvas src={avatarSrc} w={200} h={200}/>
+
           </div>
           <div className="md-cell md-cell--6">
             <Dropzone

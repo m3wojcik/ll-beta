@@ -16,6 +16,7 @@ export const groupStatus = {
   "tests_added": {"label": "Tests added", "class": "label-blue"},
 }
 export const avatars = [
+  {id: 0, src: "http://langlion.com/pl/wp-content/uploads/2017/07/test.png"},
   {id: 1, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av01.png"},
   {id: 2, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av02.png"},
   {id: 3, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av03.png"},
