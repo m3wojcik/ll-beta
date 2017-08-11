@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CustomListItem from './helpers/CustomListItem';
+import CustomListItem from '../helpers/CustomListItem';
 import ElibraryListStatus from './ElibraryListStatus'
 
 export default class MediaList extends Component {

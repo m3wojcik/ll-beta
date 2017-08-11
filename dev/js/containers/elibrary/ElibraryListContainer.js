@@ -2,26 +2,24 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Dialog from 'react-md/lib/Dialogs';
 import Drawer from 'react-md/lib/Drawers';
-import { fetchElibraryList, fetchElibraryDetails, postCancelReservationElibraryObject, postReserveElibraryObject, setReserveElibraryObject } from "../actions/ElibraryListActions";
-import ElibraryList from '../components/ElibraryList'
-import ListWithHeader from '../components/helpers/ListWithHeader'
-import Loader from '../components/helpers/Loader'
-import Content from '../components/helpers/Content'
-import DrawerHeader from '../components/helpers/DrawerHeader'
-import DrawerBody from '../components/helpers/DrawerBody'
+import { fetchElibraryList, fetchElibraryBooking, fetchElibraryDetails, postCancelReservationElibraryObject, postReserveElibraryObject, setReserveElibraryObject } from "../../actions/ElibraryListActions";
+import ElibraryList from '../../components/elibrary/ElibraryList'
+import ListWithHeader from '../../components/helpers/ListWithHeader'
+import Loader from '../../components/helpers/Loader'
+import Content from '../../components/helpers/Content'
+import DrawerHeader from '../../components/helpers/DrawerHeader'
+import DrawerBody from '../../components/helpers/DrawerBody'
 import ElibraryDetailsContainer from './ElibraryDetailsContainer'
 import ElibraryReservationDateContainer from './ElibraryReservationDateContainer'
 
 @connect((store) => {
    return {
      toolbar: store.app.toolbar,
-     elibraryList: store.elibraryList.elibraryList,
-     fetched: store.elibraryList.fetched,
-     fetching: store.elibraryList.fetching,
-     elibraryDetails: store.elibraryList.elibraryDetails,
-     detailsFetching: store.elibraryList.detailsFetching,
-     detailsFetched: store.elibraryList.detailsFetched,
-     reservedObject:store.elibraryList.reservedObject
+     books: store.elibrary.elibraryList.books,
+     fetched: store.elibrary.elibraryList.fetched,
+     fetching: store.elibrary.elibraryList.fetching,
+     booking: store.elibrary.elibraryBooking,
+     reservedObject:store.elibrary.reservedObject
   };
 })
 export default class ElibraryListContainer extends Component {
@@ -57,6 +55,7 @@ export default class ElibraryListContainer extends Component {
   }
   componentDidMount(){
     this.props.dispatch(fetchElibraryList());
+    this.props.dispatch(fetchElibraryBooking());
   }
   handleReserveBtnClick = (object) => {
     this.setState({
@@ -80,32 +79,31 @@ export default class ElibraryListContainer extends Component {
       dialogData: <ElibraryDetailsContainer id={object.id} />
     })
     this.openDialog();
-
   }
   removeToast = () => {
     const [, ...toasts] = this.state.toasts;
     this.setState({ toasts: toasts });
   }
   render(){
-    const { fetched, elibraryList, toolbar, reservedObject } = this.props;
+    const { fetched, books, toolbar, reservedObject, booking } = this.props;
     let availableList = [], borrowedList = [], reservedList = [];
-    elibraryList.forEach(function(item){
-      if(item.status == "borrowed"){
-        borrowedList.push(item);
-      }else if(item.status == "reserved"){
-        reservedList.push(item);
-      }else{
-        availableList.push(item);
-      }
-    });
+    if(books && books.length > 0){
+      books.forEach(function(item){
+        if(item.status == "reserved"){
+          reservedList.push(item);
+        }else{
+          availableList.push(item);
+        }
+      });
+    }
     let propsBorrowed, propsReserved, propsAvailable, output = [];
 
-    if(borrowedList.length > 0){
+    if(booking.books && booking.books.length > 0){
       propsBorrowed = {
         borrowed: true,
         onDetailsClick: this.handleDetailsClick,
         searchValue: toolbar.searchValue,
-        elibraryList: borrowedList
+        elibraryList: booking.books
       }
       output.push(
         <ListWithHeader key="Borrowed" header="Borrowed">

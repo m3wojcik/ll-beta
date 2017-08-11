@@ -42,12 +42,13 @@ export default class FilesContainer extends Component {
     }else if (file.type =="file") {
       const fileId = file.id
       const accessToken = localStorage.getItem('access_token')
-      const downloadString = BASE_URL + "files?access_token="+ accessToken +"&file_id="+fileId
+      const downloadString = BASE_URL + "fileDownload?access_token="+ accessToken +"&id="+fileId
       window.open(downloadString)
     }
   }
   handleBackClick = (folderId) =>{
-    this.props.dispatch(push("files/" + folderId));
+    let path = folderId ? "files/" + folderId : "files"
+    this.props.dispatch(push(path));
   }
   render(){
     const { fetched, path, files, currentFolderId, toolbar } = this.props;

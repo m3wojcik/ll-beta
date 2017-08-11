@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import { reducer as formReducer } from 'redux-form';
 import { snackbarReducer } from 'react-redux-snackbar';
-
 import AppReducer from './AppReducer';
 import AlertReducer from './AlertReducer';
 import ErrorReducer from './ErrorReducer';
@@ -64,7 +63,7 @@ const allReducers = combineReducers({
   testView: TestViewReducer,
   profile: ProfileReducer,
   loginHistory: LoginHistoryReducer,
-  elibraryList: ElibraryListReducer,
+  elibrary: ElibraryListReducer,
   elibraryDetails: ElibraryDetailsReducer,
   toasts: ToastsReducer,
   snackbar: snackbarReducer,

@@ -63,7 +63,7 @@ export default class EditProfileContainer extends Component {
             <EditProfile userData={userData} onSubmit={this.handleSubmit} saveUserData={saveUserData} onChangeAvatarClick={this.handleChangeAvatarClick} />
           </section>
           <Drawer
-            visible={true}
+            visible={this.state.drawerVisible}
             onVisibilityToggle={this.handleDrawerToggle}
             type={Drawer.DrawerTypes.TEMPORARY}
             header={<DrawerHeader>Change avatar</DrawerHeader>}

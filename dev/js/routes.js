@@ -22,7 +22,7 @@ import TestViewContainer from './containers/TestViewContainer';
 import ProfileContainer from './containers/profile/ProfileContainer';
 import EditProfileContainer from './containers/profile/EditProfileContainer';
 import LoginHistoryContainer from './containers/profile/LoginHistoryContainer';
-import ElibraryListContainer from './containers/ElibraryListContainer';
+import ElibraryListContainer from './containers/elibrary/ElibraryListContainer';
 import SurveysContainer from './containers/SurveysContainer';
 import SurveyContainer from './containers/SurveyContainer';
 import SurveyViewContainer from './containers/SurveyViewContainer';

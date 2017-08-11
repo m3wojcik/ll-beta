@@ -50,7 +50,7 @@ export default class ClassesContainer extends Component {
   render(){
     const { selectedGroupIndex} = this.state;
     const { fetched, groups } = this.props;
-    if(!fetched){
+    if(!fetched){ 
       return(<Loader />)
     }else{
       return(

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { getDays } from '../actions/Functions';
-import Label from './helpers/Label';
+import { getDays } from '../../actions/Functions';
+import Label from '../helpers/Label';
 import { FormattedPlural } from 'react-intl';
 
 export default class ElibraryListStatus extends Component {
@@ -9,7 +9,7 @@ export default class ElibraryListStatus extends Component {
     const { item } = this.props;
     let status;
     if(item.status == "available"){
-        status = <Label blue label={item.availableUnits} value={item.availableUnits} colorValues={[{"values":[1],"color": "red"}, {"range":[2,3],"color": "orange"}]} />
+        status = <Label blue label={item.quantity_available} value={item.quantity_available} colorValues={[{"values":[1],"color": "red"}, {"range":[2,3],"color": "orange"}]} />
     }else if(item.status == "reserved"){
       let label;
       const today = getDays(new Date());

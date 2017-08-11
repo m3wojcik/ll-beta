@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 import Button from 'react-md/lib/Buttons/Button';
-import ElibraryReservationDate from '../components/ElibraryReservationDate';
-import {setReserveElibraryObjectDates, postReserveElibraryObject } from "../actions/ElibraryListActions";
-import {addDays} from '../actions/Functions'
-import { addToast, removeToast } from "../actions/ToastsActions";
+import ElibraryReservationDate from '../../components/elibrary/ElibraryReservationDate';
+import {setReserveElibraryObjectDates, postReserveElibraryObject } from "../../actions/ElibraryListActions";
+import {addDays} from '../../actions/Functions'
+import { addToast, removeToast } from "../../actions/ToastsActions";
 
 @connect((store) => {
    return {

@@ -28,6 +28,8 @@ export default class Canvas extends Component {
   componentWillReceiveProps(next){
     const {src} = this.props
     if(src != next.src){
+      console.log('newInMarks');
+      this.resetSlider()
       this.updateCanvas(next.src)
     }
   }
@@ -80,6 +82,9 @@ export default class Canvas extends Component {
       //var dataurl = this.refs.canvas.toDataURL("image/png");
       //console.log('dataurl', dataurl);
     }.bind(this)
+  }
+  resetSlider = () =>{
+    this.setState({sliderValue: 1})
   }
   handleSliderChange = (value) =>{
     const {sliderValue, image, posX, posY, drawnWidth, drawnHeight, startWidth, startHeight} = this.state
@@ -158,8 +163,9 @@ export default class Canvas extends Component {
     const {w, h} = this.props
 //TODO reset select value przy nowym src
     return (
-      <div>
+      <div className="avatar-zoom">
         <canvas
+          className={this.state.isDragging ? "is-dragging": null}
           onMouseLeave={this._onMouseUp}
           onMouseUp={this._onMouseUp}
           onMouseDown={this._onMouseDown}
@@ -168,10 +174,12 @@ export default class Canvas extends Component {
           width={w}
           height={h}/>
         <Slider
-          id="minMaxSlider"
-          label="zoom"
-          onChange={this.handleSliderChange}
+          id="zoomSlider"
+          ref="slider"
           defaultValue={1}
+          valuePrecision={1}
+          value={this.state.sliderValue}
+          onChange={this.handleSliderChange}
           min={1}
           max={100}
           step={1}

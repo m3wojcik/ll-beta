@@ -1,5 +1,16 @@
 export default function reducer(state={
-  elibraryList: [],
+  elibraryList: {
+    books: [],
+    fetching: false,
+    fetched: false,
+    error: null
+  },
+  elibraryBooking: {
+    books: [],
+    fetching: false,
+    fetched: false,
+    error: null
+  },
   reservedObject:{
       id: null,
       dateFrom: null,
@@ -9,24 +20,41 @@ export default function reducer(state={
       posting: false,
       posted: true
   },
-  fetching: false,
-  fetched: false,
+
   error: null,
   }, action) {
 
     switch (action.type) {
       case "FETCH_ELIBRARY_LIST": {
-        return {...state, fetching: true, fetched: false}
+        return {...state, elibraryList: {fetching: true, fetched: false}}
       }
       case "FETCH_ELIBRARY_LIST_REJECTED": {
-        return {...state, fetching: false, error: action.payload}
+        return {...state, elibraryList: {fetching: false, error: action.payload}}
       }
       case "FETCH_ELIBRARY_LIST_FULFILLED": {
         return {
           ...state,
-          fetching: false,
-          fetched: true,
-          elibraryList: action.payload,
+          elibraryList: {
+            fetching: false,
+            fetched: true,
+            books: action.payload.items,
+          }
+        }
+      }
+      case "FETCH_ELIBRARY_BOOKING": {
+        return {...state, elibraryBooking: {fetching: true, fetched: false}}
+      }
+      case "FETCH_ELIBRARY_BOOKING_REJECTED": {
+        return {...state, elibraryBooking: {fetching: false, error: action.payload}}
+      }
+      case "FETCH_ELIBRARY_BOOKING_FULFILLED": {
+        return {
+          ...state,
+          elibraryBooking: {
+            fetching: false,
+            fetched: true,
+            books: action.payload.items,
+          }
         }
       }
       case "CHANGE_ELIBRARY_OBJECT_STATUS": {

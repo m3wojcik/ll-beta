@@ -3,6 +3,7 @@ import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import FileTypeIcon from '../files/FileTypeIcon';
+import {BASE_URL} from "../../middleware/api"
 
 export default class ListFiles extends Component {
 
@@ -11,18 +12,21 @@ export default class ListFiles extends Component {
     const imgFileTypes = ["jpg","png","gif","jpeg"];
     const mappedFiles = [];
     const mappedImages = [];
+    const accessToken = localStorage.getItem('access_token')
     files.forEach(function(file, i){
       if(imgFileTypes.indexOf(file.extension) > -1){
+        const downloadString = BASE_URL + "fileDownload?access_token="+ accessToken +"&id="+file.id
         mappedImages.push(
           <li key={file.id} className="md-list-item">
-            <img src={file.src} role="presentation" className="img-responsive" />
+            <img src={downloadString} role="presentation" className="img-responsive" />
           </li>
         )
       }else if(file.extension == "mp3"){
+        const downloadString = BASE_URL + "fileDownload?access_token="+ accessToken +"&id="+file.id
         mappedImages.push(
           <li key={file.id} className="md-list-item">
             <audio controls>
-              <source src={file.src} type="audio/mpeg" />
+              <source src={downloadString} type="audio/mpeg" />
               Your browser does not support the audio tag.
             </audio>
           </li>

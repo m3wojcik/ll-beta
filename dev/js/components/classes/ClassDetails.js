@@ -18,7 +18,6 @@ import ClassFilesContainer from './../../containers/classes/ClassFilesContainer'
 export default class ClassDetails extends Component {
   render(){
      const { classDetails } = this.props;
-     console.log("class det render", classDetails);
      const date = new Date(classDetails.date)
      const listHorizontalElements = [
        <div><FormattedTime value={date} /> - <FormattedTime value={date.getTime() + (classDetails.length * 1000 * 60) }  /></div>
@@ -43,7 +42,7 @@ export default class ClassDetails extends Component {
             <ClassLessonObjectsContainer id={classDetails.id} />
           </div>
           <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
-            <ClassTestsContainer id={classDetails.id} />
+            { false ? <ClassTestsContainer id={classDetails.id} /> : null}
             <ClassFilesContainer id={classDetails.id} />
           </div>
         </div>

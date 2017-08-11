@@ -11,19 +11,16 @@ export default class Breadcrumbs extends Component {
   render(){
     const {path, onClick} = this.props;
     const pathLength = path.length;
+    const home = pathLength > 0 ? <div className="crumb">
+      <div
+        className="crumb-link crumb-clickable"
+        onClick={onClick.bind(this, null)}>
+        <FontIcon className="crumb-clickable">home</FontIcon>
+      </div>
+    </div> : null
     const mappedCrumbs = path.map(function(crumb, i){
       let output;
-      if(i == 0){
-        output = [
-          <div className="crumb" key={crumb.id}>
-            <div
-              className="crumb-link crumb-clickable"
-              onClick={onClick.bind(this, crumb.id)}>
-              <FontIcon className="crumb-clickable">home</FontIcon>
-            </div>
-          </div>
-        ]
-      }else if(i == pathLength - 1){
+      if(i == pathLength - 1){
         output = [
           <div className="crumb" key={crumb.id}>
             <div className="crumb-divider"><FontIcon>keyboard_arrow_right</FontIcon></div>
@@ -42,6 +39,7 @@ export default class Breadcrumbs extends Component {
     }.bind(this))
     return(
       <div className="breadcrumbs">
+        {home}
         {mappedCrumbs}
       </div>
     )

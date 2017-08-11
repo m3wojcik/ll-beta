@@ -13,6 +13,8 @@ export default class Alert extends Component {
         classProps +=' warning'
     }else if(type == "success"){
         classProps +=' success'
+    }else if(type == "transparent"){
+        classProps +=' transparent'
     }
     return(
         text ?

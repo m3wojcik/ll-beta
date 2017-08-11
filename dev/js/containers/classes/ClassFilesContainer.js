@@ -15,7 +15,7 @@ export default class ClassFilesContainer extends Component {
   componentDidMount(){
     const { fetched, id } = this.props;
     if(!fetched){
-      this.props.dispatch(fetchClassFiles(id));
+      this.props.dispatch(fetchClassFiles({lesson_id: id}));
     }
   }
   handleFileClick = (file) =>{

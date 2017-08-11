@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
 import Button from 'react-md/lib/Buttons/Button';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
-import Loader from '../components/helpers/Loader'
+import Loader from '../helpers/Loader'
 
 export default class ElibraryReservationDate extends Component {
 

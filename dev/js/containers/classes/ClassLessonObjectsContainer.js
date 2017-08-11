@@ -15,7 +15,7 @@ export default class ClassLessonObjectsContainer extends Component {
   componentDidMount(){
     const { fetched, id } = this.props;
     if(!fetched){
-      this.props.dispatch(fetchClassLessonObjects(id));
+      this.props.dispatch(fetchClassLessonObjects({lesson_id: id}));
     }
   }
 

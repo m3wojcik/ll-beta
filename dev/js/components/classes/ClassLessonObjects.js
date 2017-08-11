@@ -10,7 +10,7 @@ export default class ClassLessonObjects extends Component {
     const { id, lessonObjects } = this.props;
     const lessonObjectsMapped = lessonObjects[id].objects.map(
       (object,i) =>
-        <LessonObject key={i} label={object.label} content={object.content} />
+        <LessonObject key={i} label={object.type} content={object.content} />
     )
     return(
       <Box
@@ -25,6 +25,6 @@ export default class ClassLessonObjects extends Component {
   }
 }
 ClassLessonObjects.propTypes = {
-  lessonObjects: React.PropTypes.array.isRequired,
+  lessonObjects: React.PropTypes.object.isRequired,
   id: React.PropTypes.number.isRequired
 }

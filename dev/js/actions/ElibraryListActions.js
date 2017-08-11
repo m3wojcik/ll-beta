@@ -1,17 +1,40 @@
-import {instance} from './config'
+import { CALL_API } from '../middleware/api'
 
 export function fetchElibraryList() {
-  return function(dispatch) {
-    dispatch({type: "FETCH_ELIBRARY_LIST", payload: true});
-    instance.get("?q=getElibraryList")
-      .then((response) => {
-        dispatch({type: "FETCH_ELIBRARY_LIST_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_ELIBRARY_LIST_REJECTED", payload: err})
-      })
+  return {
+    [CALL_API]: {
+      endpoint: '/elibraryList',
+      types: ["FETCH_ELIBRARY_LIST", "FETCH_ELIBRARY_LIST_FULFILLED", "FETCH_ELIBRARY_LIST_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
   }
 }
+
+export function fetchElibraryBooking() {
+  return {
+    [CALL_API]: {
+      endpoint: '/elibraryBooking',
+      types: ["FETCH_ELIBRARY_BOOKING", "FETCH_ELIBRARY_BOOKING_FULFILLED", "FETCH_ELIBRARY_BOOKING_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
+  }
+}
+import {instance} from './config'
+
+// export function fetchElibraryList() {
+//   return function(dispatch) {
+//     dispatch({type: "FETCH_ELIBRARY_LIST", payload: true});
+//     instance.get("?q=getElibraryList")
+//       .then((response) => {
+//         dispatch({type: "FETCH_ELIBRARY_LIST_FULFILLED", payload: response.data});
+//       })
+//       .catch((err) => {
+//         dispatch({type: "FETCH_ELIBRARY_LIST_REJECTED", payload: err})
+//       })
+//   }
+// }
 export function changeElibraryObjectStatus(id, status) {
   return {
     type: 'CHANGE_ELIBRARY_OBJECT_STATUS',
@@ -53,7 +76,7 @@ export function postReserveElibraryObject(objectId, dateFrom, dateTo, callBack) 
           callBack();
         }
         if(response.data == "200"){
-          dispatch({type: "ADD_TOAST", payload: {"text": "Item reserved"}}); 
+          dispatch({type: "ADD_TOAST", payload: {"text": "Item reserved"}});
           dispatch({type: "POST_RESERVE_ELIBRARY_OBJECT_FULFILLED", payload: response.data});
         }else{
           dispatch({type: "ADD_TOAST", payload: {"text": "Item reservation fail"}});

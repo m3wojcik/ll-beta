@@ -1,18 +1,12 @@
 export default function reducer(state={
-  classDetails: [],
+  classDetails: {},
   // classDetails: null,
   // fetching: false,
   // fetched: false,
   error: null,
-  lessonObjects: [],
-  // lessonObjects:{
-  //   classId: null,
-  //   objects: [],
-  //   fetching: false,
-  //   fetched: false,
-  // },
+  lessonObjects: {},
   classTests: [],
-  classFiles: []
+  classFiles: {}
   // classFiles:{
   //   files: [],
   //   path: [],
@@ -23,17 +17,17 @@ export default function reducer(state={
 
     switch (action.type) {
       case "FETCH_CLASS_DETAILS": {
-        let newClassDetails = state.classDetails.slice();
-        newClassDetails[action.payload] = {fetching: true, fetched:false}
+        let newClassDetails = {...state.classDetails};
+        newClassDetails[action.payload.id] = {fetching: true, fetched:false}
         return {...state, classDetails: newClassDetails}
       }
       case "FETCH_CLASS_DETAILS_REJECTED": {
         return {...state, fetching: false, error: action.payload}
       }
       case "FETCH_CLASS_DETAILS_FULFILLED": {
-        let newClassDetails = state.classDetails.slice();
+        let newClassDetails = {...state.classDetails};
         newClassDetails[action.payload.id] = {
-          details: action.payload,
+          ...action.payload,
           fetching: false,
           fetched: true
         }
@@ -44,17 +38,18 @@ export default function reducer(state={
       }
 
       case "FETCH_CLASS_LESSON_OBJECTS": {
-        let newLessonObjects = state.lessonObjects.slice();
-        newLessonObjects[action.payload] = {fetching: true, fetched:false}
+        let newLessonObjects = {...state.lessonObjects};
+        newLessonObjects[action.payload.lesson_id] = {fetching: true, fetched:false}
         return {...state, lessonObjects: newLessonObjects}
       }
       case "FETCH_CLASS_LESSON_OBJECTS_REJECTED": {
         return {...state, lessonObjects: {fetching: false}, error: action.payload}
       }
       case "FETCH_CLASS_LESSON_OBJECTS_FULFILLED": {
-        let newLessonObjects = state.lessonObjects.slice();
-        newLessonObjects[action.payload.classId] = {
-          objects: action.payload.lessonObjects,
+
+        let newLessonObjects = {...state.lessonObjects};
+        newLessonObjects[action.params.lesson_id] = {
+          objects: action.payload,
           fetching: false,
           fetched: true
         }
@@ -86,16 +81,16 @@ export default function reducer(state={
       }
 
       case "FETCH_CLASS_FILES": {
-        let newClassFiles = state.classFiles.slice();
-        newClassFiles[action.payload] = {fetching: true, fetched:false}
+        let newClassFiles = {...state.classFiles}
+        newClassFiles[action.payload.lesson_id] = {fetching: true, fetched:false}
         return {...state, classFiles: newClassFiles}
       }
       case "FETCH_CLASS_FILES_REJECTED": {
         return {...state, classFiles: {fetching: false}, error: action.payload}
       }
       case "FETCH_CLASS_FILES_FULFILLED": {
-        let newClassFiles = state.classFiles.slice();
-        newClassFiles[action.payload.classId] = {
+        let newClassFiles = {...state.classFiles}
+        newClassFiles[action.params.lesson_id] = {
           files: action.payload.files,
           path: action.payload.path,
           fetching: false,

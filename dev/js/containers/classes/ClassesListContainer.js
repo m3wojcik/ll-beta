@@ -7,7 +7,8 @@ import Content from '../../components/helpers/Content'
 import { setAppSettings } from "../../actions/AppActions";
 import { fetchClasses } from "../../actions/ClassesActions";
 import Classes from '../../components/classes/Classes'
-
+import ClassInfo from '../../components/classes/ClassInfo'
+import ToolbarExpander from '../../components/helpers/ToolbarExpander';
 
 @connect((store) => {
    return {
@@ -38,11 +39,16 @@ export default class ClassesListContainer extends Component {
       return(<Loader full />)
     }
     return(
-      <Content noPadding>
-        <Classes
-          classes={classes}
-          onClassClick={this.handleClassClick}
-          headers  />
+      <Content noPadding expander>
+        <ToolbarExpander
+          left={<ClassInfo info={classes} />}
+        />
+        <div className="expander-body">
+          <Classes
+            classes={classes}
+            onClassClick={this.handleClassClick}
+            headers  />
+        </div>
       </Content>
     )
   }

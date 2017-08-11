@@ -14,20 +14,21 @@ import Loader from '../../components/helpers/Loader'
 })
 export default class ClassDetailsContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(fetchClassDetails(this.props.params.classId));
+    this.props.dispatch(fetchClassDetails({id: this.props.params.classId}));
   }
   componentWillReceiveProps(nextProps){
-    if(nextProps.fetched && !this.props.fetched){
-      this.props.dispatch(setAppHeader(nextProps.classDetails.name));
+    console.log('cwrp', nextProps);
+    if(nextProps.classDetails[this.props.params.classId].name && !this.props.classDetails[this.props.params.classId].name){
+      console.log('in');
+      this.props.dispatch(setAppHeader(nextProps.classDetails[this.props.params.classId].name));
     }
   }
   render(){
     const { classDetails } = this.props;
-    console.log("classDetails", classDetails);
     if(classDetails[this.props.params.classId] && classDetails[this.props.params.classId].fetched){
       return(
         <Content noPadding>
-          <ClassDetails classDetails={classDetails[this.props.params.classId].details} />
+          <ClassDetails classDetails={classDetails[this.props.params.classId]} />
         </Content>
         )
     }else{

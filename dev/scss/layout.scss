@@ -34,6 +34,9 @@ strong{
         line-height: 21px;
         height: 21px;
         display: inline-block;
+        border: none;
+        color: #fff;
+        background-color: $red;
       }
     }
   }
@@ -441,6 +444,16 @@ strong{
     padding: 20px;
   }
 }
+@media screen and (min-width: 1025px){
+  .class-list{
+    .md-list-tile--two-lines{
+      height: 72px;
+      .md-list-tile{
+        height: 67px;
+      }
+    }
+  }
+}
 /*file list
 ------------------------------------------------------------------------------*/
 .file-list {
@@ -462,13 +475,13 @@ strong{
     color: $md-text-secondary;
   }
 }
-@media screen and (min-width: 1025px){
-  .file-list {
-    .md-tile-text--primary{
-      font-size: 15px;
-    }
-  }
-}
+// @media screen and (min-width: 1025px){
+//   .file-list {
+//     .md-tile-text--primary{
+//       font-size: 15px;
+//     }
+//   }
+// }
 /* News
 ------------------------------------------------------------------------------*/
 .news-content{
@@ -1279,7 +1292,7 @@ ul.card-list > li{
 .alert{
     position: relative;
     min-height: 1em;
-    margin: 1em 0;
+    margin: 0 0 1em 0;
     background: #f8f8f9;
     padding: 1em 1.5em;
     border-radius: 3px;
@@ -1296,6 +1309,10 @@ ul.card-list > li{
 }
 .alert.danger{
     background-color: $red;
+}
+.alert.transparent{
+    background-color: transparent;
+    color: $md-blue-grey-400
 }
 /*Range
 ------------------------------------------------------------------------------*/
@@ -1385,84 +1402,109 @@ ul.card-list > li{
   border-radius: .25em;
 }
 .label-default {
-  background-color: $md-blue-grey-300;
+  border:2px solid $md-blue-grey-300;
+  color: $md-blue-grey-300;
 }
 
 .label-primary {
-  background-color: $md-primary-color;
+  border:2px solid $md-primary-color;
+  color: $md-primary-color;
 }
 
 .label-success {
-  background-color: $md-green-500;
+  border:2px solid $md-green-500;
+  color: $md-green-500;
 }
 
 .label-info {
-  background-color: $md-light-blue-600;
+  border:2px solid $md-light-blue-600;
+  color: $md-light-blue-600;
 }
 
 .label-warning {
-  background-color: $md-orange-800;
+  border:2px solid $md-orange-800;
+  color: $md-orange-800;
 }
 
 .label-danger {
-  background-color: $md-red-800;
+  border:2px solid $md-red-800;
+  color: $md-red-800;
 }
 .label-red{
-  background-color: $red;
+  border:2px solid $red;
+  color: $red;
 }
 .label-orange{
-  background-color: $orange;
+  border:2px solid $orange;
+  color: $orange;
 }
 .label-yellow{
-  background-color: $yellow;
+  border:2px solid $yellow;
+  color: $yellow;
 }
 .label-olive{
-  background-color: $olive;
+  border:2px solid $olive;
+  color: $olive;
 }
 .label-green{
-  background-color: $green;
+  border:2px solid $green;
+  color: $green;
 }
 .label-teal{
-  background-color: $teal;
+  border:2px solid $teal;
+  color: $teal;
 }
 .label-blue{
-  background-color: $blue;
+  border:2px solid $blue;
+  color: $blue;
 }
 .label-violet{
-  background-color: $violet;
+  border:2px solid $violet;
+  color: $violet;
 }
 .label-purple{
-  background-color: $purple;
+  border:2px solid $purple;
+  color: $purple;
 }
 .label-pink{
-  background-color: $pink;
+  border:2px solid $pink;
+  color: $pink;
 }
 .label-brown{
-  background-color: $brown;
+  border:2px solid $brown;
+  color: $brown;
 }
 .label-grey{
-  background-color: $grey;
+  border:2px solid $grey;
+  color: $grey;
 }
 .label-black{
-  background-color: $black;
+  border:2px solid $black;
+  color: $black;
 }
 .label[data-percent^="1"], .label[data-percent^="2"] {
-    background-color: #D95C5C;
+    border:2px solid #D95C5C;
+    color: #D95C5C;
 }
 .label[data-percent^="3"]{
-    background-color: #EFBC72;
+    border:2px solid #EFBC72;
+    color: #EFBC72;
 }
 .label[data-percent^="4"], .label[data-percent^="5"]{
-    background-color: #E6BB48;
+    border:2px solid #E6BB48;
+    color: #E6BB48;
 }
 .label[data-percent^="6"]{
-    background-color: #DDC928;
+    border:2px solid #DDC928;
+    color: #DDC928;
 }
 .label[data-percent^="7"], .label[data-percent^="8"]{
-    background-color: #B4D95C;
+    border:2px solid #B4D95C;
+    color: #B4D95C;
 }
 .label[data-percent^="9"], .label[data-percent^="100"]{
-    background-color: #66DA81;
+    border:2px solid #66DA81;
+    color: #66DA81;
 }
 /*Quill
 ------------------------------------------------------------------------------*/
@@ -1593,6 +1635,20 @@ ul.card-list > li{
     font-weight: 700;
   }
 }
+.avatar-zoom{
+  width: 200px;
+  canvas{
+    cursor: move; /* fallback if grab cursor is unsupported */
+    cursor: grab;
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+  }
+  canvas.is-dragging {
+    cursor: grabbing;
+    cursor: -moz-grabbing;
+    cursor: -webkit-grabbing;
+  }
+}
 /*Md list custom
 ------------------------------------------------------------------------------*/
 .md-list{
@@ -1652,7 +1708,11 @@ ul.card-list > li{
     }
 }
 .md-list-item.inactive{
-  background-color: $md-blue-grey-50 !important;
+  background-color: rgba(0, 0, 0, 0.03) !important;
+  .avatar-weekdays{
+    background: #fff;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
 }
 .md-list--menu{
   background-color: #fff;

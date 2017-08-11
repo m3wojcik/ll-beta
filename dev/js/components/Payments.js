@@ -8,8 +8,8 @@ import CustomListItem from './helpers/CustomListItem';
 import CardWithHeader from '../components/helpers/CardWithHeader'
 import PaymentInstallments from '../components/PaymentInstallments'
 import Label from './helpers/Label'
-import MediaLibItemDetails from './MediaLibItemDetails'
-import MediaLibItemActions from './MediaLibItemActions'
+import MediaLibItemDetails from './elibrary/MediaLibItemDetails'
+import MediaLibItemActions from './elibrary/MediaLibItemActions'
 import {FormattedDate} from 'react-intl';
 
 

@@ -26,7 +26,7 @@ export default class Files extends Component {
     }
     let mappedFiles= [];
     if(goUpBtn && path){
-      if(path.length > 1){
+      if(path.length > 0){
         mappedFiles.push(<ListItem key="back-btn" onClick={onBackClick.bind(this, backId)} leftIcon={<FontIcon>keyboard_return</FontIcon>} primaryText=". . ." />)
       }
     }

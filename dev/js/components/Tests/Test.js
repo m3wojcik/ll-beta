@@ -71,8 +71,8 @@ export default class Test extends Component {
             case "youtube":
               output = <Youtube id={block.id} key={block.id} url={block.data} />
               break;
-            case "files":
-              output = <ListFilesContainer id={block.id} key={block.id} files={block.files} />
+            case "elearning":
+              output = <ListFilesContainer id={block.id} key={block.id} files={block.data} />
               break;
           }
           return <div key={j} className="block">{output}</div>;

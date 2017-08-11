@@ -30,7 +30,8 @@ export default class Classes extends Component {
     const weekStartDate = addDays(today, -getDay(today))
     const outputClasses = [], firstClasses=[], lastWeekClasses = [], thisWeekClasses = [], nextWeekClasses = [], nextClasses = [];
     classes.forEach(function(clas, i){
-      const dayDiff = getDaysDiference(weekStartDate,clas.date);
+      const classDate = clas.date +" "+clas.time
+      const dayDiff = getDaysDiference(weekStartDate, classDate);
 
       if(0 > dayDiff && dayDiff >= -7 ){
         lastWeekClasses.push(
@@ -63,7 +64,7 @@ export default class Classes extends Component {
     if(firstClasses.length > 0){
       outputClasses.push(
         <CardWithHeader id="first" key="firstClasses" header={<FormattedDate value={classes[0].date} day="numeric" month="long" year="numeric" />}>
-          <ul className="md-list md-list-divider">
+          <ul className="md-list md-list-divider class-list">
             {firstClasses}
           </ul>
         </CardWithHeader>
@@ -72,7 +73,7 @@ export default class Classes extends Component {
     if(lastWeekClasses.length > 0){
       outputClasses.push(
         <CardWithHeader id="last-week" key="lastWeekClasses" header="Last week">
-          <ul className="md-list md-list-divider">
+          <ul className="md-list md-list-divider class-list">
             {lastWeekClasses}
           </ul>
         </CardWithHeader>
@@ -81,7 +82,7 @@ export default class Classes extends Component {
     if(thisWeekClasses.length > 0){
       outputClasses.push(
         <CardWithHeader id="this-week" key="thisWeekClasses" header="This week">
-          <ul className="md-list md-list-divider">
+          <ul className="md-list md-list-divider class-list">
             {thisWeekClasses}
           </ul>
         </CardWithHeader>
@@ -90,7 +91,7 @@ export default class Classes extends Component {
     if(nextWeekClasses.length > 0){
       outputClasses.push(
         <CardWithHeader id="next-week" key="nextWeekClasses" header="Next week">
-          <ul className="md-list md-list-divider">
+          <ul className="md-list md-list-divider class-list">
             {nextWeekClasses}
           </ul>
         </CardWithHeader>
@@ -99,7 +100,7 @@ export default class Classes extends Component {
     if(nextClasses.length > 0){
       outputClasses.push(
         <CardWithHeader id="next" key="nextClasses" header="Next">
-          <ul className="md-list md-list-divider">
+          <ul className="md-list md-list-divider class-list">
             {nextClasses}
           </ul>
         </CardWithHeader>

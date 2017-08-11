@@ -40,6 +40,7 @@ function callApi(endpoint, authenticated, params, method) {
   console.log('get', BASE_URL + endpoint, axios_config);
   return axios(axios_config)
   .then(response => {
+    response.data.params = params
     return response.data
   })
   .catch((error) => {
@@ -62,6 +63,7 @@ export default store => next => action => {
   return callApi(endpoint, authenticated, params, method, successToast).then(
     response => {
       next({
+        params: response.params ? response.params : null,
         payload: response.data,
         authenticated,
         type: successType

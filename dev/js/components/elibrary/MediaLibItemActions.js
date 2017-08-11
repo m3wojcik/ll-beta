@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from 'react-md/lib/Buttons';
-import ActionsRow from './helpers/ActionsRow'
-import Loader from './helpers/Loader'
+import ActionsRow from '../helpers/ActionsRow'
+import Loader from '../helpers/Loader'
 export default class MediaLibItemActions extends Component {
   render(){
     const { item, available, reserved, inProgress, onReserveClick, onCancelReservationClick, onDetailsClick } = this.props;
