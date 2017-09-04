@@ -6,19 +6,18 @@ import { FormattedPlural } from 'react-intl';
 export default class ElibraryListStatus extends Component {
 
   render(){
-    const { item } = this.props;
+    const { item, reserved, available, borrowed  } = this.props;
     let status;
-    if(item.status == "available"){
+    if(available){
         status = <Label blue label={item.quantity_available} value={item.quantity_available} colorValues={[{"values":[1],"color": "red"}, {"range":[2,3],"color": "orange"}]} />
-    }else if(item.status == "reserved"){
+    }else if(reserved){
       let label;
       const today = getDays(new Date());
-      const dateFrom = getDays(new Date(item.dateFrom));
-      const dateTo= getDays(new Date(item.dateTo));
+      const dateFrom = getDays(new Date(item.date_from));
+      const dateTo= getDays(new Date(item.date_to));
       if(today < dateFrom ){
         let dayDifference = dateFrom - today;
         label = <Label blue
-          label={text}
           label={["Pick reservation in " + dayDifference + " ", <FormattedPlural key="plural" value={dayDifference} one='day' other='days' />]}
           value={dayDifference}
           colorValues={[{"values":[1],"color": "olive"}]}
@@ -38,11 +37,11 @@ export default class ElibraryListStatus extends Component {
         label = <Label red label="Reservation is outdated" />
       }
         status = label;
-    }else if(item.status == "borrowed"){
+    }else if(borrowed){
       let label;
       const today = getDays(new Date());
-      const dateFrom = getDays(new Date(item.dateFrom));
-      const dateReturn= getDays(new Date(item.dateReturn));
+      const dateFrom = getDays(new Date(item.from));
+      const dateReturn= getDays(new Date(item.to));
       if(today < dateReturn){
         let dayDifference = dateReturn - today;
         label = <Label blue

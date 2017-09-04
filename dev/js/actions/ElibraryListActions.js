@@ -10,8 +10,17 @@ export function fetchElibraryList() {
     }
   }
 }
-
-export function fetchElibraryBooking() {
+export function fetchElibraryReservations() {
+  return {
+    [CALL_API]: {
+      endpoint: '/elibraryReservationList',
+      types: ["FETCH_ELIBRARY_RESERVATIONS", "FETCH_ELIBRARY_RESERVATIONS_FULFILLED", "FETCH_ELIBRARY_RESERVATIONS_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
+  }
+}
+export function fetchElibraryBookings() {
   return {
     [CALL_API]: {
       endpoint: '/elibraryBooking',
@@ -23,18 +32,6 @@ export function fetchElibraryBooking() {
 }
 import {instance} from './config'
 
-// export function fetchElibraryList() {
-//   return function(dispatch) {
-//     dispatch({type: "FETCH_ELIBRARY_LIST", payload: true});
-//     instance.get("?q=getElibraryList")
-//       .then((response) => {
-//         dispatch({type: "FETCH_ELIBRARY_LIST_FULFILLED", payload: response.data});
-//       })
-//       .catch((err) => {
-//         dispatch({type: "FETCH_ELIBRARY_LIST_REJECTED", payload: err})
-//       })
-//   }
-// }
 export function changeElibraryObjectStatus(id, status) {
   return {
     type: 'CHANGE_ELIBRARY_OBJECT_STATUS',

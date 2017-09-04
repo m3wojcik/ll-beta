@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Dialog from 'react-md/lib/Dialogs';
 import Drawer from 'react-md/lib/Drawers';
-import { fetchElibraryList, fetchElibraryBooking, fetchElibraryDetails, postCancelReservationElibraryObject, postReserveElibraryObject, setReserveElibraryObject } from "../../actions/ElibraryListActions";
+import { fetchElibraryList, fetchElibraryBookings, fetchElibraryDetails, postCancelReservationElibraryObject, postReserveElibraryObject, setReserveElibraryObject } from "../../actions/ElibraryListActions";
 import ElibraryList from '../../components/elibrary/ElibraryList'
 import ListWithHeader from '../../components/helpers/ListWithHeader'
 import Loader from '../../components/helpers/Loader'
@@ -18,7 +18,7 @@ import ElibraryReservationDateContainer from './ElibraryReservationDateContainer
      books: store.elibrary.elibraryList.books,
      fetched: store.elibrary.elibraryList.fetched,
      fetching: store.elibrary.elibraryList.fetching,
-     booking: store.elibrary.elibraryBooking,
+     bookings: store.elibrary.elibrarybookings,
      reservedObject:store.elibrary.reservedObject
   };
 })
@@ -55,7 +55,7 @@ export default class ElibraryListContainer extends Component {
   }
   componentDidMount(){
     this.props.dispatch(fetchElibraryList());
-    this.props.dispatch(fetchElibraryBooking());
+    this.props.dispatch(fetchElibraryBookings());
   }
   handleReserveBtnClick = (object) => {
     this.setState({
@@ -64,7 +64,6 @@ export default class ElibraryListContainer extends Component {
     })
     this.props.dispatch(setReserveElibraryObject(object));
     this.handleDrawerToggle(true);
-
   }
   handleCancelReservationClick = (object) => {
     this.props.dispatch(postCancelReservationElibraryObject(object.id,{label: 'Undo', onClick: this.handleUnDoCancelReservation}));
@@ -85,7 +84,7 @@ export default class ElibraryListContainer extends Component {
     this.setState({ toasts: toasts });
   }
   render(){
-    const { fetched, books, toolbar, reservedObject, booking } = this.props;
+    const { fetched, books, toolbar, reservedObject, bookings } = this.props;
     let availableList = [], borrowedList = [], reservedList = [];
     if(books && books.length > 0){
       books.forEach(function(item){
@@ -96,50 +95,6 @@ export default class ElibraryListContainer extends Component {
         }
       });
     }
-    let propsBorrowed, propsReserved, propsAvailable, output = [];
-
-    if(booking.books && booking.books.length > 0){
-      propsBorrowed = {
-        borrowed: true,
-        onDetailsClick: this.handleDetailsClick,
-        searchValue: toolbar.searchValue,
-        elibraryList: booking.books
-      }
-      output.push(
-        <ListWithHeader key="Borrowed" header="Borrowed">
-          <ElibraryList {...propsBorrowed} />
-        </ListWithHeader>
-      )
-    }
-    if(reservedList.length > 0){
-      propsReserved ={
-        reserved: true,
-        inProgress:reservedObject.posting,
-        onCancelReservationClick: this.handleCancelReservationClick,
-        onDetailsClick: this.handleDetailsClick,
-        searchValue: toolbar.searchValue,
-        elibraryList: reservedList
-      }
-      output.push(
-        <ListWithHeader key="Reserved" header="Reserved">
-          <ElibraryList {...propsReserved} />
-        </ListWithHeader>
-      )
-    }
-    if(availableList.length > 0){
-      propsAvailable = {
-        available: true,
-        onReserveClick: this.handleReserveBtnClick,
-        onDetailsClick: this.handleDetailsClick,
-        searchValue: toolbar.searchValue,
-        elibraryList: availableList
-      }
-      output.push(
-        <ListWithHeader key="List" header="List">
-          <ElibraryList {...propsAvailable} />
-        </ListWithHeader>
-      )
-    }
     if(!fetched){
       return(
         <Loader full />
@@ -147,24 +102,56 @@ export default class ElibraryListContainer extends Component {
     }
     return(
         <Content noPadding>
-          {output}
+          {bookings.books && bookings.books.length > 0 ?
+            <ListWithHeader key="Borrowed" header="Borrowed">
+              <ElibraryList
+                borrowed={true}
+                onDetailsClick={this.handleDetailsClick}
+                searchValue={toolbar.searchValue}
+                elibraryList={bookings.books}
+                />
+            </ListWithHeader> : null
+          }
+          {reservedList.length > 0 ?
+            <ListWithHeader key="Reserved" header="Reserved">
+              <ElibraryList
+                reserved={true}
+                inProgress={reservedObject.posting}
+                onCancelReservationClick={this.handleCancelReservationClick}
+                onDetailsClick={this.handleDetailsClick}
+                searchValue={toolbar.searchValue}
+                elibraryList={reservedList}
+                 />
+            </ListWithHeader> : null
+          }
+          {availableList.length > 0 ?
+            <ListWithHeader key="List" header="List">
+              <ElibraryList
+                available={true}
+                onReserveClick={this.handleReserveBtnClick}
+                onDetailsClick={this.handleDetailsClick}
+                searchValue={toolbar.searchValue}
+                elibraryList={availableList}
+              />
+            </ListWithHeader> : null
+          }
           <Dialog
-          id="simpleDialogExample"
-          visible={this.state.dialogVisible}
-          title={this.state.dialogTitle}
-          focusOnMount={false}
-          onHide={this.closeDialog}
-          actions={this.state.dialogActions}
-        >
-          <div>{this.state.dialogData}</div>
-        </Dialog>
-        <Drawer
-          visible={this.state.drawerVisible}
-          onVisibilityToggle={this.handleDrawerToggle}
-          type={Drawer.DrawerTypes.TEMPORARY}
-          header={<DrawerHeader>{this.state.drawerTitle}</DrawerHeader>}
-          className="drawer-bottom"
-        >
+            id="simpleDialogExample"
+            visible={this.state.dialogVisible}
+            title={this.state.dialogTitle}
+            focusOnMount={false}
+            onHide={this.closeDialog}
+            actions={this.state.dialogActions}
+          >
+            <div>{this.state.dialogData}</div>
+          </Dialog>
+          <Drawer
+            visible={this.state.drawerVisible}
+            onVisibilityToggle={this.handleDrawerToggle}
+            type={Drawer.DrawerTypes.TEMPORARY}
+            header={<DrawerHeader>{this.state.drawerTitle}</DrawerHeader>}
+            className="drawer-bottom"
+          >
           <DrawerBody>{this.state.drawerData}</DrawerBody>
         </Drawer>
       </Content>

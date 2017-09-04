@@ -5,7 +5,13 @@ export default function reducer(state={
     fetched: false,
     error: null
   },
-  elibraryBooking: {
+  elibraryReservations: {
+    books: [],
+    fetching: false,
+    fetched: false,
+    error: null
+  },
+  elibraryBookings: {
     books: [],
     fetching: false,
     fetched: false,
@@ -41,16 +47,34 @@ export default function reducer(state={
           }
         }
       }
+
+      case "FETCH_ELIBRARY_RESERVATIONS": {
+        return {...state, elibraryReservations: {fetching: true, fetched: false}}
+      }
+      case "FETCH_ELIBRARY_RESERVATIONS_REJECTED": {
+        return {...state, elibraryReservations: {fetching: false, error: action.payload}}
+      }
+      case "FETCH_ELIBRARY_RESERVATIONS_FULFILLED": {
+        return {
+          ...state,
+          elibraryReservations: {
+            fetching: false,
+            fetched: true,
+            books: action.payload.reservation,
+          }
+        }
+      }
+
       case "FETCH_ELIBRARY_BOOKING": {
-        return {...state, elibraryBooking: {fetching: true, fetched: false}}
+        return {...state, elibraryBookings: {fetching: true, fetched: false}}
       }
       case "FETCH_ELIBRARY_BOOKING_REJECTED": {
-        return {...state, elibraryBooking: {fetching: false, error: action.payload}}
+        return {...state, elibraryBookings: {fetching: false, error: action.payload}}
       }
       case "FETCH_ELIBRARY_BOOKING_FULFILLED": {
         return {
           ...state,
-          elibraryBooking: {
+          elibraryBookings: {
             fetching: false,
             fetched: true,
             books: action.payload.items,

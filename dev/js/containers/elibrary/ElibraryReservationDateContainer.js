@@ -25,7 +25,8 @@ export default class ElibraryReservationDateContainer extends Component {
   }
   handleReserveClick = () =>{
       const {reservedObject, onCancelClick} = this.props;
-      //onCancelClick();
+      //onCancelClick();s
+
       this.props.dispatch(postReserveElibraryObject(reservedObject.id, reservedObject.dateFrom, reservedObject.dateTo, onCancelClick));
   }
   handleDateChange = (dateString, dateObject, event) =>{

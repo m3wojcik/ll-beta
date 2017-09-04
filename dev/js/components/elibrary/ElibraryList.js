@@ -18,7 +18,7 @@ export default class ElibraryList extends Component {
     const { elibraryList, searchValue, onReserveClick, onDetailsClick, onCancelReservationClick, available, borrowed, reserved, inProgress } = this.props;
     const mappedElibraryList = elibraryList.map(function(item){
     const expander =  <div>
-                      <MediaLibItemDetails item={item} />
+                      <MediaLibItemDetails item={item} available={available} borrowed={borrowed} reserved={reserved} />
                         <MediaLibItemActions
                           item={item}
                           available={available}
@@ -31,7 +31,7 @@ export default class ElibraryList extends Component {
                     </div>
       let title = item.title ? item.title.toLowerCase() : "";
       let author = item.author ? item.author.toLowerCase() : "";
-      let search = searchValue.toLowerCase();
+      let search = searchValue ? searchValue.toLowerCase()  : "";
 
       if(title.indexOf(search) != -1 || author.indexOf(search) != -1 ){
         return (
@@ -41,7 +41,7 @@ export default class ElibraryList extends Component {
               expanderBreaks
               expander={expander}
               primaryText={item.title}
-              status = {<ElibraryListStatus item={item} />}
+              status = {<ElibraryListStatus item={item} available={available} borrowed={borrowed} reserved={reserved}  />}
               secondaryText={item.author}
             />
         )

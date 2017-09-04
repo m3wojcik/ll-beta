@@ -22,7 +22,7 @@ import TestViewContainer from './containers/TestViewContainer';
 import ProfileContainer from './containers/profile/ProfileContainer';
 import EditProfileContainer from './containers/profile/EditProfileContainer';
 import LoginHistoryContainer from './containers/profile/LoginHistoryContainer';
-import ElibraryListContainer from './containers/elibrary/ElibraryListContainer';
+import ElibraryContainer from './containers/library/ElibraryContainer';
 import SurveysContainer from './containers/SurveysContainer';
 import SurveyContainer from './containers/SurveyContainer';
 import SurveyViewContainer from './containers/SurveyViewContainer';
@@ -57,7 +57,7 @@ export default (
         </Route>
         <Route path="elibrary">
           <IndexRedirect to="list" />
-          <Route path="list" component={ElibraryListContainer}  />
+          <Route path="list" component={ElibraryContainer}  />
         </Route>
         <Route path="surveys" component={SurveysContainer} />
         <Route path="survey/:surveyId" component={SurveyContainer} />

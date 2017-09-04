@@ -23,6 +23,7 @@ export default class Label extends Component {
     let classProp = "label ";
     let colorValueClass = "";
     let colorClass = "";
+    let dataValue = {}
     if (className) {
       classProp += className;
     }
@@ -43,13 +44,17 @@ export default class Label extends Component {
            }else{
              colorClass = this.getColor();
            }
+         }else{
+           dataValue = {
+             "data-percent":value
+           }
          }
        }
      }else{
        colorClass = this.getColor();
      }
      classProp += " " + colorClass;
-     return <span className={classProp} data-percent={value}>{label}</span>
+     return <span className={classProp} {...dataValue}>{label}</span>
 
   }
 }
