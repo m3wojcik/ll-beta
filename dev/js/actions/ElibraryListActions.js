@@ -30,6 +30,68 @@ export function fetchElibraryBookings() {
     }
   }
 }
+export function saveReservation(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/elibraryReservation',
+      types: ["SAVE_RESERVATION", "SAVE_RESERVATION_FULFILLED", "SAVE_RESERVATION_REJECTED"],
+      authenticated: true,
+      method: 'post',
+      params:{
+        ...params
+      }
+    }
+  }
+}
+export function cancelReservation(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/elibraryReservationCancel',
+      types: ["CANCEL_RESERVATION", "CANCEL_RESERVATION_FULFILLED", "CANCEL_RESERVATION_REJECTED"],
+      authenticated: true,
+      method: 'post',
+      params:{
+        ...params
+      }
+    }
+  }
+}
+
+export function setElibraryView(params) {
+  return {
+    type: 'SET_ELIBRARY_VIEW',
+    payload: params
+  }
+}
+
+export function toggleElibraryDrawer(visible) {
+  return {
+    type: 'TOGGLE_ELIBRARY_DRAWER',
+    payload: visible
+  }
+}
+
+export function toggleElibraryDialog(visible) {
+  return {
+    type: 'TOGGLE_ELIBRARY_DIALOG',
+    payload: visible
+  }
+}
+
+export function setResevedObject(object) {
+  return {
+    type: 'SET_RESERVED_OBJECT',
+    payload: object
+  }
+}
+
+export function setResevedDateFrom(date) {
+  return {
+    type: 'SET_RESERVED_DATE_FROM',
+    payload: date
+  }
+}
+
 import {instance} from './config'
 
 export function changeElibraryObjectStatus(id, status) {

@@ -7,6 +7,11 @@ import Snackbar from 'react-md/lib/Snackbars';
 import {getAppSettings, getCleanPath} from '../actions/Functions';
 import { fetchAppData, setAppSettings } from "../actions/AppActions";
 import { removeToast } from "../actions/ToastsActions";
+import { IntlProvider, addLocaleData } from 'react-intl';
+
+import en from 'react-intl/locale-data/en';
+
+addLocaleData([...en]);
 
 @connect((store) => {
   return {
@@ -41,7 +46,6 @@ export default class AppLayoutContainer extends Component {
     }
     render(){
       const { hasTabs, appData, header, toasts, error } = this.props;
-
       if(!appData.fetched){
         return(
           <div>
@@ -51,7 +55,8 @@ export default class AppLayoutContainer extends Component {
         )
       }
       return(
-        <div>
+        <IntlProvider locale="en">
+        <div className={appData.locales.locale}>
           <Snackbar {...toasts} onDismiss={this.handleRemoveToast} />
           <LayoutContainer
             header={header}
@@ -60,7 +65,7 @@ export default class AppLayoutContainer extends Component {
             appData={appData}
             />
         </div>
-
+        </IntlProvider>
       )
     }
 

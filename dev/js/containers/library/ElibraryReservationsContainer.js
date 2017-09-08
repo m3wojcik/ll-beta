@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchElibraryReservations} from "../../actions/ElibraryListActions";
+import {fetchElibraryReservations, cancelReservation} from "../../actions/ElibraryListActions";
 import Loader from '../../components/helpers/Loader'
 import ElibraryList from '../../components/elibrary/ElibraryList'
 import ListWithHeader from '../../components/helpers/ListWithHeader'
@@ -17,11 +17,14 @@ export default class ElibraryReservationsContainer extends Component {
   componentDidMount() {
     this.props.dispatch(fetchElibraryReservations());
   }
-  handleCancelReservationClick = (object) => {}
+  handleCancelReservationClick = (object) => {
+    this.props.dispatch(cancelReservation({
+      id: object.group_id
+    }))
+  }
   handleDetailsClick = (object) => {}
   render() {
     const {fetched, books, toolbar} = this.props;
-    console.log('books',books);
     if (!fetched) {
       return (<Loader full/>)
     }

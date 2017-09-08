@@ -17,20 +17,28 @@ export default function reducer(state={
     fetched: false,
     error: null
   },
-  reservedObject:{
-      id: null,
-      dateFrom: null,
-      dateTo: null,
-      bookingPeriod: null,
-      success: false,
-      posting: false,
-      posted: true
+  reservation:{
+    id: null,
+    reservedObject: null,
+    dateFrom: null,
+    dateTo: null,
+    saving: false,
+    saved: false,
+    canceling: false,
+    canceled: false,
+    error: null
   },
-
+  view:{
+    drawerVisible: false,
+    dialogVisible: false,
+    dialogTitle: "",
+    dialogData: null
+  },
   error: null,
   }, action) {
 
     switch (action.type) {
+
       case "FETCH_ELIBRARY_LIST": {
         return {...state, elibraryList: {fetching: true, fetched: false}}
       }
@@ -81,117 +89,76 @@ export default function reducer(state={
           }
         }
       }
-      case "CHANGE_ELIBRARY_OBJECT_STATUS": {
-        const newElibraryList = [...state.elibraryList];
-        newElibraryList.forEach(function(item){
-          if(item.id == action.payload.id){
-            item.status = action.payload.status
-          }
-        })
-        return {...state, elibraryList: newElibraryList}
+
+      case "SAVE_RESERVATION": {
+        return {...state, reservation: {saving: true, saved: false}}
       }
-      case "SET_ELIBRARY_LIST": {
-        return {...state, elibraryList: action.payload}
-      }
-      case "SET_ELIBRARY_LIST": {
-        return {...state, elibraryList: action.payload}
-      }
-      case "SET_RESERVE_ELIBRARY_OBJECT": {
-        return {...state,
-            reservedObject: {
-            id: action.payload.id,
-            bookingPeriod: action.payload.bookingPeriod
+      case "SAVE_RESERVATION_REJECTED": {
+        return {...state, 
+          reservation: {
+            saving: false, 
+            error: action.payload
+          },
+          view:{
+            ...state.view,
+            drawerVisible: false
           }
         }
       }
-      case "SET_RESERVE_ELIBRARY_OBJECT_ID": {
-        return {...state,
-            reservedObject: {
-            ...state.reservedObject,
-            id: action.payload
+      case "SAVE_RESERVATION_FULFILLED": {
+        return {
+          ...state,
+          reservation: {
+            saving: false,
+            saved: true
+          },
+          elibraryReservations: {
+            ...state.elibraryReservations,
+            books: action.payload.reservation
+          },
+          view:{
+            ...state.view,
+            drawerVisible: false
           }
         }
       }
-      case "SET_RESERVE_ELIBRARY_OBJECT_DATES": {
-        return {...state,
-            reservedObject: {
-            ...state.reservedObject,
-            dateFrom: action.payload.dateFrom,
-            dateTo: action.payload.dateTo
-            }
-        }
+
+      case "CANCEL_RESERVATION": {
+        return {...state, reservation: {canceling: true, canceled: false}}
       }
-      case "POST_RESERVE_ELIBRARY_OBJECT": {
-        return {...state, reservedObject:{...state.reservedObject, posting: true, posted: false, success:false}}
+      case "CANCEL_RESERVATION_REJECTED": {
+        return {...state, reservation: {...state.reservation, canceling: false, error: action.payload}}
       }
-      case "POST_RESERVE_ELIBRARY_OBJECT_REJECTED": {
-        return {...state, reservedObject:{posting: false, success:false}, error: action.payload}
-      }
-      case "POST_RESERVE_ELIBRARY_OBJECT_FULFILLED": {
-          const newElibraryList = [...state.elibraryList];
-          const reservedObject = state.reservedObject;
-          newElibraryList.forEach(function(item){
-            if(item.id == reservedObject.id){
-              item.status = "reserved";
-              item.dateFrom = reservedObject.dateFrom;
-              item.dateTo = reservedObject.dateTo;
-            }
-          })
-        return {...state,
-            reservedObject:{
-                ...state.reservedObject,
-                success: true,
-                posting: false,
-                posted: true
-            }
-        }
-      }
-      case "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT": {
-        const newElibraryList = [...state.elibraryList];
-        let newReservedObject;
-        newElibraryList.forEach(function(item){
-          if(item.id == action.payload){
-            newReservedObject = item
-          }
-        })
-        return {...state,
-          reservedObject:{
-            id: newReservedObject.id,
-            dateFrom: newReservedObject.dateFrom,
-            dateTo: newReservedObject.dateTo,
-            bookingPeriod: newReservedObject.bookingPeriod,
-            posting: true,
-            posted: false,
-            success:false
-            }
-          }
-      }
-      case "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT_REJECTED": {
-        return {...state, reservedObject:{posting: false, success:false}, error: action.payload}
-      }
-      case "POST_CANCEL_RESERVATION_ELIBRARY_OBJECT_FULFILLED": {
-        let isSuccess = false;
-        const newElibraryList = [...state.elibraryList];
-        const reservedObject = state.reservedObject;
-        if(action.payload == "200"){
-            isSuccess = true;
-            newElibraryList.forEach(function(item){
-              if(item.id == reservedObject.id){
-                item.status = "available";
-                item.dateFrom = null;
-                item.dateTo = null;
-              }
-            })
-        }
-        return {...state,
-          elibraryList: newElibraryList,
-          reservedObject:{
-              ...state.reservedObject,
-              success: isSuccess,
-              posting: false,
-              posted: true
+      case "CANCEL_RESERVATION_FULFILLED": {
+        return {
+          ...state,
+          reservation:{
+            ...state.reservation,
+            canceling: false,
+            canceled: true
+          },
+          elibraryReservations: {
+            ...state.elibraryReservations,
+            books: action.payload.reservation
           }
         }
+      }
+
+      case "SET_ELIBRARY_VIEW": {
+        return {...state, view: {...state.view, ...action.payload}}
+      }
+
+      case "TOGGLE_ELIBRARY_DRAWER": {
+        return {...state, view: {...state.view, drawerVisible: action.payload}}
+      }
+      case "TOGGLE_ELIBRARY_DIALOG": {
+        return {...state, view: {...state.view, dialogVisible: action.payload}}
+      }
+      case "SET_RESERVED_OBJECT": {
+        return {...state, reservation: {...state.reservation, reservedObject: action.payload}}
+      }
+      case "SET_RESERVED_DATE_FROM": {
+        return {...state, reservation: {...state.reservation, dateFrom: action.payload}}
       }
     }
     return state

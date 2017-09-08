@@ -76,12 +76,15 @@ export default store => next => action => {
       if(error.response.status == 401){
         next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
       }
-      next({
-      payload: error || 'There was an error.',
-      type: errorType
-      })
+      next({type: errorType, payload:error})
+      let errorMsg;
+      if(error.response.data.error){
+        errorMsg = error.response.data.error.message
+      }else{
+        errorMsg = error.message
+      }
       next(
-        {type: "RRS_SHOW_SNACK", payload: {id: "error", data: {label: error.message, button: {label: "Dismiss"}}}}
+        {type: "RRS_SHOW_SNACK", payload: {id: "error", data: {label: errorMsg, button: {label: "Dismiss"}}}}
       )
     }
   )
