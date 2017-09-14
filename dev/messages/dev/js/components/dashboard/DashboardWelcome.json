@@ -1,0 +1,6 @@
+[
+  {
+    "id": "dashboardWelcome.welcome",
+    "defaultMessage": "Welcome, {name}!"
+  }
+]

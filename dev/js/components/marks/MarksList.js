@@ -32,7 +32,7 @@ export default class MarksList extends Component {
       }
       if(usingWeight){
         const listHorizontalElements = [
-          <FormattedDate value={mark.date} day="numeric" month="numeric" year="numeric" />,
+          <FormattedDate key="mark.date" value={mark.date} day="numeric" month="numeric" year="numeric" />,
           <div>weight: {mark.importance}</div>
         ]
         secondaryText = <ListHorizontal elements={listHorizontalElements} />

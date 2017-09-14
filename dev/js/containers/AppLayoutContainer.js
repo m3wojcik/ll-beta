@@ -8,7 +8,6 @@ import {getAppSettings, getCleanPath} from '../actions/Functions';
 import { fetchAppData, setAppSettings } from "../actions/AppActions";
 import { removeToast } from "../actions/ToastsActions";
 import { IntlProvider, addLocaleData } from 'react-intl';
-
 import en from 'react-intl/locale-data/en';
 
 addLocaleData([...en]);

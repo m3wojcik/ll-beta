@@ -34,7 +34,7 @@ export default class DashboardContainer extends Component {
     if(notifications.newTests > 0) dashboardCards.push(<DashboardTestsContainer key="DashboardTestsContainer" />);
     if(notifications.newLibrary > 0) dashboardCards.push(<DashboardElibraryContainer key="DashboardElibraryContainer" />);
     if(notifications.newSurveys > 0) dashboardCards.push(<DashboardSurveysContainer key="DashboardSurveysContainer" />);
-    if(notifications.newPayments > 0) dashboardCards.push(<DashboardPaymentsContainer  key="DashboardPaymentsContainer"/>);
+    //if(notifications.newPayments > 0) dashboardCards.push(<DashboardPaymentsContainer  key="DashboardPaymentsContainer"/>);
     dashboardCards.forEach(function(card,i){
       if(i%2==0){
         dashboardCardsLeft.push(card)
