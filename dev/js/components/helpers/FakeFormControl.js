@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class FakeFormControl extends Component {
+const FakeFormControl = ({label,value}) => {
 
-  render(){
-    const { label, value } = this.props;
     return(
       <div className="fake-form-control">
         <label>{label}</label>
@@ -12,5 +10,5 @@ export default class FakeFormControl extends Component {
         </div>
       </div>
     )
-  }
 }
+export default FakeFormControl

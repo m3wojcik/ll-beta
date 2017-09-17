@@ -1,0 +1,42 @@
+[
+  {
+    "id": "mainNavigation.dashboard",
+    "defaultMessage": "Dashboard"
+  },
+  {
+    "id": "mainNavigation.marks",
+    "defaultMessage": "Marks"
+  },
+  {
+    "id": "mainNavigation.classes",
+    "defaultMessage": "Classes"
+  },
+  {
+    "id": "mainNavigation.attendance",
+    "defaultMessage": "Attendance"
+  },
+  {
+    "id": "mainNavigation.messages",
+    "defaultMessage": "Messages"
+  },
+  {
+    "id": "mainNavigation.files",
+    "defaultMessage": "Files"
+  },
+  {
+    "id": "mainNavigation.tests",
+    "defaultMessage": "Tests"
+  },
+  {
+    "id": "mainNavigation.elibrary",
+    "defaultMessage": "E-library"
+  },
+  {
+    "id": "mainNavigation.surveys",
+    "defaultMessage": "Surveys"
+  },
+  {
+    "id": "mainNavigation.payments",
+    "defaultMessage": "Payments"
+  }
+]

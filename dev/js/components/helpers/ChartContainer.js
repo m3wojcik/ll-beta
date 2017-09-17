@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ChartContainer extends Component {
+const ChartContainer = ({title}) => {
 
-  render(){
-    const { title } = this.props;
     let chartTitle;
     if(title){
       chartTitle = <div className="chart-title">{title}</div>
@@ -16,8 +14,8 @@ export default class ChartContainer extends Component {
         </div>
       </div>
     )
-  }
 }
 ChartContainer.propTypes = {
   title: React.PropTypes.string
 }
+export default ChartContainer

@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router';
 
-export default class CustomTabs extends Component {
+const CustomTabs = ({tabs}) => {
 
-  render(){
-    const { tabs } = this.props;
     const mappedTabs = tabs.map(
       (tab, i) =>
       tab.active ?
@@ -17,5 +15,5 @@ export default class CustomTabs extends Component {
         {mappedTabs}
       </div>
     )
-  }
 }
+export default CustomTabs

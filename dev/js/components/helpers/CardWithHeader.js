@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class CardWithHeader extends Component {
+const CardWithHeader = ({header, id}) => {
 
-  render(){
-    const { header, id } = this.props;
     let props;
     if(id){
       props = {
@@ -18,5 +16,5 @@ export default class CardWithHeader extends Component {
         </div>
       </div>
     )
-  }
 }
+export default CardWithHeader

@@ -16,9 +16,7 @@ addLocaleData([...en]);
   return {
     routing: store.routing,
     appData: store.app.appData,
-    toolbar: store.app.toolbar,
     hasTabs: store.app.toolbar.hasTabs,
-    header: store.app.toolbar.header,
     toasts: store.toasts,
     error: store.error.errors
   };
@@ -44,7 +42,7 @@ export default class AppLayoutContainer extends Component {
       this.props.dispatch(removeToast());
     }
     render(){
-      const { hasTabs, appData, header, toasts, error } = this.props;
+      const { hasTabs, appData, toasts, error } = this.props;
       if(!appData.fetched){
         return(
           <div>
@@ -58,7 +56,6 @@ export default class AppLayoutContainer extends Component {
         <div className={appData.locales.locale}>
           <Snackbar {...toasts} onDismiss={this.handleRemoveToast} />
           <LayoutContainer
-            header={header}
             content={this.props.children}
             hasTabs={hasTabs}
             appData={appData}

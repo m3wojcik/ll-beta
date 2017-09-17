@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import CircularProgress from 'react-md/lib/Progress/CircularProgress';
 
-export default class Loader extends Component {
-
-  render(){
-    const {center, full, inline, fullPage, centerPadding} = this.props;
+const Loader =({center, full, inline, fullPage, centerPadding}) => {
     let classProps = "loader-container"
     if(center) classProps += " loader-center"
     if(full) classProps += " loader-full"
@@ -51,5 +48,5 @@ export default class Loader extends Component {
         </div>
       </div>
     )
-  }
 }
+export default Loader

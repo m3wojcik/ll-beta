@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
-export default class Avatar extends Component {
-
-  render(){
-    const { blob, src, w, h } = this.props;
+const Avatar =({ blob, src, w, h })=> {
     let styles;
     if(src){
       styles = {
@@ -20,6 +17,5 @@ export default class Avatar extends Component {
       }
     }
     return <div className="avatar" style={styles}/>
-
-  }
 }
+export default Avatar

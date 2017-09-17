@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CircleProgressBar from './CircleProgressBar';
 
-export default class BoxSumUp extends Component {
-
-  render(){
-    const { sumUp } = this.props;
+const BoxSumUp = ({ sumUp }) =>{
     const mappedSumUp = sumUp.map(function(obj,i){
       let circleProgres;
       if(obj.percent){
@@ -33,7 +30,6 @@ export default class BoxSumUp extends Component {
         {mappedSumUp}
       </div>
     )
-  }
 }
 BoxSumUp.propTypes = {
   sumUp: React.PropTypes.oneOfType([
@@ -41,3 +37,4 @@ BoxSumUp.propTypes = {
       React.PropTypes.object.isRequired
     ])
 }
+export default BoxSumUp

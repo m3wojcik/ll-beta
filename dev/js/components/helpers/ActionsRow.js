@@ -1,12 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ActionsRow extends Component {
-
-  render(){
-    return(
-      <div className="actions-row">
-        {this.props.children}
-      </div>
-    )
-  }
+const ActionsRow = ({children}) => {
+  return(
+    <div className="actions-row">
+      {children}
+    </div>
+  )
 }
+export default ActionsRow

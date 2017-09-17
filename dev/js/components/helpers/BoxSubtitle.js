@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 
-export default class BoxSubtitle extends Component {
-
-  render(){
-    const { text } = this.props;
+const BoxSubtitle = ({text})=> {
     return(
       <div className="box-subtitle">{text}</div>
     )
-  }
 }
 BoxSubtitle.propTypes = {
   text: React.PropTypes.string.isRequired
 }
+export default BoxSubtitle

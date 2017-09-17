@@ -4,15 +4,14 @@ import {push, goBack} from 'react-router-redux';
 import Button from 'react-md/lib/Buttons/Button';
 import ToolbarSearch from '../components/helpers/ToolbarSearch';
 import ToolbarMenu from '../components/helpers/ToolbarMenu';
+import ToolbarHeader from '../components/helpers/ToolbarHeader';
 import { setSearching, setSearchValue } from "../actions/AppActions";
 import {logoutUser} from "../actions/index";
 
 @connect((store) => {
   return {
-    toolbar: store.app.toolbar,
-    header: store.app.toolbar.header,
-    backBtn: store.app.toolbar.backBtn,
-    backPath: store.app.toolbar.backPath
+    toolbar: store.app.toolbar
+
   };
 })
 export default class ToolbarContainer extends Component {
@@ -30,18 +29,17 @@ export default class ToolbarContainer extends Component {
     this.props.dispatch(logoutUser());
   }
   handleBackClick = () => {
-    const {backPath} = this.props;
-    if(backPath){
-      this.props.dispatch(push(backPath));
+    if(toolbar.backPath){
+      this.props.dispatch(push(toolbar.backPath));
     }else{
       this.props.dispatch(goBack());
     }
 
   }
   render(){
-    const {toolbar, header, backBtn} = this.props;
+    const {toolbar} = this.props;
     let toolbarActions = [], toolbarChildren, backBtnOutput;
-    if(backBtn){
+    if(toolbar.backBtn){
       backBtnOutput = <Button onClick={this.handleBackClick} className="md-btn--toolbar  md-toolbar--action-left" icon>keyboard_arrow_left</Button>
     }
     if(toolbar.searchBtn){
@@ -51,10 +49,10 @@ export default class ToolbarContainer extends Component {
         toolbarActions.push(<Button key="close-search-btn" className="md-btn--toolbar" onClick={this.closeSearch} icon>close</Button>);
         toolbarChildren = <ToolbarSearch onChange={this.handleChange} />
       }else{
-        toolbarChildren = <h2 className="md-title md-title--toolbar toolbar-title">{header}</h2>
+        toolbarChildren = <ToolbarHeader header={toolbar.header} />
       }
     }else{
-      toolbarChildren = <h2 className="md-title md-title--toolbar toolbar-title">{header}</h2>
+      toolbarChildren = <ToolbarHeader header={toolbar.header} />
     }
     toolbarActions.push(<ToolbarMenu key="toolbar-menu-btn" onLogoutClick={this.handleLogoutClick} />)
     return(

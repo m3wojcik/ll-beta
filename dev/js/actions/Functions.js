@@ -1,3 +1,5 @@
+import {toolbarHeaders} from "./config"
+
 export function getWeek(date) {
   var d = new Date(date);
   d.setHours(0,0,0,0);
@@ -104,69 +106,66 @@ export function getAppSettings(pathname){
   let settings = {};
   switch (pathname) {
     case "":
-      settings = {header:"Dashboard"}
+      settings = {header: toolbarHeaders.dashobard}
       break;
     case "profile/view":
-      settings = {header:"Profile"}
+      settings = {header: toolbarHeaders.profile}
       break;
     case "profile/edit":
-      settings = {header:"Edit profile"}
+      settings = {header:toolbarHeaders.editProfile}
       break;
     case "profile/changePassword":
-      settings = {header:"Change password"}
+      settings = {header: toolbarHeaders.changePassword}
       break;
     case "profile/loginHistory":
-      settings = {header:"Login history"}
+      settings = {header: toolbarHeaders.loginHistory}
       break;
     case "inbox":
-      settings = {header:"Inbox", hasTabs:true, searchBtn: true}
+      settings = {header: toolbarHeaders.inbox, hasTabs:true, searchBtn: true}
       break;
     case "sent":
-      settings = {header:"Sent", hasTabs:true, searchBtn: true}
+      settings = {header:toolbarHeaders.sent, hasTabs:true, searchBtn: true}
       break;
     case "trash":
-      settings = {header:Trash, hasTabs:true, searchBtn: true}
+      settings = {header: toolbarHeaders.trash, hasTabs:true, searchBtn: true}
       break;
     case "createmessage":
-      settings = {header:"Create", backBtn: true, backPath: "inbox"}
+      settings = {header: toolbarHeaders.createMessage, backBtn: true, backPath: "inbox"}
       break;
     case "attendance":
-      settings = {header:"Attendance"}
+      settings = {header: toolbarHeaders.attendance}
       break;
     case "classes":
-      settings = {header:"Classes", hasTabs: true}
+      settings = {header: toolbarHeaders.classes, hasTabs: true}
       break;
     case "marks":
-      settings = {header:"Marks"}
+      settings = {header: toolbarHeaders.marks}
       break;
     case "tests":
-      settings = {header:"Tests", hasTabs:false, searchBtn: true}
+      settings = {header: toolbarHeaders.tests, hasTabs:false, searchBtn: true}
       break;
     case "elibrary/list":
-      settings = {header:"E-library", searchBtn: true}
-      break;
-    case "elibrary/reserved":
-      settings = {header:"Reserved"}
+      settings = {header: toolbarHeaders.elibrary, searchBtn: true}
       break;
     case "surveys":
-      settings = {header:"Surveys", searchBtn: true}
+      settings = {header:toolbarHeaders.surveys, searchBtn: true}
       break;
     case "payments":
-      settings = {header:"Payments"}
+      settings = {header:toolbarHeaders.payments}
       break;
     default:
       if(/^files(\/.+|)/.test(pathname)){
-        settings = {header:"Files", searchBtn: true}
+        settings = {header: toolbarHeaders.files, searchBtn: true}
       }else if(/^testview(\/.+|)/.test(pathname)){
-        settings = {header:"Test", hasTabs:true, backBtn: true, backPath: "tests" }
+        settings = {header:toolbarHeaders.test, hasTabs:true, backBtn: true, backPath: "tests" }
       }else if(/^test(\/.+|)/.test(pathname)){
-        settings = {header:"Test", hasTabs:true, backBtn: true, backPath: "tests" }
+        settings = {header:toolbarHeaders.test, hasTabs:true, backBtn: true, backPath: "tests" }
       }else if(/^survey(\/.+|)/.test(pathname)){
-        settings = {header:"Survey", hasTabs:true}
+        settings = {header: toolbarHeaders.survey, hasTabs:true}
       }else if(/^classDetails(\/.+|)/.test(pathname)){
         settings = {hasTabs:false, backBtn: true, backPath: "classes"}
       }else if(/^message(\/.+|)/.test(pathname)){
-        settings = {header:"Message", backBtn: true, backPath: "inbox"}
+        settings = {header:toolbarHeaders.message, backBtn: true, backPath: "inbox"}
       }
   }
   return settings;

@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
-export default class CustomDate extends Component {
-
-  render(){
-    const { date, collored, format, className } = this.props;
+const CustomDate = ( { date, collored, format, className }) => {
     const time = new Date(date).getTime();
     const now = new Date().getTime();
     const diffDays = Math.ceil(Math.abs(time - now) / (1000*60*60*24));
@@ -25,5 +22,5 @@ export default class CustomDate extends Component {
         {output}
       </span>
     )
-  }
 }
+export default CustomDate

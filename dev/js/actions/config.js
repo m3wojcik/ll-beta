@@ -15,6 +15,30 @@ export const groupStatus = {
   "files_added": {"label": "Files added", "class": "label-blue"},
   "tests_added": {"label": "Tests added", "class": "label-blue"},
 }
+export const toolbarHeaders = {
+  "dashobard": "DASHBOARD",
+  "marks": "MARKS",
+  "classes": "CLASSES",
+  "attendance": "ATTENDANCE",
+  "messages": "MESSAGES",
+  "message": "MESSAGE",
+  "files": "FILES",
+  "tests": "TESTS",
+  "test": "TEST",
+  "elibrary":"ELIBRARY",
+  "surveys": "SURVEYS",
+  "survey": "SURVEY",
+  "payments": "PAYMENTS",
+  "profile": "PROFILE",
+  "editProfile": "EDIT_PROFILE",
+  "changePassword": "CHANGE_PASWORD",
+  "loginHistory": "LOGIN_HISTORY",
+  "inbox": "INBOX",
+  "sent": "SENT",
+  "trash": "TRASH",
+  "createMessage": "CREATE_MESSAGE"
+
+}
 export const avatars = [
   {id: 0, src: "http://langlion.com/pl/wp-content/uploads/2017/07/test.png"},
   {id: 1, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av01.png"},

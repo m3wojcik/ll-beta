@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
-export default class CircleProgressBar extends Component {
 
-  render(){
-    const { percentage, strokeWidth, size, textForPercentage, color } = this.props;
+const CircleProgressBar = ({ percentage, strokeWidth, size, textForPercentage, color }) =>{
     let propsClass, propsPercentage, propsClassForPercentage, propsColor;
     if(size){
       if(size =="tiny"){
@@ -72,5 +70,5 @@ export default class CircleProgressBar extends Component {
           />
       </div>
     )
-  }
 }
+export default CircleProgressBar

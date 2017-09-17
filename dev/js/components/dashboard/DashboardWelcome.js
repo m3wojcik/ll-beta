@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 
-export default class DashboardWelcome extends Component {
-
-  render(){
-    const { appData } = this.props;
+const DashboardWelcome = ({appData}) =>{
     return(
       <h3 className="welcome-header">
         <FormattedMessage 
@@ -16,8 +13,8 @@ export default class DashboardWelcome extends Component {
         />
       </h3>
     )
-  }
 }
 DashboardWelcome.propTypes = {
   appData: React.PropTypes.object.isRequired
 }
+export default DashboardWelcome

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Button from 'react-md/lib/Buttons';
 
-export default class FillGapAnswer extends Component {
+const FillGapAnswer = ({ userAnswer,correctAnswer, className }) => {
 
-  render(){
-    const { userAnswer,correctAnswer, className } = this.props;
     let classProp = className;
     let output;
     let correct;
@@ -27,5 +25,5 @@ export default class FillGapAnswer extends Component {
         {output}
       </span>
     )
-  }
 }
+export default FillGapAnswer

@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ErrorMessage extends Component {
+const ErrorMessage = ({error}) => {
 
-  render(){
-    const { error } = this.props;
     let output = ""
     switch (error) {
         case "invalid_grant":
@@ -12,8 +10,8 @@ export default class ErrorMessage extends Component {
         default:
     }
     return(<span>{output}</span>)
-  }
 }
 ErrorMessage.propTypes = {
   error: React.PropTypes.string
 }
+export default ErrorMessage 

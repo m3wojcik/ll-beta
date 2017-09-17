@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class BoxTitle extends Component {
-
-  render(){
-    const {title, titleIcon, className} = this.props;
+const BoxTitle = ({title, titleIcon, className}) => {
     let  titleOutput = []
     let classProps = "";
     if(className){
@@ -16,8 +13,8 @@ export default class BoxTitle extends Component {
       </div>
     )
   }
-}
 BoxTitle.propTypes = {
   title: React.PropTypes.string,
   className: React.PropTypes.string,
 }
+export default BoxTitle

@@ -1,17 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class DrawerBody extends Component {
+const DrawerBody = ({children, className}) => {
 
-  render(){
-    const { className } = this.props;
     let classProps = "drawer-body";
     if(className){
         classProps += " "+{className}
     }
     return(
       <div className={classProps}>
-        {this.props.children}
+        {children}
       </div>
     )
-  }
 }
+export default DrawerBody

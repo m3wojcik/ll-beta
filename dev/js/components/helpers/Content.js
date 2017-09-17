@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Content extends Component {
-  render(){
-    const { noPadding, tabs, expander } = this.props;
+const Content = ({ children, noPadding, tabs, expander }) => {
     let classProps = "";
     if(noPadding && tabs){
       classProps = "content-no-padding content-tabs"
@@ -18,9 +16,9 @@ export default class Content extends Component {
     return(
       <div className="content-container">
         <div className={classProps}>
-          {this.props.children}
+          {children}
         </div>
       </div>
     )
-  }
 }
+export default Content

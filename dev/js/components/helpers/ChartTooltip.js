@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ChartTooltip extends Component {
+const ChartTooltip = ( { tip, show, position }) => {
 
-  render(){
-    const { tip, show, position } = this.props;
     let classProps = "chart-tooltip"
     if(show){
       classProps += " visible"
@@ -16,7 +14,6 @@ export default class ChartTooltip extends Component {
         </div>
       </div>
     )
-  }
 }
 ChartTooltip.propTypes = {
   tip: React.PropTypes.oneOfType([
@@ -24,3 +21,4 @@ ChartTooltip.propTypes = {
     React.PropTypes.number
   ]),
 }
+export default ChartTooltip

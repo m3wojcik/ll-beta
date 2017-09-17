@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Alert extends Component {
-
-  render(){
-    const { text, type } = this.props;
+const Alert = ({text, type}) =>{
     let classProps = 'alert';
     if(type == "info"){
         classProps +=' info'
@@ -20,9 +17,9 @@ export default class Alert extends Component {
         text ?
       <div className={classProps} dangerouslySetInnerHTML={{__html:text}} /> : null
     )
-  }
 }
 Alert.propTypes = {
   type: React.PropTypes.string.isRequired,
   text: React.PropTypes.string
 }
+export default Alert

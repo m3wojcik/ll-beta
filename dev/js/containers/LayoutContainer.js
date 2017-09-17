@@ -15,7 +15,7 @@ import NavigationUserContainer from './NavigationUserContainer';
 export default class LayoutContainer extends Component {
 
   render(){
-    const {hasTabs, appData, header, toasts} = this.props;
+    const {hasTabs, appData, toasts} = this.props;
 
     let toolbarClassName = hasTabs ? 'main-toolbar no-shadow' : 'main-toolbar';
 

@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
+const IconText = ({icon, text}) => {
 
-export default class IconText extends Component {
-
-  render(){
-    const { icon, text } = this.props;
     return(
       <div className="icon-text">
         <div className="icon-text-icon">
@@ -15,5 +12,5 @@ export default class IconText extends Component {
         </div>
       </div>
     )
-  }
 }
+export default IconText

@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Box extends Component {
+const Box = ( {children, left, right, bottom, title, subtitle, titleIcon, className, isScrolled, topRight} ) => {
 
-  render(){
-    const { left, right, bottom, title, subtitle, titleIcon, className, isScrolled, topRight } = this.props;
     let output=[], titleOutput = [], bottomOutput= [], topOutput, subtitleOutput;
     let classProps = "box md-paper--1";
     if(className){
@@ -27,8 +25,8 @@ export default class Box extends Component {
         </div>
       )
     }
-    if(this.props.children){
-      output.push(this.props.children)
+    if(children){
+      output.push(children)
     }
     if(left){
       output.push(
@@ -60,7 +58,6 @@ export default class Box extends Component {
         {bottomOutput}
       </div>
     )
-  }
 }
 Box.propTypes = {
   title: React.PropTypes.oneOfType([
@@ -85,3 +82,4 @@ Box.propTypes = {
     React.PropTypes.object
   ])
 }
+export default Box
