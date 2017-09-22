@@ -7,6 +7,11 @@ import FontIcon from 'react-md/lib/FontIcons';
 export default class MessageMenu extends Component {
   render(){
     const {mailbox, onReplayBtnClick, onForwardBtnClick, onDeleteBtnClick, onRestoreBtnClick, onDeletePermanentlyBtnClick} = this.props
+    const menuItems = [
+      <ListItem key="Reply" primaryText="Reply" onClick={onReplayBtnClick} leftIcon={<FontIcon>reply</FontIcon>} />,
+      <ListItem key="Forward" primaryText="Forward" onClick={onForwardBtnClick} leftIcon={<FontIcon>forward</FontIcon>} />,
+      <ListItem key="Delete" primaryText="Delete" onClick={onDeleteBtnClick} leftIcon={<FontIcon>delete</FontIcon>} />
+    ]
     return(
       <div>
       {mailbox=='inbox' ?
@@ -34,13 +39,11 @@ export default class MessageMenu extends Component {
         <MenuButton
           id="vert-menu"
           icon
-          buttonChildren="more_vert"
           className="menu-example"
           tooltipLabel="Menu"
+          menuItems={menuItems}
         >
-          <ListItem primaryText="Reply" onClick={onReplayBtnClick} leftIcon={<FontIcon>reply</FontIcon>} />
-          <ListItem primaryText="Forward" onClick={onForwardBtnClick} leftIcon={<FontIcon>forward</FontIcon>} />
-          <ListItem primaryText="Delete" onClick={onDeleteBtnClick} leftIcon={<FontIcon>delete</FontIcon>} />
+        more_vert
         </MenuButton>
         : null }
     </div>

@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push, goBack} from 'react-router-redux';
 import Button from 'react-md/lib/Buttons/Button';
+import Dialog from 'react-md/lib/Dialogs'
 import ToolbarSearch from '../components/helpers/ToolbarSearch';
 import ToolbarMenu from '../components/helpers/ToolbarMenu';
 import ToolbarHeader from '../components/helpers/ToolbarHeader';
-import { setSearching, setSearchValue } from "../actions/AppActions";
+import ChangeLanguage from '../components/helpers/ChangeLanguage';
+import { setSearching, setSearchValue, toggleLanguageDialog, changeLanguage } from "../actions/AppActions";
 import {logoutUser} from "../actions/index";
 
 @connect((store) => {
   return {
-    toolbar: store.app.toolbar
-
+    toolbar: store.app.toolbar,
+    view: store.app.view
   };
 })
 export default class ToolbarContainer extends Component {
@@ -25,8 +27,20 @@ export default class ToolbarContainer extends Component {
   handleChange = (event) => {
     this.props.dispatch(setSearchValue(event.target.value));
   }
+  handleDialogToggle = (visible) => {
+    this.props.dispatch(toggleLanguageDialog(visible))
+  }
+  handleDialogClose = () =>{
+    this.handleDialogToggle(false)
+  }
   handleLogoutClick = () => {
     this.props.dispatch(logoutUser());
+  }
+  handleLanguageClick = () => {
+    this.handleDialogToggle(true)
+  }
+  handleProfileClick = () => {
+      this.props.dispatch(push('/profile'));
   }
   handleBackClick = () => {
     if(toolbar.backPath){
@@ -34,11 +48,15 @@ export default class ToolbarContainer extends Component {
     }else{
       this.props.dispatch(goBack());
     }
-
+  }
+  handleLanguageChange = (language) =>{
+    this.props.dispatch(changeLanguage({code: language}))
+    this.handleDialogClose()
   }
   render(){
-    const {toolbar} = this.props;
+    const {toolbar, view, appData} = this.props;
     let toolbarActions = [], toolbarChildren, backBtnOutput;
+    let language = appData ? appData.user.language : "en_EN"
     if(toolbar.backBtn){
       backBtnOutput = <Button onClick={this.handleBackClick} className="md-btn--toolbar  md-toolbar--action-left" icon>keyboard_arrow_left</Button>
     }
@@ -54,12 +72,26 @@ export default class ToolbarContainer extends Component {
     }else{
       toolbarChildren = <ToolbarHeader header={toolbar.header} />
     }
-    toolbarActions.push(<ToolbarMenu key="toolbar-menu-btn" onLogoutClick={this.handleLogoutClick} />)
+    toolbarActions.push(<ToolbarMenu key="toolbar-menu-btn" onLanguageClick={this.handleLanguageClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} />)
     return(
       <div className="toolbar-children">
         {backBtnOutput}
         {toolbarChildren}
         <div className="md-cell--right md-toolbar--action-right">{toolbarActions}</div>
+        <Dialog
+            id="changeLanguageDialog"
+            visible={view.dialogVisible}
+            title="Change language"
+            focusOnMount={false}
+            onHide={this.handleDialogClose}
+            actions={[{
+              onClick: this.handleDialogClose,
+              primary: false,
+              label: 'Close',
+            }]}
+          >
+            <ChangeLanguage selected={language} onLanguageChange={this.handleLanguageChange} />
+          </Dialog>
       </div>
     )
   }

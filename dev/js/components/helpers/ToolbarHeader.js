@@ -1,54 +1,72 @@
 import React, { Component } from 'react';
-import {injectIntl, formatMessage} from 'react-intl';
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 import {toolbarHeaders} from "../../actions/config"
+
+const messages = defineMessages({
+  dashboard: {id: "toolbarHeader.headerDashboard", defaultMessage: "Dashboard"},
+  marks: {id: "toolbarHeader.headerMarks", defaultMessage: "Marks"},
+  classes: {id: "toolbarHeader.headerClasses", defaultMessage: "Classes"},
+  attendance: {id: "toolbarHeader.headerAttendance", defaultMessage: "Attendance"},
+  messages: {id: "toolbarHeader.headerMessages", defaultMessage: "Messages"},
+  message: {id: "toolbarHeader.headerMessage", defaultMessage: "Message"},
+  createMessage: {id: "toolbarHeader.headerCreateMessage", defaultMessage: "Create message"},
+  files: {id: "toolbarHeader.headerFiles", defaultMessage: "Files"},
+  tests: {id: "toolbarHeader.headerTests", defaultMessage: "Tests"},
+  test: {id: "toolbarHeader.headerTest", defaultMessage: "Test"},
+  elibrary: {id: "toolbarHeader.elibrary", defaultMessage: "E-library"},
+  profile: {id: "toolbarHeader.headerProfile", defaultMessage: "Profile"},
+  editProfile: {id: "toolbarHeader.headerEditProfile", defaultMessage: "Edit profile"},
+  changePassword: {id: "toolbarHeader.headerChangePassword", defaultMessage: "Change password"},
+  loginHistory: {id: "toolbarHeader.headerLoginHistory", defaultMessage: "Login history"}
+})
 
 const ToolbarHeader = ({header, intl}) =>{
   let message;
   switch(header) {
     case toolbarHeaders.dashobard:
-      message = intl.formatMessage({id: "toolbarHeader.headerDashboard", defaultMessage: "Dashboard"})
+      message = intl.formatMessage(messages.dashboard)
       break;
     case toolbarHeaders.marks:
-      message = intl.formatMessage({id: "toolbarHeader.headerMarks", defaultMessage: "Marks"})
+      message = intl.formatMessage(messages.marks)
       break;
     case toolbarHeaders.classes:
-      message = intl.formatMessage({id: "toolbarHeader.headerClasses", defaultMessage: "Classes"})
+      message = intl.formatMessage(messages.classes)
       break;
     case toolbarHeaders.attendance:
-      message = intl.formatMessage({id: "toolbarHeader.headerAttendance", defaultMessage: "Attendance"})
+      message = intl.formatMessage(messages.attendance)
       break;
     case toolbarHeaders.messages:
-      message = intl.formatMessage({id: "toolbarHeader.headerMessages", defaultMessage: "Messages"})
+      message = intl.formatMessage(messages.messages)
       break;
     case toolbarHeaders.message:
-      message = intl.formatMessage({id: "toolbarHeader.headerMessage", defaultMessage: "Message"})
+      message = intl.formatMessage(messages.message)
       break;
     case toolbarHeaders.createMessage:
-      message = intl.formatMessage({id: "toolbarHeader.headerCreateMessage", defaultMessage: "Create message"})
+      message = intl.formatMessage(messages.createMessage)
       break;
     case toolbarHeaders.files:
-      message = intl.formatMessage({id: "toolbarHeader.headerFiles", defaultMessage: "Files"})
+      message = intl.formatMessage(messages.files)
       break;
     case toolbarHeaders.tests:
-      message = intl.formatMessage({id: "toolbarHeader.headerTests", defaultMessage: "Tests"})
+      message = intl.formatMessage(messages.tests)
       break;
     case toolbarHeaders.test:
-      message = intl.formatMessage({id: "toolbarHeader.headerTest", defaultMessage: "Test"})
+      message = intl.formatMessage(messages.test)
       break;
     case toolbarHeaders.elibrary:
-      message = intl.formatMessage({id: "toolbarHeader.elibrary", defaultMessage: "E-library"})
+      message = intl.formatMessage(messages.elibrary)
       break;
     case toolbarHeaders.profile:
-      message = intl.formatMessage({id: "toolbarHeader.headerProfile", defaultMessage: "Profile"})
+      message = intl.formatMessage(messages.profile)
       break;
     case toolbarHeaders.editProfile:
-      message = intl.formatMessage({id: "toolbarHeader.headerEditProfile", defaultMessage: "Edit profile"})
+      message = intl.formatMessage(messages.editProfile)
       break;
     case toolbarHeaders.changePassword:
-      message = intl.formatMessage({id: "toolbarHeader.headerChangePassword", defaultMessage: "Change password"})
+      message = intl.formatMessage(messages.changePassword)
       break;
       case toolbarHeaders.loginHistory:
-      message = intl.formatMessage({id: "toolbarHeader.headerLoginHistory", defaultMessage: "Login history"})
+      message = intl.formatMessage(messages.loginHistory)
       break;
     default:
       message = header
@@ -60,6 +78,9 @@ const ToolbarHeader = ({header, intl}) =>{
    )
 }
 ToolbarHeader.propTypes = {
-  header: React.PropTypes.string.isRequired
+  header: React.PropTypes.oneOfType([
+      React.PropTypes.string.isRequired,
+      React.PropTypes.object.isRequired
+    ])
 }
 export default injectIntl(ToolbarHeader)

@@ -5,10 +5,8 @@ import TableRow from 'react-md/lib/DataTables/TableRow';
 import TableColumn from 'react-md/lib/DataTables/TableColumn';
 import TableBody from 'react-md/lib/DataTables/TableBody';
 
-export default class TwoColumnTable extends Component {
+const TwoColumnTable = ( { details }) =>{
 
-  render(){
-    const { details } = this.props;
     const mappedDetails = details.map(
       (item,i) =>
       <TableRow key={i}>
@@ -23,8 +21,8 @@ export default class TwoColumnTable extends Component {
         </TableBody>
       </DataTable>
     )
-  }
 }
 TwoColumnTable.propTypes = {
   details: React.PropTypes.array.isRequired,
 }
+export default TwoColumnTable

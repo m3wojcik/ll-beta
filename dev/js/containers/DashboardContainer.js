@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Content from '../components/helpers/Content'
 import DashboardWelcome from '../components/dashboard/DashboardWelcome'
 import DashboardClassesContainer from './classes/DashboardClassesContainer'
+import WallContainer from './wall/WallContainer'
 import DashboardNewsContainer from './dashboard/DashboardNewsContainer'
 import DashboardAttendancesContainer from './attendance/DashboardAttendancesContainer'
 import DashboardMarksContainer from './marks/DashboardMarksContainer'
@@ -46,10 +47,10 @@ export default class DashboardContainer extends Component {
         <DashboardClassesContainer />
         <div className="md-grid md-row">
           <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
-            {dashboardCardsLeft}
+            <WallContainer />
           </div>
           <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
-            {dashboardCardsRight}
+            
           </div>
         </div>
       </Content>

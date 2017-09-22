@@ -6,17 +6,23 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import { FormattedMessage } from 'react-intl';
 
+import {fetchMenuNofitications} from '../actions/AppActions'
+
 import Label from './helpers/Label';
 
 @connect((store) => {
   return {
     appData: store.app.appData,
-    notifications : store.app.appData.notifications
+    menu: store.app.menu,
+    notifications : store.app.appData
   };
 })
 export default class MainNavigation extends Component {
+    componentDidMount(){
+      this.props.dispatch(fetchMenuNofitications({type: "messages"}));
+    }
     render(){
-      const {appData , notifications} = this.props;
+      const {appData , notifications, menu} = this.props;
       let attendanceProps, marksProps, messagesProps, testsProps, filesProps, elibraryProps, surveysProps, paymentsProps;
       //ATENDANCE
       if(notifications.newAttendance && notifications.newAttendance > 0){
@@ -31,9 +37,9 @@ export default class MainNavigation extends Component {
         }
       }
       //MESSAGES
-      if(notifications.newMessages && notifications.newMessages > 0){
+      if(menu.messages && menu.messages.new > 0){
         messagesProps = {
-          rightIcon: <Label red label={notifications.newMessages} />
+          rightIcon: <Label red label={menu.messages.new} />
         }
       }
       //FILES

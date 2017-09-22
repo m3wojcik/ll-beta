@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ChartContainer = ({title}) => {
+const ChartContainer = ({children, title}) => {
 
     let chartTitle;
     if(title){
@@ -10,7 +10,7 @@ const ChartContainer = ({title}) => {
       <div className="chart-container">
         {chartTitle}
         <div className="chart">
-          {this.props.children}
+          {children}
         </div>
       </div>
     )

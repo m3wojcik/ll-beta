@@ -1,0 +1,10 @@
+[
+  {
+    "id": "elibraryListStatus.day",
+    "defaultMessage": "day"
+  },
+  {
+    "id": "elibraryListStatus.days",
+    "defaultMessage": "days"
+  }
+]

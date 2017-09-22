@@ -1,0 +1,14 @@
+[
+  {
+    "id": "wallNofiticationHeader.Messages",
+    "defaultMessage": "Messages"
+  },
+  {
+    "id": "wallNofiticationHeader.Files",
+    "defaultMessage": "Files"
+  },
+  {
+    "id": "wallNofiticationHeader.Marks",
+    "defaultMessage": "Marks"
+  }
+]

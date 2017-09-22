@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Subheader from 'react-md/lib/Subheaders';
 import {FormattedDate, FormattedRelative} from 'react-intl';
 import FontIcon from 'react-md/lib/FontIcons';
 import IconText from './../helpers/IconText';
 import Label from './../helpers/Label';
 import CustomListItem from './../helpers/CustomListItem';
-export default class AttendanceStatuses extends Component {
-  render(){
-    const { attendance, header } = this.props;
+
+const AttendanceStatuses = ({ attendance, header }) => {
+
     let listHeader;
     if(header){
       listHeader = <Subheader primaryText={header} className="text-uppercase" />
@@ -27,5 +27,5 @@ export default class AttendanceStatuses extends Component {
         {attendanceGroupsRows}
       </ul>
     )
-  }
 }
+export default AttendanceStatuses

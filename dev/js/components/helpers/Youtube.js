@@ -1,10 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Media from 'react-md/lib/Media/Media';
 
-export default class Youtube extends Component {
+const Youtube = ({url}) => {
 
-  render(){
-    const { url } = this.props;
     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     var match = url.match(regExp);
     return(
@@ -13,5 +11,5 @@ export default class Youtube extends Component {
       </Media>
 
     )
-  }
 }
+export default Youtube

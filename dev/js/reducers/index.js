@@ -34,6 +34,7 @@ import SurveysReducer from './SurveysReducer';
 import SurveyReducer from './SurveyReducer';
 import SurveyViewReducer from './SurveyViewReducer';
 import PaymentsReducer from './PaymentsReducer';
+import WallReducer from './WallReducer';
 
 const allReducers = combineReducers({
   auth: AuthReducer,
@@ -52,6 +53,7 @@ const allReducers = combineReducers({
   dashboardSurveys: DashboardSurveysReducer,
   dashboardPayments: DashboardPaymentsReducer,
   dashboardNews: DashboardNewsReducer,
+  wall: WallReducer,
   classes: ClassesReducer,
   classDetails: ClassDetailsReducer,
   marks: MarksReducer,

@@ -21,8 +21,8 @@ export default class CustomListItem extends Component {
     else this.setState({collapsed: true});
   }
   render(){
-    const { primaryText, rightIcon, secondaryText, bottomText, clickable, expander, expanderBreaks, status, leftIcon, inactive, onClick } = this.props;
-    let output, right, left, className, liClassName, expanderOutput, bottomOutput, onClickProp;
+    const { header, primaryText, rightIcon, secondaryText, bottomText, clickable, expander, expanderBreaks, status, leftIcon, inactive, onClick } = this.props;
+    let output, right, left, className, liClassName, expanderOutput, bottomOutput, onClickProp, headerOutput;
     className ="";
     liClassName = expanderBreaks ? "md-list-item custom-list-item" : "md-list-item"
     if(clickable){
@@ -37,13 +37,18 @@ export default class CustomListItem extends Component {
     if(leftIcon){
       left = <div className="md-tile-addon md-tile-left">{leftIcon}</div>
     }
-    if(secondaryText && !bottomText){
-      className += " md-list-tile--two-lines"
-      output = <div className="md-tile-text--secondary md-text--secondary">{secondaryText}</div>
-    }else if(bottomText){
+ 
+    if(bottomText){
       className += " md-list-tile--bottom-lines"
       output = <div className="md-tile-text--secondary md-text--secondary">{secondaryText}</div>
       bottomOutput = <div className="md-list-bottom">{bottomText}</div>
+    }else if(header){
+      className += " md-list-tile--header-lines"
+      output = <div className="md-tile-text--secondary md-text--secondary">{secondaryText}</div>
+      headerOutput = <div className="md-tile-header">{header}</div>
+    }else{
+      className += " md-list-tile--two-lines"
+      output = <div className="md-tile-text--secondary md-text--secondary">{secondaryText}</div>
     }
     if(rightIcon && !expander){
       right = <div className="md-list-right">{rightIcon}</div>
@@ -68,6 +73,7 @@ export default class CustomListItem extends Component {
           <div className="md-list-body md-list-tile md-fake-button">
             {left}
             <div className="md-tile-content">
+              {headerOutput}
               <div className="md-tile-text--primary md-text">
                 {primaryText}
               </div>
@@ -77,9 +83,7 @@ export default class CustomListItem extends Component {
           </div>
           {bottomOutput}
         </div>
-
           {expanderOutput}
-
       </li>
     )
   }

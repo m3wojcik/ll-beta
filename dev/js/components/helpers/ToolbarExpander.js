@@ -1,9 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class ToolbarExpander extends Component {
+const ToolbarExpander = ({ left, right }) => {
 
-  render(){
-    const { left, right } = this.props;
     let output = [];
     if(left){
       output.push(<div key="left" className="toolbar-expander-left">{left}</div>);
@@ -18,5 +16,5 @@ export default class ToolbarExpander extends Component {
         </div>
       </div>
     )
-  }
 }
+export default ToolbarExpander

@@ -1,13 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import TableRow from 'react-md/lib/DataTables/TableRow';
-import TableColumn from 'react-md/lib/DataTables/TableColumn';
-import TableBody from 'react-md/lib/DataTables/TableBody';
-import {FormattedDate} from 'react-intl';
-
-export default class ProgressBar extends Component {
-  render(){
-    const { value , title, subtitle } = this.props;
+const ProgressBar = ({ value , title, subtitle }) => {
     const progressSubtitle = (
       subtitle ?
         <div className="progress-subtitle">{subtitle}</div> : null
@@ -28,5 +21,5 @@ export default class ProgressBar extends Component {
       </div>
 
     )
-  }
 }
+export default ProgressBar

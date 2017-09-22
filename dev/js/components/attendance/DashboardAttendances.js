@@ -6,10 +6,8 @@ import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
 import BoxSubtitle from './../helpers/BoxSubtitle'
 
-export default class DashboardAttendances extends Component {
+const DashboardAttendances = ({ dashboardAttendances, fetched }) => {
 
-  render(){
-    const { dashboardAttendances, fetched } = this.props;
     let output = []
     const mappedAttendances = dashboardAttendances.map(function(group){
         return (
@@ -35,9 +33,9 @@ export default class DashboardAttendances extends Component {
         </ReactCSSTransitionGroup>
       </Box>
     )
-  }
 }
 DashboardAttendances.propTypes = {
   dashboardAttendances: React.PropTypes.array.isRequired,
   fetched: React.PropTypes.bool.isRequired
 }
+export default DashboardAttendances

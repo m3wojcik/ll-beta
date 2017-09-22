@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { getDays } from '../../actions/Functions';
 import Label from '../helpers/Label';
-import { FormattedPlural } from 'react-intl';
 
 export default class ElibraryListStatus extends Component {
 
@@ -18,7 +17,7 @@ export default class ElibraryListStatus extends Component {
       if(today < dateFrom ){
         let dayDifference = dateFrom - today;
         label = <Label blue
-          label={["Pick reservation in " + dayDifference + " ", <FormattedPlural key="plural" value={dayDifference} one='day' other='days' />]}
+          label={["Pick reservation in " + dayDifference + " days"]}
           value={dayDifference}
           colorValues={[{"values":[1],"color": "olive"}]}
           />
@@ -27,7 +26,7 @@ export default class ElibraryListStatus extends Component {
         let text = "Pick reservation";
         label = [<Label key="pick-reservation" green label={text} />,
       <Label key="days-left" green
-        label={[dayDifference + " ", <FormattedPlural key="plural" value={dayDifference} one='day' other='days' />," left"]}
+        label={[dayDifference + " days left"]}
         value={dayDifference}
         colorValues={[{"values":[1],"color": "red"},{"range":[2,3],"color": "orange"}]} />
           ]
@@ -45,7 +44,7 @@ export default class ElibraryListStatus extends Component {
       if(today < dateReturn){
         let dayDifference = dateReturn - today;
         label = <Label blue
-            label={["Return in " + dayDifference + " ", <FormattedPlural key="plural" value={dayDifference} one='day' other='days' />]}
+            label={["Return in " + dayDifference + " days"]}
           value={dayDifference}
           colorValues={[{"range":[1,2],"color": "orange"}]} />
       }else if(today == dateReturn){

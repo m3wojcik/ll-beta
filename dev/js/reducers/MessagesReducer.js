@@ -117,7 +117,6 @@ export default function reducer(state={
         }
       }
       case "DELETE_MESSAGE": {
-        console.log('delete',action.payload);
         return {...state, deleteMessage: {...state.deleteMessage, id:action.payload.ids[0], fetching: true, fetched: false}}
       }
       case "DELETE_MESSAGE_REJECTED": {

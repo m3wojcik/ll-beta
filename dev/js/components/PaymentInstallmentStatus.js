@@ -27,7 +27,7 @@ export default class PaymentInstallmentStatus extends Component {
       if(0 < dayDifference){
         props = {
           blue: true,
-          label: ["Pay in " + dayDifference + " ", <FormattedPlural key="plural" value={dayDifference} one='day' other='days' />],
+          label: ["Pay in " + dayDifference + " days"],
           value: dayDifference,
           colorValues: [{"values":[1],"color": "red"},{"range":[2,3],"color": "orange"}]
         }

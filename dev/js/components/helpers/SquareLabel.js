@@ -1,10 +1,7 @@
-import React, { Component } from 'react';
-import FontIcon from 'react-md/lib/FontIcons';
+import React from 'react';
 
-export default class SquareLabel extends Component {
+const SquareLabel = ({ value, displayValue, className }) => {
 
-  render(){
-    const { value, displayValue, className } = this.props;
     let output;
     let classProp = "square-label ";
     if(displayValue){
@@ -20,5 +17,5 @@ export default class SquareLabel extends Component {
         {output}
       </div>
     )
-  }
 }
+export default SquareLabel

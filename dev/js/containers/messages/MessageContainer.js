@@ -35,6 +35,9 @@ export default class MessageContainer extends Component {
       this.props.dispatch(showSnack('message_restored', {label: 'Message restored', timeout: 3000}));
       this.props.dispatch(push("inbox"));
     }
+    if(this.props.params.messageId != nextProps.params.messageId){
+      this.props.dispatch(fetchMessage({"id": this.props.params.messageId, "mark_as_read": true}));
+    }
   }
   handleReplayBtnClick = (message) => {
       this.props.dispatch(push('createmessage'));

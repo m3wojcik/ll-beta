@@ -1,6 +1,62 @@
 [
   {
-    "id": "toolbarHeader.header",
-    "defaultMessage": "{header}"
+    "id": "toolbarHeader.headerDashboard",
+    "defaultMessage": "Dashboard"
+  },
+  {
+    "id": "toolbarHeader.headerMarks",
+    "defaultMessage": "Marks"
+  },
+  {
+    "id": "toolbarHeader.headerClasses",
+    "defaultMessage": "Classes"
+  },
+  {
+    "id": "toolbarHeader.headerAttendance",
+    "defaultMessage": "Attendance"
+  },
+  {
+    "id": "toolbarHeader.headerMessages",
+    "defaultMessage": "Messages"
+  },
+  {
+    "id": "toolbarHeader.headerMessage",
+    "defaultMessage": "Message"
+  },
+  {
+    "id": "toolbarHeader.headerCreateMessage",
+    "defaultMessage": "Create message"
+  },
+  {
+    "id": "toolbarHeader.headerFiles",
+    "defaultMessage": "Files"
+  },
+  {
+    "id": "toolbarHeader.headerTests",
+    "defaultMessage": "Tests"
+  },
+  {
+    "id": "toolbarHeader.headerTest",
+    "defaultMessage": "Test"
+  },
+  {
+    "id": "toolbarHeader.elibrary",
+    "defaultMessage": "E-library"
+  },
+  {
+    "id": "toolbarHeader.headerProfile",
+    "defaultMessage": "Profile"
+  },
+  {
+    "id": "toolbarHeader.headerEditProfile",
+    "defaultMessage": "Edit profile"
+  },
+  {
+    "id": "toolbarHeader.headerChangePassword",
+    "defaultMessage": "Change password"
+  },
+  {
+    "id": "toolbarHeader.headerLoginHistory",
+    "defaultMessage": "Login history"
   }
 ]

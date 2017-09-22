@@ -9,11 +9,8 @@ import AttendanceCalendar from './AttendanceCalendar'
 import ProgressBar from './../helpers/ProgressBar'
 
 
-import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
+const Attendance = ({ attendance }) => {
 
-export default class Attendance extends Component {
-  render(){
-    const { attendance } = this.props;
     let attendancesInTime = [];
     const attendanceGroupsRows = attendance.map(function(group,i){
       return(
@@ -39,11 +36,11 @@ export default class Attendance extends Component {
           </Box>
         </li>
       )
-    });
+    })
     return(
       <ul className="clean-list">
         {attendanceGroupsRows}
       </ul>
     )
-  }
 }
+export default Attendance

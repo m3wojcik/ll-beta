@@ -1663,6 +1663,41 @@ ul.card-list > li{
     cursor: -webkit-grabbing;
   }
 }
+/*Notification
+------------------------------------------------------------------------------*/
+$notificationHeaderHeight: 25px;
+ul.notification-header{
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  font-size: 12px;
+  li{
+    margin: 0px;
+    padding: 0px;
+    height: $notificationHeaderHeight;
+    line-height: $notificationHeaderHeight;
+  }
+  li.app-icon{
+    .md-icon{
+      font-size: 18px;
+      line-height: $notificationHeaderHeight;
+    }
+    padding-right: 2px;
+  }
+  li.app-name{
+    padding-right: 5px;
+  }
+  li.bullet{
+    .md-icon{
+      font-size: .2em;
+      position: relative;
+      top: -2px;
+      color: $md-blue-grey-100;
+    }
+    padding-right: 5px;
+  }
+}
 /*Md list custom
 ------------------------------------------------------------------------------*/
 .md-list{
@@ -1722,7 +1757,7 @@ ul.card-list > li{
     }
 }
 .md-list-item.inactive{
-  background-color: rgba(0, 0, 0, 0.03) !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
   .avatar-weekdays{
     background: #fff;
     border-color: rgba(0, 0, 0, 0.1);
@@ -1742,6 +1777,14 @@ ul.card-list > li{
   padding-right: 16px;
 }
 @media screen and (min-width: 320px){
+  .md-list-tile--header-lines {
+    .md-tile-content{
+      height: 85px;
+    }
+    .md-list-tile{
+      height: 95px;
+    }
+  }
   .md-list-tile--bottom-lines {
     .md-tile-content{
       height: 52px;
@@ -1758,6 +1801,15 @@ ul.card-list > li{
   }
 }
 @media screen and (min-width: 1025px){
+  .md-list-tile--header-lines {
+    .md-tile-content{
+      height: 75px;
+    }
+    .md-list-tile{
+      height: 85px;
+      box-sizing: border-box;
+    }
+  }
   .md-list-tile--bottom-lines {
     .md-tile-content{
       height: 40px;

@@ -8,6 +8,11 @@ export default function reducer(state={
       locales:[],
       groups:[]
     },
+    menu:{
+      messages:{},
+      marks: {},
+      files:{}
+    },
     toolbar: {
       header: null,
       hasTabs: false,
@@ -22,6 +27,9 @@ export default function reducer(state={
       tabs: [],
       tabsContent: [],
       tabsContainer: null
+    },
+    view:{
+      dialogVisible: false
     },
     page:{
       loaded: false,
@@ -50,6 +58,60 @@ export default function reducer(state={
           },
         }
       }
+      case "CHANGE_LANGUAGE": {
+        return {...state, appData: {...state.appData, fetching: true, fetched:false}}
+      }
+      case "CHANGE_LANGUAGE_REJECTED": {
+        return {
+          ...state,
+          appData: {...state.appData, fetching: false, fetched:false, error: action.payload}}
+      }
+      case "CHANGE_LANGUAGE_FULFILLED": {
+        return {
+          ...state,
+          appData : {
+            ...state.appData,
+            fetching: false,
+            fetched: true,
+            user: {
+              ...state.appData.user,
+              language: action.payload.language
+            }
+          },
+        }
+      }
+      case "FETCH_MENU_NOTIFICATIONS": {
+        console.log('fetch',action.payload.type)
+        let obj = {
+          ...state, 
+          menu: {
+            ...state.menu,
+          }
+        }
+        obj.menu[action.payload.type] = {
+          fetching: true, fetched:false
+        }
+        return obj
+      }
+      case "FETCH_MENU_NOTIFICATIONS_REJECTED": {
+        return {
+          ...state,
+          appData: {...state.appData, fetching: false, fetched:false, error: action.payload}}
+      }
+      case "FETCH_MENU_NOTIFICATIONS_FULFILLED": {
+        let obj = {
+          ...state, 
+          menu: {
+            ...state.menu,
+          }
+        }
+        obj.menu[action.params.type] = {
+          fetching: false, 
+          fetched:true,
+          new: action.payload.new[action.params.type]
+        }
+        return obj
+      }
       case "SET_APP_SETTINGS": {
         return {
           ...state,
@@ -62,6 +124,9 @@ export default function reducer(state={
             backPath: action.payload.backPath
           },
         }
+      }
+      case "TOGGLE_LANGUAGE_DIALOG": {
+        return {...state, view: {...state.view, dialogVisible: action.payload}}
       }
       case "SET_APP_HEADER": {
         return {

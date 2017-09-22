@@ -10,6 +10,35 @@ export function fetchAppData() {
     }
   }
 }
+export function changeLanguage(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/changeLanguage',
+      types: ["CHANGE_LANGUAGE", "CHANGE_LANGUAGE_FULFILLED", "CHANGE_LANGUAGE_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
+export function fetchMenuNofitications(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/newCount',
+      types: ["FETCH_MENU_NOTIFICATIONS", "FETCH_MENU_NOTIFICATIONS_FULFILLED", "FETCH_MENU_NOTIFICATIONS_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
+
+export function toggleLanguageDialog(settings) {
+  return {
+    type: 'TOGGLE_LANGUAGE_DIALOG',
+    payload: settings,
+  }
+}
 export function setAppSettings(settings) {
   return {
     type: 'SET_APP_SETTINGS',

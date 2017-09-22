@@ -1,0 +1,26 @@
+[
+  {
+    "id": "classDetailsStatus.AttendanceChecked",
+    "defaultMessage": "Attendance checked"
+  },
+  {
+    "id": "classDetailsStatus.HomeworkChecked",
+    "defaultMessage": "Homework checked"
+  },
+  {
+    "id": "classDetailsStatus.FilledIn",
+    "defaultMessage": "Filled in"
+  },
+  {
+    "id": "classDetailsStatus.Online",
+    "defaultMessage": "Online"
+  },
+  {
+    "id": "classDetailsStatus.FilesAdded",
+    "defaultMessage": "Files added"
+  },
+  {
+    "id": "classDetailsStatus.TestsAdded",
+    "defaultMessage": "Tests added"
+  }
+]

@@ -2,7 +2,7 @@ import axios from 'axios';
 import querystring  from "query-string";
 import {push} from 'react-router-redux';
 
-export const BASE_URL = 'https://test.langlion.com/api/'
+export const BASE_URL = 'https://test.langlion.com/api'
 //const BASE_URL = 'http://api.local/'
 
 function callApi(endpoint, authenticated, params, method) {
@@ -37,7 +37,7 @@ function callApi(endpoint, authenticated, params, method) {
         ...config
     })
   }
-  console.log('get', BASE_URL + endpoint, axios_config);
+  console.log('get', BASE_URL + endpoint + "?access_token="+ access_token, axios_config);
   return axios(axios_config)
   .then(response => {
     response.data.params = params

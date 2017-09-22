@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import Avatar from 'react-md/lib/Avatars';
+import WeekDayIcon from './../helpers/WeekDayIcon';
 import CustomListItem from './../helpers/CustomListItem';
 import CustomDate from './../helpers/CustomDate';
 import ListHorizontal from './../helpers/ListHorizontal';
 import ClassDetailsStatus from './ClassDetailsStatus';
 import FontIcon from 'react-md/lib/FontIcons';
-import {getShortDayName} from './../../actions/Functions'
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
 
@@ -29,7 +28,7 @@ export default class ClassItem extends Component {
           inactive={inactive}
           key={clas.id}
           onClick={onClassClick.bind(this,clas.id,clas.name)}
-          leftIcon={<Avatar className="avatar-weekdays" icon={getShortDayName(d)} />}
+          leftIcon={<WeekDayIcon date={d} />}
           primaryText={primaryText}
           secondaryText={<ListHorizontal space="no-space" elements={secondaryTextElements} />}
           status={<ClassDetailsStatus status={clas.status} details={clas.details} />}

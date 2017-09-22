@@ -18,7 +18,6 @@ export default class LayoutContainer extends Component {
     const {hasTabs, appData, toasts} = this.props;
 
     let toolbarClassName = hasTabs ? 'main-toolbar no-shadow' : 'main-toolbar';
-
     return(
         <NavigationDrawer
           drawerClassName="navigation-drawer"
@@ -30,7 +29,7 @@ export default class LayoutContainer extends Component {
           desktopDrawerType={NavigationDrawer.DrawerTypes.FULL_HEIGHT}
           toolbarThemeType="themed"
           toolbarTitleClassName="toolbar-title"
-          toolbarChildren={<ToolbarContainer />}
+          toolbarChildren={<ToolbarContainer appData={appData} />}
           contentId="main-content-demo"
           toolbarClassName={toolbarClassName}
         >

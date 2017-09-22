@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {FormattedDate, FormattedPlural} from 'react-intl';
+import {FormattedDate} from 'react-intl';
 import TwoColumnTable from '../helpers/TwoColumnTable'
 export default class MediaLibItemDetails extends Component {
   render(){
@@ -30,7 +30,7 @@ export default class MediaLibItemDetails extends Component {
       bookingDetails.push({"label": "deposit","value": item.deposit})
     }
     if(item.reservation_days && !borrowed){
-      bookingDetails.push({"label": "Booking period","value":<FormattedPlural value={item.reservation_days} one={item.reservation_days+" day"} other={item.reservation_days+" days"} />})
+      bookingDetails.push({"label": "Booking period","value": item.reservation_days+" days"})
     }
     return(
       <TwoColumnTable details = {bookingDetails} />

@@ -6,7 +6,6 @@ import Content from '../components/helpers/Content'
 import Payments from '../components/Payments'
 import CircleProgressBar from '../components/helpers/CircleProgressBar';
 import Box from '../components/helpers/Box';
-import Locales from '../components/helpers/Locales';
 
 @connect((store) => {
    return {

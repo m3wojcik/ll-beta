@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
-export default class AttendanceStatusesCalendar extends Component {
-  render(){
-    const { statuses } = this.props;
+
+const AttendanceStatusesCalendar = ({ statuses }) => {
 
     const statusesMapped = statuses.map(
       (status , i) =>
@@ -15,5 +14,5 @@ export default class AttendanceStatusesCalendar extends Component {
         {statusesMapped}
       </ul>
     )
-  }
 }
+export default AttendanceStatusesCalendar

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "toolbarMenu.Profile",
+    "defaultMessage": "Profile"
+  },
+  {
+    "id": "toolbarMenu.Language",
+    "defaultMessage": "Language"
+  },
+  {
+    "id": "toolbarMenu.Logout",
+    "defaultMessage": "Logout"
+  },
+  {
+    "id": "toolbarMenu.OpenMenu",
+    "defaultMessage": "Open menu"
+  }
+]

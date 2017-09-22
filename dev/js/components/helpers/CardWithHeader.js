@@ -1,6 +1,6 @@
 import React from 'react';
 
-const CardWithHeader = ({header, id}) => {
+const CardWithHeader = ({children,header, id}) => {
 
     let props;
     if(id){
@@ -12,7 +12,7 @@ const CardWithHeader = ({header, id}) => {
       <div>
         <div {...props} className="header">{header}</div>
         <div className="content-card">
-          {this.props.children}
+          {children}
         </div>
       </div>
     )

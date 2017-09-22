@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 
-export default class UserPhoto extends Component {
+const UserPhoto = ({ src, className, small, medium, large }) => {
 
-  render(){
-    let { src, className, small, medium, large } = this.props;
     let classProp ="user-photo ";
     if (className) {
       classProp += className
@@ -21,5 +19,5 @@ export default class UserPhoto extends Component {
     return(
       <div>{output}</div>
     )
-  }
 }
+export default UserPhoto
