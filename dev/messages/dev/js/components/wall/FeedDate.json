@@ -1,0 +1,10 @@
+[
+  {
+    "id": "feedDate.today",
+    "defaultMessage": "today"
+  },
+  {
+    "id": "feedDate.yesterday",
+    "defaultMessage": "yesterday"
+  }
+]

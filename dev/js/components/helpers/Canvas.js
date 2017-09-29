@@ -79,8 +79,10 @@ export default class Canvas extends Component {
         startHeight: drawnHeight
       })
       this.drawImage(startPosX, startPosY, drawnWidth, drawnHeight)
-      //var dataurl = this.refs.canvas.toDataURL("image/png");
-      //console.log('dataurl', dataurl);
+
+      //TODO UPLOAD zdjęcia
+      // var dataurl = this.refs.canvas.toDataURL("image/png");
+      // console.log('dataurl', dataurl);
     }.bind(this)
   }
   resetSlider = () =>{

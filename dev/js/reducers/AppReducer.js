@@ -81,7 +81,6 @@ export default function reducer(state={
         }
       }
       case "FETCH_MENU_NOTIFICATIONS": {
-        console.log('fetch',action.payload.type)
         let obj = {
           ...state, 
           menu: {

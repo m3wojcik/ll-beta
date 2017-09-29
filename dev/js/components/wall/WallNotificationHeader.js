@@ -1,7 +1,8 @@
 import React from 'react';
-import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
+
 import FontIcon from 'react-md/lib/FontIcons';
 import ListHorizontal from '../helpers/ListHorizontal'
+import FeedDate from './FeedDate'
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 const messages = defineMessages({
@@ -16,6 +17,14 @@ const messages = defineMessages({
   marks: {
     id: 'wallNofiticationHeader.Marks',
     defaultMessage: 'Marks'
+  },
+  news: {
+    id: 'wallNofiticationHeader.News',
+    defaultMessage: 'News'
+  },
+  attendance: {
+    id: 'wallNofiticationHeader.Attendance',
+    defaultMessage: 'Attendance'
   }
 })
 
@@ -34,20 +43,40 @@ const WallNotificationHeader = ({notification, intl}) =>{
           <FontIcon className="icon-orange">folder</FontIcon>      
         </li>)
       output.push(<li key="app-name" className="app-name icon-orange">{intl.formatMessage(messages.files)}</li>)
-    
     break;
     case "new_mark":
-    output.push(<li key="app-icon" className="app-icon">
-        <FontIcon className="icon-teal">assessment</FontIcon>      
-      </li>)
-    output.push(<li key="app-name" className="app-name icon-teal">{intl.formatMessage(messages.marks)}</li>)
-    
-  break;
+      output.push(<li key="app-icon" className="app-icon">
+          <FontIcon className="icon-teal">assessment</FontIcon>      
+        </li>)
+      output.push(<li key="app-name" className="app-name icon-teal">{intl.formatMessage(messages.marks)}</li>)  
+    break;
+    case "new_news":
+      output.push(<li key="app-icon" className="app-icon">
+          <FontIcon className="icon-grey">description</FontIcon>      
+        </li>)
+      output.push(<li key="app-name" className="app-name icon-grey">{intl.formatMessage(messages.news)}</li>)  
+    break;
+    case "new_attendance":
+      output.push(<li key="app-icon" className="app-icon">
+          <FontIcon className="icon-olive">done_all</FontIcon>      
+        </li>)
+      output.push(<li key="app-name" className="app-name icon-olive">{intl.formatMessage(messages.attendance)}</li>)  
+    break;
   }
+
   output.push(<li key="bullet" className="bullet"><FontIcon>lens</FontIcon></li>)
-  output.push(<li key="timestamp" className="timestamp md-text--secondary">
-     <FormattedRelative value={notification.date} year='numeric' month='long' day='2-digit' />
-  </li>)  
+  output.push(
+  <li key="timestamp" className="timestamp md-text--secondary">
+    <FeedDate date={notification.date} />
+  </li>) 
+  if(notification.extra_data.attachments){
+      output.push(<li key="bullet2" className="bullet"><FontIcon>lens</FontIcon></li>)
+      output.push(
+        <li key="attachments" className="attachment md-text--secondary">
+          <FontIcon className="icon-grey">attachment</FontIcon>  
+          
+        </li>)
+  } 
   return(
     <ul className="notification-header">{output}</ul>
   )

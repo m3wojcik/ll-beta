@@ -4,7 +4,9 @@ import FontIcon from 'react-md/lib/FontIcons';
 export default class ListHorizontal extends Component {
 
   render(){
-    const {elements, space} = this.props;
+    const {elements, space, className} = this.props;
+    let cssClass = "list-horizontal list-with-bullets"
+    if(className) cssClass += " "+className
     const length = elements.length,
           mappedElements = []
     let spaceElement = <li key="bullet" className="bullet"><FontIcon>lens</FontIcon></li>
@@ -21,7 +23,7 @@ export default class ListHorizontal extends Component {
     })
 
     return(
-      <ul className="list-horizontal list-with-bullets">
+      <ul className={cssClass}>
         {mappedElements}
       </ul>
     )

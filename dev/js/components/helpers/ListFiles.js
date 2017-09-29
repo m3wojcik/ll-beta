@@ -15,14 +15,14 @@ export default class ListFiles extends Component {
     const accessToken = localStorage.getItem('access_token')
     files.forEach(function(file, i){
       if(imgFileTypes.indexOf(file.extension) > -1){
-        const downloadString = BASE_URL + "fileDownload?access_token="+ accessToken +"&id="+file.id
+        const downloadString = BASE_URL + "/fileDownload?access_token="+ accessToken +"&id="+file.id
         mappedImages.push(
           <li key={file.id} className="md-list-item">
             <img src={downloadString} role="presentation" className="img-responsive" />
           </li>
         )
       }else if(file.extension == "mp3"){
-        const downloadString = BASE_URL + "fileDownload?access_token="+ accessToken +"&id="+file.id
+        const downloadString = BASE_URL + "/fileDownload?access_token="+ accessToken +"&id="+file.id
         mappedImages.push(
           <li key={file.id} className="md-list-item">
             <audio controls>

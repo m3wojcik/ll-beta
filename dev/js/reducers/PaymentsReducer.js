@@ -15,13 +15,14 @@ export default function reducer(state={
         return {...state, fetching: false, error: action.payload}
       }
       case "FETCH_PAYMENTS_FULFILLED": {
+        console.log('payments',action.payload)
         return {
           ...state,
           fetching: false,
           fetched: true,
-          groups: action.payload.groups,
-          totalAmount: action.payload.total,
-          amountPaid: action.payload.paid
+          groups: action.payload.payments.groups,
+          totalAmount: action.payload.payments.total,
+          amountPaid: action.payload.payments.paid
         }
       }
     }

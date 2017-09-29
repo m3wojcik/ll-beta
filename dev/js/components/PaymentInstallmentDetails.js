@@ -8,8 +8,8 @@ export default class PaymentInstallmentDetails extends Component {
     const leftToPay = installment.value - installment.paid_value
     const amountToPay = installment.value
     let paymentDetails = [];
-    if(installment.paid_at){
-      paymentDetails.push({"label": "Payment date","value": <FormattedDate value={installment.paid_at} day="numeric" month="numeric" year="numeric" />})
+    if(installment.date_to){
+      paymentDetails.push({"label": "Payment date","value": <FormattedDate value={installment.date_to} day="numeric" month="numeric" year="numeric" />})
     }
     if(installment.paid_at){
       paymentDetails.push({"label": "Date of payment","value": <FormattedDate value={installment.paid_at} day="numeric" month="numeric" year="numeric" />})

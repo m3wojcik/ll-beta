@@ -22,6 +22,17 @@ export function fetchMarksClassByColumn(params) {
     }
   }
 }
+export function fetchMarksClassAverage(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/marksClassAverage',
+      types: ["FETCH_MARKS_CLASS_AVERAGE", "FETCH_MARKS_CLASS_AVERAGE_FULFILLED", "FETCH_MARKS_CLASS_AVERAGE_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
 // export function fetchMarks() {
 //   return function(dispatch) {
 //     dispatch({type: "FETCH_MARKS", payload: true});
@@ -46,15 +57,15 @@ export function fetchMarksClassByColumn(params) {
 //       })
 //   }
 // }
-export function fetchMarksClassAverage(groupId) {
-  return function(dispatch) {
-    dispatch({type: "FETCH_MARKS_CLASS_AVERAGE", payload: groupId});
-    instance.get("?q=getMarksClassAverage"+"&id="+groupId)
-      .then((response) => {
-        dispatch({type: "FETCH_MARKS_CLASS_AVERAGE_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_MARKS_CLASS_AVERAGE_REJECTED", payload: err})
-      })
-  }
-}
+// export function fetchMarksClassAverage(groupId) {
+//   return function(dispatch) {
+//     dispatch({type: "FETCH_MARKS_CLASS_AVERAGE", payload: groupId});
+//     instance.get("?q=getMarksClassAverage"+"&id="+groupId)
+//       .then((response) => {
+//         dispatch({type: "FETCH_MARKS_CLASS_AVERAGE_FULFILLED", payload: response.data});
+//       })
+//       .catch((err) => {
+//         dispatch({type: "FETCH_MARKS_CLASS_AVERAGE_REJECTED", payload: err})
+//       })
+//   }
+// }

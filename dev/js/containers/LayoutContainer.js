@@ -32,6 +32,9 @@ export default class LayoutContainer extends Component {
           toolbarChildren={<ToolbarContainer appData={appData} />}
           contentId="main-content-demo"
           toolbarClassName={toolbarClassName}
+          transitionName="md-cross-fade"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={100}
         >
         {this.props.content}
 

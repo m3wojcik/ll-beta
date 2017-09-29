@@ -1,0 +1,14 @@
+[
+  {
+    "id": "markWall.scoreInClass",
+    "defaultMessage": "Your score in class"
+  },
+  {
+    "id": "markWall.addNewMark",
+    "defaultMessage": "add new mark"
+  },
+  {
+    "id": "markWall.newMark",
+    "defaultMessage": "New mark"
+  }
+]

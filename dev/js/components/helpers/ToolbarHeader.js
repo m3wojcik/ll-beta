@@ -14,6 +14,8 @@ const messages = defineMessages({
   tests: {id: "toolbarHeader.headerTests", defaultMessage: "Tests"},
   test: {id: "toolbarHeader.headerTest", defaultMessage: "Test"},
   elibrary: {id: "toolbarHeader.elibrary", defaultMessage: "E-library"},
+  surveys: {id: "toolbarHeader.surveys", defaultMessage: "Surveys"},
+  payments: {id: "toolbarHeader.payments", defaultMessage: "Payments"},
   profile: {id: "toolbarHeader.headerProfile", defaultMessage: "Profile"},
   editProfile: {id: "toolbarHeader.headerEditProfile", defaultMessage: "Edit profile"},
   changePassword: {id: "toolbarHeader.headerChangePassword", defaultMessage: "Change password"},
@@ -55,6 +57,12 @@ const ToolbarHeader = ({header, intl}) =>{
       break;
     case toolbarHeaders.elibrary:
       message = intl.formatMessage(messages.elibrary)
+      break;
+    case toolbarHeaders.surveys:
+      message = intl.formatMessage(messages.surveys)
+      break;
+    case toolbarHeaders.payments:
+      message = intl.formatMessage(messages.payments)
       break;
     case toolbarHeaders.profile:
       message = intl.formatMessage(messages.profile)

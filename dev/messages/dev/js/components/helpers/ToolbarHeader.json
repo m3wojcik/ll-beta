@@ -44,6 +44,14 @@
     "defaultMessage": "E-library"
   },
   {
+    "id": "toolbarHeader.surveys",
+    "defaultMessage": "Surveys"
+  },
+  {
+    "id": "toolbarHeader.payments",
+    "defaultMessage": "Payments"
+  },
+  {
     "id": "toolbarHeader.headerProfile",
     "defaultMessage": "Profile"
   },

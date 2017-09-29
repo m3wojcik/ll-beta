@@ -21,28 +21,28 @@ export default class MarksClassByColumn extends Component {
     ];
     const mappedMarks = [], lineData = [];
     let yRange = [0,100], average = 0, averageNum = 0, averageDen = 0, averageLabel, findUser = false;
-    if(gradeType!="percent") yRange = [0,6]
+    if(gradeType!="normal") yRange = [0,6]
     sortedMarks.map(function(mark , i){
       let status, displayLabel;
-      if(gradeType=="percent") displayLabel = mark.value+"%"
+      if(gradeType=="normal") displayLabel = mark.value+"%"
       else{
         if(mark.displayValue){
           displayLabel = mark.displayValue
         }else displayLabel = mark.value.toString()
       }
-      if(mark.value == userValue && !findUser){
+      if(mark.my && !findUser){
         findUser = true;
         status = {x: i, y: mark.value, color: "#2185D0", label: displayLabel}
       }else{
         status = {x: i, y: mark.value, color: "#eceff1", label:""}
       }
-      averageNum += (mark.value * weight);
-      averageDen += weight;
+      averageNum += mark.value
+      averageDen++
       mappedMarks.push(status)
     }.bind(this));
 
     average = averageNum / averageDen
-    if(gradeType=="percent"){
+    if(gradeType=="normal"){
       averageLabel = average.toFixed() + "%";
     }else {
       averageLabel = average.toFixed();

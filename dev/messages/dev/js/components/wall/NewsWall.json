@@ -1,0 +1,10 @@
+[
+  {
+    "id": "newsWall.secretaryAdd",
+    "defaultMessage": "Secretary add news"
+  },
+  {
+    "id": "attendanceWall.newStatus",
+    "defaultMessage": "New status"
+  }
+]

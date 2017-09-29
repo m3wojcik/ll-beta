@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
+import IconHeader from '../helpers/IconHeader';
 import WeekDayIcon from './../helpers/WeekDayIcon';
 import FontIcon from 'react-md/lib/FontIcons';
 import MessageWall from './MessageWall';
 import FileWall from './FileWall';
 import MarkWall from './MarkWall';
+import NewsWall from './NewsWall';
+import AttendanceWall from './AttendanceWall'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
@@ -23,28 +26,25 @@ const Wall = ({ wall, fetched }) => {
         case "new_file":
           return (<FileWall key={i} file={obj} />)
         break;
+        case "new_news":
+          return (<NewsWall key={i} news={obj} />)
+        break;
+        case "new_attendance":
+          return (<AttendanceWall key={i} att={obj} />)
+        break;
         
       }
     })
     if(!fetched){
       output.push(<Loader key="loader" centerPadding />)
     }else{
-      output.push(
-        <ul key="list" className="md-list md-list-divider">
-          {mappedWall}
-        </ul>
-      )
+      output.push( <div key="feed" className="feed">{mappedWall}</div>)
     }
-
     return(
-      <Box
-        className="no-flex no-padding"
-        title="Feed"
-        titleIcon={<FontIcon className="icon-blue">notifications</FontIcon>}>
-        <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
-          {output}
-        </ReactCSSTransitionGroup>
-      </Box>
+      <div>
+        <IconHeader header="Feed" icon={<FontIcon className="icon-blue">notifications</FontIcon>} />
+        {output}
+      </div>
     )
 }
 Wall.propTypes = {

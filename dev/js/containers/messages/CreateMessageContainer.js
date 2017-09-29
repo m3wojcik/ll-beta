@@ -6,7 +6,7 @@ import { showSnack } from 'react-redux-snackbar';
 //import ReactQuill from 'react-quill';
 import Button from 'react-md/lib/Buttons/Button';
 import { addAlert } from "../../actions/AlertActions";
-import { sendMessage } from "../../actions/MessagesActions";
+import { sendMessage, setMessageSubject, setMessageText } from "../../actions/MessagesActions";
 import Content from '../../components/helpers/Content'
 import Loader from '../../components/helpers/Loader'
 import AddressBookContainer from './AddressBookContainer'
@@ -15,8 +15,9 @@ import AlertContainer from '../AlertContainer'
 
 @connect((store) => {
    return {
-     addressBook: store.messages.createMessage.addressBook,
-     message: store.messages.createMessage.message,
+     addressBook: store.messages.addressBook,
+     subject: store.messages.createMessage.subject,
+     text: store.messages.createMessage.text,
      reply: store.messages.createMessage.reply,
      forward: store.messages.createMessage.forward,
      fetched: store.messages.createMessage.fetched,
@@ -34,11 +35,16 @@ export default class CreateMessageContainer extends Component {
       this.props.dispatch(push("inbox"));
     }
   }
+  handleSubjectChange = (event) =>{
+    this.props.dispatch(setMessageSubject(event.target.value))
+  }
+  handleTextChange = (event) =>{
+    this.props.dispatch(setMessageText(event.target.value))
+  }
   handleSendClick = () =>{
-    const subject = this.subjectInput.value
-    const content = this.messageInput.value
-    const receivers = this.props.sendMessage.receivers.map(rec => rec.id)
-    console.log('receivers', receivers);
+    const {subject, text, addressBook} = this.props
+    const receivers = addressBook.receivers.filter(x => typeof(x) =='number')
+    console.log(subject, text, receivers)
     if(receivers.length < 1){
       this.props.dispatch(addAlert({id: "create_message_receivers", text: "Receivers not picked", type:"danger"}))
     }else if(subject == ""){
@@ -48,13 +54,13 @@ export default class CreateMessageContainer extends Component {
         {
         "userIds": receivers,
         "subject": subject,
-        "content": content
+        "content": text
         }
       ));
     }
   }
   render(){
-    const { fetched, reply, forward, message, sendMessage } = this.props;
+    const { subject, text, fetched, reply, forward, message, sendMessage } = this.props;
     return(
       <Content >
         <AlertContainer />
@@ -66,13 +72,13 @@ export default class CreateMessageContainer extends Component {
           </div>
           <div className="field">
             <label>Subject</label>
-            <input ref={(input) => { this.subjectInput = input; }} name="subject" type="text"/>
+            <input value={subject} onChange={this.handleSubjectChange} name="subject" type="text"/>
           </div>
           <div className="field">
             <label>Message</label>
-            <textarea ref={(input) => { this.messageInput = input; }} ></textarea>
+            <textarea value={text} onChange={this.handleTextChange} ></textarea>
           </div>
-          <Button raised primary label="Send" onClick={this.handleSendClick} />
+          <Button raised primary onClick={this.handleSendClick}>Send</Button>
         </form>
       </Content>
     )

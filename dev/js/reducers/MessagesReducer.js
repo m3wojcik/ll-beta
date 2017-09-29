@@ -23,6 +23,7 @@ export default function reducer(state={
     fetched: false,
     error: null
   },
+  singleMessages:{},
   deleteMessage:{
     fetching: false,
     fetched: false,
@@ -31,14 +32,23 @@ export default function reducer(state={
     error: null,
   },
   createMessage: {
-    addressBook: [],
-    message: null,
+    subject: "",
+    text: "",
     fetching: false,
     fetched: false,
     reply : false,
     forward : false,
     delete : false,
     error: null
+  },
+  addressBook:{
+    fetching: false,
+    fetched: false,
+    open: false,
+    search: "",
+    treeBook:[],
+    flatBook:{},
+    receivers:[]
   },
   sendMessage:{
     receivers: [],
@@ -61,7 +71,7 @@ export default function reducer(state={
           inbox: {...state.inbox,
             fetching: false,
             fetched: true,
-            inboxMessages: action.payload
+            inboxMessages: action.payload.messages
           }
         }
       }
@@ -77,7 +87,7 @@ export default function reducer(state={
           sent: {...state.sent,
             fetching: false,
             fetched: true,
-            sentMessages: action.payload
+            sentMessages: action.payload.messages
           }
         }
       }
@@ -93,29 +103,28 @@ export default function reducer(state={
           trash: {...state.trash,
             fetching: false,
             fetched: true,
-            trashMessages: action.payload
+            trashMessages: action.payload.messages
           }
         }
       }
       case "FETCH_MESSAGE": {
-        return {...state,
-          singleMessage: {...state.singleMessage, fetching: true, fetched: false},
-          deleteMessage: {...state.deleteMessage, fetching: false, fetched: false}
-        }
-      }
-      case "FETCH_MESSAGE_REJECTED": {
-        return {...state, singleMessage: {...state.singleMessage, fetching: false, error: action.payload}}
-      }
-      case "FETCH_MESSAGE_FULFILLED": {
-        return {
-          ...state,
-          singleMessage: {...state.singleMessage,
-            fetching: false,
-            fetched: true,
-            message: action.payload,
+          let tmpMessages = Object.assign({}, state.singleMessages);
+          tmpMessages[action.payload.id] = {fetching: true, fetched: false}
+          return {...state,
+            singleMessages: tmpMessages
           }
         }
-      }
+        case "FETCH_MESSAGE_REJECTED": {
+          return {...state, singleMessages: {...state.singleMessages, fetching: false, error: action.payload}}
+        }
+        case "FETCH_MESSAGE_FULFILLED": {
+          let tmpMessages = Object.assign({}, state.singleMessages);
+          tmpMessages[action.payload.id] = {fetching: false, fetched: true, ...action.payload}
+          return {...state,
+            singleMessages: tmpMessages
+          }
+        }
+
       case "DELETE_MESSAGE": {
         return {...state, deleteMessage: {...state.deleteMessage, id:action.payload.ids[0], fetching: true, fetched: false}}
       }
@@ -141,7 +150,7 @@ export default function reducer(state={
         return {...state, deleteMessage: {...state.deleteMessage, restored: false, error: action.payload}}
       }
       case "RESTORE_MESSAGE_FULFILLED": {
-        if(state.singleMessage.message.mailbox !="trash"){
+        if(state.singleMessage.mailbox !="trash"){
           return {
             ...state,
             deleteMessage: {
@@ -150,7 +159,7 @@ export default function reducer(state={
               restoring: false
             },
             inbox: {...state.inbox,
-              inboxMessages: action.payload
+              inboxMessages: action.payload.messages
             }
           }
         }else{
@@ -162,41 +171,130 @@ export default function reducer(state={
               restoring: false
             },
             trash: {...state.inbox,
-              trashMessages: action.payload
+              trashMessages: action.payload.messages
             }
           }
         }
       }
       case "FETCH_ADDRESS_BOOK": {
-        return {...state, createMessage: {...state.createMessage, fetching: true, fetched: false}}
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            fetching: true,
+            fetched: false
+          } 
+        }
       }
       case "FETCH_ADDRESS_BOOK_REJECTED": {
-        return {...state, createMessage: {...state.createMessage, fetching: false, error: action.payload}}
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            fetching: false,
+            fetched: false,
+            error: action.payload
+          } 
+        }
       }
       case "FETCH_ADDRESS_BOOK_FULFILLED": {
+        let flatBook = {}
+        const flatTree = (node, parentPath) =>{
+          node.forEach(function(element,cnt) {
+            let path = parentPath === null ? [] : parentPath.slice()
+            path.push(cnt)
+            element.path = path
+            if(element.contacts){
+              flatBook[element.label] = element 
+              flatTree(element.contacts, path)
+            }
+            else flatBook[element.id] = element 
+          }.bind(this))
+        }
+        flatTree(action.payload, null)
         return {
           ...state,
-          createMessage: {
-            ...state.createMessage,
+          addressBook: {
+            ...state.addressBook,
             fetching: false,
             fetched: true,
-            addressBook: action.payload
+            treeBook: action.payload[0].contacts,
+            flatBook: flatBook
           }
         }
       }
-      case "UPDATE_ADDRESSBOOK": {
+      case "SEARCH_ADDRESS_BOOK": {
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            search: action.payload
+          }
+        }
+      }
+      case "TOGGLE_ADDRESS_BOOK": {
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            open: action.payload
+          }
+        }
+      }
+      case "ADD_RECEIVERS": {
+        let tmpReceivers = state.addressBook.receivers.slice()
+      
+        if(typeof(action.payload) === 'number') {
+          tmpReceivers.push(action.payload)
+        }
+        else{
+          tmpReceivers = [...new Set([...state.addressBook.receivers, ...action.payload])]
+        }
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            receivers: tmpReceivers
+          }
+        }
+      }
+      case "REMOVE_RECEIVERS": { 
+        //debugger
+        let tmp = state.addressBook.receivers.slice() 
+        if(typeof(action.payload) === 'number') {
+          tmp = tmp.filter(x => x !== action.payload)
+        }
+        else{
+          tmp = tmp.filter(x => action.payload.indexOf(x) == -1)
+        }
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            receivers: tmp
+          }
+        }
+      }
+      case "SET_MESSAGE_SUBJECT": {
         return {...state,
           createMessage: {
             ...state.createMessage,
-            addressBook: action.payload
+            subject: action.payload
           }
         }
       }
-      case "UPDATE_RECEIVERS": {
+      case "SET_MESSAGE_TEXT": {
         return {...state,
-          sendMessage: {
-            ...state.sendMessage,
-            receivers: action.payload
+          createMessage: {
+            ...state.createMessage,
+            text: action.payload 
+          }
+        }
+      }
+      case "REPLAY_MESSAGE": {
+        return {...state,
+          createMessage: {
+            ...state.createMessage,
+            subject: "Re: "+ action.payload.subject,
+            text: action.payload.text 
+          },
+          addressBook: {
+            ...state.addressBook,
+            receivers: [action.payload.senderId]
           }
         }
       }

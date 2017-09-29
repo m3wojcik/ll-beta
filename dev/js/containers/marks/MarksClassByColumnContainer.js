@@ -19,7 +19,7 @@ export default class MarksClassByColumnContainer extends Component {
   render(){
     const { marksClassByColumn, columnId, title, userValue } = this.props;
     if(marksClassByColumn[columnId] && marksClassByColumn[columnId].fetched){
-
+      console.log('marks',marksClassByColumn[columnId], userValue)
       return(<MarksClassByColumn
           gradeType={marksClassByColumn[columnId].gradeType}
           weight={marksClassByColumn[columnId].weight}

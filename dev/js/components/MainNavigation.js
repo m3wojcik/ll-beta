@@ -5,7 +5,7 @@ import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import { FormattedMessage } from 'react-intl';
-
+import MenuLabelContainer from './../containers/MenuLabelContainer'
 import {fetchMenuNofitications} from '../actions/AppActions'
 
 import Label from './helpers/Label';
@@ -23,55 +23,6 @@ export default class MainNavigation extends Component {
     }
     render(){
       const {appData , notifications, menu} = this.props;
-      let attendanceProps, marksProps, messagesProps, testsProps, filesProps, elibraryProps, surveysProps, paymentsProps;
-      //ATENDANCE
-      if(notifications.newAttendance && notifications.newAttendance > 0){
-        attendanceProps = {
-          rightIcon: <Label red label={notifications.newAttendance} />
-        }
-      }
-      //MARKS
-      if(notifications.newMarks && notifications.newMarks > 0){
-        marksProps = {
-          rightIcon: <Label red label={notifications.newMarks} />
-        }
-      }
-      //MESSAGES
-      if(menu.messages && menu.messages.new > 0){
-        messagesProps = {
-          rightIcon: <Label red label={menu.messages.new} />
-        }
-      }
-      //FILES
-      if(notifications.newFiles && notifications.newFiles > 0){
-        filesProps = {
-          rightIcon: <Label red label={notifications.newFiles} />
-        }
-      }
-      //TESTS
-      if(notifications.newTests && notifications.newTests > 0){
-        testsProps = {
-          rightIcon: <Label red label={notifications.newTests} />
-        }
-      }
-      //E-LIBRARY
-      if(notifications.newLibrary && notifications.newLibrary > 0){
-        elibraryProps = {
-          rightIcon: <Label red label={notifications.newLibrary} />
-        }
-      }
-      //SURVEYS
-      if(notifications.newSurveys && notifications.newSurveys > 0){
-        surveysProps = {
-          rightIcon: <Label red label={notifications.newSurveys} />
-        }
-      }
-      //PAYMENTS
-      if(notifications.newPayments && notifications.newPayments > 0){
-        paymentsProps = {
-          rightIcon: <Label red label={notifications.newPayments} />
-        }
-      }
       return(
       <List className="navigation">
         <IndexLink  key="dashboard" to="/" activeClassName="active-main" >
@@ -86,7 +37,7 @@ export default class MainNavigation extends Component {
         </IndexLink >
         <Link key="marks" to="marks" activeClassName="active-main" >
           <ListItem
-            {...marksProps}
+            rightIcon={<MenuLabelContainer type="marks"/>}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.marks"
@@ -107,7 +58,6 @@ export default class MainNavigation extends Component {
       </Link>
         <Link key="attendance" to="attendance" activeClassName="active-main" >
           <ListItem
-            {...attendanceProps}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.attendance"
@@ -118,7 +68,7 @@ export default class MainNavigation extends Component {
         </Link>
         <Link key="inbox" to="inbox" activeClassName="active-main" >
           <ListItem
-            {...messagesProps}
+            rightIcon={<MenuLabelContainer type="messages"/>}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.messages"
@@ -129,7 +79,6 @@ export default class MainNavigation extends Component {
         </Link>
         <Link key="files" to="files" activeClassName="active-main" >
           <ListItem
-            {...filesProps}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.files"
@@ -140,7 +89,6 @@ export default class MainNavigation extends Component {
         </Link>
         <Link key="tests" to="tests" activeClassName="active-main" >
           <ListItem
-            {...testsProps}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.tests"
@@ -151,7 +99,6 @@ export default class MainNavigation extends Component {
         </Link>
         <Link key="elibrary" to="elibrary" activeClassName="active-main" >
           <ListItem
-            {...elibraryProps}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.elibrary"
@@ -162,7 +109,6 @@ export default class MainNavigation extends Component {
         </Link>
         <Link key="surveys" to="surveys" activeClassName="active-main" >
           <ListItem
-            {...surveysProps}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.surveys"
@@ -173,7 +119,6 @@ export default class MainNavigation extends Component {
         </Link>
         <Link key="payments" to="payments" activeClassName="active-main" >
           <ListItem
-            {...paymentsProps}
             primaryText={
               <FormattedMessage 
                 id="mainNavigation.payments"

@@ -11,7 +11,7 @@ const CardWithHeader = ({children,header, id}) => {
     return(
       <div>
         <div {...props} className="header">{header}</div>
-        <div className="content-card">
+        <div className="content-card md-paper--1">
           {children}
         </div>
       </div>

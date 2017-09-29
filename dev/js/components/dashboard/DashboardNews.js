@@ -32,7 +32,7 @@ export default class DashboardNews extends Component {
       <Box
         className="no-flex no-padding"
         title="News"
-        titleIcon={<FontIcon className="icon-blue">notifications</FontIcon>}>
+        titleIcon={<FontIcon className="icon-grey">description</FontIcon>}>
         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
           {output}
         </ReactCSSTransitionGroup>

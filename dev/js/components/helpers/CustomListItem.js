@@ -21,14 +21,14 @@ export default class CustomListItem extends Component {
     else this.setState({collapsed: true});
   }
   render(){
-    const { header, primaryText, rightIcon, secondaryText, bottomText, clickable, expander, expanderBreaks, status, leftIcon, inactive, onClick } = this.props;
-    let output, right, left, className, liClassName, expanderOutput, bottomOutput, onClickProp, headerOutput;
-    className ="";
+    const { header, primaryText, rightIcon, secondaryText, bottomText, clickable, expander, expanderBreaks, status, leftIcon, leftPrimaryIcon, inactive, onClick, className } = this.props;
+    let output, right, left, cName, liClassName, expanderOutput, bottomOutput, onClickProp, headerOutput, leftPrimary;
+    cName ="";
     liClassName = expanderBreaks ? "md-list-item custom-list-item" : "md-list-item"
     if(clickable){
-      className+=" clickable"
+      cName+=" clickable"
       if(this.state.active){
-        className +=" md-list-tile--active"
+        cName +=" md-list-tile--active"
       }
     }
     if(inactive){
@@ -37,17 +37,19 @@ export default class CustomListItem extends Component {
     if(leftIcon){
       left = <div className="md-tile-addon md-tile-left">{leftIcon}</div>
     }
- 
+    if(leftPrimaryIcon){
+      leftPrimary = <div className="md-tile-addon md-tile-left-primary">{leftPrimaryIcon}</div>
+    }
     if(bottomText){
-      className += " md-list-tile--bottom-lines"
+      cName += " md-list-tile--bottom-lines"
       output = <div className="md-tile-text--secondary md-text--secondary">{secondaryText}</div>
       bottomOutput = <div className="md-list-bottom">{bottomText}</div>
     }else if(header){
-      className += " md-list-tile--header-lines"
+      cName += " md-list-tile--header-lines"
       output = <div className="md-tile-text--secondary md-text--secondary">{secondaryText}</div>
       headerOutput = <div className="md-tile-header">{header}</div>
     }else{
-      className += " md-list-tile--two-lines"
+      cName += " md-list-tile--two-lines"
       output = <div className="md-tile-text--secondary md-text--secondary">{secondaryText}</div>
     }
     if(rightIcon && !expander){
@@ -67,13 +69,17 @@ export default class CustomListItem extends Component {
         onClick: onClick
       }
     }
+    if(!this.state.collapsed) liClassName += " md-expansion-panel--expanded"
+    if(className) liClassName += " "+className
     return(
-      <li className={this.state.collapsed ? liClassName : liClassName + " md-expansion-panel--expanded"}>
-        <div {...onClickProp} onMouseOver={this.handleMouseOver} onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}  className={className}>
-          <div className="md-list-body md-list-tile md-fake-button">
+      <li className={liClassName}>
+        <div {...onClickProp} onMouseOver={this.handleMouseOver} onMouseEnter={this.handleMouseOver} onMouseLeave={this.handleMouseLeave}  className={cName}>
+        
+          <div className="md-list-body md-list-tile md-fake-button">  
             {left}
             <div className="md-tile-content">
               {headerOutput}
+              {leftPrimary}
               <div className="md-tile-text--primary md-text">
                 {primaryText}
               </div>

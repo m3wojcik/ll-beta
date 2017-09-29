@@ -5,18 +5,19 @@ import Button from 'react-md/lib/Buttons';
 
 export default class ReceiverChips extends Component {
   render(){
-     const { receivers, removeChip, onSearchChange, search, toggleBook, searchRef, open } = this.props;
+     const { receivers, flatBook, removeChip, onSearchChange, search, toggleBook, searchRef, open } = this.props;
      let toggleBtn = <Button onClick={toggleBook} className="chips-list-toggle-btn" icon >book</Button>
      if(open) toggleBtn = <Button onClick={toggleBook} className="chips-list-toggle-btn" icon >close</Button>
      let searchWidth = search.length + 1 + "em"
-     const chips = receivers.reverse().map(
-       (receiver, i) => (
-         <li key={receiver.id}>
+     const filtredReceivers = receivers.filter(x => typeof(x) === 'number')
+     const chips = filtredReceivers.map(
+       (receiver, i) => (       
+         <li key={receiver}>
            <Chip
-             label={receiver.label}
+             label={flatBook[receiver].label}
              onClick={removeChip.bind(this, receiver)}
              removable
-             avatar={<Avatar >{receiver.label.charAt(0)}</Avatar>}
+             avatar={<Avatar >{flatBook[receiver].label.charAt(0)}</Avatar>}
            />
          </li>
      ));

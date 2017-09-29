@@ -116,9 +116,24 @@ export function sendMessage(params) {
     }
   }
 }
-export function updateReceivers(receivers) {
-    return {type: "UPDATE_RECEIVERS", payload: receivers};
+export function searchAddressBook(search) {
+  return {type: "SEARCH_ADDRESS_BOOK", payload: search};
 }
-export function updateAddressBook(addressBook) {
-    return {type: "UPDATE_ADDRESSBOOK", payload: addressBook};
+export function toggleAddressBook(open) {
+  return {type: "TOGGLE_ADDRESS_BOOK", payload: open};
+}
+export function addReceivers(receivers) {
+  return {type: "ADD_RECEIVERS", payload: receivers};
+}
+export function removeReceivers(receivers) {
+  return {type: "REMOVE_RECEIVERS", payload: receivers};
+}
+export function setMessageSubject(subject) {
+  return {type: "SET_MESSAGE_SUBJECT", payload: subject};
+}
+export function setMessageText(text) {
+  return {type: "SET_MESSAGE_TEXT", payload: text};
+}
+export function replayMessage(params) {
+  return {type: "REPLAY_MESSAGE", payload: params};
 }

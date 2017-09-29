@@ -13,7 +13,7 @@ import MarksClassByColumn from '../../components/marks/MarksClassByColumn'
 export default class MarksClassAverageContainer extends Component {
   componentDidMount(){
     const { groupId } = this.props;
-    this.props.dispatch(fetchMarksClassAverage(groupId));
+    this.props.dispatch(fetchMarksClassAverage({group_id: groupId}));
   }
   render(){
     const { marksClassAverage, groupId, title } = this.props;

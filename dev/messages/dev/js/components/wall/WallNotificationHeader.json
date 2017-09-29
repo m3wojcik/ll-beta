@@ -10,5 +10,13 @@
   {
     "id": "wallNofiticationHeader.Marks",
     "defaultMessage": "Marks"
+  },
+  {
+    "id": "wallNofiticationHeader.News",
+    "defaultMessage": "News"
+  },
+  {
+    "id": "wallNofiticationHeader.Attendance",
+    "defaultMessage": "Attendance"
   }
 ]

@@ -1,7 +1,7 @@
 export default function reducer(state={
   marks: [],
-  marksClassByColumn: [],
-  marksClassAverage:[],
+  marksClassByColumn: {},
+  marksClassAverage:{},
   fetching: false,
   fetched: false,
   error: null,
@@ -23,7 +23,8 @@ export default function reducer(state={
         }
       }
       case "FETCH_MARKS_CLASS_BY_COLUMN": {
-        let newMarksClassByColumn = state.marksClassByColumn.slice();
+        
+        let newMarksClassByColumn = Object.assign({}, state.marksClassByColumn)
         newMarksClassByColumn[action.payload] = {fetching: true, fetched:false}
         return {...state, marksClassByColumn: newMarksClassByColumn}
       }
@@ -31,7 +32,7 @@ export default function reducer(state={
         return {...state, marksClassByColumn:{fetching: false}, error: action.payload}
       }
       case "FETCH_MARKS_CLASS_BY_COLUMN_FULFILLED": {
-        let newMarksClassByColumn =   state.marksClassByColumn.slice();
+        let newMarksClassByColumn =   Object.assign({}, state.marksClassByColumn)
         newMarksClassByColumn[action.payload.marksByColumn.mark_group_id] = {
           columnId: action.payload.marksByColumn.mark_group_id,
           name: action.payload.marksByColumn.name,
@@ -47,19 +48,19 @@ export default function reducer(state={
         }
       }
       case "FETCH_MARKS_CLASS_AVERAGE": {
-        let newMarksClassAverage = state.marksClassAverage.slice();
-        newMarksClassAverage[action.payload] = {fetching: true, fetched:false}
+        let newMarksClassAverage = Object.assign({}, state.marksClassAverage)
+        newMarksClassAverage[action.payload.group_id] = {fetching: true, fetched:false}
         return {...state, marksClassAverage: newMarksClassAverage}
       }
       case "FETCH_MARKS_CLASS_AVERAGE_REJECTED": {
         return {...state, marksClassAverage:{fetching: false}, error: action.payload}
       }
       case "FETCH_MARKS_CLASS_AVERAGE_FULFILLED": {
-        let newMarksClassAverage =   state.marksClassAverage.slice();
-        newMarksClassAverage[action.payload.groupId] = {
-          groupId: action.payload.groupId,
-          gradeType: action.payload.gradeType,
-          averages: action.payload.averages,
+        let newMarksClassAverage =   Object.assign({}, state.marksClassAverage)
+        newMarksClassAverage[action.payload.average.group_id] = {
+          groupId: action.payload.average.group_id,
+          gradeType: action.payload.average.point_system_type,
+          averages: action.payload.average.averages,
           fetching: false,
           fetched:true
         }

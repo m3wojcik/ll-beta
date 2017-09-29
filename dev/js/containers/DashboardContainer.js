@@ -46,11 +46,8 @@ export default class DashboardContainer extends Component {
         <DashboardWelcome appData={appData} />
         <DashboardClassesContainer />
         <div className="md-grid md-row">
-          <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
+          <div className="md-cell md-cell--12 md-cell--12-tablet md-cell--12-phone">
             <WallContainer />
-          </div>
-          <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
-            
           </div>
         </div>
       </Content>

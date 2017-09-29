@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
 import WeekDayIcon from './../helpers/WeekDayIcon';
+import IconHeader from '../helpers/IconHeader';
+import ListBox from '../helpers/ListBox';
 import FontIcon from 'react-md/lib/FontIcons';
-import CustomListItem from '../helpers/CustomListItem';
-import CustomDate from '../helpers/CustomDate';
-import ListHorizontal from './../helpers/ListHorizontal';
-import ClassDetailsStatus from './ClassDetailsStatus';
+import DashboardClassItem from './DashboardClassItem';
+import FeedDate from '../wall/FeedDate'
+import ClassItemSubheader from './ClassItemSubheader';
+import ClassDetailsIconStatus from './ClassDetailsIconStatus';
 import DashboardClassDetails from'./DashboardClassDetails';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {injectIntl, formatDate, formatTime, defineMessages} from 'react-intl';
@@ -41,7 +43,7 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl }) => {
       const secondaryTextElements = [
         <span>
           <FontIcon className="icon-grey">event</FontIcon>
-          {intl.formatDate(clas.date, {year:'numeric', month:'long', day:'2-digit'})}
+          <FeedDate date={clas.date} />
         </span>,
         <span>
           <FontIcon className="icon-grey">face</FontIcon>
@@ -51,16 +53,17 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl }) => {
       if(clas.room){
         details.push({"icon":<FontIcon className="icon-yellow">place</FontIcon>,"name":clas.room})
       }
-      return (
-         <CustomListItem
-           inactive={clas.inactive}
-           key={clas.id}
-           primaryText={time}
-           clickable
-           leftIcon={<WeekDayIcon date={clas.date} />}
-           status={<ClassDetailsStatus status={clas.status} details={clas.details} />}
-           secondaryText={<ListHorizontal space="no-space" elements={secondaryTextElements} />}
-           expander={<DashboardClassDetails details={details} />}
+      const headerText = <span>{time} </span>
+    
+      return (  
+        <DashboardClassItem
+          key={clas.id}
+          className={clas.inactive ? "feed-class inactive" : "feed-class active"}
+          header={headerText}
+          subHeader={<ClassItemSubheader classItem={clas} />}
+          iconLeft={<WeekDayIcon date={clas.date} />}
+          body={<ClassDetailsIconStatus status={clas.status} details={clas.details} />}
+          expander={<DashboardClassDetails details={details} />}
         />
       )
     })
@@ -68,22 +71,16 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl }) => {
       output.push(<Loader key="loader" centerPadding />)
     }else{
       output.push(
-        <ul key="list" className="md-list md-list-divider class-list">
-          {mappedClasses}
-        </ul>
+        <div key="classes">
+          <IconHeader header={intl.formatMessage(messages.upcomingClasses)} icon={<FontIcon className="icon-green">event</FontIcon>} />
+          <div className="feed">
+            {mappedClasses}
+          </div>
+        </div>
       )
     }
 
-    return(
-      <Box
-        className="no-flex no-padding"
-        title={intl.formatMessage(messages.upcomingClasses)}
-        titleIcon={<FontIcon className="icon-green">event</FontIcon>}>
-        <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
-          {output}
-        </ReactCSSTransitionGroup>
-      </Box>
-    )
+    return( <div>{output}</div>)
 }
 DashboardClasses.propTypes = {
   dashboardClasses: React.PropTypes.array.isRequired,

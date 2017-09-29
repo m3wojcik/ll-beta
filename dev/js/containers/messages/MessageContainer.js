@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { showSnack } from 'react-redux-snackbar';
 
-import { fetchMessage, deleteMessage, restoreMessage } from "../../actions/MessagesActions";
+import { fetchMessage, deleteMessage, restoreMessage, updateReceivers } from "../../actions/MessagesActions";
 import {BASE_URL} from "../../middleware/api"
 import Loader from '../../components/helpers/Loader'
 import Message from '../../components/messages/Message';
@@ -11,6 +11,7 @@ import Message from '../../components/messages/Message';
 
 @connect((store) => {
    return {
+    singleMessages: store.messages.singleMessages,
     singleMessage: store.messages.singleMessage,
     fetched: store.messages.singleMessage.fetched,
     fetching: store.messages.singleMessage.fetching,
@@ -22,11 +23,12 @@ export default class MessageContainer extends Component {
     this.props.dispatch(fetchMessage({"id": this.props.params.messageId, "mark_as_read": true}));
   }
   componentWillReceiveProps(nextProps){
-    const { deleteMessage, singleMessage } = this.props
+    const { deleteMessage, singleMessages } = this.props
+    const messageId = this.props.params.messageId
     const props = deleteMessage
     const next = nextProps.deleteMessage
     if(next.fetched && props.fetched != next.fetched){
-      if(singleMessage.message.mailbox !="trash"){
+      if(singleMessages[messageId].mailbox !="trash"){
         this.props.dispatch(push("inbox"));
       }else this.props.dispatch(push("trash"));
       this.props.dispatch(showSnack('message_deleted', {label: 'Message deleted', timeout: 3000, button:{label: "UNDO", action: this.handleRestoreMessage.bind(this,next)}}));
@@ -40,7 +42,8 @@ export default class MessageContainer extends Component {
     }
   }
   handleReplayBtnClick = (message) => {
-      this.props.dispatch(push('createmessage'));
+
+    this.props.dispatch(push('createmessage'));
   }
   handleForwardBtnClick = (message) => {
       this.props.dispatch(push('createmessage'));
@@ -55,33 +58,33 @@ export default class MessageContainer extends Component {
     this.props.dispatch(restoreMessage({"ids": [message.id]}));
   }
   handleFileClick = (file) => {
-    const { singleMessage } = this.props
-    const messageId = singleMessage.message.id
+    const { singleMessages } = this.props
+    const messageId = singleMessages.message.id
     const attachmentId = file.id
     const accessToken = localStorage.getItem('access_token')
     const downloadString = BASE_URL + "attachment?access_token="+ accessToken +"&attachment_id="+attachmentId+"&message_id="+messageId
     window.open(downloadString)
   }
   render(){
-    const { singleMessage ,fetched, deleteMessage } = this.props;
-    if(!fetched){
+    const { singleMessages ,fetched, deleteMessage } = this.props;
+    const messageId = this.props.params.messageId
+    if(singleMessages[messageId] && singleMessages[messageId].fetched ){
       return(
-        <Loader full />
+        <div className="content-no-padding">
+          {deleteMessage.fetching ? <Loader centerPadding /> : null}
+          <Message
+            message={singleMessages[messageId]}
+            onFileClick = {this.handleFileClick}
+            onReplayBtnClick={this.handleReplayBtnClick}
+            onForwardBtnClick={this.handleForwardBtnClick}
+            onDeleteBtnClick={this.handleDeleteBtnClick.bind(this, singleMessages[messageId])}
+            onRestoreBtnClick={this.handleRestoreMessage.bind(this, singleMessages[messageId])}
+            onDeletePermanentlyBtnClick={this.handleDeletePermanentlyBtnClick.bind(this, singleMessages[messageId])}
+          />
+        </div>
       )
+    }else{
+      return(<Loader full />)  
     }
-    return(
-      <div className="content-no-padding">
-        {deleteMessage.fetching ? <Loader centerPadding /> : null}
-        <Message
-          message={singleMessage.message}
-          onFileClick = {this.handleFileClick}
-          onReplayBtnClick={this.handleReplayBtnClick}
-          onForwardBtnClick={this.handleForwardBtnClick}
-          onDeleteBtnClick={this.handleDeleteBtnClick.bind(this, singleMessage.message)}
-          onRestoreBtnClick={this.handleRestoreMessage.bind(this, singleMessage.message)}
-          onDeletePermanentlyBtnClick={this.handleDeletePermanentlyBtnClick.bind(this, singleMessage.message)}
-        />
-      </div>
-    )
   }
 }

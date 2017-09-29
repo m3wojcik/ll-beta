@@ -14,12 +14,13 @@ export default class PaymentInstallment extends Component {
     const amountPaid = installment.paid_value
     const leftToPay = installment.value - installment.paid_value
     const amountToPay = installment.value
-
+    let secondaryText = <CustomDate date={installment.date_to} format="day" />
     let props;
     if(leftToPay <= 0){
       props = {
         primaryText: "Amount paid: " + amountPaid
       }
+      secondaryText = <CustomDate date={installment.paid_at} format="day" />
     }else if(amountPaid < amountToPay){
       props = {
         primaryText: "Amount left pay: " + leftToPay
@@ -28,6 +29,7 @@ export default class PaymentInstallment extends Component {
       props = {
         primaryText: "Amount to pay: " + amountToPay
       }
+      
     }
     const expander = <PaymentInstallmentDetails installment={installment} />
     return(
@@ -36,7 +38,7 @@ export default class PaymentInstallment extends Component {
         status ={<PaymentInstallmentStatus installment={installment} />}
         clickable
         expander={expander}
-        secondaryText={<CustomDate date={installment.paid_at} format="day" />}
+        secondaryText={secondaryText}
       />
     )
   }

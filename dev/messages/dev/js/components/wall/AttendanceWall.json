@@ -1,0 +1,10 @@
+[
+  {
+    "id": "attendanceWall.checkedAttendance",
+    "defaultMessage": "checked attendance"
+  },
+  {
+    "id": "attendanceWall.newStatus",
+    "defaultMessage": "New status"
+  }
+]

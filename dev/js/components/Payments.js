@@ -17,11 +17,17 @@ export default class Payments extends Component {
   render(){
     const { groups } = this.props;
     const mappedGroups = groups.map(function(group){
-      return (
-        <li key={group.id}>
+      let output = null
+      if(group.type == "standard"){
+        output = (
           <CardWithHeader header={group.name}>
             <PaymentInstallments installments={group.installments} />
           </CardWithHeader>
+        )
+      }
+      return (
+        <li key={group.id}>
+          {output}
         </li>
       )
     })
