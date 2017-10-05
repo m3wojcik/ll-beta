@@ -24,7 +24,7 @@ export default class TestInfo extends Component {
       )
     }
     if(test.duration && test.duration > 0){
-      let duration = test.duration / 60;
+      let duration = test.duration + "'";
       cardInfo.push(
         <li key="duration">
           <IconText icon={<FontIcon className="icon-yellow">access_time</FontIcon>} text={duration} />

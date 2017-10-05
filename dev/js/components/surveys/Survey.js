@@ -19,7 +19,7 @@ export default class Survey extends Component {
           let output;
           switch (block.type) {
             case "text_block":
-              output = <BlockOfText id={block.id} key={block.id} text={block.data} />
+              output = <BlockOfText id={block.id} key={block.id} text={block.long_data} />
               break;
             case "slider":
               let sliderData = JSON.parse(block.data)
