@@ -20,17 +20,19 @@ export default class MarksClassByColumn extends Component {
       {color: '#21BA45'}
     ];
     const mappedMarks = [], lineData = [];
-    let yRange = [0,100], average = 0, averageNum = 0, averageDen = 0, averageLabel, findUser = false;
-    if(gradeType!="normal") yRange = [0,6]
+    let yRange = [0,100], average = 0, averageNum = 0, averageDen = 0, averageLabel, findUser = false, myValue;
+    if(gradeType!="percent") yRange = [0,6]
     sortedMarks.map(function(mark , i){
       let status, displayLabel;
-      if(gradeType=="normal") displayLabel = mark.value+"%"
+      if(userValue) myValue = userValue
+      else myValue = mark.my
+      if(gradeType=="percent") displayLabel = mark.value.toFixed()+"%"
       else{
         if(mark.displayValue){
           displayLabel = mark.displayValue
         }else displayLabel = mark.value.toString()
       }
-      if(mark.my && !findUser){
+      if(myValue && !findUser){
         findUser = true;
         status = {x: i, y: mark.value, color: "#2185D0", label: displayLabel}
       }else{
@@ -42,7 +44,7 @@ export default class MarksClassByColumn extends Component {
     }.bind(this));
 
     average = averageNum / averageDen
-    if(gradeType=="normal"){
+    if(gradeType=="percent"){
       averageLabel = average.toFixed() + "%";
     }else {
       averageLabel = average.toFixed();

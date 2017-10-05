@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import QuestionOpen from '../components/QuestionOpen';
-import QuestionOpenView from '../components/QuestionOpenView';
+import QuestionOpen from '../../components/QuestionOpen';
+import QuestionOpenView from '../../components/QuestionOpenView';
 
 @connect((store) => {
    return {

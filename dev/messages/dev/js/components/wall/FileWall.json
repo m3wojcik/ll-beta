@@ -4,11 +4,19 @@
     "defaultMessage": "add file"
   },
   {
+    "id": "fileWall.addFileToLesson",
+    "defaultMessage": "add file to lesson"
+  },
+  {
     "id": "fileWall.newFile",
     "defaultMessage": "New file"
   },
   {
     "id": "fileWall.download",
     "defaultMessage": "Download"
+  },
+  {
+    "id": "fileWall.viewLesson",
+    "defaultMessage": "View lesson"
   }
 ]

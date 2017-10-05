@@ -6,13 +6,15 @@ import WeekDayIcon from './../helpers/WeekDayIcon';
 import FontIcon from 'react-md/lib/FontIcons';
 import MessageWall from './MessageWall';
 import FileWall from './FileWall';
+import TestWall from './TestWall';
+import SurveyWall from './SurveyWall';
 import MarkWall from './MarkWall';
 import NewsWall from './NewsWall';
 import AttendanceWall from './AttendanceWall'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
-const Wall = ({ wall, fetched }) => {
+const Wall = ({ wall, fetched, onViewLessonClick, onDownloadClick, onSolveClick, onFillClick }) => {
     let output = [], sortedClasses = [], tmpClass = null
 
     const mappedWall = wall.map(function(obj,i){
@@ -24,7 +26,13 @@ const Wall = ({ wall, fetched }) => {
           return (<MarkWall key={i} mark={obj} />)
         break;
         case "new_file":
-          return (<FileWall key={i} file={obj} />)
+          return (<FileWall key={i} file={obj} onViewLessonClick={onViewLessonClick} onDownloadClick={onDownloadClick}/>)
+        break;
+        case "new_test":
+          return (<TestWall key={i} test={obj} onViewLessonClick={onViewLessonClick} onSolveClick={onSolveClick}/>)
+        break;
+        case "new_survey":
+          return (<SurveyWall key={i} survey={obj} onFillClick={onFillClick}/>)
         break;
         case "new_news":
           return (<NewsWall key={i} news={obj} />)

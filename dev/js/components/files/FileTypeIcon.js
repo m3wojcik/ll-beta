@@ -5,6 +5,7 @@ const FileTypeIcon = ({ext}) => {
   let icon;
   switch (ext) {
     case "jpg":
+    case "png":
       icon = <FontIcon className="icon-red">photo</FontIcon>
       break;
     case "pdf":

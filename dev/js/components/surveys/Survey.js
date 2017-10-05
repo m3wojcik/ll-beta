@@ -7,23 +7,23 @@ import CardActions from 'react-md/lib/Cards/CardActions';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
-import CustomCardTitle from './CustomCardTitle';
-import IconText from './helpers/IconText';
-import SquareLabel from './helpers/SquareLabel';
-import BlockOfText from './helpers/BlockOfText';
-import Youtube from './helpers/Youtube';
-import ListFilesContainer from '../containers/ListFilesContainer';
-import SurveyQuestionOpenContainer from '../containers/SurveyQuestionOpenContainer';
-import SurveyQuestionContainer from '../containers/SurveyQuestionContainer';
-import RangeContainer from '../containers/RangeContainer';
+import CustomCardTitle from '../CustomCardTitle';
+import IconText from '../helpers/IconText';
+import SquareLabel from '../helpers/SquareLabel';
+import BlockOfText from '../helpers/BlockOfText';
+import Youtube from '../helpers/Youtube';
+import ListFilesContainer from '../../containers/ListFilesContainer';
+import SurveyQuestionOpenContainer from '../../containers/surveys/SurveyQuestionOpenContainer';
+import SurveyQuestionContainer from '../../containers/surveys/SurveyQuestionContainer';
+import RangeContainer from '../../containers/RangeContainer';
 
 export default class Survey extends Component {
 
   render(){
     const { survey } = this.props;
-    const surveyData = survey.surveyData;
-    const mappedSurvey = surveyData.pages.map(function(page, i){
-      const mappedPages = page.blocks.map(function(block, j){
+    console.log('survey', survey)
+    const mappedSurvey = survey.pages.map(function(page, i){
+      const mappedPages = page.map(function(block, j){
           let output;
           switch (block.type) {
             case "block-of-text":
@@ -31,45 +31,28 @@ export default class Survey extends Component {
               break;
             case "range":
               output = <RangeContainer
-                 view
-                 id={block.id}
-                 key={block.id}
-                 text={block.question}
-                 answer={block.answer}
-                 minValue={block.minValue}
-                 maxValue={block.maxValue}
+                id={block.id}
+                key={block.id}
+                text={block.question}
+                answers={block.answers}
+                minValue={block.minValue}
+                maxValue={block.maxValue}
                 />
               break;
-            case "single":
-              output = <SurveyQuestionContainer
-                 view
-                 id={block.id}
-                 key={block.id}
-                 type="radio"
-                 text={block.question}
-                 answers={block.answers}
-                 userAnswer={block.userAnswer}
-                 />
+            case "question_one":
+              output = <SurveyQuestionContainer id={block.id} key={block.id} type="radio" text={block.data} answers={block.answers} />
               break;
             case "multiple":
               output = <SurveyQuestionContainer
-                view
                 id={block.id}
                 key={block.id}
                 type="checkbox"
                 text={block.question}
                 answers={block.answers}
-                userAnswer={block.userAnswer}
                 />
               break;
             case "open":
-              output = <SurveyQuestionOpenContainer
-                view
-                id={block.id}
-                key={block.id}
-                text={block.text}
-                userAnswer={block.userAnswer}
-                 />
+              output = <SurveyQuestionOpenContainer id={block.id} key={block.id} text={block.text} />
               break;
             case "youtube":
               output = <Youtube id={block.id} key={block.id} url={block.url} />
@@ -84,6 +67,7 @@ export default class Survey extends Component {
     })
     return(
       <ul className="clean-list md-paper--1">
+
         {mappedSurvey}
       </ul>
     )

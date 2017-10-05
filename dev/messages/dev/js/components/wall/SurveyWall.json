@@ -1,0 +1,18 @@
+[
+  {
+    "id": "surveyWall.addSurvey",
+    "defaultMessage": "add survey"
+  },
+  {
+    "id": "surveyWall.addSurveyToLesson",
+    "defaultMessage": "add survey to lesson"
+  },
+  {
+    "id": "surveyWall.newSurvey",
+    "defaultMessage": "New survey"
+  },
+  {
+    "id": "surveyWall.fill",
+    "defaultMessage": "Fill out"
+  }
+]

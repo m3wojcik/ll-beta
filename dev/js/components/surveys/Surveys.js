@@ -7,11 +7,11 @@ import CardActions from 'react-md/lib/Cards/CardActions';
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
-import CustomCardTitle from './CustomCardTitle';
-import IconText from './helpers/IconText';
-import Label from './helpers/Label';
-import TestInfo from './tests/TestInfo';
-import CustomDate from './helpers/CustomDate';
+import CustomCardTitle from '../CustomCardTitle';
+import IconText from '../helpers/IconText';
+import Label from '../helpers/Label';
+import TestInfo from '../tests/TestInfo';
+import CustomDate from '../helpers/CustomDate';
 
 export default class Surveys extends Component {
   render(){
@@ -21,6 +21,7 @@ export default class Surveys extends Component {
       let name = survey.name.toLowerCase();
       let sharedBy = survey.sharedBy.toLowerCase();
       let search = searchValue.toLowerCase();
+      let surveyDate = new Date(survey.sharedDate)
       let surveyStatus = [];
       if(survey.completed){
         cardActions.push(<Button key="show" flat label="Show" onClick={this.props.onShowClick.bind(this, survey)} />)
@@ -33,7 +34,7 @@ export default class Surveys extends Component {
         <Card>
           <CardTitle
             title={<CustomCardTitle left={survey.name}  right={surveyStatus} />}
-            subtitle={<CustomDate date={survey.shareDate}/>}
+            subtitle={<CustomDate date={surveyDate}/>}
             />
             <TestInfo test={survey} />
           <CardActions className="md-divider-border md-divider-border--top">

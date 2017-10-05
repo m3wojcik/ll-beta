@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import Question from '../components/Question';
-import QuestionView from '../components/QuestionView';
+import Question from '../../components/Question';
+import QuestionView from '../../components/QuestionView';
 
 @connect((store) => {
    return {

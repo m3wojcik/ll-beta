@@ -19,7 +19,7 @@ export default function reducer(state={
           fetching: false,
           fetched: true,
           survey: action.payload,
-          userAnswers: []
+          userAnswers: {}
         }
       }
     }

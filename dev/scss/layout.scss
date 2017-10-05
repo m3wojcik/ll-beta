@@ -2062,6 +2062,22 @@ ul.notification-header{
       font-size: 12px;
     }
   }
+  .feed-test{
+    .text-important{
+      cursor: pointer;
+      font-weight: 700;
+      color: $red;
+      border-bottom: 2px solid $red;
+    }
+  }
+  .feed-survey{
+    .text-important{
+      cursor: pointer;
+      font-weight: 700;
+      color: $brown;
+      border-bottom: 2px solid $brown;
+    }
+  }
 }
 /*helpers
 ------------------------------------------------------------------------------*/

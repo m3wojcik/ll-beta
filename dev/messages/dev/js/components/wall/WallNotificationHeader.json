@@ -8,6 +8,14 @@
     "defaultMessage": "Files"
   },
   {
+    "id": "wallNofiticationHeader.Tests",
+    "defaultMessage": "Tests"
+  },
+  {
+    "id": "wallNofiticationHeader.Surveys",
+    "defaultMessage": "Surveys"
+  },
+  {
     "id": "wallNofiticationHeader.Marks",
     "defaultMessage": "Marks"
   },

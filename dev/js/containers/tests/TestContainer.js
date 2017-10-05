@@ -4,7 +4,7 @@ import {push} from 'react-router-redux';
 import { setHasTabs, setAppHeader } from "../../actions/AppActions";
 import { fetchTest } from "../../actions/TestActions";
 import Dialog from 'react-md/lib/Dialogs';
-import Button from 'react-md/lib/Buttons/Button';
+
 import Loader from '../../components/helpers/Loader'
 import Test from '../../components/tests/Test';
 import TestInfo from '../../components/tests/TestInfo';
@@ -53,7 +53,7 @@ export default class TestContainer extends Component {
   closeDialog = () => {
     this.setState({ dialogVisible: false });
   };
-  finishTest = () => {
+  handleFinishClick = () => {
     //TODO Send Answers
     this.setState({
       dialogTitle: "Thank you",
@@ -83,12 +83,7 @@ export default class TestContainer extends Component {
           left={<TestInfo test={test} />}
           right={toolbarRight}
         />
-        <div className="content-no-padding content-tabs">
-          <Test test={test} pages={pages} />
-          <div className="test-bottom">
-            <Button raised primary label="Finish" onClick={this.finishTest}></Button>
-          </div>
-        </div>
+          <Test test={test} pages={pages} onFinishClick={this.handleFinishClick} />
         <Dialog
           id="testDialog"
           visible={this.state.dialogVisible}

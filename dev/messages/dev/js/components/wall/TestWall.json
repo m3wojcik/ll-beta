@@ -1,0 +1,22 @@
+[
+  {
+    "id": "testWall.addTest",
+    "defaultMessage": "add test"
+  },
+  {
+    "id": "testWall.addTestToLesson",
+    "defaultMessage": "add test to lesson"
+  },
+  {
+    "id": "testWall.newTest",
+    "defaultMessage": "New test"
+  },
+  {
+    "id": "testWall.solve",
+    "defaultMessage": "Solve"
+  },
+  {
+    "id": "testWall.viewLesson",
+    "defaultMessage": "View lesson"
+  }
+]

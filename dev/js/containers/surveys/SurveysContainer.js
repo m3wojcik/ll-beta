@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import { fetchSurveys } from "../actions/SurveysActions";
-import { setAppSettings } from "../actions/AppActions";
-import Loader from '../components/helpers/Loader'
+import { fetchSurveys } from "../../actions/SurveysActions";
+import { setAppSettings } from "../../actions/AppActions";
+import Loader from '../../components/helpers/Loader'
 import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
-import Surveys from '../components/Surveys'
-import Breadcrumbs from '../components/Breadcrumbs'
-import Content from '../components/helpers/Content'
-import {getParamFromPath, getCleanPath} from '../actions/Functions'
+import Surveys from '../../components/surveys/Surveys'
+import Breadcrumbs from '../../components/Breadcrumbs'
+import Content from '../../components/helpers/Content'
 
 @connect((store) => {
    return {

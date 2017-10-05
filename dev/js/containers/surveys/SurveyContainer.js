@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import { setHasTabs, setAppHeader } from "../actions/AppActions";
-import { fetchSurvey } from "../actions/SurveyActions";
-import Loader from '../components/helpers/Loader'
-import Survey from '../components/Survey';
-import TestInfo from '../components/tests/TestInfo';
-import ToolbarExpander from '../components/helpers/ToolbarExpander';
-import CountdownTimer from '../components/helpers/CountdownTimer';
+import { setHasTabs, setAppHeader } from "../../actions/AppActions";
+import { fetchSurvey } from "../../actions/SurveyActions";
+import Loader from '../../components/helpers/Loader'
+import Survey from '../../components/surveys/Survey';
+import TestInfo from '../../components/tests/TestInfo';
+import ToolbarExpander from '../../components/helpers/ToolbarExpander';
+import CountdownTimer from '../../components/helpers/CountdownTimer';
 import Dialog from 'react-md/lib/Dialogs';
 import Button from 'react-md/lib/Buttons/Button';
 
@@ -22,7 +22,7 @@ import Button from 'react-md/lib/Buttons/Button';
 
 export default class SurveyContainer extends Component {
   componentDidMount(){
-    this.props.dispatch(fetchSurvey(this.props.params.surveyId));
+    this.props.dispatch(fetchSurvey({id: this.props.params.surveyId}));
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.fetched !=this.props.fetched){
