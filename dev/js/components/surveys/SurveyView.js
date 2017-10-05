@@ -9,9 +9,9 @@ import RangeContainer from '../../containers/RangeContainer';
 export default class Survey extends Component {
 
   render(){
-    const { survey } = this.props;
-    const surveyData = survey.surveyData;
-    const mappedSurvey = surveyData.pages.map(function(page, i){
+    const { survey, surveyAttempts } = this.props;
+    const surveyData = surveyAttempts;
+    const mappedSurvey = surveyData.map(function(page, i){
       const mappedPages = page.blocks.map(function(block, j){
           let output;
           switch (block.type) {

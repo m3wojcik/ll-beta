@@ -24,10 +24,10 @@ export default class Surveys extends Component {
       let surveyDate = new Date(survey.sharedDate)
       let surveyStatus = [];
       if(survey.completed){
-        cardActions.push(<Button key="show" flat label="Show" onClick={this.props.onShowClick.bind(this, survey)} />)
+        cardActions.push(<Button key="show" flat onClick={this.props.onShowClick.bind(this, survey)} >Show</Button>)
         surveyStatus.push(<Label  key="status" blue label="Complete" />)
       }else if(!survey.completed){
-        cardActions.push(<Button key="fill" flat label="Fill out survey" onClick={this.props.onSolveClick.bind(this, survey)} />)
+        cardActions.push(<Button key="fill" flat onClick={this.props.onSolveClick.bind(this, survey)} >Fill out survey</Button>)
       }
       let output = [
       <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone" key={survey.id}>

@@ -26,21 +26,21 @@ import {getTodaysClass} from '../actions/index'
 export default class DashboardContainer extends Component {
   render(){
     const { appData, notifications } = this.props;
-    let dashboardCards = [],dashboardCardsLeft = [],dashboardCardsRight = [];
-      if(notifications.news > 0) dashboardCards.push(<DashboardNewsContainer key="DashboardNewsContainer" />);
-    if(notifications.newMarks > 0) dashboardCards.push(<DashboardMarksContainer key="DashboardMarksContainer" />);
-    if(notifications.newAttendance > 0) dashboardCards.push(<DashboardAttendancesContainer key="DashboardAttendancesContainer" />);
-    if(notifications.newMessages > 0) dashboardCards.push(<DashboardMessagesContainer key="DashboardMessagesContainer" />);
-    if(notifications.newFiles > 0) dashboardCards.push(<DashboardFilesContainer key="DashboardFilesContainer" />);
-    if(notifications.newTests > 0) dashboardCards.push(<DashboardTestsContainer key="DashboardTestsContainer" />);
-    if(notifications.newLibrary > 0) dashboardCards.push(<DashboardElibraryContainer key="DashboardElibraryContainer" />);
-    if(notifications.newSurveys > 0) dashboardCards.push(<DashboardSurveysContainer key="DashboardSurveysContainer" />);
-    //if(notifications.newPayments > 0) dashboardCards.push(<DashboardPaymentsContainer  key="DashboardPaymentsContainer"/>);
-    dashboardCards.forEach(function(card,i){
-      if(i%2==0){
-        dashboardCardsLeft.push(card)
-      }else dashboardCardsRight.push(card)
-    })
+    // let dashboardCards = [],dashboardCardsLeft = [],dashboardCardsRight = [];
+    //   if(notifications.news > 0) dashboardCards.push(<DashboardNewsContainer key="DashboardNewsContainer" />);
+    // if(notifications.newMarks > 0) dashboardCards.push(<DashboardMarksContainer key="DashboardMarksContainer" />);
+    // if(notifications.newAttendance > 0) dashboardCards.push(<DashboardAttendancesContainer key="DashboardAttendancesContainer" />);
+    // if(notifications.newMessages > 0) dashboardCards.push(<DashboardMessagesContainer key="DashboardMessagesContainer" />);
+    // if(notifications.newFiles > 0) dashboardCards.push(<DashboardFilesContainer key="DashboardFilesContainer" />);
+    // if(notifications.newTests > 0) dashboardCards.push(<DashboardTestsContainer key="DashboardTestsContainer" />);
+    // if(notifications.newLibrary > 0) dashboardCards.push(<DashboardElibraryContainer key="DashboardElibraryContainer" />);
+    // if(notifications.newSurveys > 0) dashboardCards.push(<DashboardSurveysContainer key="DashboardSurveysContainer" />);
+    // //if(notifications.newPayments > 0) dashboardCards.push(<DashboardPaymentsContainer  key="DashboardPaymentsContainer"/>);
+    // dashboardCards.forEach(function(card,i){
+    //   if(i%2==0){
+    //     dashboardCardsLeft.push(card)
+    //   }else dashboardCardsRight.push(card)
+    // })
     return(
       <Content>
         <DashboardWelcome appData={appData} />

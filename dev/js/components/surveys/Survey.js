@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-md/lib/Buttons';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import CardActions from 'react-md/lib/Cards/CardActions';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import FontIcon from 'react-md/lib/FontIcons';
-import CustomCardTitle from '../CustomCardTitle';
-import IconText from '../helpers/IconText';
+
 import SquareLabel from '../helpers/SquareLabel';
 import BlockOfText from '../helpers/BlockOfText';
 import Youtube from '../helpers/Youtube';
@@ -20,39 +12,40 @@ import RangeContainer from '../../containers/RangeContainer';
 export default class Survey extends Component {
 
   render(){
-    const { survey } = this.props;
+    const { survey, onFinishClick } = this.props;
     console.log('survey', survey)
     const mappedSurvey = survey.pages.map(function(page, i){
       const mappedPages = page.map(function(block, j){
           let output;
           switch (block.type) {
-            case "block-of-text":
-              output = <BlockOfText id={block.id} key={block.id} text={block.text} />
+            case "text_block":
+              output = <BlockOfText id={block.id} key={block.id} text={block.data} />
               break;
-            case "range":
+            case "slider":
+              let sliderData = JSON.parse(block.data)
               output = <RangeContainer
                 id={block.id}
                 key={block.id}
-                text={block.question}
+                text={sliderData.q}
                 answers={block.answers}
-                minValue={block.minValue}
-                maxValue={block.maxValue}
+                minValue={sliderData.min}
+                maxValue={sliderData.max}
                 />
               break;
             case "question_one":
               output = <SurveyQuestionContainer id={block.id} key={block.id} type="radio" text={block.data} answers={block.answers} />
               break;
-            case "multiple":
+            case "question_many":
               output = <SurveyQuestionContainer
                 id={block.id}
                 key={block.id}
                 type="checkbox"
-                text={block.question}
+                text={block.data}
                 answers={block.answers}
                 />
               break;
-            case "open":
-              output = <SurveyQuestionOpenContainer id={block.id} key={block.id} text={block.text} />
+            case "question_open":
+              output = <SurveyQuestionOpenContainer id={block.id} key={block.id} text={JSON.parse(block.data).q} />
               break;
             case "youtube":
               output = <Youtube id={block.id} key={block.id} url={block.url} />
@@ -66,10 +59,14 @@ export default class Survey extends Component {
       return <li key={i} className="test-page">{mappedPages}</li>;
     })
     return(
-      <ul className="clean-list md-paper--1">
-
-        {mappedSurvey}
-      </ul>
+      <div className="content-no-padding content-tabs">
+        <ul className="clean-list md-paper--1">
+          {mappedSurvey}
+        </ul>
+        <div className="test-bottom">
+          <Button raised primary onClick={onFinishClick}>Finish</Button>
+        </div>
+      </div>
     )
   }
 }

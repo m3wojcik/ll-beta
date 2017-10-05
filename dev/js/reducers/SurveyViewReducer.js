@@ -1,5 +1,6 @@
 export default function reducer(state={
   survey: null,
+  surveyAttempts: null,
   fetching: false,
   fetched: false,
   error: null,
@@ -17,7 +18,8 @@ export default function reducer(state={
           ...state,
           fetching: false,
           fetched: true,
-          survey: action.payload
+          survey: action.payload.survey,
+          surveyAttempts: action.payload.survey_attempts
         }
       }
     }

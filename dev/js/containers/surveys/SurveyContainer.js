@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { setHasTabs, setAppHeader } from "../../actions/AppActions";
-import { fetchSurvey } from "../../actions/SurveyActions";
+import { fetchSurvey } from "../../actions/SurveysActions";
 import Loader from '../../components/helpers/Loader'
 import Survey from '../../components/surveys/Survey';
 import TestInfo from '../../components/tests/TestInfo';
@@ -26,7 +26,8 @@ export default class SurveyContainer extends Component {
   }
   componentWillReceiveProps(nextProps){
     if(nextProps.fetched !=this.props.fetched){
-      this.props.dispatch(setAppHeader(nextProps.survey.name));
+      console.log(nextProps.survey.survey.name)
+      this.props.dispatch(setAppHeader(nextProps.survey.survey.name));
     }
   }
   handleFinishSurvey = () => {
@@ -43,14 +44,9 @@ export default class SurveyContainer extends Component {
           <div className="mask"></div>
         </div>
         <ToolbarExpander
-          left={<TestInfo test={survey} />}
+          left={<TestInfo test={survey.survey} />}
         />
-        <div className="content-no-padding content-tabs">
-          <Survey survey={survey} />
-          <div className="test-bottom">
-            <Button raised primary label="Finish" onClick={this.handleFinishSurvey}></Button>
-          </div>
-        </div>
+          <Survey survey={survey} onFinishClick={this.handleFinishSurvey} />
       </div>
 
     )

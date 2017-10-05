@@ -24,3 +24,25 @@ export function fetchSurveys() {
     }
   }
 }
+export function fetchSurvey(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/survey',
+      types: ["FETCH_SURVEY", "FETCH_SURVEY_FULFILLED", "FETCH_SURVEY_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
+export function fetchViewSurvey(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/surveyView',
+      types: ["FETCH_VIEW_SURVEY", "FETCH_VIEW_SURVEY_FULFILLED", "FETCH_VIEW_SURVEY_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
