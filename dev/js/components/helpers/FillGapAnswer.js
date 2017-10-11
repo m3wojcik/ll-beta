@@ -1,24 +1,24 @@
 import React, { Component } from 'react';
 import Button from 'react-md/lib/Buttons';
 
-const FillGapAnswer = ({ userAnswer,correctAnswer, className }) => {
+const FillGapAnswer = ({ userAnswer, answers, className }) => {
 
     let classProp = className;
     let output;
     let correct;
-    if(correctAnswer.indexOf(userAnswer) > -1){
+    
+    if(userAnswer && answers.indexOf(userAnswer) > -1){
       classProp += " answer-correct";
-      output = <Button flat label={userAnswer} />
+      output = <Button flat>{userAnswer}</Button>
     }else{
       classProp += " answer-incorrect";
-      if(correctAnswer.length > 1) correct = correctAnswer.join(", ");
-      else correct = correctAnswer;
+      if(answers.length > 1) correct = answers.join(", ");
+      else correct = answers;
       output = <Button
         flat
         tooltipLabel={correct}
-        label={userAnswer}
         tooltipPosition="top"
-        />
+        >{userAnswer}</Button>
     }
     return(
       <span className={classProp}>

@@ -22,8 +22,8 @@ const Test =({intl, test, pages, onFinishClick })=> {
       const mappedPages = page.map(function(block, j){
           let output;
           switch (block.type) {
-            case "block-of-text":
-              output = <BlockOfText id={block.id} key={block.id} text={block.data} />
+            case "text_block":
+              output = <BlockOfText id={block.id} key={block.id} text={block.long_data} />
               break;
             case "question_one":
               output = <QuestionContainer

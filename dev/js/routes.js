@@ -18,7 +18,7 @@ import CreateMessageContainer from './containers/messages/CreateMessageContainer
 import FilesContainer from './containers/files/FilesContainer';
 import TestsContainer from './containers/tests/TestsContainer';
 import TestContainer from './containers/tests/TestContainer';
-import TestViewContainer from './containers/TestViewContainer';
+import TestViewContainer from './containers/tests/TestViewContainer';
 import ProfileContainer from './containers/profile/ProfileContainer';
 import EditProfileContainer from './containers/profile/EditProfileContainer';
 import LoginHistoryContainer from './containers/profile/LoginHistoryContainer';

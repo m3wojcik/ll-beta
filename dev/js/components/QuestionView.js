@@ -4,14 +4,15 @@ import SelectionControlGroup from 'react-md/lib/SelectionControls/SelectionContr
 export default class QuestionView extends Component {
 
   render(){
-    const { text, type, answers, value } = this.props;
-    let output;
+    const { text, type, answers, userAnswers } = this.props;
+    let output
+
     if(type=="radio"){
         output = <SelectionControlGroup
           name={"question-" + type}
           type={type}
           controls={answers}
-          defaultValue={value}
+          defaultValue={userAnswers}
           disabled
         />
     }else{
@@ -19,7 +20,7 @@ export default class QuestionView extends Component {
           name={"question-" + type}
           type={type}
           controls={answers}
-          defaultValue={value}
+          defaultValue={userAnswers}
           disabled
         />
     }

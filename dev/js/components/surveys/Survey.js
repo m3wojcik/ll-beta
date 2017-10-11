@@ -13,7 +13,6 @@ export default class Survey extends Component {
 
   render(){
     const { survey, onFinishClick } = this.props;
-    console.log('survey', survey)
     const mappedSurvey = survey.pages.map(function(page, i){
       const mappedPages = page.map(function(block, j){
           let output;

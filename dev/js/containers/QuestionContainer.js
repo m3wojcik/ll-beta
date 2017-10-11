@@ -24,13 +24,15 @@ export default class QuestionContainer extends Component {
   render(){
     const { type, text, answers, userAnswer, view } = this.props;
     let { value } = this.state;
+
     if(view){
+  
       return(
         <QuestionView
           type={type}
           text={text}
           answers={answers}
-          value={userAnswer} />
+          userAnswers={userAnswer} />
       )
     }else{
       return(

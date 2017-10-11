@@ -3,27 +3,28 @@ import FillGapAnswer from './helpers/FillGapAnswer';
 export default class QuestionFillGapsView extends Component {
 
   render(){
-    const { textArray } = this.props;
-    let j = 0;
-    const mappedQuestion = textArray.map(function(obj, i){
-      let output;
-        if(obj.type == "text"){
-          output = <span key={i} className="fill-gap-text">{obj.value}</span>
-        }else{
-          output = <FillGapAnswer
-            className="fill-gap-gap"
-            key={i}
-            userAnswer={obj.userAnswer}
-            correctAnswer={obj.correctAnswer}
-            />;
-          j++;
-        }
+    const { text, answers, userAnswer } = this.props;
+    let textSplit, output = [], cnt = 0
+    const regexSplit = /<w:[^>]+?>(?:<c:\d>|)/ig
 
-      return output;
-    })
+    textSplit = text.split(regexSplit)
+    textSplit.forEach(function(el, i){
+      output.push(el)
+      if(cnt < answers.length){
+        output.push(
+          <FillGapAnswer
+            className="fill-gap-gap"
+            key={cnt}
+            userAnswer={userAnswer ? userAnswer[cnt] : null}
+            answers={answers[cnt]}
+          />
+        )
+        cnt++
+      } 
+    }.bind(this))
     return(
       <div className="question-fill-gaps">
-        {mappedQuestion}
+        {output}
       </div>
     )
   }

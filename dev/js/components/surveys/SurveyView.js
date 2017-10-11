@@ -10,23 +10,25 @@ export default class Survey extends Component {
 
   render(){
     const { survey, surveyAttempts } = this.props;
-    const surveyData = surveyAttempts;
-    const mappedSurvey = surveyData.map(function(page, i){
-      const mappedPages = page.blocks.map(function(block, j){
+    const surveyData = surveyAttempts[0];
+    console.log(survey, surveyData)
+    //const mappedSurvey = surveyData.map(function(page, i){
+      const mappedPages = surveyData.map(function(block, j){
           let output;
           switch (block.type) {
-            case "block-of-text":
-              output = <BlockOfText id={block.id} key={block.id} text={block.text} />
+            case "text_block":
+              output = <BlockOfText id={block.id} key={block.id} text={block.long_data} />
               break;
-            case "range":
+            case "slider":
+              let sliderData = JSON.parse(block.data)
               output = <RangeContainer
                  view
                  id={block.id}
                  key={block.id}
-                 text={block.question}
+                 text={sliderData.q}
                  answer={block.answer}
-                 minValue={block.minValue}
-                 maxValue={block.maxValue}
+                 minValue={sliderData.min}
+                 maxValue={sliderData.max}
                 />
               break;
             case "single":
@@ -35,7 +37,7 @@ export default class Survey extends Component {
                  id={block.id}
                  key={block.id}
                  type="radio"
-                 text={block.question}
+                 text={block.data}
                  answers={block.answers}
                  userAnswer={block.userAnswer}
                  />
@@ -51,13 +53,13 @@ export default class Survey extends Component {
                 userAnswer={block.userAnswer}
                 />
               break;
-            case "open":
+            case "question_open":
               output = <SurveyQuestionOpenContainer
                 view
                 id={block.id}
                 key={block.id}
-                text={block.text}
-                userAnswer={block.userAnswer}
+                text={JSON.parse(block.data).q}
+                userAnswer={block.answer}
                  />
               break;
             case "youtube":
@@ -69,11 +71,11 @@ export default class Survey extends Component {
           }
           return <div key={j} className="block">{output}</div>;
         })
-      return <li key={i} className="test-page">{mappedPages}</li>;
-    })
+      //return <li key={i} className="test-page">{mappedPages}</li>;
+    //})
     return(
       <ul className="clean-list md-paper--1">
-        {mappedSurvey}
+        <li className="test-page">{mappedPages}</li>
       </ul>
     )
   }

@@ -10,3 +10,15 @@ export function fetchTests() {
     }
   }
 }
+
+export function fetchViewTest(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/testView',
+      types: ["FETCH_VIEW_TEST", "FETCH_VIEW_TEST_FULFILLED", "FETCH_VIEW_TEST_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params:{...params}
+    }
+  }
+}
