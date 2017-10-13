@@ -3,7 +3,7 @@ import FillGapSelect from './helpers/FillGapSelect';
 
 export default class QuestionFillGapsList extends Component {
   render(){
-    const { text, onChange, html } = this.props;
+    const { text, onChange, html, answers } = this.props;
     var matches, globalAnswers = [], textSplit, output = []
     const regex = /<w:([^>]+?)>/ig
     while (matches = regex.exec(text)) {
@@ -15,7 +15,7 @@ export default class QuestionFillGapsList extends Component {
     textSplit.forEach(function(el, i){
       output.push(el)
       if(i + 1 < textSplit.length){
-        output.push(<FillGapSelect className="fill-gap-select" key={i} value={i} menuItems={globalAnswers} onChange={onChange} />)
+        output.push(<FillGapSelect className="fill-gap-select" key={i} value={answers[i]} menuItems={globalAnswers} onChange={onChange.bind(this, i)} />)
       }
     }.bind(this))
     return(

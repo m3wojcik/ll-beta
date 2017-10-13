@@ -44,7 +44,7 @@ export default class TestView extends Component {
                 view
                 id={block.id} key={block.id}
                 type="checkbox"
-                text={block.question}
+                text={block.data}
                 answers={block.answers}
                 userAnswer={block.userAnswer}
                 />
@@ -61,7 +61,17 @@ export default class TestView extends Component {
                 />
               break;
             case "fill_in":
-              output = <QuestionFillGapsContainer
+              if(!block.withList){
+                output = <QuestionFillGapsContainer
+                  view
+                  id={block.id}
+                  key={block.id}
+                  answers={block.answers}
+                  userAnswer={block.userAnswer}
+                  text={block.data}
+                  />
+              }else{
+                output = <QuestionFillGapsListContainer
                 view
                 id={block.id}
                 key={block.id}
@@ -69,23 +79,16 @@ export default class TestView extends Component {
                 userAnswer={block.userAnswer}
                 text={block.data}
                 />
+              }    
               break;
             case "question_prefdef":
-              output = <QuestionFillGapsListContainer
-                view
-                id={block.id}
-                key={block.id}
-                answers={block.answers}
-                userAnswer={block.userAnswer}
-                text={block.data}
-                />
-              break;
-            case "fill-gaps-predefined":
               output = <QuestionFillGapsPredefinedContainer
                 view
                 id={block.id}
                 key={block.id}
-                textArray={block.textArray}
+                answers={block.answers}
+                text={block.data}
+                userAnswer={block.userAnswer}
                 />
               break;
             case "youtube":

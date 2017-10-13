@@ -1,5 +1,5 @@
 import axios from 'axios';
-import querystring  from "query-string";
+import qs  from "qs";
 import {push} from 'react-router-redux';
 
 export const BASE_URL = 'https://test.langlion.com/api'
@@ -32,7 +32,7 @@ function callApi(endpoint, authenticated, params, method) {
       ...config
     }
   }else{
-    axios_config.data = querystring.stringify({
+    axios_config.data = qs.stringify({
         ...params,
         ...config
     })
@@ -73,6 +73,7 @@ export default store => next => action => {
       }
     },
     error => {
+      console.warn("error", error)
       if(error.response.status == 401){
         next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
       }

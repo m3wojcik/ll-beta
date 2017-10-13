@@ -5,7 +5,7 @@ export default class QuestionFillGapsView extends Component {
   render(){
     const { text, answers, userAnswer } = this.props;
     let textSplit, output = [], cnt = 0
-    const regexSplit = /<w:[^>]+?>(?:<c:\d>|)/ig
+    const regexSplit = /<w:[^>]+?>(?:<c:(?:\d\|)*\d>|)/ig
 
     textSplit = text.split(regexSplit)
     textSplit.forEach(function(el, i){

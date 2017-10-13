@@ -9,21 +9,28 @@ import QuestionFillGapsView from '../components/QuestionFillGapsView';
   };
 })
 export default class QuestionFillGapsListContainer extends Component {
-  handleChange = (value, index) =>{
-    let { id, userAnswers } = this.props;
-    if(!userAnswers[id]) {
-      userAnswers[id] = [];
-    }
-    userAnswers[id][index] = value;
-    console.log(userAnswers);
+  constructor(props) {
+    super(props);
+    this.state = { stateAnswers: []}
+  }
+  handleChange = (index, value) =>{
+    let { id, onAnswerClick } = this.props;
+    let {stateAnswers} = this.state
+    let tmp = stateAnswers
+    tmp[index] = value
+    this.setState({stateAnswers: tmp});
+    onAnswerClick(id, "fill_in", stateAnswers)
   }
   render(){
-    const { answers, text, id, view } = this.props;
+    const { answers, userAnswer, text, id, view } = this.props;
+    const {stateAnswers} = this.state
     if(view){
       return(
           <QuestionFillGapsView
             id={id}
-            textArray={textArray}
+            answers={answers}
+            userAnswer={userAnswer}
+            text={text}
           />
       )
     }
@@ -31,6 +38,7 @@ export default class QuestionFillGapsListContainer extends Component {
         <QuestionFillGapsPredefined
           id={id}
           text={text}
+          answers={stateAnswers}
           onChange={this.handleChange} />
     )
   }

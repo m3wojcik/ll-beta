@@ -22,3 +22,34 @@ export function fetchViewTest(params) {
     }
   }
 }
+
+export function fetchTest(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/test',
+      types: ["FETCH_TEST", "FETCH_TEST_FULFILLED", "FETCH_TEST_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
+
+export function sendTest(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/testSend',
+      types: ["SEND_TEST", "SEND_TEST_FULFILLED", "SEND_TEST_REJECTED"],
+      authenticated: true,
+      method: 'post',
+      params: {...params}
+    }
+  }
+}
+
+export function addTestAnswer(params) {
+  return {
+    type: 'ADD_TEST_ANSWER',
+    payload: params
+  }
+}

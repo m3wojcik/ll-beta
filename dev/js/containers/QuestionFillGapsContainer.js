@@ -14,12 +14,12 @@ export default class QuestionFillGapsContainer extends Component {
       this.state = { html: []}
   }
   handleChange = (value, obj) =>{
-    const { id, userAnswers } = this.props;
+    const { id, userAnswers, onAnswerClick } = this.props;
     let tmp = this.state.html;
     tmp[obj.id] = value;
-    userAnswers[id] = tmp;
-    console.log(userAnswers);
+    //userAnswers[id] = tmp;
     this.setState({html: tmp});
+    onAnswerClick(id, "fill_in", tmp)
   }
   render(){
     const { text, id, view, answers, userAnswer } = this.props;

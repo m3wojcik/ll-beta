@@ -22,11 +22,10 @@ export default class QuestionContainer extends Component {
     this.setState({ value: value });
   }
   render(){
-    const { type, text, answers, userAnswer, view } = this.props;
+    const { id, type, text, answers, userAnswer, view, onAnswerClick } = this.props;
     let { value } = this.state;
 
     if(view){
-  
       return(
         <QuestionView
           type={type}
@@ -42,7 +41,7 @@ export default class QuestionContainer extends Component {
           text={text}
           answers={answers}
           value={value}
-          onChangeValue={this.handleChangeValue}
+          onChangeValue={onAnswerClick.bind(this, id, type)}
         />
       )
     }

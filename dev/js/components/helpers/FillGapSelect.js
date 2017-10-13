@@ -6,12 +6,13 @@ export default class FillGapSelect extends Component {
     this.props.onChange(value, this.props.value);
   }
   render(){
-    const { text, menuItems, value, onChange, className } = this.props;
+    const { text, menuItems, value, onChange, className, defaultValue } = this.props;
     return(
       <SelectField
         className={className}
         id={"select-" + value}
         value={value}
+        defaultValue={defaultValue}
         placeholder="Select"
         menuItems={menuItems}
         onChange={this.handleChange}

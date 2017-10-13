@@ -3,12 +3,7 @@ import FillGapSelect from './helpers/FillGapSelect';
 
 export default class QuestionFillGapsList extends Component {
   render(){
-    const { text, onChange, html } = this.props;
-    // //correct
-    // const regex2 = /<c:([^>]+?)>/ig
-    // let correct = text.match(regex2)
-
-    // //Answers
+    const { text, onChange, html, answers } = this.props;
 
     const regex = /<w:([^>]+?)><c:([^>]+?)>/ig
     var matches, globalAnswers = [], textSplit, output = []
@@ -26,7 +21,7 @@ export default class QuestionFillGapsList extends Component {
       output.push(el)
       if(globalAnswers.length > i){
         let ansArr = globalAnswers[i].answers.split('|')
-        output.push(<FillGapSelect className="fill-gap-select" key={i} value={i} menuItems={ansArr} onChange={onChange} />)
+        output.push(<FillGapSelect className="fill-gap-select" key={i} value={answers[i]} menuItems={ansArr} onChange={onChange.bind(this, i)} />)
       }
     }.bind(this))
     return(

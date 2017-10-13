@@ -17,7 +17,7 @@ const messages = defineMessages({
   }
 })
 
-const Test =({intl, test, pages, onFinishClick })=> {
+const Test =({intl, test, pages, onFinishClick, onAnswerClick })=> {
     const mappedTest = pages.map(function(page, i){
       const mappedPages = page.map(function(block, j){
           let output;
@@ -32,6 +32,7 @@ const Test =({intl, test, pages, onFinishClick })=> {
                 type="radio"
                 text={block.data}
                 answers={block.answers}
+                onAnswerClick={onAnswerClick}
                 />
               break;
             case "question_many":
@@ -41,27 +42,26 @@ const Test =({intl, test, pages, onFinishClick })=> {
                 type="checkbox"
                 text={block.data}
                 answers={block.answers}
+                onAnswerClick={onAnswerClick}
                 />
               break;
             case "question_open":
               output = <QuestionOpenContainer
                 id={block.id}
                 key={block.id}
-                text={JSON.parse(block.data).q} />
+                text={JSON.parse(block.data).q}
+                onAnswerClick={onAnswerClick}
+                />
               break;
             case "fill_in":
               if(block.data == 0){
-                output = <QuestionFillGapsContainer id={block.id} key={block.id} text={block.long_data} />
+                output = <QuestionFillGapsContainer id={block.id} key={block.id} text={block.long_data} onAnswerClick={onAnswerClick} />
               }else if(block.data == 1){
-                output = <QuestionFillGapsListContainer id={block.id} key={block.id} text={block.long_data} />
+                output = <QuestionFillGapsListContainer id={block.id} key={block.id} text={block.long_data} onAnswerClick={onAnswerClick} />
               }
-
-              break;
-            case "fill-gaps-list":
-              output = <QuestionFillGapsListContainer id={block.id} key={block.id} answers={block.answers} textArray={block.textArray} />
               break;
             case "question_prefdef":
-              output = <QuestionFillGapsPredefinedContainer id={block.id} key={block.id} text={block.long_data} />
+              output = <QuestionFillGapsPredefinedContainer id={block.id} key={block.id} text={block.long_data} onAnswerClick={onAnswerClick} />
               break;
             case "youtube":
               output = <Youtube id={block.id} key={block.id} url={block.data} />

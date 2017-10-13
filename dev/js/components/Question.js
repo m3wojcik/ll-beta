@@ -22,7 +22,6 @@ export default class Question extends Component {
           disabled
         />
       }else{
-        console.log('mappedAnswers',mappedAnswers);
         output = <SelectionControlGroup
           name={"question-" + type}
           type={type}

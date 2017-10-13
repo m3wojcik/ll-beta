@@ -83,6 +83,7 @@ export default function reducer(state={
                 newQuestion = {
                   id: question.id,
                   type: question.type,
+                  withList: question.data == "0" ? false : true,
                   data: question.long_data,
                   answers: newAnswers,
                   userAnswer: JSON.parse(question.answers[0].student_answer_data)
