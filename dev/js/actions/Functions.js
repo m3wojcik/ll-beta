@@ -63,6 +63,9 @@ export function getDays(date) {
   const timeZoneOffset = new Date(date).getTimezoneOffset() * 60 *1000;
   return Math.floor((new Date(date).getTime() - timeZoneOffset)/oneDay);
 }
+export function addMinutes(date, minutes) {
+  return new Date(date.getTime() + minutes*60000);
+}
 export function getShortMonth(montNumber) {
   var monthNames = [
        "Jan", "Feb", "Mar",

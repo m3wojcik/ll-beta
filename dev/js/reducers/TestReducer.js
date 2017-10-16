@@ -3,8 +3,8 @@ export default function reducer(state={
   userAnswers: {},
   sendTest:{
     resposne: {},
-    sending: false,
-    send: false,
+    saving: false,
+    saved: false,
     error: null,
   },
   fetching: false,
@@ -31,18 +31,18 @@ export default function reducer(state={
       }
 
       case "SEND_TEST": {
-        return {...state, sendTest:{sending: true, send:false}}
+        return {...state, sendTest:{saving: true, saved:false}}
       }
       case "SEND_TEST_REJECTED": {
-        return {...state, sendTest:{...state.sendTest, sending: false, error: action.payload}}
+        return {...state, sendTest:{...state.sendTest, saving: false, error: action.payload}}
       }
       case "SEND_TEST_FULFILLED": {
         return {
           ...state,
           sendTest:{
             ...state.sendTest, 
-            sending: false, 
-            send: true,
+            saving: false, 
+            saved: true,
             resposne: action.payload
           }
         }

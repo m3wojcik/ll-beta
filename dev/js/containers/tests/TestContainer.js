@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
+import { showSnack } from 'react-redux-snackbar'
 import { setHasTabs, setAppHeader } from "../../actions/AppActions";
 import { fetchTest, addTestAnswer, sendTest } from "../../actions/TestsActions";
+import { addMinutes,compareDates } from "../../actions/Functions";
 import Dialog from 'react-md/lib/Dialogs';
 import qs  from "qs";
 import Loader from '../../components/helpers/Loader'
@@ -16,6 +18,7 @@ import CountdownTimer from '../../components/helpers/CountdownTimer';
    return {
      routing: store.routing,
      test: store.test.test,
+     sendTest: store.test.sendTest,
      userAnswers: store.test.userAnswers,
      pages: store.test.pages,
      fetched: store.test.fetched,
@@ -33,8 +36,12 @@ export default class TestContainer extends Component {
     //this.props.dispatch(setHasTabs(true));
   }
   componentWillReceiveProps(nextProps){
+    const {sendTest} = this.props
     if(nextProps.fetched !=this.props.fetched){
       this.props.dispatch(setAppHeader(nextProps.test.name));
+    }
+    if(!sendTest.saved && nextProps.sendTest.saved){
+      this.props.dispatch(showSnack('test_send', {label: 'Test saved', timeout: 3000}));
     }
   }
   handleEndTime = () =>{
@@ -56,6 +63,7 @@ export default class TestContainer extends Component {
   }
   handleAnswerClick = (questionId, type, value) => {
     let answer, params;
+    //console.log('answer click', questionId, type, value)
     switch(type){
       case 'radio':
         answer = {element_id: value, type: type}
@@ -86,10 +94,12 @@ export default class TestContainer extends Component {
           answersToSend.push({element_id: userAnswers[prop].element_id})
         break;
         case "checkbox":
-          const splitAnswers = userAnswers[prop].element_id.split(",")
-          splitAnswers.forEach(function(element) {
-            answersToSend.push({element_id: element})
-          }.bind(this));
+          if(userAnswers[prop].element_id){
+            const splitAnswers = userAnswers[prop].element_id.split(",")
+            splitAnswers.forEach(function(element) {
+              answersToSend.push({element_id: element})
+            }.bind(this));
+          }
         break;
         case "open":
           answersToSend.push({element_id: userAnswers[prop].element_id, data: userAnswers[prop].data})
@@ -103,9 +113,8 @@ export default class TestContainer extends Component {
       id: this.props.params.testId,
       answers: answersToSend
     }
-    //console.log(qs.stringify({...params}))
-    this.props.dispatch(sendTest(params))
     console.log('finish', params)
+    this.props.dispatch(sendTest(params))
     //TODO Send Answers
     // this.setState({
     //   dialogTitle: "Thank you",
@@ -115,7 +124,7 @@ export default class TestContainer extends Component {
   }
 
   render(){
-    const { fetched, test, pages } = this.props;
+    const { fetched, test, pages,sendTest } = this.props;
     const { dialogVisible, dialogTitle, dialogDescription } = this.state;
     let toolbarRight = [];
     if(!fetched){
@@ -124,7 +133,10 @@ export default class TestContainer extends Component {
       )
     }else{
       if(test.duration != null && test.duration > 0){
-        toolbarRight.push(<CountdownTimer key="timer" icon totalTime={test.duration} secondsRemaining={test.timeLeft} onEndTime={this.handleEndTime} />)
+        const startedAt = new Date(test.startedAt)
+        const testEnd = addMinutes(new Date(), test.duration)
+        const secondsLeft = compareDates(startedAt, testEnd, "s")
+        toolbarRight.push(<CountdownTimer key="timer" icon totalTime={test.duration} secondsRemaining={secondsLeft} onEndTime={this.handleEndTime} />)
       }
     }
     return(
@@ -136,7 +148,7 @@ export default class TestContainer extends Component {
           left={<TestInfo test={test} />}
           right={toolbarRight}
         />
-          <Test test={test} pages={pages} onAnswerClick={this.handleAnswerClick} onFinishClick={this.handleFinishClick} />
+          <Test test={test} pages={pages} saving={sendTest.saving} onAnswerClick={this.handleAnswerClick} onFinishClick={this.handleFinishClick} />
         <Dialog
           id="testDialog"
           visible={this.state.dialogVisible}

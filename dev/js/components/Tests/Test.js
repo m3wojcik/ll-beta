@@ -2,6 +2,7 @@ import React from 'react';
 import Button from 'react-md/lib/Buttons';
 import BlockOfText from './../helpers/BlockOfText';
 import Youtube from './../helpers/Youtube';
+import Loader from './../helpers/Loader'
 import ListFilesContainer from '../../containers/ListFilesContainer';
 import QuestionOpenContainer from '../../containers/QuestionOpenContainer';
 import QuestionContainer from '../../containers/QuestionContainer';
@@ -17,7 +18,7 @@ const messages = defineMessages({
   }
 })
 
-const Test =({intl, test, pages, onFinishClick, onAnswerClick })=> {
+const Test =({intl, test, pages, saving, onFinishClick, onAnswerClick })=> {
     const mappedTest = pages.map(function(page, i){
       const mappedPages = page.map(function(block, j){
           let output;
@@ -80,7 +81,10 @@ const Test =({intl, test, pages, onFinishClick, onAnswerClick })=> {
           {mappedTest}
         </ul>
         <div className="test-bottom">
-          <Button raised primary  onClick={onFinishClick}>{intl.formatMessage(messages.finish)}</Button>
+          {saving ? 
+            <Loader centerPadding /> :
+            <Button raised primary  onClick={onFinishClick}>{intl.formatMessage(messages.finish)}</Button>
+          }
         </div>
       </div>  
     )

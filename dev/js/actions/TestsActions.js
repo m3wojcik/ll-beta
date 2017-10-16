@@ -26,7 +26,7 @@ export function fetchViewTest(params) {
 export function fetchTest(params) {
   return {
     [CALL_API]: {
-      endpoint: '/test',
+      endpoint: '/testStart',
       types: ["FETCH_TEST", "FETCH_TEST_FULFILLED", "FETCH_TEST_REJECTED"],
       authenticated: true,
       method: 'get',
