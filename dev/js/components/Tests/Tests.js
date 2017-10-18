@@ -30,12 +30,15 @@ export default class Tests extends Component {
         cardActions.push(<Button key="solve" flat label="Solve" onClick={onSolveClick.bind(this, test)} />)
       }
       let textResult = [];
-      if(test.result){
+      if(test.score){
+        //TODO PROCENTOWO
+        let testPercent = Math.round((test.score / test.maxScore) * 100)
         textResult.push(
           <CircleProgressBar
             key="circleProgress"
             strokeWidth={4}
-            percentage={test.result}
+            percentage={testPercent}
+            textForPercentage={(percentage) => `${test.score}/${test.maxScore}`}
             />
 
         )
