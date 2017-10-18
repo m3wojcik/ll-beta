@@ -90,10 +90,14 @@ export default function reducer(state={
                 }
               break;
               case "question_prefdef":
-              const regexPredef =  /<w:([^>]+?)>/ig
+              const regexPredef = /<w:([^>]+?)>(?:<c:((?:\d\|)*\d)>|)/ig
                 while (matches = regexPredef.exec(question.long_data)) {
                   let ans = matches[1].split("|")
-                  newAnswers.push(ans);
+                  let correct = matches[2].split("|").map( Number )
+                  const userCorrect = ans.map(function(obj , i){
+                    if(correct.indexOf(i) != -1) return obj
+                  }.bind(this))
+                  newAnswers.push(userCorrect);
                 }
                 newQuestion = {
                   id: question.id,
