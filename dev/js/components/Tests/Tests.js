@@ -24,7 +24,7 @@ export default class Tests extends Component {
       if(test.completed){
         cardActions.push(<Button key="show" flat label="Show" onClick={onShowClick.bind(this, test)} />)
       }
-      if(test.multipleSolving && test.completed){
+      if(test.solve_many && test.completed){
         cardActions.push(<Button key="resolve" flat label="Resolve" onClick={onSolveClick.bind(this, test)} />)
       }else if(!test.completed){
         cardActions.push(<Button key="solve" flat label="Solve" onClick={onSolveClick.bind(this, test)} />)

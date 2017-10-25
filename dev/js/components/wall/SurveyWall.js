@@ -27,12 +27,12 @@ const messages = defineMessages({
   }
 })
 
-const SurveyWall = ({intl, survey, onFillClick}) =>{
+const SurveyWall = ({intl, survey, onGoToClick}) =>{
   
   
   let headerText = <span>{survey.extra_data.owner} <span className="text-muted">{intl.formatMessage(messages.addSurvey)}</span></span>
 
-  const bodyText = <span>{intl.formatMessage(messages.newSurvey)}: <span onClick={onFillClick.bind(this, survey.extra_data.survey_id)} className="text-important">{survey.extra_data.title}.{survey.extra_data.ext}</span></span>
+  const bodyText = <span>{intl.formatMessage(messages.newSurvey)}: <span onClick={onGoToClick.bind(this,'survey/'+ survey.extra_data.survey_id)} className="text-important">{survey.extra_data.title}.{survey.extra_data.ext}</span></span>
     return(
       <FeedItem
         className={survey.is_fetched ? "feed-survey old" : "feed-survey new"}
@@ -42,7 +42,7 @@ const SurveyWall = ({intl, survey, onFillClick}) =>{
         body={bodyText}
         expander={
           <ActionsRow>
-            <Button onClick={onFillClick.bind(this, survey.extra_data.survey_id)} primary flat>{intl.formatMessage(messages.fill)}</Button>           
+            <Button onClick={onGoToClick.bind(this, 'survey/'+survey.extra_data.survey_id)} primary flat>{intl.formatMessage(messages.fill)}</Button>           
           </ActionsRow>
         }
     />

@@ -1,0 +1,18 @@
+[
+  {
+    "id": "detailsWall.addDetails",
+    "defaultMessage": "add details"
+  },
+  {
+    "id": "detailsWall.addDetailsToLesson",
+    "defaultMessage": "add details to lesson"
+  },
+  {
+    "id": "detailsWall.newDetails",
+    "defaultMessage": "New details"
+  },
+  {
+    "id": "detailsWall.viewLesson",
+    "defaultMessage": "View lesson"
+  }
+]

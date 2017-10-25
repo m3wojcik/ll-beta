@@ -14,7 +14,7 @@ const messages = defineMessages({
   }
 })
 
-const MessageWall = ({intl, message}) =>{
+const MessageWall = ({intl, message, onGoToClick}) =>{
 
   const headerText = <span>{message.extra_data.sender} <span className="text-muted">{intl.formatMessage(messages.sendMessage)}</span></span>
   const bodyText = <span className="text-important">{message.extra_data.subject}</span>
@@ -25,7 +25,7 @@ const MessageWall = ({intl, message}) =>{
         subHeader={<WallNotificationHeader notification={message} />}
         iconLeft={<FeedAvatar name={message.extra_data.sender} />}
         body={bodyText}
-        expander={<WallMessageContainer messageId={message.object_id} />}
+        expander={<WallMessageContainer messageId={message.object_id} onGoToClick={onGoToClick} />}
     />
     )
 }

@@ -13,7 +13,7 @@ import ClassTests from './../../components/tests/ClassTests'
 export default class ClassTestsContainer extends Component {
   componentDidMount(){
     const { fetched, id } = this.props;
-      this.props.dispatch(fetchClassTests(id));
+      this.props.dispatch(fetchClassTests({lesson_id:id}));
   }
   handleSolveClick = (test) =>{
     this.props.dispatch(push('test/' + test.id));

@@ -17,9 +17,7 @@ export default class ClassDetailsContainer extends Component {
     this.props.dispatch(fetchClassDetails({id: this.props.params.classId}));
   }
   componentWillReceiveProps(nextProps){
-    console.log('cwrp', nextProps);
     if(nextProps.classDetails[this.props.params.classId].name && !this.props.classDetails[this.props.params.classId].name){
-      console.log('in');
       this.props.dispatch(setAppHeader(nextProps.classDetails[this.props.params.classId].name));
     }
   }

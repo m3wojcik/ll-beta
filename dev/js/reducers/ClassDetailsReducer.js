@@ -61,7 +61,7 @@ export default function reducer(state={
 
       case "FETCH_CLASS_TESTS": {
         let newClassTests = state.classTests.slice();
-        newClassTests[action.payload] = {fetching: true, fetched:false}
+        newClassTests[action.payload.lesson_id] = {fetching: true, fetched:false}
         return {...state, classTests: newClassTests}
       }
       case "FETCH_CLASS_TESTS_REJECTED": {
@@ -69,7 +69,7 @@ export default function reducer(state={
       }
       case "FETCH_CLASS_TESTS_FULFILLED": {
         let newClassTests = state.classTests.slice();
-        newClassTests[action.payload.classId] = {
+        newClassTests[action.params.lesson_id] = {
           tests: action.payload.tests,
           fetching: false,
           fetched: true

@@ -1,28 +1,32 @@
 import React, { Component } from 'react';
+import Button from 'react-md/lib/Buttons';
 import Loader from '../helpers/Loader'
 import Box from '../helpers/Box';
 import WeekDayIcon from './../helpers/WeekDayIcon';
 import IconHeader from '../helpers/IconHeader';
 import ListBox from '../helpers/ListBox';
+import ActionsRow from '../helpers/ActionsRow';
 import FontIcon from 'react-md/lib/FontIcons';
 import DashboardClassItem from './DashboardClassItem';
 import FeedDate from '../wall/FeedDate'
 import ClassItemSubheader from './ClassItemSubheader';
 import ClassDetailsIconStatus from './ClassDetailsIconStatus';
-import DashboardClassDetails from'./DashboardClassDetails';
+import ClassDetailsList from'./ClassDetailsList';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {injectIntl, formatDate, formatTime, defineMessages} from 'react-intl';
 
 const messages = defineMessages({
-  upcomingClasses: {id: "dashboardClasses.upcomingClasses", defaultMessage: "Upcoming classes"}
+  upcomingClasses: {id: "dashboardClasses.upcomingClasses", defaultMessage: "Upcoming classes"},
+  view: {id: "dashboardClasses.view", defaultMessage: "View"}
 })
 
-const DashboardClasses = ({ dashboardClasses, fetched, intl }) => {
+const DashboardClasses = ({ dashboardClasses, fetched, intl, onViewClassClick }) => {
 
     let output = [], sortedClasses = [], tmpClass = null
     const today = new Date()
     dashboardClasses.forEach(function(clas){
       const classDate = new Date(clas.date + " " + clas.time)
+
       if(classDate > today){
         if(sortedClasses.length == 0 && tmpClass){
           tmpClass.inactive = true
@@ -35,26 +39,15 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl }) => {
       tmpClass = clas
     })
     const mappedClasses = sortedClasses.map(function(clas){
-      const time = intl.formatTime(clas.date)+" - "+ intl.formatTime((new Date(clas.date)).getTime() + (clas.length * 1000 * 60))
-      const details = [
-        {"icon":<FontIcon className="icon-green">event</FontIcon>,"name":clas.group},
-        {"icon":<FontIcon className="icon-blue">face</FontIcon>,"name":clas.teacher}
-      ]
-      const secondaryTextElements = [
-        <span>
-          <FontIcon className="icon-grey">event</FontIcon>
-          <FeedDate date={clas.date} />
-        </span>,
-        <span>
-          <FontIcon className="icon-grey">face</FontIcon>
-          {clas.teacher}
-        </span>
-      ]
-      if(clas.room){
-        details.push({"icon":<FontIcon className="icon-yellow">place</FontIcon>,"name":clas.room})
-      }
+      const classTime =  clas.date + " " + clas.time
+      const time = intl.formatTime(classTime)+" - "+ intl.formatTime((new Date(classTime)).getTime() + (clas.length * 1000 * 60))
       const headerText = <span>{time} </span>
-    
+      const expanderText = (<div>
+        <ClassDetailsList clas={clas} />
+        <ActionsRow>
+          <Button onClick={onViewClassClick.bind(this, clas.id)} primary flat>{intl.formatMessage(messages.view)}</Button>
+        </ActionsRow>
+      </div>)
       return (  
         <DashboardClassItem
           key={clas.id}
@@ -63,7 +56,7 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl }) => {
           subHeader={<ClassItemSubheader classItem={clas} />}
           iconLeft={<WeekDayIcon date={clas.date} />}
           body={<ClassDetailsIconStatus status={clas.status} details={clas.details} />}
-          expander={<DashboardClassDetails details={details} />}
+          expander={expanderText}
         />
       )
     })

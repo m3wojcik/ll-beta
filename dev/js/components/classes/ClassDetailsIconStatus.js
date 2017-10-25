@@ -1,7 +1,7 @@
 import React from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
+import IconLabel from './../helpers/IconLabel'
 import Label from './../helpers/Label'
-import Tooltip from './../helpers/Tooltip'
 
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
@@ -38,49 +38,78 @@ const ClassDetailsIconStatus = ({ intl, status, details }) => {
     if(details.attendance_checked){
       classDetails.push(
         <li key="attendance_checked">
-          <Tooltip tooltipLabel={intl.formatMessage(messages.attendanceChecked)} tooltipPosition="top"><FontIcon class="icon-olive">done_all</FontIcon></Tooltip>
+          <IconLabel 
+            icon={<FontIcon class="icon-olive">done_all</FontIcon>} 
+            text={intl.formatMessage(messages.attendanceChecked)} 
+          />
         </li>
       )
     }
     if(details.homework_checked){
       classDetails.push(
         <li key="homework_checked">
-          <Tooltip tooltipLabel={intl.formatMessage(messages.homeworkChecked)} tooltipPosition="top"><FontIcon class="icon-blue">home</FontIcon></Tooltip>
+          <IconLabel 
+            icon={<FontIcon class="icon-blue">home</FontIcon>} 
+            text={intl.formatMessage(messages.homeworkChecked)} 
+          />
         </li>
       )
     }
     if(details.lesson_object_added){
       classDetails.push(
         <li key="lesson_object_added">
-          <Tooltip tooltipLabel={intl.formatMessage(messages.filledIn)} tooltipPosition="top"><FontIcon class="icon-purple">edit</FontIcon></Tooltip>
+          <IconLabel 
+            icon={<FontIcon class="icon-purple">edit</FontIcon>} 
+            text={intl.formatMessage(messages.filledIn)} 
+          />
         </li>
       )
     }
     if(details.online){
       classDetails.push(
         <li key="online">
-          <Label label={intl.formatMessage(messages.online)} className="label-teal" />
+          <IconLabel 
+            icon={<FontIcon class="icon-teal">edit</FontIcon>} 
+            text={intl.formatMessage(messages.online)} 
+          />
         </li>
       )
     }
     if(details.files_added){
       classDetails.push(
         <li key="files_added">
-          <Tooltip tooltipLabel={intl.formatMessage(messages.filesAdded)} tooltipPosition="top"><FontIcon class="icon-orange">folder</FontIcon></Tooltip>
+          <IconLabel
+            icon={<FontIcon class="icon-orange">folder</FontIcon>} 
+            text={intl.formatMessage(messages.filesAdded)} 
+          />
         </li>
       )
     }
     if(details.tests_added){
       classDetails.push(
         <li key="tests_added">
-          <Tooltip tooltipLabel={intl.formatMessage(messages.testsAdded)} tooltipPosition="top"><FontIcon class="icon-red">assignment_turned_in</FontIcon></Tooltip>
+          <IconLabel
+            icon={<FontIcon class="icon-red">assignment_turned_in</FontIcon>} 
+            text={intl.formatMessage(messages.testsAdded)} 
+          />
         </li>
       )
     }
+    const statusElement = (
+      status && status.label ?
+        <div className="class-item-status">
+          <Label label={status.label} customColor={"#"+status.color} />
+        </div>         
+      :null
+    )
     return(
+      <div>
+        {statusElement}
         <ul className="clean-list list-horizontal">
           {classDetails}
         </ul>
+      </div>
+        
     )
   }
 export default injectIntl(ClassDetailsIconStatus)

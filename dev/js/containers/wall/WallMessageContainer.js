@@ -25,10 +25,14 @@ export default class WallMessageContainer extends Component {
     this.props.dispatch(push('createmessage'));
   }
   render(){
-    const { singleMessages, messageId } = this.props;
+    const { singleMessages, messageId, onGoToClick } = this.props;
     if(singleMessages[messageId] && singleMessages[messageId].fetched ){
       return(
-        <MessageWallContent onReplayClick={this.handleReplayClick} message={singleMessages[messageId]} />
+        <MessageWallContent 
+        onReplayClick={this.handleReplayClick} 
+        onGoToClick={onGoToClick}
+        messageId={messageId}
+        message={singleMessages[messageId]} />
       )  
     }else{
       return(<Loader centerPadding />)  

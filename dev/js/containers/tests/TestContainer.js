@@ -12,7 +12,7 @@ import Test from '../../components/tests/Test';
 import TestInfo from '../../components/tests/TestInfo';
 import ToolbarExpander from '../../components/helpers/ToolbarExpander';
 import CountdownTimer from '../../components/helpers/CountdownTimer';
-
+import { FormattedMessage } from 'react-intl';
 
 @connect((store) => {
    return {
@@ -25,7 +25,6 @@ import CountdownTimer from '../../components/helpers/CountdownTimer';
      fetching: store.test.fetching
   };
 })
-
 export default class TestContainer extends Component {
   constructor(props){
     super(props);
@@ -42,6 +41,11 @@ export default class TestContainer extends Component {
     }
     if(!sendTest.saved && nextProps.sendTest.saved){
       this.props.dispatch(showSnack('test_send', {label: 'Test saved', timeout: 3000}));
+      this.setState({
+        dialogTitle: <FormattedMessage id="testContainer.completed"defaultMessage="Test completed" />,
+        dialogDescription: <FormattedMessage id="testContainer.completedMessage" defaultMessage="Thank you for completing the test" />
+      });
+      this.openDialog();
     }
   }
   handleEndTime = () =>{
@@ -102,7 +106,7 @@ export default class TestContainer extends Component {
           }
         break;
         case "open":
-          answersToSend.push({element_id: userAnswers[prop].element_id, data: userAnswers[prop].data})
+          answersToSend.push({element_id: userAnswers[prop].element_id, data: userAnswers[prop].data, element_type: "open"})
         break;
         case "fill_in":
           answersToSend.push({element_id: userAnswers[prop].element_id, data: userAnswers[prop].data})
@@ -115,12 +119,7 @@ export default class TestContainer extends Component {
     }
     console.log('finish', params)
     this.props.dispatch(sendTest(params))
-    //TODO Send Answers
-    // this.setState({
-    //   dialogTitle: "Thank you",
-    //   dialogDescription: "Thank you for completing the test"
-    // });
-    // this.openDialog();
+
   }
 
   render(){

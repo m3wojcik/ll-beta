@@ -13,7 +13,7 @@ export default class ClassFiles extends Component {
       <Box
         className="no-flex no-padding"
         title="Files"
-        titleIcon={<FontIcon className="icon-red">assignment_turned_in</FontIcon>}>
+        titleIcon={<FontIcon className="icon-orange">folder</FontIcon>}>
         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
           {classFiles[id].files.length > 0 ?
           <Files

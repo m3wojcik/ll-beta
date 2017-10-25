@@ -2,5 +2,9 @@
   {
     "id": "dashboardClasses.upcomingClasses",
     "defaultMessage": "Upcoming classes"
+  },
+  {
+    "id": "dashboardClasses.view",
+    "defaultMessage": "View"
   }
 ]

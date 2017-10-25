@@ -20,17 +20,18 @@ export default class TestsList extends Component {
             clickable
             key={test.id}
             primaryText={test.name}
+            secondaryText={<FormattedDate value={test.sharedDate} day="numeric" month="numeric" year="numeric" />}
             expander={
               <div>
                 <TestInfo test={test} />
                 <ActionsRow>
-                  <Button primary flat label="Solve"
+                  <Button primary flat
                       onClick={onSolveClick.bind(this, test)}
-                    />
+                    >Solve</Button>
                 </ActionsRow>
               </div>
             }
-            secondaryText={<FormattedDate value={test.shareDate} day="numeric" month="numeric" year="numeric" />}
+            
           />
       )
     })

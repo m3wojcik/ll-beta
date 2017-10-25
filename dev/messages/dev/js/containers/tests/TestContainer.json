@@ -1,0 +1,10 @@
+[
+  {
+    "id": "testContainer.completed",
+    "defaultMessage": "Test completed"
+  },
+  {
+    "id": "testContainer.completedMessage",
+    "defaultMessage": "Thank you for completing the test"
+  }
+]

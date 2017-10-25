@@ -82,6 +82,18 @@ const WallNotificationHeader = ({notification, intl}) =>{
         </li>)
       output.push(<li key="app-name" className="app-name icon-olive">{intl.formatMessage(messages.attendance)}</li>)  
     break;
+    case "new_details":
+      output.push(<li key="app-icon" className="app-icon">
+          <FontIcon className="icon-green">event</FontIcon>      
+        </li>)
+      output.push(<li key="app-name" className="app-name icon-green">{notification.extra_data.group}</li>)  
+    break;
+    case "new_homework":
+    output.push(<li key="app-icon" className="app-icon">
+        <FontIcon className="icon-red">home</FontIcon>      
+      </li>)
+    output.push(<li key="app-name" className="app-name icon-red">{notification.extra_data.group}</li>)  
+  break;
   }
 
   output.push(<li key="bullet" className="bullet"><FontIcon>lens</FontIcon></li>)

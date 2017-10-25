@@ -31,7 +31,7 @@ const messages = defineMessages({
   }
 })
 
-const TestWall = ({intl, test, onViewLessonClick, onSolveClick}) =>{
+const TestWall = ({intl, test, onGoToClick}) =>{
   
   
   let headerText;
@@ -41,8 +41,7 @@ const TestWall = ({intl, test, onViewLessonClick, onSolveClick}) =>{
     headerText = <span>{test.extra_data.owner} <span className="text-muted">{intl.formatMessage(messages.addTest)}</span></span>
   }
   
-  //TODO id pliku
-  const bodyText = <span>{intl.formatMessage(messages.newTest)}: <span onClick={onSolveClick.bind(this, test.extra_data.test_bind_id)} className="text-important">{test.extra_data.title}.{test.extra_data.ext}</span></span>
+  const bodyText = <span>{intl.formatMessage(messages.newTest)}: <span onClick={onGoToClick.bind(this, 'test/'+test.extra_data.test_bind_id)} className="text-important">{test.extra_data.title}</span></span>
     return(
       <FeedItem
         className={test.is_fetched ? "feed-test old" : "feed-test new"}
@@ -52,9 +51,9 @@ const TestWall = ({intl, test, onViewLessonClick, onSolveClick}) =>{
         body={bodyText}
         expander={
           <ActionsRow>
-            <Button onClick={onSolveClick.bind(this, test.extra_data.test_bind_id)} primary flat>{intl.formatMessage(messages.solve)}</Button>
+            <Button onClick={onGoToClick.bind(this, 'test/'+test.extra_data.test_bind_id)} primary flat>{intl.formatMessage(messages.solve)}</Button>
             {test.extra_data.lesson ? 
-              <Button onClick={onViewLessonClick.bind(this, test.extra_data.lesson.id)} flat>{intl.formatMessage(messages.viewLesson)}</Button> : null
+              <Button onClick={onGoToClick.bind(this, 'classDetails/'+test.extra_data.lesson.id)} flat>{intl.formatMessage(messages.viewLesson)}</Button> : null
             }
           </ActionsRow>
         }

@@ -2,5 +2,9 @@
   {
     "id": "messageWallContent.Reply",
     "defaultMessage": "Reply"
+  },
+  {
+    "id": "messageWallContent.View",
+    "defaultMessage": "View"
   }
 ]

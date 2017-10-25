@@ -12,7 +12,7 @@ const ClassItemSubheader =({classItem})=> {
       <FontIcon>lens</FontIcon>
     </li>,
     <li key="timestamp" className="timestamp md-text--secondary">
-      <FeedDate date={classItem.date} />
+      <FeedDate date={classItem.date + " " + classItem.time} />
     </li>,
     <li key="bullet2" className="bullet">
       <FontIcon>lens</FontIcon>

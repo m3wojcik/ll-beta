@@ -20,10 +20,13 @@ export default class DashboardClassesContainer extends Component {
       this.props.dispatch(fetchDashboardClasses());
     }
   }
+  handleViewClassClick = (classId) =>{
+    this.props.dispatch(push('classDetails/'+classId))
+  }
   render(){
     const { fetched, dashboardClasses } = this.props;
     return(
-      <DashboardClasses fetched={fetched} dashboardClasses={dashboardClasses} />
+        <DashboardClasses key="DashboardClasses" fetched={fetched} dashboardClasses={dashboardClasses} onViewClassClick={this.handleViewClassClick} />
       )
   }
 }

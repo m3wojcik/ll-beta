@@ -11,3 +11,13 @@ export function fetchWall(params) {
     }
   }
 }
+export function wallFetched() {
+  return {
+    [CALL_API]: {
+      endpoint: '/wallFetched',
+      types: ["WALL_FETCHED", "WALL_FETCHED_FULFILLED", "WALL_FETCHED_REJECTED"],
+      authenticated: true,
+      method: 'get'
+    }
+  }
+}

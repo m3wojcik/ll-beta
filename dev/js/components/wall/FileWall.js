@@ -32,19 +32,26 @@ const messages = defineMessages({
   }
 })
 
-const FileWall = ({intl, file, onViewLessonClick, onDownloadClick}) =>{
+const FileWall = ({intl, file, onGoToClick, onDownloadClick}) =>{
   
-  
+  let onClickAction;
+  if(file.extra_data.ext){
+    onClickAction = {
+      onClick: onDownloadClick.bind(this, file.extra_data.file_id)
+    }
+  }else{
+
+    onClickAction = {
+      onClick: onGoToClick.bind(this, 'files/'+file.extra_data.file_id)
+    }
+  }
   let headerText;
   if(file.extra_data.lesson){
     headerText = <span>{file.extra_data.owner} <span className="text-muted">{intl.formatMessage(messages.addFileToLesson)}</span> {file.extra_data.lesson.date}</span>
   }else{
     headerText = <span>{file.extra_data.owner} <span className="text-muted">{intl.formatMessage(messages.addFile)}</span></span>
   }
-  
-  //TODO id pliku
-  const bodyText = <span>{intl.formatMessage(messages.newFile)}: <span onClick={onDownloadClick.bind(this, file.extra_data.file_id)} className="text-important">{file.extra_data.filename}.{file.extra_data.ext}</span> <span className="text-filesize"><FileSize size={file.extra_data.size} /></span></span>
-    console.log('file', file)
+  const bodyText = <span>{intl.formatMessage(messages.newFile)}: <span {...onClickAction} className="text-important">{file.extra_data.filename}{file.extra_data.ext ? "." + file.extra_data.ext : null}</span> <span className="text-filesize">{file.extra_data.ext ? <FileSize size={file.extra_data.size} />: null}</span></span>
     return(
       <FeedItem
         className={file.is_fetched ? "feed-file old" : "feed-file new"}
@@ -54,9 +61,9 @@ const FileWall = ({intl, file, onViewLessonClick, onDownloadClick}) =>{
         body={bodyText}
         expander={
           <ActionsRow>
-            <Button onClick={onDownloadClick.bind(this, file.extra_data.file_id)} primary flat>{intl.formatMessage(messages.download)}</Button>
+            <Button {...onClickAction} primary flat>{intl.formatMessage(messages.download)}</Button>
             {file.extra_data.lesson ? 
-              <Button onClick={onViewLessonClick.bind(this, file.extra_data.lesson.id)} flat>{intl.formatMessage(messages.viewLesson)}</Button> : null
+              <Button onClick={onGoToClick.bind(this, 'classDetails/'+file.extra_data.lesson.id)} flat>{intl.formatMessage(messages.viewLesson)}</Button> : null
             }
           </ActionsRow>
         }

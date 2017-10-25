@@ -1,0 +1,18 @@
+[
+  {
+    "id": "homeworkWall.checkedHomework",
+    "defaultMessage": "checked homework"
+  },
+  {
+    "id": "homeworkWall.checkedHomeworkToLesson",
+    "defaultMessage": "checked homework on lesson"
+  },
+  {
+    "id": "homeworkWall.noHomework",
+    "defaultMessage": "No homework"
+  },
+  {
+    "id": "homeworkWall.viewLesson",
+    "defaultMessage": "View lesson"
+  }
+]

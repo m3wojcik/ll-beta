@@ -1,48 +1,45 @@
 import React, { Component } from 'react';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
-import List from 'react-md/lib/Lists/List';
-import ListItem from 'react-md/lib/Lists/ListItem';
-import Avatar from 'react-md/lib/Avatars'
+
 import Box from './../helpers/Box';
-import {getDayName, getShortDayName} from './../../actions/Functions'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import WeekDayIcon from './../helpers/WeekDayIcon';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 import ClassDetailsStatus from './ClassDetailsStatus';
-import ListHorizontal from './../helpers/ListHorizontal';
+import ClassDetailsIconStatus from './ClassDetailsIconStatus';
+import ClassDetailsList from'./ClassDetailsList';
 import ClassLessonObjectsContainer from './../../containers/classes/ClassLessonObjectsContainer'
 import ClassTestsContainer from './../../containers/classes/ClassTestsContainer'
 import ClassFilesContainer from './../../containers/classes/ClassFilesContainer'
+import {injectIntl, formatDate, formatTime, defineMessages} from 'react-intl';
 
-export default class ClassDetails extends Component {
+class ClassDetails extends Component {
   render(){
-     const { classDetails } = this.props;
+     const { classDetails, intl } = this.props;
      const date = new Date(classDetails.date)
-     const listHorizontalElements = [
-       <div><FormattedTime value={date} /> - <FormattedTime value={date.getTime() + (classDetails.length * 1000 * 60) }  /></div>
-     ]
+     const classTime =  classDetails.date + " " + classDetails.time
+     const time = intl.formatTime(classTime)+" - "+ intl.formatTime((new Date(classTime)).getTime() + (classDetails.length * 1000 * 60))
+     const headerText = <span>{time} </span>
     return(
       <div className="">
         <div className="md-grid md-row">
           <div className="md-cell md-cell--12 md-cell--12-tablet md-cell--12-phone">
             <Box
               className="no-padding"
-              title={<ListHorizontal elements={listHorizontalElements} />}
+              title={headerText}
               subtitle={<FormattedDate value={classDetails.date} year='numeric' month='long' day='2-digit' />}
-              titleIcon={<Avatar className="avatar-weekdays" icon={getShortDayName(date)} />}
-              topRight={<ClassDetailsStatus status={classDetails.status} details={classDetails.details} />}
+              titleIcon={<WeekDayIcon date={classDetails.date} />}
+              topRight={<ClassDetailsStatus status={classDetails.status} />}
               >
-              <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
-                <div>sds</div>
-              </ReactCSSTransitionGroup>
+              <div>
+                <ClassDetailsIconStatus  details={classDetails.details} />
+                <ClassDetailsList clas={classDetails} />
+              </div>
             </Box>
           </div>
           <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
             <ClassLessonObjectsContainer id={classDetails.id} />
           </div>
           <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
-            { false ? <ClassTestsContainer id={classDetails.id} /> : null}
+            <ClassTestsContainer id={classDetails.id} />
             <ClassFilesContainer id={classDetails.id} />
           </div>
         </div>
@@ -50,3 +47,4 @@ export default class ClassDetails extends Component {
     )
   }
 }
+export default injectIntl(ClassDetails)

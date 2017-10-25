@@ -69,7 +69,8 @@ export default function reducer(state={
                   id: question.id,
                   type: question.type,
                   data: answerData.q,
-                  userAnswer: JSON.parse(question.answers[0].student_answer_data),
+                  userAnswer: question.answers[0].student_answer_data,
+                  //userAnswer: JSON.parse(question.answers[0].student_answer_data),
                   userPoints: Number(question.userPoints),
                   maxPoints: Number(answerData.p)
                 }

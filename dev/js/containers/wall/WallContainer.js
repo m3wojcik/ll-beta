@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import {BASE_URL} from "../../middleware/api"
-import { fetchWall } from "../../actions/WallActions";
+import { fetchWall, wallFetched } from "../../actions/WallActions";
 import Wall from '../../components/wall/Wall'
 import Content from '../../components/helpers/Content'
 
@@ -20,14 +20,15 @@ export default class WallContainer extends Component {
       this.props.dispatch(fetchWall());
     }
   }
-  handleViewLessonClick = (lessonId) =>{
-    this.props.dispatch(push('classDetails/' + lessonId));
+  componentWillReceiveProps(nextProps){
+    const {fetched} = this.props
+    if(!fetched && nextProps.fetched){
+      this.props.dispatch(wallFetched());
+    }
+
   }
-  handleSolveClick = (testId) =>{
-    this.props.dispatch(push('test/' + testId));
-  }
-  handleFillClick = (surveyId) =>{
-    this.props.dispatch(push('survey/' + surveyId));
+  handleGoToClick = (path) =>{
+    this.props.dispatch(push(path))
   }
   handleDownloadClick = (attachmentId) =>{
     const accessToken = localStorage.getItem('access_token')
@@ -40,6 +41,7 @@ export default class WallContainer extends Component {
       <Wall 
         fetched={fetched} 
         wall={wall} 
+        onGoToClick={this.handleGoToClick}
         onViewLessonClick={this.handleViewLessonClick} 
         onDownloadClick={this.handleDownloadClick} 
         onSolveClick={this.handleSolveClick} 

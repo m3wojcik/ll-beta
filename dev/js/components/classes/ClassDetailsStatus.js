@@ -33,47 +33,49 @@ const messages = defineMessages({
 const ClassDetailsStatus = ({ intl, status, details }) => {
 
     let classDetails = []
-    if(details.attendance_checked){
-      classDetails.push(
-        <li key="attendance_checked">
-          <Label label={intl.formatMessage(messages.attendanceChecked)} className="label-green" />
-        </li>
-      )
-    }
-    if(details.homework_checked){
-      classDetails.push(
-        <li key="homework_checked">
-          <Label label={intl.formatMessage(messages.homeworkChecked)} className="label-blue" />
-        </li>
-      )
-    }
-    if(details.lesson_object_added){
-      classDetails.push(
-        <li key="lesson_object_added">
-          <Label label={intl.formatMessage(messages.filledIn)} className="label-purple" />
-        </li>
-      )
-    }
-    if(details.online){
-      classDetails.push(
-        <li key="online">
-          <Label label={intl.formatMessage(messages.online)} className="label-teal" />
-        </li>
-      )
-    }
-    if(details.files_added){
-      classDetails.push(
-        <li key="files_added">
-          <Label label={intl.formatMessage(messages.filesAdded)} className="label-orange" />
-        </li>
-      )
-    }
-    if(details.tests_added){
-      classDetails.push(
-        <li key="tests_added">
-          <Label label={intl.formatMessage(messages.testsAdded)} className="label-red" />
-        </li>
-      )
+    if(details){
+      if(details.attendance_checked){
+        classDetails.push(
+          <li key="attendance_checked">
+            <Label label={intl.formatMessage(messages.attendanceChecked)} className="label-green" />
+          </li>
+        )
+      }
+      if(details.homework_checked){
+        classDetails.push(
+          <li key="homework_checked">
+            <Label label={intl.formatMessage(messages.homeworkChecked)} className="label-blue" />
+          </li>
+        )
+      }
+      if(details.lesson_object_added){
+        classDetails.push(
+          <li key="lesson_object_added">
+            <Label label={intl.formatMessage(messages.filledIn)} className="label-purple" />
+          </li>
+        )
+      }
+      if(details.online){
+        classDetails.push(
+          <li key="online">
+            <Label label={intl.formatMessage(messages.online)} className="label-teal" />
+          </li>
+        )
+      }
+      if(details.files_added){
+        classDetails.push(
+          <li key="files_added">
+            <Label label={intl.formatMessage(messages.filesAdded)} className="label-orange" />
+          </li>
+        )
+      }
+      if(details.tests_added){
+        classDetails.push(
+          <li key="tests_added">
+            <Label label={intl.formatMessage(messages.testsAdded)} className="label-red" />
+          </li>
+        )
+      }
     }
     const statusElement = (
       status ?

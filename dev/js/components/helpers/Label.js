@@ -27,9 +27,9 @@ export default class Label extends Component {
     if (className) {
       classProp += className;
     }
-     if (customColor) {
+    if (customColor) {
        return <span className={classProp} style={{backgroundColor: customColor}}>{label}</span>
-     }else if(colorValues){
+    }else if(colorValues){
        for(let item of colorValues){
          if(item.values){
            if(item.values.indexOf(value) != -1){
