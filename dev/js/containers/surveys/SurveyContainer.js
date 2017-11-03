@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { setHasTabs, setAppHeader } from "../../actions/AppActions";
-import { fetchSurvey } from "../../actions/SurveysActions";
+import { fetchSurvey, addSurveyAnswer } from "../../actions/SurveysActions";
 import Loader from '../../components/helpers/Loader'
 import Survey from '../../components/surveys/Survey';
 import TestInfo from '../../components/tests/TestInfo';
@@ -30,6 +30,29 @@ export default class SurveyContainer extends Component {
       this.props.dispatch(setAppHeader(nextProps.survey.survey.name));
     }
   }
+  handleAnswerClick = (questionId, type, value) => {
+    console.log('click', questionId, type, value);
+    let answer, params;
+    switch(type){
+      case 'radio':
+        answer = {element_id: value, type: type}
+      break;
+      case 'checkbox':
+        answer = {element_id: value.substr(1), type: type}
+      break;
+      case 'open':
+        answer = {element_id: questionId, data: value, type: type}
+      break;
+      case 'slider':
+        answer = {element_id: questionId, data: value, type: type}
+      break;
+    }
+    params = {
+      questionId: questionId,
+      data: answer
+    }
+    this.props.dispatch(addSurveyAnswer(params));
+  }
   handleFinishSurvey = () => {
     console.log('finish');
   }
@@ -46,7 +69,7 @@ export default class SurveyContainer extends Component {
         <ToolbarExpander
           left={<TestInfo test={survey.survey} />}
         />
-          <Survey survey={survey} onFinishClick={this.handleFinishSurvey} />
+          <Survey survey={survey} onFinishClick={this.handleFinishSurvey} onAnswerClick={this.handleAnswerClick} />
       </div>
 
     )

@@ -21,7 +21,7 @@ export default class SurveyQuestionContainer extends Component {
     this.setState({ value: value });
   }
   render(){
-    const { type, text, answers, userAnswer, view } = this.props;
+    const { id, type, text, answers, userAnswer, view, onAnswerClick} = this.props;
     let { value } = this.state;
     if(view){
       return(
@@ -38,7 +38,7 @@ export default class SurveyQuestionContainer extends Component {
           type={type}
           text={text}
           answers={answers}
-          onChangeValue={this.handleChangeValue}
+          onChangeValue={onAnswerClick.bind(this, id, type)}
         />
       )
     }

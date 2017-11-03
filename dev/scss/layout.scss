@@ -2031,7 +2031,9 @@ ul.notification-header{
     .feed-body{
       font-size: 16px;
       padding: 0px 16px 21px;
-      color: $md-blue-grey-600;   
+      color: $md-blue-grey-600;
+      overflow: hidden;
+      text-overflow: ellipsis;   
     }
     .feed-bottom{
 
@@ -2463,7 +2465,7 @@ ul.chips-list{
       right: 0px;
       .statuses-calendar{
         position: absolute;
-        bottom: -2px;
+        bottom: -22px;
         left: 0px;
         right: 0px;
       }

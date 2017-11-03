@@ -80,7 +80,7 @@ const ClassDetailsStatus = ({ intl, status, details }) => {
     const statusElement = (
       status ?
         <li>
-            <Label label={status.label} customColor={status.color} />
+            <Label label={status.label} customColor={"#"+status.color} />
         </li>
       :null
     )

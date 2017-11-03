@@ -46,3 +46,9 @@ export function fetchViewSurvey(params) {
     }
   }
 }
+export function addSurveyAnswer(params) {
+  return {
+    type: 'ADD_SURVEY_ANSWER',
+    payload: params
+  }
+}

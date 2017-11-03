@@ -26,7 +26,7 @@ export default class RangeContainer extends Component {
     this.setState({ value: value });
   }
   render(){
-    const {id, text, answer, view, minValue, maxValue } = this.props;
+    const {id, text, answer, view, minValue, maxValue, onAnswerClick } = this.props;
     let { value } = this.state;
     let rangeProps ;
     if(view){
@@ -42,7 +42,7 @@ export default class RangeContainer extends Component {
     }else{
       return(
         <Range
-          onChangeValue={this.handleChangeValue}
+          onChangeValue={onAnswerClick.bind(this, id, "slider")}
           value={value}
           maxValue={maxValue}
           minValue={minValue}

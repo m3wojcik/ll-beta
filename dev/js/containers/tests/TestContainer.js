@@ -132,10 +132,10 @@ export default class TestContainer extends Component {
       )
     }else{
       if(test.duration != null && test.duration > 0){
-        const startedAt = new Date(test.startedAt)
-        const testEnd = addMinutes(new Date(), test.duration)
-        const secondsLeft = compareDates(startedAt, testEnd, "s")
-        toolbarRight.push(<CountdownTimer key="timer" icon totalTime={test.duration} secondsRemaining={secondsLeft} onEndTime={this.handleEndTime} />)
+        //const startedAt = new Date() //new Date(test.startedAt)
+        //const testEnd = addMinutes(new Date(), test.duration)
+        //const secondsLeft = test.duration_left//compareDates(startedAt, testEnd, "s")
+        toolbarRight.push(<CountdownTimer key="timer" icon totalTime={test.duration} secondsRemaining={test.duration_left} onEndTime={this.handleEndTime} />)
       }
     }
     return(

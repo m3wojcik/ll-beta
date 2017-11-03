@@ -12,7 +12,7 @@ import RangeContainer from '../../containers/RangeContainer';
 export default class Survey extends Component {
 
   render(){
-    const { survey, onFinishClick } = this.props;
+    const { survey, onAnswerClick, onFinishClick } = this.props;
     const mappedSurvey = survey.pages.map(function(page, i){
       const mappedPages = page.map(function(block, j){
           let output;
@@ -29,10 +29,18 @@ export default class Survey extends Component {
                 answers={block.answers}
                 minValue={sliderData.min}
                 maxValue={sliderData.max}
+                onAnswerClick={onAnswerClick}
                 />
               break;
             case "question_one":
-              output = <SurveyQuestionContainer id={block.id} key={block.id} type="radio" text={block.data} answers={block.answers} />
+              output = <SurveyQuestionContainer 
+                id={block.id} 
+                key={block.id} 
+                type="radio" 
+                text={block.data} 
+                answers={block.answers} 
+                onAnswerClick={onAnswerClick}
+              />
               break;
             case "question_many":
               output = <SurveyQuestionContainer
@@ -41,10 +49,11 @@ export default class Survey extends Component {
                 type="checkbox"
                 text={block.data}
                 answers={block.answers}
+                onAnswerClick={onAnswerClick}
                 />
               break;
             case "question_open":
-              output = <SurveyQuestionOpenContainer id={block.id} key={block.id} text={JSON.parse(block.data).q} />
+              output = <SurveyQuestionOpenContainer id={block.id} key={block.id} text={JSON.parse(block.data).q} onAnswerClick={onAnswerClick} />
               break;
             case "youtube":
               output = <Youtube id={block.id} key={block.id} url={block.url} />

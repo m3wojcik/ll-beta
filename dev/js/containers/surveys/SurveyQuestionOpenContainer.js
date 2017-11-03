@@ -23,12 +23,12 @@ export default class SurveyQuestionOpenContainer extends Component {
 
   }
   render(){
-    const { text, id, userAnswer, userPoints, maxPoints } = this.props;
+    const { text, id, userAnswer, userPoints, maxPoints, onAnswerClick } = this.props;
     let output;
     if(userAnswer){
       output = <QuestionOpenView text={text} userAnswer={userAnswer} />
     }else{
-      output = <QuestionOpen id={id}  text={text} onChange={this.handleChangeValue} />
+      output = <QuestionOpen id={id}  text={text}  onChange={onAnswerClick.bind(this, id, "open")} />
     }
     return(
       <div>{output}</div>
