@@ -4,12 +4,13 @@ import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import {FormattedRelative} from 'react-intl';
-import CustomListItem from './helpers/CustomListItem';
-import CardWithHeader from '../components/helpers/CardWithHeader'
-import PaymentInstallments from '../components/PaymentInstallments'
-import Label from './helpers/Label'
-import MediaLibItemDetails from './elibrary/MediaLibItemDetails'
-import MediaLibItemActions from './elibrary/MediaLibItemActions'
+import CustomListItem from './../helpers/CustomListItem';
+import CardWithHeader from './../helpers/CardWithHeader'
+import PaymentInstallments from './PaymentInstallments'
+import PaymentLessons from './PaymentLessons'
+import Label from './../helpers/Label'
+import MediaLibItemDetails from './../elibrary/MediaLibItemDetails'
+import MediaLibItemActions from './../elibrary/MediaLibItemActions'
 import {FormattedDate} from 'react-intl';
 
 
@@ -22,6 +23,12 @@ export default class Payments extends Component {
         output = (
           <CardWithHeader header={group.name}>
             <PaymentInstallments installments={group.installments} />
+          </CardWithHeader>
+        )
+      }else if(group.type == "hourly"){
+        output = (
+          <CardWithHeader header={group.name}>
+            <PaymentLessons lessons={group.lessons} />
           </CardWithHeader>
         )
       }

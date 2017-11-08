@@ -1,6 +1,9 @@
 export default function reducer(state={
   wall: [],
   survey: {},
+  view:{
+    drawerVisible: false
+  },
   fetching: false,
   fetched: false,
   error: null,
@@ -29,6 +32,15 @@ export default function reducer(state={
           survey: newSurvey,
           wall: action.payload.wall,
         }
+      }
+
+      case "TOGGLE_SURVEY_DRAWER": {
+        return {
+          ...state,
+          view:{
+            ...state.view,
+            drawerVisible: action.payload
+          }}
       }
     }
     return state

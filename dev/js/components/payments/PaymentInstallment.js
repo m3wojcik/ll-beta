@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import CustomListItem from './helpers/CustomListItem';
-import CustomDate from './helpers/CustomDate';
-import Label from './helpers/Label';
+import CustomListItem from '../helpers/CustomListItem';
+import CustomDate from '../helpers/CustomDate';
+import Label from '../helpers/Label';
 import PaymentInstallmentDetails from './PaymentInstallmentDetails';
 import PaymentInstallmentStatus from './PaymentInstallmentStatus';
-import { getDaysDiference } from '../actions/Functions'
+import { getDaysDiference } from '../../actions/Functions'
 
 export default class PaymentInstallment extends Component {
 
@@ -14,9 +14,9 @@ export default class PaymentInstallment extends Component {
     const amountPaid = installment.paid_value
     const leftToPay = installment.value - installment.paid_value
     const amountToPay = installment.value
-    let secondaryText = <CustomDate date={installment.date_to} format="day" />
+    let secondaryText = installment.date_to ? <CustomDate date={installment.date_to} format="day" /> : null
     let props;
-    if(leftToPay <= 0){
+    if(leftToPay <= 0 && installment.value > 0){
       props = {
         primaryText: "Amount paid: " + amountPaid
       }

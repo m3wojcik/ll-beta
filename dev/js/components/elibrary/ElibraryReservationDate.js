@@ -41,7 +41,7 @@ export default class ElibraryReservationDate extends Component {
               />
           </div>
           <div className="width-100 text-center">
-              <Button onClick={onCancelClick} raised label="Cancel" />
+              <Button onClick={onCancelClick} raised>Cancel</Button>
               <Button {...btnPrimaryProps} />
           </div>
       </div>

@@ -26,7 +26,7 @@ import ElibraryContainer from './containers/library/ElibraryContainer';
 import SurveysContainer from './containers/surveys/SurveysContainer';
 import SurveyContainer from './containers/surveys/SurveyContainer';
 import SurveyViewContainer from './containers/surveys/SurveyViewContainer';
-import PaymentsContainer from './containers/PaymentsContainer';
+import PaymentsContainer from './containers//payments/PaymentsContainer';
 import LoginContainer from './containers/login/LoginContainer';
 import Authentication from './components/Authentication';
 

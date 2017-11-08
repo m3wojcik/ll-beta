@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PaymentInstallment from '../components/PaymentInstallment'
+import PaymentInstallment from './PaymentInstallment'
 export default class PaymentInstallments extends Component {
 
   render(){

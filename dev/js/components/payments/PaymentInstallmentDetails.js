@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {FormattedDate} from 'react-intl';
-import TwoColumnTable from './helpers/TwoColumnTable'
+import TwoColumnTable from '../helpers/TwoColumnTable'
 export default class PaymentInstallmentDetails extends Component {
   render(){
     const { installment } = this.props;

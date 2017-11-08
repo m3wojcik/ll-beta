@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import CustomListItem from './helpers/CustomListItem';
-import CustomDate from './helpers/CustomDate';
-import { getDays } from '../actions/Functions'
-import Label from './helpers/Label';
+import CustomListItem from '../helpers/CustomListItem';
+import CustomDate from '../helpers/CustomDate';
+import { getDays } from '../../actions/Functions'
+import Label from '../helpers/Label';
 import { FormattedPlural } from 'react-intl';
 
 export default class PaymentInstallmentStatus extends Component {

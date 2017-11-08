@@ -21,3 +21,9 @@ export function wallFetched() {
     }
   }
 }
+export function toggleSurveyDrawer(visible) {
+  return {
+    type: 'TOGGLE_SURVEY_DRAWER',
+    payload: visible
+  }
+}

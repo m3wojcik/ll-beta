@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { fetchPayments } from "../actions/PaymentsActions";
-import Loader from '../components/helpers/Loader'
-import Content from '../components/helpers/Content'
-import Payments from '../components/Payments'
-import CircleProgressBar from '../components/helpers/CircleProgressBar';
-import Box from '../components/helpers/Box';
+import { fetchPayments } from "../../actions/PaymentsActions";
+import Loader from '../../components/helpers/Loader'
+import Content from '../../components/helpers/Content'
+import Payments from '../../components/payments/Payments'
+import CircleProgressBar from '../../components/helpers/CircleProgressBar';
+import Box from '../../components/helpers/Box';
 
 @connect((store) => {
    return {
