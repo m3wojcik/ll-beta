@@ -33,7 +33,6 @@ export default class SurveysContainer extends Component {
   }
   render(){
     const { fetched, surveys,toolbar } = this.props;
-    console.log('ankiety',surveys);
     if(!fetched){
       return(
         <Loader full />

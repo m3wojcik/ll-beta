@@ -24,7 +24,7 @@ export default class Surveys extends Component {
       let surveyDate = new Date(survey.sharedDate)
       let surveyStatus = [];
       if(survey.completed){
-        cardActions.push(<Button key="show" flat onClick={this.props.onShowClick.bind(this, survey)} >Show</Button>)
+        //cardActions.push(<Button key="show" flat onClick={this.props.onShowClick.bind(this, survey)} >Show</Button>)
         surveyStatus.push(<Label  key="status" blue label="Complete" />)
       }else if(!survey.completed){
         cardActions.push(<Button key="fill" flat onClick={this.props.onSolveClick.bind(this, survey)} >Fill out survey</Button>)
@@ -37,9 +37,11 @@ export default class Surveys extends Component {
             subtitle={<CustomDate date={surveyDate}/>}
             />
             <TestInfo test={survey} />
-          <CardActions className="md-divider-border md-divider-border--top">
-            {cardActions}
-          </CardActions>
+            {!survey.completed ?
+                    <CardActions className="md-divider-border md-divider-border--top">
+                      {cardActions}
+                    </CardActions>
+            :null }
         </Card>
       </div>]
       if(name.indexOf(search) != -1 || sharedBy.indexOf(search) != -1 ){

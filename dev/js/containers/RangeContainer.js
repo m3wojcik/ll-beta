@@ -9,25 +9,8 @@ import RangeView from "../components/RangeView"
   };
 })
 export default class RangeContainer extends Component {
-  constructor(props) {
-      super(props);
-      this.state = { value: 0 };
-  }
-  componentDidMount(){
-     const { id, userAnswers, minValue } = this.props;
-     if(userAnswers){
-       userAnswers[id] = minValue;
-     }
-  }
-  handleChangeValue = (value) =>{
-    const { id, userAnswers, minValue } = this.props;
-    userAnswers[id] = value + minValue;
-    console.log(userAnswers);
-    this.setState({ value: value });
-  }
   render(){
-    const {id, text, answer, view, minValue, maxValue, onAnswerClick } = this.props;
-    let { value } = this.state;
+    const {id, value, text, answer, view, minValue, maxValue, onAnswerClick } = this.props;
     let rangeProps ;
     if(view){
       return(

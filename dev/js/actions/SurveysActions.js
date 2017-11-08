@@ -1,17 +1,3 @@
-// import axios from "axios";
-
-// export function fetchSurveys() {
-//   return function(dispatch) {
-//     dispatch({type: "FETCH_SURVEYS", payload: true});
-//     axios.get("http://api.local/?q=getSurveys")
-//       .then((response) => {
-//         dispatch({type: "FETCH_SURVEYS_FULFILLED", payload: response.data});
-//       })
-//       .catch((err) => {
-//         dispatch({type: "FETCH_SURVEYS_REJECTED", payload: err})
-//       })
-//   }
-// }
 import { CALL_API } from '../middleware/api'
 
 export function fetchSurveys() {
@@ -42,6 +28,17 @@ export function fetchViewSurvey(params) {
       types: ["FETCH_VIEW_SURVEY", "FETCH_VIEW_SURVEY_FULFILLED", "FETCH_VIEW_SURVEY_REJECTED"],
       authenticated: true,
       method: 'get',
+      params: {...params}
+    }
+  }
+}
+export function sendSurvey(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/surveySend',
+      types: ["SEND_SURVEY", "SEND_SURVEY_FULFILLED", "SEND_SURVEY_REJECTED"],
+      authenticated: true,
+      method: 'post',
       params: {...params}
     }
   }

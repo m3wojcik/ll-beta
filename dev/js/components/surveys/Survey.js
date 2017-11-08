@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Button from 'react-md/lib/Buttons';
-
-import SquareLabel from '../helpers/SquareLabel';
+import Loader from './../helpers/Loader'
 import BlockOfText from '../helpers/BlockOfText';
 import Youtube from '../helpers/Youtube';
 import ListFilesContainer from '../../containers/ListFilesContainer';
@@ -12,7 +11,7 @@ import RangeContainer from '../../containers/RangeContainer';
 export default class Survey extends Component {
 
   render(){
-    const { survey, onAnswerClick, onFinishClick } = this.props;
+    const { survey, userAnswers, saving, onAnswerClick, onFinishClick } = this.props;
     const mappedSurvey = survey.pages.map(function(page, i){
       const mappedPages = page.map(function(block, j){
           let output;
@@ -22,10 +21,12 @@ export default class Survey extends Component {
               break;
             case "slider":
               let sliderData = JSON.parse(block.data)
+              let sliderValue = userAnswers[block.id] ? userAnswers[block.id].data : 0
               output = <RangeContainer
                 id={block.id}
                 key={block.id}
                 text={sliderData.q}
+                value={sliderValue}
                 answers={block.answers}
                 minValue={sliderData.min}
                 maxValue={sliderData.max}
@@ -72,7 +73,10 @@ export default class Survey extends Component {
           {mappedSurvey}
         </ul>
         <div className="test-bottom">
-          <Button raised primary onClick={onFinishClick}>Finish</Button>
+          {saving ? 
+            <Loader centerPadding /> :
+            <Button raised primary onClick={onFinishClick}>Finish</Button>
+          }
         </div>
       </div>
     )
