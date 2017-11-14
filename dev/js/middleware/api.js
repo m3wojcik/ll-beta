@@ -1,6 +1,9 @@
+import React from 'react';
 import axios from 'axios';
 import qs  from "qs";
 import {push} from 'react-router-redux';
+
+import {browserHistory} from 'react-router'
 
 export const BASE_URL = 'https://test.langlion.com/api'
 //const BASE_URL = 'http://api.local/'
@@ -40,7 +43,6 @@ function callApi(endpoint, authenticated, params, method) {
   console.log('get', BASE_URL + endpoint + "?access_token="+ access_token, axios_config);
   return axios(axios_config)
   .then(response => {
-    response.data.params = params
     return response.data
   })
   .catch((error) => {
@@ -63,7 +65,7 @@ export default store => next => action => {
   return callApi(endpoint, authenticated, params, method, successToast).then(
     response => {
       next({
-        params: response.params ? response.params : null,
+        params: params ? params : null,
         payload: response.data,
         authenticated,
         type: successType
@@ -74,9 +76,7 @@ export default store => next => action => {
     },
     error => {
       console.warn("error", error)
-      if(error.response.status == 401){
-        next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
-      }
+      
       next({type: errorType, payload:error})
       var errorMsg;    
       if(error.response.data.error){
@@ -87,11 +87,15 @@ export default store => next => action => {
         }
       }else{
         errorMsg = error.message
-      }
-      
+      }     
       next(
         {type: "RRS_SHOW_SNACK", payload: {id: "error", data: {label: errorMsg, button: {label: "Dismiss"}}}}
       )
+      
+       if(error.response && error.response.status == 401){
+        browserHistory.replace({pathname:'login'})
+      //   next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
+       }
     }
   )
 }

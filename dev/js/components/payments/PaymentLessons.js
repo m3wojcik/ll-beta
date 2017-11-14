@@ -5,8 +5,8 @@ export default class PaymentLessons extends Component {
   render(){
     const { lessons } = this.props;
     const mappedLessons = lessons.map(
-      lesson =>
-      <PaymentLesson key={lesson.id} lesson={lesson} />
+      (lesson, i) =>
+      <PaymentLesson key={i} lesson={lesson} />
     )
     return(
       <ul className="md-list md-list-divider">{mappedLessons}</ul>

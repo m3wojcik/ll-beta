@@ -9,6 +9,9 @@ import CardWithHeader from './../helpers/CardWithHeader'
 import PaymentInstallments from './PaymentInstallments'
 import PaymentLessons from './PaymentLessons'
 import Label from './../helpers/Label'
+import Header from '../helpers/Header';
+import Box from '../helpers/Box';
+import BoxTitle from '../helpers/BoxTitle';
 import MediaLibItemDetails from './../elibrary/MediaLibItemDetails'
 import MediaLibItemActions from './../elibrary/MediaLibItemActions'
 import {FormattedDate} from 'react-intl';
@@ -20,26 +23,31 @@ export default class Payments extends Component {
     const mappedGroups = groups.map(function(group){
       let output = null
       if(group.type == "standard"){
-        output = (
-          <CardWithHeader header={group.name}>
+        return (
+          <li key={group.id}>
+          <Header header={group.name}  />
+          <Box className="no-flex no-padding">
             <PaymentInstallments installments={group.installments} />
-          </CardWithHeader>
+          </Box>
+          </li>
         )
       }else if(group.type == "hourly"){
-        output = (
-          <CardWithHeader header={group.name}>
+        return (
+          <li key={group.id}>
+          <Header header={group.name} />
+          <Box className="no-flex no-padding">
+            <BoxTitle
+              title="Details"
+              titleIcon={<FontIcon className="icon-olive">equalizer</FontIcon>}
+            />
             <PaymentLessons lessons={group.lessons} />
-          </CardWithHeader>
+          </Box>
+          </li>
         )
       }
-      return (
-        <li key={group.id}>
-          {output}
-        </li>
-      )
     })
     return(
-        <ul className="md-list md-list-divider">
+        <ul className="clean-list">
           {mappedGroups}
         </ul>
 

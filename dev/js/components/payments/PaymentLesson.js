@@ -9,15 +9,18 @@ import { getDaysDiference } from '../../actions/Functions'
 export default class PaymentLesson extends Component {
 
   render(){
-    const { lesson } = this.props;
-    const primaryText = lesson.date +" "+ lesson.time
+    const { lesson} = this.props;
+    const primaryText =lesson.date +" "+ lesson.time
     const secondaryText = <div>{lesson.price}</div>
+    const status = (<div>
+      {lesson.paid ? <Label label="paid" green /> : null }
+      <Label label={lesson.attendance_status} customColor={"#"+lesson.attendance_color} />
+    </div>)
     return(
       <CustomListItem
         primaryText={primaryText}
-        status ={lesson.paid ? "paid" : null}
+        status ={status}
         clickable
-        expander={<div>ssdsd</div>}
         secondaryText={secondaryText}
       />
     )

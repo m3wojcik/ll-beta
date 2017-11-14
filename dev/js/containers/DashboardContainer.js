@@ -49,7 +49,7 @@ export default class DashboardContainer extends Component {
         </div>
         <Drawer
           visible={view.drawerVisible}
-          onVisibilityToggle={this.handleDrawerToggle}
+          onVisibilityChange={this.handleDrawerToggle}
           type={Drawer.DrawerTypes.TEMPORARY}
           header={<DrawerHeader>New survey</DrawerHeader>}
           className="drawer-bottom"

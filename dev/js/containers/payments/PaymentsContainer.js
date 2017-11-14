@@ -10,7 +10,6 @@ import Box from '../../components/helpers/Box';
 @connect((store) => {
    return {
      locales: store.app.appData.locales,
-     toolbar: store.app.toolbar,
      groups: store.payments.groups,
      fetched: store.payments.fetched,
      fetching: store.payments.fetching,
@@ -23,10 +22,12 @@ export default class PaymentsContainer extends Component {
     this.props.dispatch(fetchPayments());
   }
   render(){
-    const { fetched, groups, toolbar, totalAmount, amountPaid, locales} = this.props;
-    const leftToPay = totalAmount - amountPaid;
-    const percentPaid = (amountPaid / totalAmount) * 100;
-    const percentLeft = ((totalAmount - amountPaid )/ totalAmount) * 100;
+    const { fetched, groups, totalAmount, amountPaid, locales} = this.props;
+    const paid = amountPaid ? amountPaid : 0
+    const leftToPay = totalAmount - paid;
+    const percentPaid = totalAmount != 0 ? (paid / totalAmount) * 100 : 0;
+    const percentLeft = totalAmount != 0 ? ((totalAmount - paid )/ totalAmount) * 100 : 0;
+    console.log('pay', totalAmount, percentLeft, percentPaid)
     if(!fetched){
       return(
         <Loader full />
@@ -45,7 +46,7 @@ export default class PaymentsContainer extends Component {
                     strokeWidth={6}
                     size="large"
                     color="teal"
-                    textForPercentage={(percentage) => `${amountPaid} ${locales.currencyCode}`}
+                    textForPercentage={(percentage) => `${paid} ${locales.currencyCode}`}
                     percentage={percentPaid}
                     />}
                    />

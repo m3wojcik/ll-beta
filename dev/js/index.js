@@ -21,6 +21,7 @@ const store = createStore(allReducers, middleware);
 const history = syncHistoryWithStore(hashHistory, store);
 
 const token = localStorage.getItem('access_token');
+console.log('token',token)
 if (token) {
   store.dispatch({ type: "AUTH_USER" });
 }
