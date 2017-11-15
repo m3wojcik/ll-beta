@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { getDays } from '../../actions/Functions';
 import Label from '../helpers/Label';
 
@@ -17,7 +18,13 @@ export default class ElibraryListStatus extends Component {
       if(today < dateFrom ){
         let dayDifference = dateFrom - today;
         label = <Label blue
-          label={["Pick reservation in " + dayDifference + " days"]}
+          label={<FormattedMessage 
+            id="elibraryListStatus.pickReservationInXdays"
+            defaultMessage="Pick reservation in {days} days!"
+            values={{
+              days: dayDifference
+            }}
+          />}
           value={dayDifference}
           colorValues={[{"values":[1],"color": "olive"}]}
           />
@@ -31,9 +38,19 @@ export default class ElibraryListStatus extends Component {
         colorValues={[{"values":[1],"color": "red"},{"range":[2,3],"color": "orange"}]} />
           ]
       }else if(today == dateTo){
-        label = <Label red label="Last day to pick reservation" />
+        label = <Label red 
+        label={<FormattedMessage 
+          id="elibraryListStatus.lastDayToPickReservation"
+          defaultMessage="Last day to pick reservation"
+        />}
+        />
       }else if(today > dateTo){
-        label = <Label red label="Reservation is outdated" />
+        label = <Label red 
+        label={<FormattedMessage 
+          id="elibraryListStatus.reservationIsOutdated"
+          defaultMessage="Reservation is outdated" 
+        />}
+        />
       }
         status = label;
     }else if(borrowed){
@@ -48,9 +65,19 @@ export default class ElibraryListStatus extends Component {
           value={dayDifference}
           colorValues={[{"range":[1,2],"color": "orange"}]} />
       }else if(today == dateReturn){
-          label = <Label red label="Return today" />
+          label = <Label red 
+          label={<FormattedMessage 
+            id="elibraryListStatus.returnToday"
+            defaultMessage="Return today" 
+          />}
+          />
       }else if(today > dateReturn){
-          label = <Label red label="Borrowing is outdated" />
+          label = <Label red 
+          label={<FormattedMessage 
+            id="elibraryListStatus.borrowingIsOutdated"
+            defaultMessage="Borrowing is outdated" 
+          />}
+          />
       }
         status = label
     }

@@ -1,0 +1,14 @@
+[
+  {
+    "id": "paymentInstallment.amoutPaid",
+    "defaultMessage": "Amount paid:"
+  },
+  {
+    "id": "paymentInstallment.amountLeftToPay",
+    "defaultMessage": "Amount left pay:"
+  },
+  {
+    "id": "paymentInstallment.amountToPay",
+    "defaultMessage": "Amount to pay:"
+  }
+]

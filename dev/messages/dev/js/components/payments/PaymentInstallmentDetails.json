@@ -1,0 +1,22 @@
+[
+  {
+    "id": "paymentInstallmentDetails.amoutPaid",
+    "defaultMessage": "Amount paid:"
+  },
+  {
+    "id": "paymentInstallmentDetails.leftToPay",
+    "defaultMessage": "Left to pay:"
+  },
+  {
+    "id": "paymentInstallmentDetails.amountToPay",
+    "defaultMessage": "Amount to pay:"
+  },
+  {
+    "id": "paymentInstallmentDetails.paymentDate",
+    "defaultMessage": "Payment date"
+  },
+  {
+    "id": "paymentInstallmentDetails.dateOfPayment",
+    "defaultMessage": "Date of payment"
+  }
+]

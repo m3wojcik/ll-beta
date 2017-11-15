@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Card from 'react-md/lib/Cards/Card';
-import CardTitle from 'react-md/lib/Cards/CardTitle';
-import CardText from 'react-md/lib/Cards/CardText';
+import { FormattedMessage } from 'react-intl';
+
 import List from 'react-md/lib/Lists/List';
 import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
@@ -16,7 +15,10 @@ export default class Files extends Component {
     const {path, files, filesHeader, goUpBtn, onBackClick, onClick, searchValue} = this.props;
     const backId = path && path.length > 1 ? path[path.length - 2].id : null;
     let fileHeader = false;
-    let filesHeaderText = "Files"
+    let filesHeaderText = <FormattedMessage 
+        id="files.files"
+        defaultMessage="Files"
+      />
     let search = "";
     if(searchValue){
       search = searchValue.toLowerCase();

@@ -93,8 +93,8 @@ export default store => next => action => {
       )
       
        if(error.response && error.response.status == 401){
-        browserHistory.replace({pathname:'login'})
-      //   next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
+        //browserHistory.replace({pathname:'login'})
+        //   next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
        }
     }
   )

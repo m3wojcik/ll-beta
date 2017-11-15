@@ -1,0 +1,14 @@
+[
+  {
+    "id": "mediaLibItemActions.reserve",
+    "defaultMessage": "Reserve"
+  },
+  {
+    "id": "mediaLibItemActions.cancelReservation",
+    "defaultMessage": "Cancel reservation"
+  },
+  {
+    "id": "mediaLibItemActions.details",
+    "defaultMessage": "Details"
+  }
+]

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
-import {getShortMonth} from '../../actions/Functions';
+import { FormattedMessage } from 'react-intl';
 import Box from '../helpers/Box';
 import BoxTitle from '../helpers/BoxTitle';
 import Header from '../helpers/Header';
@@ -18,7 +18,10 @@ const Attendance = ({ attendance }) => {
           <Header header={group.group_name}  />
           <Box className="no-flex no-padding">
             <BoxTitle
-              title="Attendance percent result"
+              title={<FormattedMessage 
+                id="Attendance.attendancePercentResult"
+                defaultMessage="Attendance percent result"
+              />}
               titleIcon={<FontIcon className="icon-olive">equalizer</FontIcon>}
             />
           <ProgressBar title={Math.round(group.attendance) + "%"}  value={group.attendance} />

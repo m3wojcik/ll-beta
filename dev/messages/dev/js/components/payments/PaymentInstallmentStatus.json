@@ -1,0 +1,26 @@
+[
+  {
+    "id": "paymentInstallmentStatus.paid",
+    "defaultMessage": "Paid"
+  },
+  {
+    "id": "paymentInstallmentStatus.partlyPaid",
+    "defaultMessage": "Partly paid"
+  },
+  {
+    "id": "paymentInstallmentStatus.payToday",
+    "defaultMessage": "Pay today"
+  },
+  {
+    "id": "paymentInstallmentStatus.paymentIsOutdated",
+    "defaultMessage": "Payment is outdated"
+  },
+  {
+    "id": "paymentInstallmentStatus.payIn",
+    "defaultMessage": "Pay in"
+  },
+  {
+    "id": "paymentInstallmentStatus.days",
+    "defaultMessage": "days"
+  }
+]

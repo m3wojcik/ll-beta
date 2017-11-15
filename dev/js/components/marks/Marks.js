@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import MarksData from './MarksData'
 import Box from '../helpers/Box';
 import Header from '../helpers/Header';
@@ -17,7 +18,12 @@ export default class Marks extends Component {
           <Box className="no-flex no-padding">
             <MarksData groupId={group.group_id} gradeType={group.point_system_type} marks={group.marks} />
           </Box>
-          : <Alert text="No marks in this group" type="info"/>}
+          : <Alert 
+            text={<FormattedMessage 
+              id="marks.noMarksInThisGroup"
+              defaultMessage="No marks in this group" 
+            />}
+            type="info"/>}
       </li>
     );
     return(

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { FormattedMessage } from 'react-intl';
 import {FormattedDate, FormattedRelative} from 'react-intl';
 import FontIcon from 'react-md/lib/FontIcons';
 import Label from '../helpers/Label';
@@ -43,7 +43,17 @@ export default class MarksList extends Component {
         key={mark.mark_group_id}
         primaryText={mark.name}
         status={<Label {...statusProps}/>}
-        expander={<MarksClassByColumnContainer userValue={mark.value} columnId={mark.mark_group_id} title="Your score in class" />}
+        expander={
+          <MarksClassByColumnContainer 
+            userValue={mark.value} 
+            columnId={mark.mark_group_id} 
+            title="Your score in class"
+            title={<FormattedMessage 
+              id="MarksList.yourScoreInClass"
+              defaultMessage="Your score in class"
+            />} 
+          />
+          }
         secondaryText={secondaryText}
       />)
     });

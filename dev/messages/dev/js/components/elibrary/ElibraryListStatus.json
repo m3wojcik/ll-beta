@@ -1,10 +1,22 @@
 [
   {
-    "id": "elibraryListStatus.day",
-    "defaultMessage": "day"
+    "id": "elibraryListStatus.pickReservationInXdays",
+    "defaultMessage": "Pick reservation in {days} days!"
   },
   {
-    "id": "elibraryListStatus.days",
-    "defaultMessage": "days"
+    "id": "elibraryListStatus.lastDayToPickReservation",
+    "defaultMessage": "Last day to pick reservation"
+  },
+  {
+    "id": "elibraryListStatus.reservationIsOutdated",
+    "defaultMessage": "Reservation is outdated"
+  },
+  {
+    "id": "elibraryListStatus.returnToday",
+    "defaultMessage": "Return today"
+  },
+  {
+    "id": "elibraryListStatus.borrowingIsOutdated",
+    "defaultMessage": "Borrowing is outdated"
   }
 ]

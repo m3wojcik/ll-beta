@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 import {AreaChart} from 'react-easy-chart';
 import FontIcon from 'react-md/lib/FontIcons';
 import Tabs from 'react-md/lib/Tabs/Tabs';
@@ -12,10 +13,20 @@ import BoxTitle from '../helpers/BoxTitle';
 import MarksList from './MarksList'
 import MarksClassAverageContainer from '../../containers/marks/MarksClassAverageContainer'
 
-export default class MarksData extends Component {
+const messages = defineMessages({
+  averagePercentResult: {
+    id: 'marksData.averagePercentResult',
+    defaultMessage: "Average percent result"
+  },
+  averageResult: {
+    id: 'marksData.averageResult',
+    defaultMessage: "Average result"
+  }
+})
 
-  render(){
-    const { marks, gradeType, groupId } = this.props;
+
+const MarksData = ( { intl, marks, gradeType, groupId } ) =>{
+
     let useWeight = false, progressTitle, progressBarProps, progressBarTitle, marksInTime = [], averageInTime = [], weightedAverageInTime = [];
     var percent = 0, average = 0, averageNom = 0, weightedAverageNom = 0, weightedAverage = 0, weightedAverageWeights = 0, range;
     const marksLength = marks.length;
@@ -48,7 +59,7 @@ export default class MarksData extends Component {
       if(useWeight) percent = weightedAverage
       else percent = average
       range = [0,100]
-      progressTitle = "Average percent result"
+      progressTitle = intl.formatMessage(messages.averagePercentResult)
       progressBarProps = {
         title: percent.toFixed() + "%",
         value: percent
@@ -62,7 +73,7 @@ export default class MarksData extends Component {
         progressBarTitle = average;
       }
       range = [0,6]
-      progressTitle = "Average result"
+      progressTitle = intl.formatMessage(messages.averageResult)
       progressBarProps = {
         title: progressBarTitle,
         value: percent
@@ -133,5 +144,5 @@ export default class MarksData extends Component {
 
       </div>
     )
-  }
 }
+export default injectIntl(MarksData)

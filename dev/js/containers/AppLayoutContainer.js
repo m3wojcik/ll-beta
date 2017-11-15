@@ -41,6 +41,15 @@ export default class AppLayoutContainer extends Component {
         let settings = getAppSettings(nextPath);
         this.props.dispatch(setAppSettings(settings));
       }
+      
+      if(nextProps.appData.error && nextProps.appData.error.response){
+        if(error != nextProps.appData.error){
+          const status =  nextProps.appData.error.response.status
+          if(status == 401){
+            this.props.dispatch(push('login'))
+          }
+        }
+      }
     }
     handleRemoveToast = () => {
       this.props.dispatch(removeToast());

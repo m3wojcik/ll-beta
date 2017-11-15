@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import Box from '../helpers/Box';
 import FontIcon from 'react-md/lib/FontIcons';
 import Alert from '../helpers/Alert';
@@ -12,7 +13,10 @@ export default class ClassFiles extends Component {
     return(
       <Box
         className="no-flex no-padding"
-        title="Files"
+        title={<FormattedMessage 
+          id="classFilles.files"
+          defaultMessage="Files"
+        />}
         titleIcon={<FontIcon className="icon-orange">folder</FontIcon>}>
         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
           {classFiles[id].files.length > 0 ?
@@ -20,7 +24,10 @@ export default class ClassFiles extends Component {
             files={classFiles[id].files}
             path={classFiles[id].path}
             onClick={onFileClick} /> :
-          <Alert text="No files attached" type="transparent"/>
+          <Alert text={<FormattedMessage 
+            id="classFilles.noFiles"
+            defaultMessage="No files attached"
+          />} type="transparent"/>
           }
         </ReactCSSTransitionGroup>
       </Box>

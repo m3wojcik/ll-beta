@@ -4,15 +4,29 @@ import { dynamicSort } from "../../actions/Functions";
 import CircleProgressBar from '../helpers/CircleProgressBar';
 import ChartContainer from '../helpers/ChartContainer';
 import BarChartWrapper from '../helpers/BarChartWrapper';
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
-export default class MarksClassByColumn extends Component {
-  render(){
-    const { marks, gradeType, title, weight, userValue } = this.props;
+const messages = defineMessages({
+  yourScore: {
+    id: 'marksClassByColumn.yourScore',
+    defaultMessage: 'Your score'
+  },
+  others: {
+    id: 'marksClassByColumn.others',
+    defaultMessage: 'Others'
+  },
+  classAverage: {
+    id: 'marksClassByColumn.classAverage',
+    defaultMessage: 'Class average'
+  }
+})
+
+const MarksClassByColumn = ({ intl, marks, gradeType, title, weight, userValue }) =>{
     const sortedMarks = marks.sort(dynamicSort("value"))
     const legend = [
-      {key: 'Your score', value:1},
-      {key: 'Others', value:2},
-      {key: 'Class average', value:3}
+      {key: intl.formatMessage(messages.yourScore), value:1},
+      {key: intl.formatMessage(messages.others), value:2},
+      {key: intl.formatMessage(messages.classAverage), value:3}
     ];
     const legendConfig = [
       {color: '#2185D0'},
@@ -63,9 +77,9 @@ export default class MarksClassByColumn extends Component {
       <Legend data={legend} dataId={'key'} horizontal config={legendConfig}  />
       </ChartContainer>
     )
-  }
 }
 MarksClassByColumn.propTypes = {
   marks: React.PropTypes.array.isRequired,
   gradeType: React.PropTypes.string
 }
+export default injectIntl(MarksClassByColumn)

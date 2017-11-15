@@ -14,7 +14,6 @@ const BoxTitle = ({title, titleIcon, className}) => {
     )
   }
 BoxTitle.propTypes = {
-  title: React.PropTypes.string,
   className: React.PropTypes.string,
 }
 export default BoxTitle

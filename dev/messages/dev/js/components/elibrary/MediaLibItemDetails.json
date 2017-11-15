@@ -1,0 +1,34 @@
+[
+  {
+    "id": "mediaLibItemDetails.reservationFrom",
+    "defaultMessage": "Reservation from"
+  },
+  {
+    "id": "mediaLibItemDetails.reservationTo",
+    "defaultMessage": "Reservation to"
+  },
+  {
+    "id": "mediaLibItemDetails.borrowedFrom",
+    "defaultMessage": "Borrowed from"
+  },
+  {
+    "id": "mediaLibItemDetails.returnDate",
+    "defaultMessage": "Return date"
+  },
+  {
+    "id": "mediaLibItemDetails.availableUnits",
+    "defaultMessage": "Available units"
+  },
+  {
+    "id": "mediaLibItemDetails.department",
+    "defaultMessage": "Department"
+  },
+  {
+    "id": "mediaLibItemDetails.deposit",
+    "defaultMessage": "deposit"
+  },
+  {
+    "id": "mediaLibItemDetails.bookingPeriod",
+    "defaultMessage": "Booking period"
+  }
+]

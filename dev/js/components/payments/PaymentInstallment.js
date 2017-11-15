@@ -5,11 +5,26 @@ import Label from '../helpers/Label';
 import PaymentInstallmentDetails from './PaymentInstallmentDetails';
 import PaymentInstallmentStatus from './PaymentInstallmentStatus';
 import { getDaysDiference } from '../../actions/Functions'
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
-export default class PaymentInstallment extends Component {
 
-  render(){
-    const { installment } = this.props;
+const messages = defineMessages({
+  amoutPaid: {
+    id: 'paymentInstallment.amoutPaid',
+    defaultMessage: "Amount paid: "
+  },
+  amountLeftToPay: {
+    id: 'paymentInstallment.amountLeftToPay',
+    defaultMessage:"Amount left pay: "
+  },
+  amountToPay: {
+    id: 'paymentInstallment.amountToPay',
+    defaultMessage: "Amount to pay: "
+  }
+})
+
+const PaymentInstallment = ({ intl, installment }) =>{
+
     const today = new Date();
     const amountPaid = installment.paid_value
     const leftToPay = installment.value - installment.paid_value
@@ -18,16 +33,16 @@ export default class PaymentInstallment extends Component {
     let props;
     if(leftToPay <= 0 && installment.value > 0){
       props = {
-        primaryText: "Amount paid: " + amountPaid
+        primaryText: intl.formatMessage(messages.amountPaid) + amountPaid
       }
       secondaryText = <CustomDate date={installment.paid_at} format="day" />
     }else if(amountPaid < amountToPay){
       props = {
-        primaryText: "Amount left pay: " + leftToPay
+        primaryText: intl.formatMessage(messages.amountLeftToPay) + leftToPay
       }
     }else{
       props = {
-        primaryText: "Amount to pay: " + amountToPay
+        primaryText: intl.formatMessage(messages.amountToPay) + amountToPay
       }
       
     }
@@ -41,8 +56,8 @@ export default class PaymentInstallment extends Component {
         secondaryText={secondaryText}
       />
     )
-  }
 }
 PaymentInstallment.propTypes = {
   installment: React.PropTypes.object.isRequired
 }
+export default injectIntl(PaymentInstallment)

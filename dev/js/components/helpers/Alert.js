@@ -15,11 +15,10 @@ const Alert = ({text, type}) =>{
     }
     return(
         text ?
-      <div className={classProps} dangerouslySetInnerHTML={{__html:text}} /> : null
+      <div className={classProps}>{text}</div> : null
     )
 }
 Alert.propTypes = {
-  type: React.PropTypes.string.isRequired,
-  text: React.PropTypes.string
+  type: React.PropTypes.string.isRequired
 }
 export default Alert

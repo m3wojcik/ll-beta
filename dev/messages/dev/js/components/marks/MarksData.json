@@ -1,0 +1,10 @@
+[
+  {
+    "id": "marksData.averagePercentResult",
+    "defaultMessage": "Average percent result"
+  },
+  {
+    "id": "marksData.averageResult",
+    "defaultMessage": "Average result"
+  }
+]

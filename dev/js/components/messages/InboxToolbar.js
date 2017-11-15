@@ -6,17 +6,17 @@ export default class Inboxtoolbar extends Component {
     return(
       <ul className="card-list">
         <li>
-          <Button raised primary label="Create" onClick={this.props.onCreateClick}>
+          <Button raised primary onClick={this.props.onCreateClick}>
             create
           </Button>
         </li>
         <li>
-          <Button flat label="Sent" className="text-muted" onClick={this.props.onSendClick}>
+          <Button flat className="text-muted" onClick={this.props.onSendClick}>
             send
           </Button>
         </li>
         <li>
-          <Button flat label="Trash" className="text-muted" onClick={this.props.onTrashClick}>
+          <Button flat className="text-muted" onClick={this.props.onTrashClick}>
             delete
           </Button>
         </li>

@@ -14,12 +14,16 @@ import Box from '../helpers/Box';
 import BoxTitle from '../helpers/BoxTitle';
 import MediaLibItemDetails from './../elibrary/MediaLibItemDetails'
 import MediaLibItemActions from './../elibrary/MediaLibItemActions'
-import {FormattedDate} from 'react-intl';
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
+const messages = defineMessages({
+  details: {
+    id: 'payments.details',
+    defaultMessage: "Details"
+  }
+})
 
-export default class Payments extends Component {
-  render(){
-    const { groups } = this.props;
+const Payments = ({ intl, groups } ) => {
     const mappedGroups = groups.map(function(group){
       let output = null
       if(group.type == "standard"){
@@ -37,7 +41,7 @@ export default class Payments extends Component {
           <Header header={group.name} />
           <Box className="no-flex no-padding">
             <BoxTitle
-              title="Details"
+              title={intl.formatMessage(messages.details)}
               titleIcon={<FontIcon className="icon-olive">equalizer</FontIcon>}
             />
             <PaymentLessons lessons={group.lessons} />
@@ -52,8 +56,8 @@ export default class Payments extends Component {
         </ul>
 
     )
-  }
 }
 Payments.propTypes = {
   groups: React.PropTypes.array.isRequired
 }
+export default injectIntl(Payments)

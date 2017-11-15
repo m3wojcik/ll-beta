@@ -1,0 +1,14 @@
+[
+  {
+    "id": "marksClassByColumn.yourScore",
+    "defaultMessage": "Your score"
+  },
+  {
+    "id": "marksClassByColumn.others",
+    "defaultMessage": "Others"
+  },
+  {
+    "id": "marksClassByColumn.classAverage",
+    "defaultMessage": "Class average"
+  }
+]

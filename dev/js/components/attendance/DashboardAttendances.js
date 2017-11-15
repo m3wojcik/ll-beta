@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import { FormattedMessage } from 'react-intl';
 import FontIcon from 'react-md/lib/FontIcons';
 import AttendanceStatuses from './AttendanceStatuses'
 import Loader from '../helpers/Loader'
@@ -26,7 +27,10 @@ const DashboardAttendances = ({ dashboardAttendances, fetched }) => {
     return(
       <Box
         className="no-flex no-padding"
-        title="New Attendances"
+        title={<FormattedMessage 
+          id="dashboardAttendances.newAttendances"
+          defaultMessage="New Attendances"
+        />}
         titleIcon={<FontIcon className="icon-olive">done_all</FontIcon>}>
         <ReactCSSTransitionGroup transitionName="fade" transitionEnterTimeout={500} transitionLeaveTimeout={500} >
           {output}
