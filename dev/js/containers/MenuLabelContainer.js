@@ -11,8 +11,11 @@ import Loader from './../components/helpers/Loader';
 })
 export default class MenuLabelContainer extends Component {
   componentDidMount(){
-    const {type} = this.props
-    this.props.dispatch(fetchMenuNofitications({type: type}));
+    const {type, menu} = this.props  
+    if(!menu[type].fetched){
+      console.log('menu',type, menu[type])
+      this.props.dispatch(fetchMenuNofitications({type: type}));
+    }
   }
   render(){
     const {type, menu} = this.props

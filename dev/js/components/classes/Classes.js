@@ -9,7 +9,7 @@ import ListHeader from './../helpers/ListHeader';
 export default class Classes extends Component {
   componentDidMount(){
     const mainToolbar = document.getElementsByClassName("main-toolbar")[0];
-    const offsetHeight = mainToolbar.offsetHeight + 72;
+    const offsetHeight = mainToolbar.offsetHeight + 47;
     if(document.getElementById('this-week')){
       let offsetTop = document.getElementById('this-week').offsetTop - offsetHeight
       window.scrollTo( 0, offsetTop );

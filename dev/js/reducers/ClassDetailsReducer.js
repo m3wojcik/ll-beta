@@ -49,7 +49,7 @@ export default function reducer(state={
 
         let newLessonObjects = {...state.lessonObjects};
         newLessonObjects[action.params.lesson_id] = {
-          objects: action.payload,
+          objects: action.payload.details,
           fetching: false,
           fetched: true
         }

@@ -35,7 +35,7 @@ export default class ClassDetailsList extends Component {
     return(
       <div className="class-details">
         <div class="header">
-          <FormattedMessage id="dashboardClasssDetails.details"defaultMessage="Details" />
+          <FormattedMessage id="classDetailsList.details"defaultMessage="Details" />
         </div>
         <ul>
           {classDetails}

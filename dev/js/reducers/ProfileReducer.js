@@ -8,6 +8,23 @@ export default function reducer(state={
     fetched: false,
     error: null,
   },
+  changePassword: {
+    fetching: false,
+    fetched: false,
+    error: null,
+  },
+  studentHistory:{
+    history: null,
+    fetching: false,
+    fetched: false,
+    error: null,
+  },
+  avatar:{
+    avatar: null,
+    fetching: false,
+    fetched: false,
+    error: null,
+  },
   avatars: {
     avatars:[],
     fetching: false,
@@ -46,6 +63,21 @@ export default function reducer(state={
           }
         }
       }
+      case "SAVE_PASSWORD": {
+        return {...state, changePassword: {fetching: true, fetched:false}}
+      }
+      case "SAVE_PASSWORD_REJECTED": {
+        return {...state, changePassword: {fetching: false, error: action.payload}}
+      }
+      case "SAVE_PASSWORD_FULFILLED": {
+        return {
+          ...state,
+          changePassword: {
+            fetching: false,
+            fetched: true
+          }
+        }
+      }
       case "FETCH_AVATARS": {
         return {...state, avatars: {fetching: true, fetched:false}}
       }
@@ -57,6 +89,40 @@ export default function reducer(state={
           ...state,
           avatars: {
             avatars: action.payload,
+            fetching: false,
+            fetched: true
+          }
+        }
+      }
+
+      case "FETCH_AVATAR": {
+        return {...state, avatar: {fetching: true, fetched:false}}
+      }
+      case "FETCH_AVATAR_REJECTED": {
+        return {...state, avatar: {fetching: false, error: action.payload}}
+      }
+      case "FETCH_AVATAR_FULFILLED": {
+        return {
+          ...state,
+          avatar: {
+            avatar: action.payload,
+            fetching: false,
+            fetched: true
+          }
+        }
+      }
+
+      case "FETCH_STUDENT_HISTORY": {
+        return {...state, studentHistory: {fetching: true, fetched:false}}
+      }
+      case "FETCH_STUDENT_HISTORY_REJECTED": {
+        return {...state, studentHistory: {fetching: false, error: action.payload}}
+      }
+      case "FETCH_STUDENT_HISTORY_FULFILLED": {
+        return {
+          ...state,
+          studentHistory: {
+            history: action.payload,
             fetching: false,
             fetched: true
           }

@@ -12,10 +12,6 @@ const messages = defineMessages({
   secretaryAdd: {
     id: 'newsWall.secretaryAdd',
     defaultMessage: 'Secretary add news'
-  },
-  newStatus: {
-    id: 'attendanceWall.newStatus',
-    defaultMessage: 'New status'
   }
 })
 

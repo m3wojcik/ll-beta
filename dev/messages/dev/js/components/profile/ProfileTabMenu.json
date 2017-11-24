@@ -1,0 +1,22 @@
+[
+  {
+    "id": "ProfileTabMenu.profile",
+    "defaultMessage": "Profile"
+  },
+  {
+    "id": "ProfileTabMenu.editProfile",
+    "defaultMessage": "Edit profile"
+  },
+  {
+    "id": "ProfileTabMenu.changePassword",
+    "defaultMessage": "Change password"
+  },
+  {
+    "id": "ProfileTabMenu.loginHistory",
+    "defaultMessage": "Login history"
+  },
+  {
+    "id": "ProfileTabMenu.studentHistory",
+    "defaultMessage": "Student history"
+  }
+]

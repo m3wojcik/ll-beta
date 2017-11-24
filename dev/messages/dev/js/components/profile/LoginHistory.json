@@ -1,0 +1,22 @@
+[
+  {
+    "id": "loginHistory.loggedSuccessfully",
+    "defaultMessage": "Logged successfully"
+  },
+  {
+    "id": "loginHistory.loginError",
+    "defaultMessage": "Login error"
+  },
+  {
+    "id": "loginHistory.date",
+    "defaultMessage": "Date"
+  },
+  {
+    "id": "loginHistory.ip",
+    "defaultMessage": "Ip"
+  },
+  {
+    "id": "loginHistory.status",
+    "defaultMessage": "Status"
+  }
+]

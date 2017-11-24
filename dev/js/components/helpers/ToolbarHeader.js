@@ -19,7 +19,8 @@ const messages = defineMessages({
   profile: {id: "toolbarHeader.headerProfile", defaultMessage: "Profile"},
   editProfile: {id: "toolbarHeader.headerEditProfile", defaultMessage: "Edit profile"},
   changePassword: {id: "toolbarHeader.headerChangePassword", defaultMessage: "Change password"},
-  loginHistory: {id: "toolbarHeader.headerLoginHistory", defaultMessage: "Login history"}
+  loginHistory: {id: "toolbarHeader.headerLoginHistory", defaultMessage: "Login history"},
+  studentHistory: {id: "toolbarHeader.headerStudentHistory", defaultMessage: "Student history"}
 })
 
 const ToolbarHeader = ({header, intl}) =>{
@@ -73,8 +74,11 @@ const ToolbarHeader = ({header, intl}) =>{
     case toolbarHeaders.changePassword:
       message = intl.formatMessage(messages.changePassword)
       break;
-      case toolbarHeaders.loginHistory:
+    case toolbarHeaders.loginHistory:
       message = intl.formatMessage(messages.loginHistory)
+      break;
+    case toolbarHeaders.studentHistory:
+      message = intl.formatMessage(messages.studentHistory)
       break;
     default:
       message = header

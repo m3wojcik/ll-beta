@@ -1,0 +1,18 @@
+[
+  {
+    "id": "LoginHistoryContainer.profile",
+    "defaultMessage": "Profile"
+  },
+  {
+    "id": "LoginHistoryContainer.editProfile",
+    "defaultMessage": "Edit profile"
+  },
+  {
+    "id": "LoginHistoryContainer.changePassword",
+    "defaultMessage": "Change password"
+  },
+  {
+    "id": "LoginHistoryContainer.loginHistory",
+    "defaultMessage": "Login history"
+  }
+]

@@ -28,7 +28,6 @@ export default class Canvas extends Component {
   componentWillReceiveProps(next){
     const {src} = this.props
     if(src != next.src){
-      console.log('newInMarks');
       this.resetSlider()
       this.updateCanvas(next.src)
     }
@@ -42,9 +41,10 @@ export default class Canvas extends Component {
     }
   }
   updateCanvas = (src)=> {
-    const {w, h} = this.props
+    const {w, h, onCanvasUpdate} = this.props
     const ctx = this.refs.canvas.getContext('2d');
     var image = new Image();
+    image.crossOrigin = '*';
     let drawnWidth = w,
         drawnHeight = h,
         minWidth = w,
@@ -81,8 +81,10 @@ export default class Canvas extends Component {
       this.drawImage(startPosX, startPosY, drawnWidth, drawnHeight)
 
       //TODO UPLOAD zdjęcia
-      // var dataurl = this.refs.canvas.toDataURL("image/png");
-      // console.log('dataurl', dataurl);
+      console.log('this.refs.canvas', this.refs.canvas);
+      var dataurl = this.refs.canvas.toDataURL("image/png");
+      onCanvasUpdate(dataurl)
+      //console.log('dataurl', dataurl);
     }.bind(this)
   }
   resetSlider = () =>{

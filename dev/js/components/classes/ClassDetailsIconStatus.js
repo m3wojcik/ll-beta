@@ -7,27 +7,27 @@ import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 const messages = defineMessages({
   attendanceChecked: {
-    id: 'classDetailsStatus.AttendanceChecked',
+    id: 'classDetailsIconStatus.AttendanceChecked',
     defaultMessage: 'Attendance checked'
   },
   homeworkChecked: {
-    id: 'classDetailsStatus.HomeworkChecked',
+    id: 'classDetailsIconStatus.HomeworkChecked',
     defaultMessage: 'Homework checked'
   },
   filledIn: {
-    id: 'classDetailsStatus.FilledIn',
+    id: 'classDetailsIconStatus.FilledIn',
     defaultMessage: 'Filled in'
   },
   online: {
-    id: 'classDetailsStatus.Online',
+    id: 'classDetailsIconStatus.Online',
     defaultMessage: 'Online'
   },
   filesAdded: {
-    id: 'classDetailsStatus.FilesAdded',
+    id: 'classDetailsIconStatus.FilesAdded',
     defaultMessage: 'Files added'
   },
   testsAdded: {
-    id: 'classDetailsStatus.TestsAdded',
+    id: 'classDetailsIconStatus.TestsAdded',
     defaultMessage: 'Tests added'
   }
 })

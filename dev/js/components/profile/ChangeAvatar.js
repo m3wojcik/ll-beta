@@ -8,7 +8,7 @@ import Dropzone from 'react-dropzone'
 export default class ChangeAvatar extends Component {
 
   render(){
-    const { avatars, selectedAvatar, avatarType, onCancelClick, onSaveClick, onChangeAvatar, onDrop } = this.props
+    const { avatars, selectedAvatar, avatarType, onCanvasUpdate, onCancelClick, onSaveClick, onChangeAvatar, onDrop } = this.props
     const mappedAvatars = []
     let avatarSrc = avatars[0].src;
     if(selectedAvatar != null){
@@ -32,8 +32,7 @@ export default class ChangeAvatar extends Component {
       <div className="">
         <div className="md-grid">
           <div className="md-cell md-cell--6">
-            <Canvas src={avatarSrc} w={200} h={200}/>
-
+            <Canvas src={avatarSrc} w={200} h={200} onCanvasUpdate={onCanvasUpdate} />
           </div>
           <div className="md-cell md-cell--6">
             <Dropzone
@@ -51,8 +50,8 @@ export default class ChangeAvatar extends Component {
         </div>
         <div className="flex-center flex-wrap">
           <div className="width-100 text-center with-padding">
-              <Button onClick={onCancelClick} raised label="Cancel" />
-              <Button onClick={onSaveClick} primary raised label="Save" />
+              <Button onClick={onCancelClick} raised >Cancel</Button>
+              <Button onClick={onSaveClick} primary raised >Save</Button>
           </div>
         </div>
       </div>

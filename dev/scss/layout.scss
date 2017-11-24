@@ -299,6 +299,17 @@ strong{
   padding: 2rem 2rem 1rem;
   margin: 0 auto 3rem;
   border: 1px solid #e8e8e8;
+  .tab-pane-title{
+    font-size: 1.2em;
+    padding-bottom: 10px;
+    font-weight: 700;
+    color: $md-blue-grey-700;
+    .md-icon{
+      vertical-align: top;
+      font-size: 24px;
+      margin-right: 5px;
+    }
+  }
 }
 /*user photo
 ------------------------------------------------------------------------------*/
@@ -847,6 +858,9 @@ li.test-page{
   .box-title{
     padding: 16px;
   }
+}
+.box.no-shadow{
+  box-shadow: none;
 }
 /*lesson object
 ------------------------------------------------------------------------------*/

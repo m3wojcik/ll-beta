@@ -1,51 +1,71 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { SubmissionError } from 'redux-form'
-import { fetchUserData, saveUserData } from "../../actions/ProfileActions";
+import { showSnack } from 'react-redux-snackbar'
+import { fetchUserData, changePassword } from "../../actions/ProfileActions";
 import Content from '../../components/helpers/Content'
 import Loader from '../../components/helpers/Loader'
-import EditProfile from '../../components/profile/EditProfile';
-import CustomTabs from '../../components/helpers/CustomTabs';
+import ChangePassword from '../../components/profile/ChangePassword';
+import ProfileTabMenu from '../../components/profile/ProfileTabMenu';
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 @connect((store) => {
    return {
-    userData: store.profile.userData,
-    saveUserData: store.profile.saveUserData,
-    form: store.form.EditProfile,
-    fetched: store.profile.fetched,
-    fetching: store.profile.fetching
+    changePassword: store.profile.changePassword,
   };
 })
-export default class ChangePasswordContainer extends Component {
-  componentDidMount(){
-    this.props.dispatch(fetchUserData());
+class ChangePasswordContainer extends Component {
+  componentWillReceiveProps(nextProps){
+    const { intl, changePassword} = this.props;
+
+    const messages = defineMessages({
+      wrongPassword: {
+        id: 'changePasswordContainer.wrongPassword',
+        defaultMessage: 'Wrong old password'
+      },
+      passwordsMustMatch: {
+        id: 'changePasswordContainer.passwordsMustMatch',
+        defaultMessage: "Passwords don't match"
+      },
+      samePassword: {
+        id: 'changePasswordContainer.samePassword',
+        defaultMessage: "New password can't be the same as old"
+      }
+    })
+    
+    if(nextProps.changePassword.error && nextProps.changePassword.error.response){
+      if(changePassword.error != nextProps.changePassword.error){
+        const code =  nextProps.changePassword.error.response.data.error.code
+        if(code == 'wrong_password'){
+          this.props.dispatch(showSnack(code, {label: intl.formatMessage(messages.wrongPassword), timeout: 3000}));
+        }else if(code == 'passwords_must_match'){
+          this.props.dispatch(showSnack(code, {label: intl.formatMessage(messages.passwordsMustMatch), timeout: 3000}));
+        }else if(code == 'same_password'){
+          this.props.dispatch(showSnack(code, {label: intl.formatMessage(messages.samePassword), timeout: 3000}));
+        }
+      }
+    }
   }
   handleSubmit = (values) =>{
     const params = {
-      email: values.email,
-      phone: values.phone
+      old_password: values.oldPass,
+      new_password: values.newPass,
+      new_password2: values.newPass2,
     }
+    console.log('params', params);
     // throw new SubmissionError({ email: 'Invalid email address', _error: 'Update profile failed!' })
-    this.props.dispatch(saveUserData(params));
+    this.props.dispatch(changePassword(params));
   }
   render(){
-    const { fetched, userData, form, saveUserData } = this.props;
-    const tabs = [
-      {"label": "Profile", "link": "profile", "active": false},
-      {"label": "Edit profile", "link": "profile/edit", "active": true},
-      {"label": "Change password", "link": "profile/changePassword", "active": false},
-      {"label": "Login history", "link": "profile/loginHistory", "active": false},
-    ]
-    if(!fetched){
-      return( <Loader full />)
-    }
+    const { changePassword } = this.props;
     return(
       <Content>
-          <CustomTabs tabs={tabs} />
+          <ProfileTabMenu activeIndex={2} />
           <section className="tab-pane">
-            <EditProfile userData={userData} onSubmit={this.handleSubmit} saveUserData={saveUserData} />
+            <ChangePassword changePassword={changePassword} onSubmit={this.handleSubmit} />
           </section>
       </Content>
     )
   }
 }
+export default injectIntl(ChangePasswordContainer)

@@ -123,6 +123,9 @@ export function getAppSettings(pathname){
     case "profile/loginHistory":
       settings = {header: toolbarHeaders.loginHistory}
       break;
+    case "profile/studentHistory":
+      settings = {header: toolbarHeaders.studentHistory}
+      break;
     case "inbox":
       settings = {header: toolbarHeaders.inbox, hasTabs:true, searchBtn: true}
       break;

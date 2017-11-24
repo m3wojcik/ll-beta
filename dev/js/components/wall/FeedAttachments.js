@@ -6,7 +6,7 @@ import {injectIntl, formatMessage, defineMessages, onReplayClick} from 'react-in
 
 const messages = defineMessages({
   reply: {
-    id: 'messageWallContent.Reply',
+    id: 'FeedAttachments.Reply',
     defaultMessage: 'Reply'
   }
 })

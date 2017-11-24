@@ -1,0 +1,26 @@
+[
+  {
+    "id": "profile.firstName",
+    "defaultMessage": "First name"
+  },
+  {
+    "id": "profile.lastName",
+    "defaultMessage": "Last Name"
+  },
+  {
+    "id": "profile.login",
+    "defaultMessage": "Login"
+  },
+  {
+    "id": "profile.phone",
+    "defaultMessage": "Phone"
+  },
+  {
+    "id": "profile.email",
+    "defaultMessage": "E-mail"
+  },
+  {
+    "id": "profile.avatar",
+    "defaultMessage": "Avatar"
+  }
+]

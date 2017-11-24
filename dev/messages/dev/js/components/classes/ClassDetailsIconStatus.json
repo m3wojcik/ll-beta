@@ -1,26 +1,26 @@
 [
   {
-    "id": "classDetailsStatus.AttendanceChecked",
+    "id": "classDetailsIconStatus.AttendanceChecked",
     "defaultMessage": "Attendance checked"
   },
   {
-    "id": "classDetailsStatus.HomeworkChecked",
+    "id": "classDetailsIconStatus.HomeworkChecked",
     "defaultMessage": "Homework checked"
   },
   {
-    "id": "classDetailsStatus.FilledIn",
+    "id": "classDetailsIconStatus.FilledIn",
     "defaultMessage": "Filled in"
   },
   {
-    "id": "classDetailsStatus.Online",
+    "id": "classDetailsIconStatus.Online",
     "defaultMessage": "Online"
   },
   {
-    "id": "classDetailsStatus.FilesAdded",
+    "id": "classDetailsIconStatus.FilesAdded",
     "defaultMessage": "Files added"
   },
   {
-    "id": "classDetailsStatus.TestsAdded",
+    "id": "classDetailsIconStatus.TestsAdded",
     "defaultMessage": "Tests added"
   }
 ]

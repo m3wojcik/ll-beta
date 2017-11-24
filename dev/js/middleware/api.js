@@ -1,14 +1,21 @@
 import React from 'react';
 import axios from 'axios';
 import qs  from "qs";
-import {push} from 'react-router-redux';
-
-import {browserHistory} from 'react-router'
-
-export const BASE_URL = 'https://test.langlion.com/api'
-//const BASE_URL = 'http://api.local/'
+export const BASE_URL = localStorage.getItem('instance_url')+'/api';
 
 function callApi(endpoint, authenticated, params, method) {
+
+  //  var xhr = new XMLHttpRequest();
+  //  xhr.onreadystatechange = function() {
+  //      if (xhr.readyState == XMLHttpRequest.DONE) {
+  //       console.warn(xhr.responseText);
+  //      }
+  //  }
+  //  xhr.open('GET', 'https://test.langlion.com/api/appData?access_token=80f8170cd0bdcb09440a97673246c1106b8e9bbd', true); 
+  //  xhr.send(null);
+
+   
+
   let access_token = localStorage.getItem('access_token') || null
   let refresh_token = localStorage.getItem('refresh_token') || null
   let config = {}
@@ -25,7 +32,7 @@ function callApi(endpoint, authenticated, params, method) {
   }
   axios_config = {
     url: endpoint,
-    timeout: 3000,
+    timeout: 30000,
     baseURL: BASE_URL,
     method: method
   }
@@ -34,7 +41,7 @@ function callApi(endpoint, authenticated, params, method) {
       ...params,
       ...config
     }
-  }else{
+  }else if(method == 'post'){
     axios_config.data = qs.stringify({
         ...params,
         ...config
@@ -76,7 +83,10 @@ export default store => next => action => {
     },
     error => {
       console.warn("error", error)
-      
+      let access_token = localStorage.getItem('access_token') || null
+      let refresh_token = localStorage.getItem('refresh_token') || null
+      let instance_url = localStorage.getItem('instance_url') || null
+      console.log('storage',access_token,refresh_token,instance_url)
       next({type: errorType, payload:error})
       var errorMsg;    
       if(error.response.data.error){
@@ -88,14 +98,9 @@ export default store => next => action => {
       }else{
         errorMsg = error.message
       }     
-      next(
-        {type: "RRS_SHOW_SNACK", payload: {id: "error", data: {label: errorMsg, button: {label: "Dismiss"}}}}
-      )
-      
-       if(error.response && error.response.status == 401){
-        //browserHistory.replace({pathname:'login'})
-        //   next({type: "@@router/LOCATION_CHANGE", payload:{action: "POP", pathname: "login", hash:""}})
-       }
+      // next(
+      //   {type: "RRS_SHOW_SNACK", payload: {id: "error", data: {label: errorMsg, button: {label: "Dismiss"}}}}
+      // )
     }
   )
 }

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "editProfile.firstName",
+    "defaultMessage": "First name"
+  },
+  {
+    "id": "editProfile.lastName",
+    "defaultMessage": "Last Name"
+  },
+  {
+    "id": "editProfile.login",
+    "defaultMessage": "Login"
+  },
+  {
+    "id": "editProfile.phone",
+    "defaultMessage": "Phone"
+  },
+  {
+    "id": "editProfile.email",
+    "defaultMessage": "E-mail"
+  },
+  {
+    "id": "editProfile.avatar",
+    "defaultMessage": "Avatar"
+  },
+  {
+    "id": "editProfile.changeAvatar",
+    "defaultMessage": "Change avatar"
+  },
+  {
+    "id": "editProfile.save",
+    "defaultMessage": "save"
+  }
+]

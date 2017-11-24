@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
+
 import LayoutContainer from './LayoutContainer';
 import Loader from '../components/helpers/Loader'
 import Snackbar from 'react-md/lib/Snackbars';
@@ -34,18 +35,17 @@ export default class AppLayoutContainer extends Component {
       this.props.dispatch(setAppSettings(settings));
     }
     componentWillReceiveProps(nextProps){
-      const { routing, error } = this.props;
+      const { routing, error, appData } = this.props;
       const currentPath = getCleanPath(routing.locationBeforeTransitions.pathname);
       const nextPath = getCleanPath(nextProps.routing.locationBeforeTransitions.pathname);
       if(currentPath != nextPath){
         let settings = getAppSettings(nextPath);
         this.props.dispatch(setAppSettings(settings));
-      }
-      
+      } 
       if(nextProps.appData.error && nextProps.appData.error.response){
-        if(error != nextProps.appData.error){
-          const status =  nextProps.appData.error.response.status
-          if(status == 401){
+        if(appData.error != nextProps.appData.error){
+          const code =  nextProps.appData.error.response.data.error
+          if(code == 'invalid_token'){  
             this.props.dispatch(push('login'))
           }
         }

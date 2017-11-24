@@ -21,7 +21,9 @@ import TestContainer from './containers/tests/TestContainer';
 import TestViewContainer from './containers/tests/TestViewContainer';
 import ProfileContainer from './containers/profile/ProfileContainer';
 import EditProfileContainer from './containers/profile/EditProfileContainer';
+import ChangePasswordContainer from './containers/profile/ChangePasswordContainer';
 import LoginHistoryContainer from './containers/profile/LoginHistoryContainer';
+import StudentHistoryContainer from './containers/profile/StudentHistoryContainer';
 import ElibraryContainer from './containers/library/ElibraryContainer';
 import SurveysContainer from './containers/surveys/SurveysContainer';
 import SurveyContainer from './containers/surveys/SurveyContainer';
@@ -53,7 +55,9 @@ export default (
           <IndexRedirect to="view" />
           <Route path="view" component={ProfileContainer} />
           <Route path="edit" component={EditProfileContainer} />
+          <Route path="changePassword" component={ChangePasswordContainer} />
           <Route path="loginHistory" component={LoginHistoryContainer} />
+          <Route path="studentHistory" component={StudentHistoryContainer} />
         </Route>
         <Route path="elibrary">
           <IndexRedirect to="list" />

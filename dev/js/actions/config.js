@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export const instance = axios.create({
+  //baseURL: 'https://test.langlion.com/api'
   baseURL: 'http://api.local/'
 });
 export const errorMessage = {
@@ -33,6 +34,7 @@ export const toolbarHeaders = {
   "editProfile": "EDIT_PROFILE",
   "changePassword": "CHANGE_PASWORD",
   "loginHistory": "LOGIN_HISTORY",
+  "studentHistory": "STUDENT_HISTORY",
   "inbox": "INBOX",
   "sent": "SENT",
   "trash": "TRASH",
@@ -40,9 +42,9 @@ export const toolbarHeaders = {
 
 }
 export const avatars = [
-  {id: 0, src: "http://langlion.com/pl/wp-content/uploads/2017/07/test.png"},
-  {id: 1, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av01.png"},
-  {id: 2, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av02.png"},
-  {id: 3, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av03.png"},
-  {id: 4, src: "http://langlion.com/pl/wp-content/uploads/2017/06/av04.png"}
+  {id: 0, src: "http://langlion.www/wp-content/uploads/test.png"},
+  {id: 1, src: "http://langlion.www/wp-content/uploads/av01.png"},
+  {id: 2, src: "http://langlion.www/wp-content/uploads/av02.png"},
+  {id: 3, src: "http://langlion.www/wp-content/uploads/av03.png"},
+  {id: 4, src: "http://langlion.www/wp-content/uploads/av04.png"}
 ]

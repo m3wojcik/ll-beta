@@ -4,7 +4,7 @@ import {push} from 'react-router-redux';
 
 import { CALL_API } from '../middleware/api'
 //import cookie from 'react-cookie';
-const API_URL = 'https://test.langlion.com/api';
+const API_URL = localStorage.getItem('instance_url')+'/api';
 const CLIENT_ROOT_URL = '';
 
 export function errorHandler(dispatch, error, type) {
@@ -76,23 +76,7 @@ export function loginUser(login, password) {
       }
     }
   }
-  // export function getTodaysClass2(params) {
-  //   return function(dispatch) {
-  //     dispatch({type: FETCH_APP_DATA, payload: true});
-  //     instance.get("?q=getAppData")
-  //       .then((response) => {
-  //     //       console.log("response.data");
-  //     // console.log(response.status);
-  //     // console.log(response.statusText);
-  //     // console.log(response.headers);
-  //     // console.log(response.config);
-  //         dispatch({type: FETCH_APP_DATA_FULFILLED, payload: response.data});
-  //       })
-  //       .catch((err) => {
-  //         dispatch({type: FETCH_APP_DATA_REJECTED, payload: err})
-  //       })
-  //   }
-  // }
+
   export function registerUser({ email, firstName, lastName, password }) {
   return function(dispatch) {
     axios.post(`${API_URL}/auth/register`, { email, firstName, lastName, password })

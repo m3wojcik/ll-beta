@@ -6,7 +6,6 @@ import ListItem from 'react-md/lib/Lists/ListItem';
 import FontIcon from 'react-md/lib/FontIcons';
 import { FormattedMessage } from 'react-intl';
 import MenuLabelContainer from './../containers/MenuLabelContainer'
-import {fetchMenuNofitications} from '../actions/AppActions'
 
 import Label from './helpers/Label';
 
@@ -18,9 +17,6 @@ import Label from './helpers/Label';
   };
 })
 export default class MainNavigation extends Component {
-    componentDidMount(){
-      this.props.dispatch(fetchMenuNofitications({type: "messages"}));
-    }
     render(){
       const {appData , notifications, menu} = this.props;
       return(

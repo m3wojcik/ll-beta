@@ -66,5 +66,9 @@
   {
     "id": "toolbarHeader.headerLoginHistory",
     "defaultMessage": "Login history"
+  },
+  {
+    "id": "toolbarHeader.headerStudentHistory",
+    "defaultMessage": "Student history"
   }
 ]

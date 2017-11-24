@@ -8,15 +8,49 @@ import FakeFormControl from './../helpers/FakeFormControl';
 import {RenderField} from './../helpers/RenderField'
 import Avatar from './../helpers/Avatar'
 import {email} from './../helpers/Validate'
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 
-class EditProfile extends Component {
-  render(){
-    const { userData, saveUserData, handleSubmit, onChangeAvatarClick } = this.props;
+const messages = defineMessages({
+  firstName: {
+    id: 'editProfile.firstName',
+    defaultMessage: 'First name'
+  },
+  lastName: {
+    id: 'editProfile.lastName',
+    defaultMessage: 'Last Name'
+  },
+  login: {
+    id: 'editProfile.login',
+    defaultMessage: 'Login'
+  },
+  phone: {
+    id: 'editProfile.phone',
+    defaultMessage: 'Phone'
+  },
+  email: {
+    id: 'editProfile.email',
+    defaultMessage: 'E-mail'
+  },
+  avatar: {
+    id: 'editProfile.avatar',
+    defaultMessage: 'Avatar'
+  },
+  changeAvatar: {
+    id: 'editProfile.changeAvatar',
+    defaultMessage: 'Change avatar'
+  },
+  save: {
+    id: 'editProfile.save',
+    defaultMessage: 'save'
+  }
+  
+})
+
+let EditProfile= ({ intl, userData, saveUserData, handleSubmit, onChangeAvatarClick }) => {
     let buttonProps = {
       raised: true,
       primary: true,
-      label: "Save",
       type: "submit"
     }
     if(saveUserData.fetching){
@@ -28,39 +62,38 @@ class EditProfile extends Component {
           <div className="md-grid">
             <div className="md-cell md-cell--6">
               <div className="field">
-                <label>Login</label>
-                <Field placeholder="Login" disabled name="login" component="input" type="text"/>
+                <label>{intl.formatMessage(messages.login)}</label>
+                <Field placeholder={intl.formatMessage(messages.login)} disabled name="login" component="input" type="text"/>
               </div>
               <div className="field">
-                <label>First name</label>
-                <Field placeholder="First name" disabled name="firstname" component="input" type="text"/>
+                <label>{intl.formatMessage(messages.firstName)}</label>
+                <Field placeholder={intl.formatMessage(messages.firstName)} disabled name="firstname" component="input" type="text"/>
               </div>
               <div className="field">
-                <label>Last name</label>
-                <Field placeholder="Last name" disabled name="lastname" component="input" type="text"/>
+                <label>{intl.formatMessage(messages.lastName)}</label>
+                <Field placeholder={intl.formatMessage(messages.lastName)} disabled name="lastname" component="input" type="text"/>
               </div>
               <div className="field">
-                <label>Phone</label>
-                <Field placeholder="Phone" name="phone" component="input" type="text"/>
+                <label>{intl.formatMessage(messages.phone)}</label>
+                <Field placeholder={intl.formatMessage(messages.phone)} name="phone" component="input" type="text"/>
               </div>
               <Field name="email" type="email"
-                component={RenderField} label="Email"
+                component={RenderField} label={intl.formatMessage(messages.email)}
                 validate={email}
               />
             </div>
             <div className="md-cell md-cell--6">
-              <FakeFormControl label="Avatar"
+              <FakeFormControl label={intl.formatMessage(messages.avatar)}
                 value={<Avatar w={200} h={200} src={userData.avatar} />} />
-              <Button onClick={onChangeAvatarClick} raised label="Change avatar" />
+              <Button onClick={onChangeAvatarClick} raised >{intl.formatMessage(messages.changeAvatar)}</Button>
             </div>
           </div>
           <div className="fake-form-actions">
-            <Button {...buttonProps} />
+            <Button {...buttonProps} >{intl.formatMessage(messages.save)}</Button>
           </div>
         </form>
       </div>
     )
-  }
 }
 EditProfile = reduxForm({
   form: 'EditProfile' // a unique name for this form
@@ -72,4 +105,4 @@ EditProfile = connect(
   })              // bind account loading action creator
 )(EditProfile)
 
-export default EditProfile;
+export default injectIntl(EditProfile);
