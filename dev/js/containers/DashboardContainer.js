@@ -22,9 +22,11 @@ import {toggleSurveyDrawer} from '../actions/WallActions'
 export default class DashboardContainer extends Component {
   componentWillReceiveProps(nextProps){
     const {survey} = this.props
-    console.warn(survey, nextProps.survey)
-    if(!survey.id && nextProps.survey.id){
-      this.handleDrawerToggle(true)
+    console.warn('survey',survey, nextProps.survey)
+    if(survey){
+      if(!survey.id && nextProps.survey.id){
+        this.handleDrawerToggle(true)
+      }
     }
   }
   handleFillOut = (path) =>{

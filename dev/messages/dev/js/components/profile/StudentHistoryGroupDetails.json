@@ -1,0 +1,18 @@
+[
+  {
+    "id": "StudentHistoryGroupDetails.attendance",
+    "defaultMessage": "Attendance"
+  },
+  {
+    "id": "StudentHistoryGroupDetails.teachers",
+    "defaultMessage": "Teachers"
+  },
+  {
+    "id": "StudentHistoryGroupDetails.marks",
+    "defaultMessage": "Marks"
+  },
+  {
+    "id": "StudentHistoryGroupDetails.notes",
+    "defaultMessage": "Notes"
+  }
+]

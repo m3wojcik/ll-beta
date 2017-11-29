@@ -2,7 +2,7 @@ import React from 'react';
 
 const Box = ( {children, left, right, bottom, title, subtitle, titleIcon, className, isScrolled, topRight} ) => {
 
-    let output=[], titleOutput = [], bottomOutput= [], topOutput, subtitleOutput;
+    let output=[], titleOutput = [], bottomOutput= [], topOutput, subtitleOutput, isFlex = false;
     let classProps = "box md-paper--1";
     if(className){
       classProps += " "+className;
@@ -29,6 +29,7 @@ const Box = ( {children, left, right, bottom, title, subtitle, titleIcon, classN
       output.push(children)
     }
     if(left){
+      isFlex = true
       output.push(
         <div key="left" className="box-left">
           {left}
@@ -36,6 +37,7 @@ const Box = ( {children, left, right, bottom, title, subtitle, titleIcon, classN
       )
     }
     if(right){
+      isFlex = true
       output.push(
         <div key="right" className="box-right">
           {right}
@@ -52,7 +54,7 @@ const Box = ( {children, left, right, bottom, title, subtitle, titleIcon, classN
     return(
       <div className={classProps}>
         {titleOutput}
-        <div key="body" className="box-body">
+        <div key="body" className={"box-body" + isFlex ? " box-flex" : null}>
           {output}
         </div>
         {bottomOutput}

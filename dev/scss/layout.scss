@@ -780,8 +780,6 @@ li.test-page{
     }
   }
   .box-body{
-    display: flex;
-
     .box-left{
       display: flex;
       align-items: center;
@@ -790,6 +788,9 @@ li.test-page{
     .box-right{
       margin-left: auto;
     }
+  }
+  .box-body.box-flex{
+    display: flex;
   }
   .box-bottom{
     width: 100%;
@@ -1346,6 +1347,16 @@ ul.card-list > li{
 }
 .card-section{
   padding: 0px 16px;
+}
+.md-card.note{
+  margin-bottom: 20px;
+  background-color: $md-yellow-50;
+  .md-card-title--large{
+    font-size: 14px;
+  }
+  .md-card-text{
+    padding-top: 0px;
+  }
 }
 /*Divider
 ------------------------------------------------------------------------------*/

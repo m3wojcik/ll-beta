@@ -1,6 +1,6 @@
 export default function reducer(state={
   wall: [],
-  survey: {},
+  survey: null,
   view:{
     drawerVisible: false
   },
