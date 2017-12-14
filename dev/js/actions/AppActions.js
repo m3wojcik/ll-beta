@@ -111,3 +111,21 @@ export function setSearchValue(value) {
     payload: value,
   }
 }
+
+import {instance} from './config'
+
+
+export function fetchSettings() {
+  return function(dispatch) {
+    dispatch({type: "FETCH_SETTINGS"});
+    instance({
+      method: 'get',
+      url:'?q=notifications'
+    }).then((response) => {
+        dispatch({type: "FETCH_SETTINGS_FULFILLED", payload: response.data});
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_SETTINGS_REJECTED", payload: err})
+      })
+  }
+}

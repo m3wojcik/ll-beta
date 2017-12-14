@@ -8,6 +8,10 @@
     "defaultMessage": "Language"
   },
   {
+    "id": "toolbarMenu.settings",
+    "defaultMessage": "Settings"
+  },
+  {
     "id": "toolbarMenu.Logout",
     "defaultMessage": "Logout"
   },

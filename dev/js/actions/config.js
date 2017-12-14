@@ -31,6 +31,7 @@ export const toolbarHeaders = {
   "survey": "SURVEY",
   "payments": "PAYMENTS",
   "profile": "PROFILE",
+  "settings": "SETTINGS",
   "editProfile": "EDIT_PROFILE",
   "changePassword": "CHANGE_PASWORD",
   "loginHistory": "LOGIN_HISTORY",

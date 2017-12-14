@@ -70,5 +70,9 @@
   {
     "id": "toolbarHeader.headerStudentHistory",
     "defaultMessage": "Student history"
+  },
+  {
+    "id": "toolbarHeader.settings",
+    "defaultMessage": "Settings"
   }
 ]

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from "react-dom";
 import { Route, IndexRoute, IndexRedirect } from 'react-router'
 import App from './components/App';
+import SettingsContainer  from './containers/App/SettingsContainer';
 import AppLayoutContainer from './containers/AppLayoutContainer';
 import DashboardContainer from './containers/DashboardContainer';
 import MainContainer from './containers/MainContainer';
@@ -67,6 +68,7 @@ export default (
         <Route path="survey/:surveyId" component={SurveyContainer} />
         <Route path="surveyview/:surveyId" component={SurveyViewContainer} />
         <Route path="payments" component={PaymentsContainer} />
+        <Route path="settings" component={SettingsContainer} />
     </Route>
   </Route>
 )

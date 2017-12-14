@@ -8,6 +8,12 @@ export default function reducer(state={
       locales:[],
       groups:[]
     },
+    settings:{
+      fetching: false,
+      fetched: false,
+      error: null,
+      notifications:{}
+    },
     menu:{
       messages:{},
       marks: {},
@@ -80,6 +86,27 @@ export default function reducer(state={
           },
         }
       }
+
+      case "FETCH_SETTINGS": {
+        return {...state, settings: {fetching: true, fetched:false}}
+      }
+      case "FETCH_SETTINGS_REJECTED": {
+        return {
+          ...state,
+          settings: {fetching: false, fetched:false, error: action.payload}}
+      }
+      case "FETCH_SETTINGS_FULFILLED": {
+        return {
+          ...state,
+          settings : {
+            fetching: false,
+            fetched: true,
+            notifications: action.payload
+          },
+        }
+      }
+      ca
+
       case "FETCH_MENU_NOTIFICATIONS": {
         let obj = {
           ...state, 

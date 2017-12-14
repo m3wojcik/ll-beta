@@ -42,6 +42,9 @@ export default class ToolbarContainer extends Component {
   handleProfileClick = () => {
       this.props.dispatch(push('/profile'));
   }
+  handleSettingsClick = () => {
+    this.props.dispatch(push('/settings'));
+  }
   handleBackClick = () => {
     if(toolbar.backPath){
       this.props.dispatch(push(toolbar.backPath));
@@ -72,7 +75,7 @@ export default class ToolbarContainer extends Component {
     }else{
       toolbarChildren = <ToolbarHeader header={toolbar.header} />
     }
-    toolbarActions.push(<ToolbarMenu key="toolbar-menu-btn" onLanguageClick={this.handleLanguageClick} onProfileClick={this.handleProfileClick} onLogoutClick={this.handleLogoutClick} />)
+    toolbarActions.push(<ToolbarMenu key="toolbar-menu-btn" onLanguageClick={this.handleLanguageClick} onProfileClick={this.handleProfileClick} onSettingsClick={this.handleSettingsClick} onLogoutClick={this.handleLogoutClick} />)
     return(
       <div className="toolbar-children">
         {backBtnOutput}
