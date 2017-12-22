@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CustomListItem from '../helpers/CustomListItem';
 import CustomDate from '../helpers/CustomDate';
-import Label from '../helpers/Label';
+import CircleProgressBar from '../helpers/CircleProgressBar';
 import PaymentInstallmentDetails from './PaymentInstallmentDetails';
 import PaymentInstallmentStatus from './PaymentInstallmentStatus';
 import { getDaysDiference } from '../../actions/Functions'
@@ -9,13 +9,13 @@ import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 
 const messages = defineMessages({
-  amoutPaid: {
+  amountPaid: {
     id: 'paymentInstallment.amoutPaid',
     defaultMessage: "Amount paid: "
   },
   amountLeftToPay: {
     id: 'paymentInstallment.amountLeftToPay',
-    defaultMessage:"Amount left pay: "
+    defaultMessage:"Amount left to pay: "
   },
   amountToPay: {
     id: 'paymentInstallment.amountToPay',
@@ -30,13 +30,15 @@ const PaymentInstallment = ({ intl, installment }) =>{
     const leftToPay = installment.value - installment.paid_value
     const amountToPay = installment.value
     let secondaryText = installment.date_to ? <CustomDate date={installment.date_to} format="day" /> : null
+    const percentPaid = amountToPay != 0 ? (amountPaid / amountToPay) * 100 : 0;
+    console.log("partly", leftToPay, amountToPay)
     let props;
     if(leftToPay <= 0 && installment.value > 0){
       props = {
         primaryText: intl.formatMessage(messages.amountPaid) + amountPaid
       }
       secondaryText = <CustomDate date={installment.paid_at} format="day" />
-    }else if(amountPaid < amountToPay){
+    }else if(0 < leftToPay && leftToPay < amountToPay){
       props = {
         primaryText: intl.formatMessage(messages.amountLeftToPay) + leftToPay
       }
@@ -51,6 +53,15 @@ const PaymentInstallment = ({ intl, installment }) =>{
       <CustomListItem
         {...props}
         status ={<PaymentInstallmentStatus installment={installment} />}
+        leftIcon={
+          <CircleProgressBar
+          key="circleProgress"
+          strokeWidth={4}
+          size="small"
+          color="green"
+          percentage={percentPaid}
+          />
+        }
         clickable
         expander={expander}
         secondaryText={secondaryText}

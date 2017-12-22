@@ -54,7 +54,7 @@ const Box = ( {children, left, right, bottom, title, subtitle, titleIcon, classN
     return(
       <div className={classProps}>
         {titleOutput}
-        <div key="body" className={"box-body" + isFlex ? " box-flex" : null}>
+        <div key="body" className={isFlex ? "box-body box-flex" : "box-body"}>
           {output}
         </div>
         {bottomOutput}

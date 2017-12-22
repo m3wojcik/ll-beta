@@ -4,7 +4,7 @@ import TwoColumnTable from '../helpers/TwoColumnTable'
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 const messages = defineMessages({
-  amoutPaid: {
+  amountPaid: {
     id: 'paymentInstallmentDetails.amoutPaid',
     defaultMessage: "Amount paid: "
   },
@@ -20,7 +20,7 @@ const messages = defineMessages({
     id: 'paymentInstallmentDetails.paymentDate',
     defaultMessage: "Payment date"
   },
-  paymentDate: {
+  dateOfPayment: {
     id: 'paymentInstallmentDetails.dateOfPayment',
     defaultMessage: "Date of payment"
   }

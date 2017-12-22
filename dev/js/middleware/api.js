@@ -32,7 +32,7 @@ function callApi(endpoint, authenticated, params, method) {
   }
   axios_config = {
     url: endpoint,
-    timeout: 30000,
+    timeout: 3000,
     baseURL: BASE_URL,
     method: method
   }
@@ -82,14 +82,9 @@ export default store => next => action => {
       }
     },
     error => {
-      console.warn("error", error)
-      let access_token = localStorage.getItem('access_token') || null
-      let refresh_token = localStorage.getItem('refresh_token') || null
-      let instance_url = localStorage.getItem('instance_url') || null
-      console.log('storage',access_token,refresh_token,instance_url)
       next({type: errorType, payload:error})
       var errorMsg;    
-      if(error.response.data.error){
+      if(error.response && error.response.data.error){
         if(error.response.data.error.message){
           errorMsg = error.response.data.error.message
         }else{

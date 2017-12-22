@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import {fetchSettings} from "../../actions/AppActions"
+import {fetchSettings, setSettings} from "../../actions/AppActions"
 import Content from "../../components/helpers/Content"
 import Settings from "../../components/app/Settings"
 
@@ -11,13 +11,16 @@ import Settings from "../../components/app/Settings"
 })
 export default class SettingsContainer extends Component {
   componentDidMount() {
-    this.props.dispatch(fetchSettings());
+    this.props.dispatch(fetchSettings())
+  }
+  handleCheckboxBtnClick = (event, value) =>{
+    this.props.dispatch(setSettings(event))
   }
   render(){
     const { notifications } = this.props;
     return (
       <Content>
-        <Settings notifications={notifications} />
+        <Settings notifications={notifications} onCheckboxBtnClick={this.handleCheckboxBtnClick} />
       </Content>
       
     )

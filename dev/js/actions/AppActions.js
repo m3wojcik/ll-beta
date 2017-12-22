@@ -111,7 +111,12 @@ export function setSearchValue(value) {
     payload: value,
   }
 }
-
+export function setSettings(params) {
+  return {
+    type: 'SET_SETTINGS',
+    payload: params,
+  }
+}
 import {instance} from './config'
 
 

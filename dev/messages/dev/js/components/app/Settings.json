@@ -2,5 +2,33 @@
   {
     "id": "settings.notifications",
     "defaultMessage": "Notifications"
+  },
+  {
+    "id": "settings.name",
+    "defaultMessage": "Name"
+  },
+  {
+    "id": "settings.event",
+    "defaultMessage": "Event"
+  },
+  {
+    "id": "settings.addingSubstitutions",
+    "defaultMessage": "Adding substitutions"
+  },
+  {
+    "id": "settings.cancellingSubstitutions",
+    "defaultMessage": "Cancelling substitutions"
+  },
+  {
+    "id": "settings.system",
+    "defaultMessage": "System message"
+  },
+  {
+    "id": "settings.email",
+    "defaultMessage": "E-mail"
+  },
+  {
+    "id": "settings.sms",
+    "defaultMessage": "SMS"
   }
 ]

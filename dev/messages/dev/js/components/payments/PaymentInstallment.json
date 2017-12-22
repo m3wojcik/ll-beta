@@ -5,7 +5,7 @@
   },
   {
     "id": "paymentInstallment.amountLeftToPay",
-    "defaultMessage": "Amount left pay:"
+    "defaultMessage": "Amount left to pay:"
   },
   {
     "id": "paymentInstallment.amountToPay",

@@ -1045,6 +1045,12 @@ li.test-page{
   font-size: 1.4em;
   font-weight: 700;
   color: $md-blue-grey-700;
+  padding-left: 15px;
+}
+@media screen and (min-width: 1280px){
+  .content-header{
+    padding-left: 0px;
+  }
 }
 .img-responsive,
 .thumbnail > img,
@@ -2352,7 +2358,7 @@ ul.chips-list{
 
 .CircularProgressbar .CircularProgressbar-trail {
   stroke: $md-blue-grey-100;
-  stroke-width: 2px;
+  // stroke-width: 2px;
 }
 
 .CircularProgressbar .CircularProgressbar-text {

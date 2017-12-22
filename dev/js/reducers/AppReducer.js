@@ -12,7 +12,7 @@ export default function reducer(state={
       fetching: false,
       fetched: false,
       error: null,
-      notifications:{}
+      notifications: []
     },
     menu:{
       messages:{},
@@ -88,7 +88,7 @@ export default function reducer(state={
       }
 
       case "FETCH_SETTINGS": {
-        return {...state, settings: {fetching: true, fetched:false}}
+        return {...state, settings: {...state.settings, fetching: true, fetched:false}}
       }
       case "FETCH_SETTINGS_REJECTED": {
         return {
@@ -99,13 +99,26 @@ export default function reducer(state={
         return {
           ...state,
           settings : {
+            ...state.settings,
             fetching: false,
             fetched: true,
-            notifications: action.payload
+            notifications: action.payload.notifications
           },
         }
       }
-      ca
+      case "SET_SETTINGS": {
+        console.log("SET_SETTINGS", action.payload)
+        const index = state.settings.notifications.findIndex(x => x.name === action.payload.group)
+        const newNotifications = state.settings.notifications.slice()
+        newNotifications[index] = {name: action.payload.id, value: action.payload.value}
+        return {
+          ...state,
+          settings: {
+            ...state.settings,
+            notifications: newNotifications
+          }
+        }
+      }
 
       case "FETCH_MENU_NOTIFICATIONS": {
         let obj = {

@@ -37,18 +37,22 @@ const PaymentInstallmentStatus = ({ intl, installment }) => {
     const today = getDays(new Date());
     const paymentDate = getDays(new Date(installment.paymentDate));
     const dayDifference = paymentDate - today;
+    const amountPaid = installment.paid_value
+    const leftToPay = installment.value - installment.paid_value
+    const amountToPay = installment.value
+
     let props;
-    if(installment.status =="paid"){
+    if(amountPaid >= amountToPay){
       props = {
         green: true,
         label: intl.formatMessage(messages.paid)
       }
-    }else if(installment.status =="partlyPaid"){
+    }else if(0 < leftToPay && leftToPay < amountToPay){
       props = {
         orange: true,
         label: intl.formatMessage(messages.partlyPaid)
       }
-    }else if(installment.status =="notPaid"){
+    }else{
       if(0 < dayDifference){
         props = {
           blue: true,

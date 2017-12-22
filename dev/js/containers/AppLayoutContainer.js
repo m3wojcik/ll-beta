@@ -5,6 +5,7 @@ import {push} from 'react-router-redux';
 import LayoutContainer from './LayoutContainer';
 import Loader from '../components/helpers/Loader'
 import Snackbar from 'react-md/lib/Snackbars';
+import { showSnack } from 'react-redux-snackbar';
 import {getAppSettings, getCleanPath} from '../actions/Functions';
 import { fetchAppData, setAppSettings, fetchLocales } from "../actions/AppActions";
 import { removeToast } from "../actions/ToastsActions";
@@ -42,14 +43,24 @@ export default class AppLayoutContainer extends Component {
         let settings = getAppSettings(nextPath);
         this.props.dispatch(setAppSettings(settings));
       } 
-      if(nextProps.appData.error && nextProps.appData.error.response){
-        if(appData.error != nextProps.appData.error){
-          const code =  nextProps.appData.error.response.data.error
-          if(code == 'invalid_token'){  
-            this.props.dispatch(push('login'))
+      if(nextProps.appData.error){
+        if(nextProps.appData.error.response){
+          if(appData.error != nextProps.appData.error){
+            const code =  nextProps.appData.error.response.data.error
+            if(code == 'invalid_token'){  
+              this.props.dispatch(push('login'))
+            }
           }
-        }
+        }else{
+          this.props.dispatch(showSnack('network_error', {
+            label: 'Network error', 
+            button:{label: "Reconnect", action: this.handleReconnect}
+          }));
+        }      
       }
+    }
+    handleReconnect = () => {
+      this.props.dispatch(fetchAppData());
     }
     handleRemoveToast = () => {
       this.props.dispatch(removeToast());
