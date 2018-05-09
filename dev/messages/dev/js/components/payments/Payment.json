@@ -1,0 +1,14 @@
+[
+  {
+    "id": "payment.grossValue",
+    "defaultMessage": "Gross value"
+  },
+  {
+    "id": "payment.netPrice",
+    "defaultMessage": "Net price"
+  },
+  {
+    "id": "payment.quantity",
+    "defaultMessage": "Quantity"
+  }
+]

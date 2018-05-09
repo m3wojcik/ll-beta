@@ -1,7 +1,7 @@
 import React from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
 
-const CircleProgressBar = ({ percentage, strokeWidth, size, textForPercentage, color }) =>{
+const CircleProgressBar = ({ percentage, strokeWidth, size, textForPercentage, color, secondText }) =>{
     let propsClass, propsPercentage, propsClassForPercentage, propsColor;
     if(size){
       if(size =="tiny"){
@@ -64,10 +64,12 @@ const CircleProgressBar = ({ percentage, strokeWidth, size, textForPercentage, c
           {...propsPercentage}
           key="CircularProgressbar"
           strokeWidth={strokeWidth}
-          initialAnimatione
+          initialAnimation
           percentage={percentage}
           {...propsClassForPercentage}
           />
+          {secondText ?
+          <div className="second-text">{secondText}</div> : null }
       </div>
     )
 }

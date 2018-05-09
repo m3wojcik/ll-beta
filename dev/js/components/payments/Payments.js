@@ -8,6 +8,7 @@ import CustomListItem from './../helpers/CustomListItem';
 import CardWithHeader from './../helpers/CardWithHeader'
 import PaymentInstallments from './PaymentInstallments'
 import PaymentLessons from './PaymentLessons'
+import PaymentsList from './PaymentsList'
 import Label from './../helpers/Label'
 import Header from '../helpers/Header';
 import Box from '../helpers/Box';
@@ -20,6 +21,10 @@ const messages = defineMessages({
   details: {
     id: 'payments.details',
     defaultMessage: "Details"
+  },
+  payments: {
+    id: 'payments.payments',
+    defaultMessage: "Payments"
   }
 })
 
@@ -38,14 +43,21 @@ const Payments = ({ intl, groups } ) => {
       }else if(group.type == "hourly"){
         return (
           <li key={group.id}>
-          <Header header={group.name} />
-          <Box className="no-flex no-padding">
-            <BoxTitle
-              title={intl.formatMessage(messages.details)}
-              titleIcon={<FontIcon className="icon-olive">equalizer</FontIcon>}
-            />
-            <PaymentLessons lessons={group.lessons} />
-          </Box>
+            <Header header={group.name} />
+            <Box className="no-flex no-padding">
+              <BoxTitle
+                title={intl.formatMessage(messages.payments)}
+                titleIcon={<FontIcon className="icon-olive">payment</FontIcon>}
+              />
+              <PaymentsList payments={group.in_advance} />
+            </Box>
+            <Box className="no-flex no-padding">
+              <BoxTitle
+                title={intl.formatMessage(messages.details)}
+                titleIcon={<FontIcon className="icon-olive">equalizer</FontIcon>}
+              />
+              <PaymentLessons lessons={group.lessons} />
+            </Box>
           </li>
         )
       }

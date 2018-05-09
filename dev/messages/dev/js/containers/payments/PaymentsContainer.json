@@ -1,0 +1,10 @@
+[
+  {
+    "id": "PaymentsContainer.amountPaid",
+    "defaultMessage": "Amount paid"
+  },
+  {
+    "id": "PaymentsContainer.amountLeftToPay",
+    "defaultMessage": "Amount left to pay"
+  }
+]

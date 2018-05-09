@@ -11,13 +11,15 @@ import DashboardClassItem from './DashboardClassItem';
 import FeedDate from '../wall/FeedDate'
 import ClassItemSubheader from './ClassItemSubheader';
 import ClassDetailsIconStatus from './ClassDetailsIconStatus';
-import ClassDetailsList from'./ClassDetailsList';
+import ClassDetailsList from './ClassDetailsList';
+import DashboardClass from './DashboardClass';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {injectIntl, formatDate, formatTime, defineMessages} from 'react-intl';
 
 const messages = defineMessages({
   upcomingClasses: {id: "dashboardClasses.upcomingClasses", defaultMessage: "Upcoming classes"},
-  view: {id: "dashboardClasses.view", defaultMessage: "View"}
+  previousClass: {id: "dashboardClasses.previousClass", defaultMessage: "Previous class"},
+  nextClass: {id: "dashboardClasses.nextClass", defaultMessage: "Next class"}
 })
 
 const DashboardClasses = ({ dashboardClasses, fetched, intl, onViewClassClick }) => {
@@ -32,42 +34,34 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl, onViewClassClick })
           tmpClass.inactive = true
           sortedClasses.push(tmpClass)
         }
-        if(sortedClasses.length < 3){
+        if(sortedClasses.length < 2){
           sortedClasses.push(clas)
         } 
       }
       tmpClass = clas
     })
-    const mappedClasses = sortedClasses.map(function(clas){
-      const classTime =  clas.date + " " + clas.time
-      const time = intl.formatTime(classTime)+" - "+ intl.formatTime((new Date(classTime)).getTime() + (clas.length * 1000 * 60))
-      const headerText = <span>{time} </span>
-      const expanderText = (<div>
-        <ClassDetailsList clas={clas} />
-        <ActionsRow>
-          <Button onClick={onViewClassClick.bind(this, clas.id)} primary flat>{intl.formatMessage(messages.view)}</Button>
-        </ActionsRow>
-      </div>)
-      return (  
-        <DashboardClassItem
-          key={clas.id}
-          className={clas.inactive ? "feed-class inactive" : "feed-class active"}
-          header={headerText}
-          subHeader={<ClassItemSubheader classItem={clas} />}
-          iconLeft={<WeekDayIcon date={clas.date} />}
-          body={<ClassDetailsIconStatus status={clas.status} details={clas.details} />}
-          expander={expanderText}
-        />
-      )
-    })
     if(!fetched){
       output.push(<Loader key="loader" centerPadding />)
     }else{
       output.push(
-        <div key="classes">
-          <IconHeader header={intl.formatMessage(messages.upcomingClasses)} icon={<FontIcon className="icon-green">event</FontIcon>} />
+        <div key="classes"> 
           <div className="feed">
-            {mappedClasses}
+            <div className="md-grid">
+                <DashboardClass 
+                  className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone" 
+                  header={intl.formatMessage(messages.previousClass)}
+                  icon={<FontIcon className="icon-grey">event</FontIcon>} 
+                  clas={sortedClasses[0]} 
+                  onViewClassClick={onViewClassClick}
+                />
+                <DashboardClass 
+                  className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone" 
+                  header={intl.formatMessage(messages.nextClass)}
+                  icon={<FontIcon className="icon-green">event</FontIcon>} 
+                  clas={sortedClasses[1]} 
+                  onViewClassClick={onViewClassClick}
+                />
+            </div>       
           </div>
         </div>
       )

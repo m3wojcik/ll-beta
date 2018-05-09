@@ -52,6 +52,18 @@ border-color: transparent;
     width: 50%;
   }
 }
+// .md-grid{
+//   display: flex;
+//   flex-wrap: wrap;
+//   margin-right: -15px;
+//   margin-left: -15px;
+//   .md-cell{
+//     flex-basis: 0;
+//     -ms-flex-positive: 1;
+//     flex-grow: 1;
+//     max-width: 100%;
+//   }
+// }
 @media screen and (min-width: 840px){
   .md-cell--12, .md-cell--12-desktop.md-cell--12-desktop{
     width: 100%;
@@ -203,6 +215,9 @@ button + button{
     font-size: 15px;
     font-weight: 600;
     margin-bottom: 3px;
+    span{
+      font-weight: 100;
+    }
   }
 }
 //Bug fix

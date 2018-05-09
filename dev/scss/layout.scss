@@ -557,9 +557,6 @@ strong{
   .md-tile-text--primary{
     color: $md-text-primary;
   }
-  .md-tile-text--primary{
-    color: $md-text-primary;
-  }
   .md-text--secondary{
     color: $md-text-secondary;
   }
@@ -862,6 +859,30 @@ li.test-page{
 }
 .box.no-shadow{
   box-shadow: none;
+}
+.box.box-blue{
+  background-color: $blue;
+  color: #fff;
+}
+.box.box-green{
+  background-color: $green;
+}
+.box.box-yellow{
+  background-color: $yellow;
+}
+.box.box-blue,
+.box.box-green,
+.box.box-yellow{
+  color: #fff;
+  h2{
+    color: #fff;
+  }
+  .CircularProgressbar .CircularProgressbar-text {
+    fill: #fff;
+  }
+  .CircularProgressbar .CircularProgressbar-trail{
+    stroke:#fff;
+  }
 }
 /*lesson object
 ------------------------------------------------------------------------------*/
@@ -1937,6 +1958,22 @@ ul.notification-header{
   display: flex;
   align-items: center;
 }
+.md-list{
+  .md-list-button{
+    text-align: center;
+    padding: 8px;
+    background-color: $md-grey-100;
+    .md-btn{
+      display: block;
+      width: 100%;
+    }
+  }
+  .md-list-button:first-child{
+    border-radius: 0px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+}
+
 @media screen and (min-width: 320px){
   .md-list-tile--header-lines {
     .md-tile-content{
@@ -2338,8 +2375,16 @@ ul.chips-list{
   }
 }
 .progress-large {
+  position: relative;
   .CircularProgressbar{
     height: 70px;
+  }
+  .second-text{
+    position: absolute;
+    left:0px;
+    right: 0px;
+    bottom: 15px;
+    text-align:center;
   }
 }
 .progress-big {
@@ -2349,6 +2394,7 @@ ul.chips-list{
 }
 .CircularProgressbar{
   height: 50px;
+  
 }
 .CircularProgressbar .CircularProgressbar-path {
   stroke: $md-primary-color;

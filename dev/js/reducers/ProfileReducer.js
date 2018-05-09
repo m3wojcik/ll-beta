@@ -122,7 +122,7 @@ export default function reducer(state={
         return {
           ...state,
           studentHistory: {
-            history: action.payload,
+            history: action.payload.history,
             fetching: false,
             fetched: true
           }

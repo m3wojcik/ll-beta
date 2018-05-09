@@ -58,7 +58,16 @@ export function saveAvatar(params) {
     }
   }
 }
-
+export function fetchStudentHistory() {
+  return {
+    [CALL_API]: {
+      endpoint: '/studentHistory',
+      types: ["FETCH_STUDENT_HISTORY", "FETCH_STUDENT_HISTORY_FULFILLED", "FETCH_STUDENT_HISTORY_REJECTED"],
+      authenticated: true,
+      method: 'post'
+    }
+  }
+}
 
 import {instance} from './config'
 
@@ -78,21 +87,6 @@ export function uploadAvatar(data) {
       })
       .catch((err) => {
         dispatch({type: "UPLOAD_AVATAR_REJECTED", payload: err})
-      })
-  }
-}
-
-export function fetchStudentHistory() {
-  return function(dispatch) {
-    dispatch({type: "FETCH_STUDENT_HISTORY"});
-    instance({
-      method: 'get',
-      url:'?q=getStudentHistory'
-    }).then((response) => {
-        dispatch({type: "FETCH_STUDENT_HISTORY_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_STUDENT_HISTORY_REJECTED", payload: err})
       })
   }
 }

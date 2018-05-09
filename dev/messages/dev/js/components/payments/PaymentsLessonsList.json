@@ -1,0 +1,10 @@
+[
+  {
+    "id": "paymentsLessonsList.loadPrevious",
+    "defaultMessage": "Load previous"
+  },
+  {
+    "id": "paymentsLessonsList.loadNext",
+    "defaultMessage": "Load next"
+  }
+]

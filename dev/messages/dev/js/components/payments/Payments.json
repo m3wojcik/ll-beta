@@ -2,5 +2,9 @@
   {
     "id": "payments.details",
     "defaultMessage": "Details"
+  },
+  {
+    "id": "payments.payments",
+    "defaultMessage": "Payments"
   }
 ]

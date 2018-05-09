@@ -32,7 +32,7 @@ function callApi(endpoint, authenticated, params, method) {
   }
   axios_config = {
     url: endpoint,
-    timeout: 3000,
+    timeout: 10000,
     baseURL: BASE_URL,
     method: method
   }

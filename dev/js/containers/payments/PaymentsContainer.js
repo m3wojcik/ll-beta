@@ -6,6 +6,7 @@ import Content from '../../components/helpers/Content'
 import Payments from '../../components/payments/Payments'
 import CircleProgressBar from '../../components/helpers/CircleProgressBar';
 import Box from '../../components/helpers/Box';
+import {FormattedMessage} from 'react-intl';
 
 @connect((store) => {
    return {
@@ -40,26 +41,44 @@ export default class PaymentsContainer extends Component {
             <div className="md-grid md-row">
               <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
                 <Box
-                  left={<h2>Amount paid</h2>}
+                  className="box-blue"
+                  left={
+                    <h2>   
+                      <FormattedMessage 
+                        id="PaymentsContainer.amountPaid"
+                        defaultMessage="Amount paid"
+                      />
+                    </h2>
+                  }
                   right={<CircleProgressBar
                     key="circleProgress"
                     strokeWidth={6}
                     size="large"
                     color="teal"
-                    textForPercentage={(percentage) => `${paid} ${locales.currencyCode}`}
+                    secondText={locales.currencyCode}
+                    textForPercentage={(percentage) => `${paid}`}
                     percentage={percentPaid}
                     />}
                    />
               </div>
               <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
                 <Box
-                  left={<h2>Amount left to pay</h2>}
+                  className="box-yellow"
+                  left={
+                    <h2>
+                      <FormattedMessage 
+                        id="PaymentsContainer.amountLeftToPay"
+                        defaultMessage="Amount left to pay"
+                      />
+                    </h2>
+                  }
                   right={<CircleProgressBar
                     key="circleProgress"
                     strokeWidth={6}
                     size="large"
                     color="orange"
-                    textForPercentage={(percentage) => `${leftToPay} ${locales.currencyCode}`}
+                    secondText={locales.currencyCode}
+                    textForPercentage={(percentage) => `${leftToPay}`}
                     percentage={percentLeft}
                     />}
                    />
