@@ -18,7 +18,7 @@ export default class PaymentLessons extends Component {
     }else if(isDateLowerThanToday(lastLessonDate)){
       foundIndex = true
       newStartIndex = lessons.length - endIndex
-      newEndIndex = lessons.length
+      newEndIndex = lessons.length - 1
     }
     lessons.forEach(lesson => {
       let hoursMinutes = lesson.time.split(":")
@@ -29,7 +29,8 @@ export default class PaymentLessons extends Component {
       if(!isDateLowerThanToday(lessonDate) && !foundIndex){
         foundIndex = true
         newStartIndex = i
-        newEndIndex = i + step
+        newEndIndex = Math.min(i + step, lessons.length);
+        console.log('lesson',lesson, i , i+ step);
       }
       i++
     })

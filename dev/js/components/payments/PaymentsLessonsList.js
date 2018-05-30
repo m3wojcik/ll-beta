@@ -15,6 +15,9 @@ const messages = defineMessages({
 })
 
 const PaymentsLessonsList = ({ intl, lessons, startIndex, endIndex, onPrevClick, onNextClick } ) => {
+
+
+
   let mappedLessons = [], prevDisabled = false, nextDisabled = false
   //prev disabled check
   if(startIndex == 0) prevDisabled = true
