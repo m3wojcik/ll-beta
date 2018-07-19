@@ -84,7 +84,7 @@ export default class PaymentsContainer extends Component {
                    />
               </div>
             </div>
-            <Payments groups={groups} leftToPay={totalAmount} />
+            <Payments groups={groups} totalAmount={totalAmount} leftToPay={leftToPay} locales={locales} />
           </div>
         </Content>
     )

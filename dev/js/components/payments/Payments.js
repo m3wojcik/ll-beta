@@ -7,6 +7,7 @@ import {FormattedRelative} from 'react-intl';
 import CustomListItem from './../helpers/CustomListItem';
 import CardWithHeader from './../helpers/CardWithHeader'
 import PaymentInstallments from './PaymentInstallments'
+import PaymentInstallmentsSum from './PaymentInstallmentsSum'
 import PaymentLessons from './PaymentLessons'
 import PaymentsList from './PaymentsList'
 import Label from './../helpers/Label'
@@ -25,10 +26,14 @@ const messages = defineMessages({
   payments: {
     id: 'payments.payments',
     defaultMessage: "Payments"
+  },
+  total: {
+    id: 'payments.total',
+    defaultMessage: "total"
   }
 })
 
-const Payments = ({ intl, groups } ) => {
+const Payments = ({ intl, groups, totalAmount, locales } ) => {
     const mappedGroups = groups.map(function(group){
       let output = null
       if(group.type == "standard"){
@@ -37,6 +42,7 @@ const Payments = ({ intl, groups } ) => {
           <Header header={group.name}  />
           <Box className="no-flex no-padding">
             <PaymentInstallments installments={group.installments} />
+            <PaymentInstallmentsSum label={intl.formatMessage(messages.total)} value={totalAmount +" "+locales.currencyCode} />
           </Box>
           </li>
         )

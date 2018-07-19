@@ -820,6 +820,9 @@ li.test-page{
       .box-sum-percent{
         margin-right: 10px;
       }
+      .box-sum-left{
+        text-align: left;
+      }
       .box-sum-right{
         .box-sum-label{
           font-size: 0.8em;
@@ -834,6 +837,21 @@ li.test-page{
     }
     .box-sum + .box-sum{
       margin-left: 20px;
+    }
+  }
+  .box-sumup{
+    display: flex;
+    padding: 16px;
+    background-color: $md-blue-grey-50;
+    border-top: 1px solid $md-blue-grey-100;
+    .box-sumup-label{
+      text-transform: uppercase;
+      color: $md-blue-grey-300;
+    }
+    .box-sumup-value{
+      margin-left: 10px;
+      color: $md-blue-grey-600;
+      font-weight: bold;
     }
   }
   .progress-container{
