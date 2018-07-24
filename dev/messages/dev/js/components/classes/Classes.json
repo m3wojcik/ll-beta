@@ -1,0 +1,18 @@
+[
+  {
+    "id": "Classes.lastWeek",
+    "defaultMessage": "Last week"
+  },
+  {
+    "id": "Classes.thisWeek",
+    "defaultMessage": "This week"
+  },
+  {
+    "id": "Classes.nextWeek",
+    "defaultMessage": "Next week"
+  },
+  {
+    "id": "Classes.next",
+    "defaultMessage": "Next"
+  }
+]

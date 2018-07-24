@@ -29,7 +29,7 @@ class LoginForm extends Component {
                 <a href="javascript:void(0)" onClick={onForgotClick}>Forgot password?</a>
             </div>
             <div className="md-cell md-cell--50 text-right">
-                <Button raised primary label="Login" type="submit" />
+                <Button raised primary type="submit">Login</Button>
             </div>
         </div>
       </form>

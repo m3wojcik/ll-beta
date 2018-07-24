@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {FormattedDate} from 'react-intl';
-import {getWeek, getDaysDiference, addDays, getDay, isDateLowerThanToday} from '../../actions/Functions'
+import {FormattedDate, FormattedMessage} from 'react-intl';
+import {getDaysDiference, addDays, getDay, isDateLowerThanToday} from '../../actions/Functions'
 import CardWithHeader from './../helpers/CardWithHeader'
 import ClassItem from './ClassItem';
-import ListHeader from './../helpers/ListHeader';
 
 
 export default class Classes extends Component {
@@ -72,7 +71,11 @@ export default class Classes extends Component {
     }
     if(lastWeekClasses.length > 0){
       outputClasses.push(
-        <CardWithHeader id="last-week" key="lastWeekClasses" header="Last week">
+        <CardWithHeader id="last-week" key="lastWeekClasses" 
+          header={<FormattedMessage 
+            id="Classes.lastWeek"
+            defaultMessage="Last week"
+          />}>
           <ul className="md-list md-list-divider class-list">
             {lastWeekClasses}
           </ul>
@@ -81,7 +84,12 @@ export default class Classes extends Component {
     }
     if(thisWeekClasses.length > 0){
       outputClasses.push(
-        <CardWithHeader id="this-week" key="thisWeekClasses" header="This week">
+        <CardWithHeader id="this-week" key="thisWeekClasses" header={
+          <FormattedMessage 
+            id="Classes.thisWeek"
+            defaultMessage="This week"
+          />
+        }>
           <ul className="md-list md-list-divider class-list">
             {thisWeekClasses}
           </ul>
@@ -90,7 +98,12 @@ export default class Classes extends Component {
     }
     if(nextWeekClasses.length > 0){
       outputClasses.push(
-        <CardWithHeader id="next-week" key="nextWeekClasses" header="Next week">
+        <CardWithHeader id="next-week" key="nextWeekClasses" header={
+          <FormattedMessage 
+            id="Classes.nextWeek"
+            defaultMessage="Next week"
+          />
+        }>
           <ul className="md-list md-list-divider class-list">
             {nextWeekClasses}
           </ul>
@@ -99,7 +112,12 @@ export default class Classes extends Component {
     }
     if(nextClasses.length > 0){
       outputClasses.push(
-        <CardWithHeader id="next" key="nextClasses" header="Next">
+        <CardWithHeader id="next" key="nextClasses" header={
+          <FormattedMessage 
+            id="Classes.next"
+            defaultMessage="Next"
+          />
+        }>
           <ul className="md-list md-list-divider class-list">
             {nextClasses}
           </ul>

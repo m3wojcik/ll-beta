@@ -25,6 +25,7 @@ export default class DashboardClassesContainer extends Component {
   }
   render(){
     const { fetched, dashboardClasses } = this.props;
+    console.log("dashboardClasses", dashboardClasses);
     return(
         <DashboardClasses key="DashboardClasses" fetched={fetched} dashboardClasses={dashboardClasses} onViewClassClick={this.handleViewClassClick} />
       )

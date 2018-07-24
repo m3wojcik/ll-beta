@@ -64,7 +64,7 @@ export default class ElibraryContainer extends Component {
     const {reservation} = this.props
     const dateFrom = moment(reservation.dateFrom).format("Y-MM-DD")
     this.props.dispatch(saveReservation({
-      id: reservation.reservedObject.id,
+      group_id: reservation.reservedObject.id,
       date_from: dateFrom
     }))
   }

@@ -27,16 +27,20 @@ export default class ElibraryReservationsContainer extends Component {
     const {fetched, books, toolbar} = this.props;
     if (!fetched) {
       return (<Loader full/>)
+    }else if(books && books.length > 0){
+      return (
+        <ListWithHeader header="Reservations">
+          <ElibraryList
+            reserved={true}
+            onCancelReservationClick={this.handleCancelReservationClick}
+            onDetailsClick={this.handleDetailsClick}
+            searchValue={toolbar.searchValue}
+            elibraryList={books}/>
+        </ListWithHeader>
+      )
+    }else{
+      return null
     }
-    return (
-      <ListWithHeader header="Reservations">
-        <ElibraryList
-          reserved={true}
-          onCancelReservationClick={this.handleCancelReservationClick}
-          onDetailsClick={this.handleDetailsClick}
-          searchValue={toolbar.searchValue}
-          elibraryList={books}/>
-      </ListWithHeader>
-    )
+    
   }
 }

@@ -23,16 +23,20 @@ export default class ElibraryBookingsContainer extends Component {
     const {fetched, books, toolbar} = this.props;
     if (!fetched) {
       return (<Loader full/>)
+    }else if(books.length > 0){
+      return (
+        <ListWithHeader  header="Rented">
+          <ElibraryList
+            borrowed={true}
+            onReserveClick={this.handleReserveBtnClick}
+            onDetailsClick={this.handleDetailsClick}
+            searchValue={toolbar.searchValue}
+            elibraryList={books}/>
+        </ListWithHeader>
+      )
+    }else{
+      return null
     }
-    return (
-      <ListWithHeader  header="Rented">
-        <ElibraryList
-          borrowed={true}
-          onReserveClick={this.handleReserveBtnClick}
-          onDetailsClick={this.handleDetailsClick}
-          searchValue={toolbar.searchValue}
-          elibraryList={books}/>
-      </ListWithHeader>
-    )
+    
   }
 }
