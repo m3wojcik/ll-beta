@@ -119,6 +119,7 @@ export default function reducer(state={
         return {...state, studentHistory: {fetching: false, error: action.payload}}
       }
       case "FETCH_STUDENT_HISTORY_FULFILLED": {
+        console.log('history', action.payload.history)
         return {
           ...state,
           studentHistory: {

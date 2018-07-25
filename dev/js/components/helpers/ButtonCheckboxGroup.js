@@ -1,19 +1,20 @@
 import React from 'react';
 import { Button } from 'react-md';
 
-const ButtonCheckboxGroup = ({values, onClick}) =>{
-    console.log('ButtonCheckboxGroup', values)
+
+const ButtonCheckboxGroup = ({id, options, checked, onClick}) =>{
+    //console.log('ButtonCheckboxGroup', options, checked)
     return(
-       <div>
-           {values.map((value,i) =>(
-               value.value ?
-                <Button key={i} flat primary swapTheming iconChildren="done"  onClick={onClick.bind(this, value)}>{value.label}</Button> :
-                <Button key={i} flat iconChildren="close" onClick={onClick.bind(this, value)}>{value.label}</Button>
-           ))}
-       </div>
+        <div>
+            {options.map((option, i) =>(
+                checked.indexOf(option.value) > -1 ?
+                <Button key={i} flat primary swapTheming iconChildren="done"  onClick={onClick.bind(this, id, option.value)}>{option.label}</Button> :
+                <Button key={i} flat iconChildren="close" onClick={onClick.bind(this, id, option.value)}>{option.label}</Button>
+            ))}
+        </div>
     )
 }
 ButtonCheckboxGroup.propTypes = {
-    values: React.PropTypes.array.isRequired
+    options: React.PropTypes.array.isRequired
 }
 export default ButtonCheckboxGroup

@@ -6,7 +6,7 @@ import TwoColumnTable from '../helpers/TwoColumnTable'
 
 const messages = defineMessages({
   notes: {
-    id: 'StudentHistoryGroupDetails.notes',
+    id: 'StudentHistoryGroupNotes.notes',
     defaultMessage: "Notes"
   }
 })

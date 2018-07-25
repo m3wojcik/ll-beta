@@ -13,8 +13,16 @@ export default class SettingsContainer extends Component {
   componentDidMount() {
     this.props.dispatch(fetchSettings())
   }
-  handleCheckboxBtnClick = (event, value) =>{
-    this.props.dispatch(setSettings(event))
+  handleCheckboxBtnClick = (id, option) =>{
+    const { notifications } = this.props;
+    let newNotifications = notifications.settings[id]
+    
+    if(notifications.settings[id]){
+      if(notifications.settings[id].indexOf(option) > -1) newNotifications = newNotifications.filter(item => item !== option)
+      else newNotifications.push(option)
+    }
+    console.log(id, newNotifications)
+    //this.props.dispatch(setSettings(event))
   }
   render(){
     const { notifications } = this.props;

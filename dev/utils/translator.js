@@ -13,7 +13,7 @@ const outputLanguageDataDir = '../locales/';
 // React components via the React Intl Babel plugin. An error will be thrown if
 // there are messages in different components that use the same `id`. The result
 // is a flat collection of `id: message` pairs for the app's default locale.
-console.dir(glob.sync(filePattern))
+console.log(glob.sync(filePattern))
 const defaultMessages = glob.sync(filePattern)
   .map((filename) => fs.readFileSync(filename, 'utf8'))
   .map((file) => JSON.parse(file))

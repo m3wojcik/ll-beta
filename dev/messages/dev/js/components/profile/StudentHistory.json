@@ -4,7 +4,15 @@
     "defaultMessage": "Tests"
   },
   {
+    "id": "studentHistory.noTestsHistory",
+    "defaultMessage": "No tests history"
+  },
+  {
     "id": "studentHistory.groups",
     "defaultMessage": "Groups"
+  },
+  {
+    "id": "studentHistory.noGroupsHistory",
+    "defaultMessage": "No groups history"
   }
 ]

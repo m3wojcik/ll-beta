@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import ListWithHeader from "../helpers/ListWithHeader"
+import React from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
 import TabPaneTitle from '../helpers/TabPaneTitle';
 import ButtonCheckboxGroup from '../helpers/ButtonCheckboxGroup';
@@ -42,18 +41,25 @@ const messages = defineMessages({
 })
 
 const Settings = ({ intl, notifications, onCheckboxBtnClick })=> {
-  const mappedNotifications = notifications.map(function(notification, i){
-    let btnOptions = []
-    notification.options.forEach(function(option){  
-      btnOptions.push({group: notification.name, id:option.name, label: intl.formatMessage(messages[option.name]), value: option.value})
-    });
-    return (
-      <TableRow key={i}>
-        <TableColumn>{intl.formatMessage(messages[notification.name])}</TableColumn>
-        <TableColumn><ButtonCheckboxGroup values={btnOptions} onClick={onCheckboxBtnClick} /></TableColumn>
-      </TableRow>
-    )
-  })
+  let mappedNotifications = [], options = []
+  if(notifications.available){
+    notifications.available.forEach(function(value){
+      options.push({
+        label: intl.formatMessage(messages[value]),
+        value: value
+      })
+    })
+  }
+  if(notifications.settings){
+    Object.keys(notifications.settings).forEach(function(key, i){
+       mappedNotifications.push(
+        <TableRow key={i}>
+          <TableColumn>{key}</TableColumn>
+          <TableColumn><ButtonCheckboxGroup id={key} options={options} checked={notifications.settings[key]} onClick={onCheckboxBtnClick} /></TableColumn>
+        </TableRow>
+      )
+    })
+  }
     return(
       <section className="tab-pane">
         <TabPaneTitle

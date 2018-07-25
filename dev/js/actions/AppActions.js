@@ -21,6 +21,28 @@ export function changeLanguage(params) {
     }
   }
 }
+export function fetchSettings(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/notifications',
+      types: ["FETCH_SETTINGS", "FETCH_SETTINGS_FULFILLED", "FETCH_SETTINGS_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
+export function saveNotifications(params) {
+  return {
+    [CALL_API]: {
+      endpoint: '/notifications',
+      types: ["SAVE_NOTIFICATIONS", "SAVE_NOTIFICATIONS_FULFILLED", "SAVE_NOTIFICATIONS_REJECTED"],
+      authenticated: true,
+      method: 'get',
+      params: {...params}
+    }
+  }
+}
 export function fetchMenuNofitications(params) {
   return {
     [CALL_API]: {
@@ -117,20 +139,20 @@ export function setSettings(params) {
     payload: params,
   }
 }
-import {instance} from './config'
+// import {instance} from './config'
 
 
-export function fetchSettings() {
-  return function(dispatch) {
-    dispatch({type: "FETCH_SETTINGS"});
-    instance({
-      method: 'get',
-      url:'?q=notifications'
-    }).then((response) => {
-        dispatch({type: "FETCH_SETTINGS_FULFILLED", payload: response.data});
-      })
-      .catch((err) => {
-        dispatch({type: "FETCH_SETTINGS_REJECTED", payload: err})
-      })
-  }
-}
+// export function fetchSettings() {
+//   return function(dispatch) {
+//     dispatch({type: "FETCH_SETTINGS"});
+//     instance({
+//       method: 'get',
+//       url:'?q=notifications'
+//     }).then((response) => {
+//         dispatch({type: "FETCH_SETTINGS_FULFILLED", payload: response.data});
+//       })
+//       .catch((err) => {
+//         dispatch({type: "FETCH_SETTINGS_REJECTED", payload: err})
+//       })
+//   }
+// }
