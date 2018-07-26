@@ -1,17 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import {fetchSettings, setSettings} from "../../actions/AppActions"
+import { showSnack } from 'react-redux-snackbar'
+import {fetchSettings, saveNotifications} from "../../actions/AppActions"
+import Loader from '../../components/helpers/Loader'
 import Content from "../../components/helpers/Content"
 import Settings from "../../components/app/Settings"
 
 @connect((store) => {
    return {
-    notifications: store.app.settings.notifications
+    notifications: store.app.settings.notifications,
+    fetched: store.app.settings.fetched,
+    fetching: store.app.settings.fetching,
   };
 })
 export default class SettingsContainer extends Component {
   componentDidMount() {
     this.props.dispatch(fetchSettings())
+  }
+  componentWillReceiveProps(nextProps){
+    const {notifications} = this.props
+    if(!notifications.saved && nextProps.notifications.saved){
+      this.props.dispatch(showSnack('settings_updated', {label: 'Settings updated', timeout: 3000}));
+    }
   }
   handleCheckboxBtnClick = (id, option) =>{
     const { notifications } = this.props;
@@ -21,11 +31,17 @@ export default class SettingsContainer extends Component {
       if(notifications.settings[id].indexOf(option) > -1) newNotifications = newNotifications.filter(item => item !== option)
       else newNotifications.push(option)
     }
-    console.log(id, newNotifications)
-    //this.props.dispatch(setSettings(event))
+    let params = {
+      type: id,
+      actions: newNotifications
+    }
+    this.props.dispatch(saveNotifications(params))
   }
   render(){
-    const { notifications } = this.props;
+    const { notifications, fetched } = this.props;
+    if(!fetched){
+      return(<Loader full />)
+    }
     return (
       <Content>
         <Settings notifications={notifications} onCheckboxBtnClick={this.handleCheckboxBtnClick} />

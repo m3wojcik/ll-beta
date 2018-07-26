@@ -106,8 +106,52 @@ export default function reducer(state={
           },
         }
       }
+
+      case "SAVE_NOTIFICATIONS": {
+        return {...state, 
+          settings: {
+            ...state.settings,
+            notifications: {
+              ...state.settings.notifications,
+              saving: true, 
+              saved:false
+            }
+          }
+        }
+      }
+      case "SAVE_NOTIFICATIONS_REJECTED": {
+        return {...state, 
+          settings: {
+            ...state.settings,
+            notifications: {
+              ...state.settings.notifications,
+              saving: false, 
+              saved:false,
+              error: action.payload
+            }
+          }
+        }
+      }
+      case "SAVE_NOTIFICATIONS_FULFILLED": {
+        
+        let key = Object.keys(action.payload.notifications)[0]
+        let newNotifications = Object.assign({}, state.settings.notifications.settings)
+        newNotifications[key] = action.payload.notifications[key]
+        return {
+          ...state,
+          settings : {
+            ...state.settings,
+            notifications: {
+              ...state.settings.notifications,
+              saving: false,
+              saved: true,  
+              settings: newNotifications
+            }
+          },
+        }
+      }
+
       case "SET_SETTINGS": {
-        console.log("SET_SETTINGS", action.payload)
         const index = state.settings.notifications.findIndex(x => x.name === action.payload.group)
         const newNotifications = state.settings.notifications.slice()
         newNotifications[index] = {name: action.payload.id, value: action.payload.value}

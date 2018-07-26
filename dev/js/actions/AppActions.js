@@ -38,7 +38,7 @@ export function saveNotifications(params) {
       endpoint: '/notifications',
       types: ["SAVE_NOTIFICATIONS", "SAVE_NOTIFICATIONS_FULFILLED", "SAVE_NOTIFICATIONS_REJECTED"],
       authenticated: true,
-      method: 'get',
+      method: 'post',
       params: {...params}
     }
   }
