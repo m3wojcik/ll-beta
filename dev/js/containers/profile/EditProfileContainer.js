@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { SubmissionError } from 'redux-form'
+import { showSnack } from 'react-redux-snackbar'
 import { fetchUserData, saveUserData, saveAvatar } from "../../actions/ProfileActions";
 import Drawer from 'react-md/lib/Drawers';
 import DrawerHeader from '../../components/helpers/DrawerHeader'
@@ -25,6 +26,12 @@ class EditProfileContainer extends Component {
   constructor(props){
     super(props);
     this.state = {drawerVisible: false}
+  }
+  componentWillReceiveProps(nextProps){
+    const {saveUserData} = this.props
+    if(!saveUserData.saved && nextProps.saveUserData.saved){
+      this.props.dispatch(showSnack('profile_updated', {label: 'Profile was successfully updated', timeout: 3000}));
+    }
   }
   componentDidMount(){
     this.props.dispatch(fetchUserData());

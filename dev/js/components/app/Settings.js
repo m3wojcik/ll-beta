@@ -18,14 +18,6 @@ const messages = defineMessages({
     id: 'settings.event',
     defaultMessage: 'Event'
   },
-  addingSubstitutions:{
-    id: 'settings.addingSubstitutions',
-    defaultMessage: 'Adding substitutions'
-  },
-  cancellingSubstitutions:{
-    id: 'settings.cancellingSubstitutions',
-    defaultMessage: 'Cancelling substitutions'
-  },
   system:{
     id: 'settings.system',
     defaultMessage: 'System message'
@@ -37,6 +29,70 @@ const messages = defineMessages({
   sms:{
     id: 'settings.sms',
     defaultMessage: 'SMS'
+  },
+  createNewSubstitution:{
+    id: 'settings.createNewSubstitution',
+    defaultMessage: 'Adding substitutions'
+  },
+  deleteNewSubstitution:{
+    id: 'settings.deleteNewSubstitution',
+    defaultMessage: 'Cancelling substitutions'
+  },
+  createNewLesson:{
+    id: 'settings.createNewLesson',
+    defaultMessage: 'Adding new lesson'
+  },
+  deleteNewLesson:{
+    id: 'settings.deleteNewLesson',
+    defaultMessage: 'Removing lessons'
+  },
+  scheduleChangeSchoolClass:{
+    id: 'settings.scheduleChangeSchoolClass',
+    defaultMessage: 'Changes in timetable'
+  },
+  createNewLessonStatus:{
+    id: 'settings.createNewLessonStatus',
+    defaultMessage: 'Adding lesson status'
+  },
+  deleteNewLessonStatus:{
+    id: 'settings.deleteNewLessonStatus',
+    defaultMessage: 'Removing lesson status'
+  },
+  createLessonObject:{
+    id: 'settings.createLessonObject',
+    defaultMessage: 'Adding classes details'
+  },
+  createMessage:{
+    id: 'settings.createMessage',
+    defaultMessage: 'New message'
+  },
+  createTestBind:{
+    id: 'settings.createTestBind',
+    defaultMessage: 'Sharing new test with the group'
+  },
+  createMeeting:{
+    id: 'settings.createMeeting',
+    defaultMessage: 'Starting new on-line lesson'
+  },
+  createTeacherFileBind:{
+    id: 'settings.createTeacherFileBind',
+    defaultMessage: 'Sharing new files'
+  },
+  createTeacherNewLesson:{
+    id: 'settings.createTeacherNewLesson',
+    defaultMessage: 'Adding lessons by teacher'
+  },
+  createTeacherNewLessonStatus:{
+    id: 'settings.createTeacherNewLessonStatus',
+    defaultMessage: 'Adding lesson status by teacher'
+  },
+  deleteTeacherNewLessonStatus:{
+    id: 'settings.deleteTeacherNewLessonStatus',
+    defaultMessage: 'Removing lesson status by teacher'
+  },
+  deleteTeacherNewLesson:{
+    id: 'settings.deleteTeacherNewLesson',
+    defaultMessage: 'Removing lessons by teacher'
   }
 })
 
@@ -54,7 +110,7 @@ const Settings = ({ intl, notifications, onCheckboxBtnClick })=> {
     Object.keys(notifications.settings).forEach(function(key, i){
        mappedNotifications.push(
         <TableRow key={i}>
-          <TableColumn>{key}</TableColumn>
+          <TableColumn>{intl.formatMessage(messages[key])}</TableColumn>
           <TableColumn><ButtonCheckboxGroup id={key} options={options} checked={notifications.settings[key]} onClick={onCheckboxBtnClick} /></TableColumn>
         </TableRow>
       )

@@ -12,14 +12,6 @@
     "defaultMessage": "Event"
   },
   {
-    "id": "settings.addingSubstitutions",
-    "defaultMessage": "Adding substitutions"
-  },
-  {
-    "id": "settings.cancellingSubstitutions",
-    "defaultMessage": "Cancelling substitutions"
-  },
-  {
     "id": "settings.system",
     "defaultMessage": "System message"
   },
@@ -30,5 +22,69 @@
   {
     "id": "settings.sms",
     "defaultMessage": "SMS"
+  },
+  {
+    "id": "settings.createNewSubstitution",
+    "defaultMessage": "Adding substitutions"
+  },
+  {
+    "id": "settings.deleteNewSubstitution",
+    "defaultMessage": "Cancelling substitutions"
+  },
+  {
+    "id": "settings.createNewLesson",
+    "defaultMessage": "Adding new lesson"
+  },
+  {
+    "id": "settings.deleteNewLesson",
+    "defaultMessage": "Removing lessons"
+  },
+  {
+    "id": "settings.scheduleChangeSchoolClass",
+    "defaultMessage": "Changes in timetable"
+  },
+  {
+    "id": "settings.createNewLessonStatus",
+    "defaultMessage": "Adding lesson status"
+  },
+  {
+    "id": "settings.deleteNewLessonStatus",
+    "defaultMessage": "Removing lesson status"
+  },
+  {
+    "id": "settings.createLessonObject",
+    "defaultMessage": "Adding classes details"
+  },
+  {
+    "id": "settings.createMessage",
+    "defaultMessage": "New message"
+  },
+  {
+    "id": "settings.createTestBind",
+    "defaultMessage": "Sharing new test with the group"
+  },
+  {
+    "id": "settings.createMeeting",
+    "defaultMessage": "Starting new on-line lesson"
+  },
+  {
+    "id": "settings.createTeacherFileBind",
+    "defaultMessage": "Sharing new files"
+  },
+  {
+    "id": "settings.createTeacherNewLesson",
+    "defaultMessage": "Adding lessons by teacher"
+  },
+  {
+    "id": "settings.createTeacherNewLessonStatus",
+    "defaultMessage": "Adding lesson status by teacher"
+  },
+  {
+    "id": "settings.deleteTeacherNewLessonStatus",
+    "defaultMessage": "Removing lesson status by teacher"
+  },
+  {
+    "id": "settings.deleteTeacherNewLesson",
+    "defaultMessage": "Removing lessons by teacher"
   }
 ]

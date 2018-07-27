@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { showSnack } from 'react-redux-snackbar'
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 import {fetchSettings, saveNotifications} from "../../actions/AppActions"
 import Loader from '../../components/helpers/Loader'
 import Content from "../../components/helpers/Content"
@@ -13,14 +14,21 @@ import Settings from "../../components/app/Settings"
     fetching: store.app.settings.fetching,
   };
 })
-export default class SettingsContainer extends Component {
+class SettingsContainer extends Component {
   componentDidMount() {
     this.props.dispatch(fetchSettings())
   }
+
   componentWillReceiveProps(nextProps){
-    const {notifications} = this.props
+    const {intl, notifications} = this.props
+    const messages = defineMessages({
+      settingsUpdated: {
+        id: 'SettingsContainer.settingsUpdated',
+        defaultMessage: 'Settings updated'
+      }
+    })
     if(!notifications.saved && nextProps.notifications.saved){
-      this.props.dispatch(showSnack('settings_updated', {label: 'Settings updated', timeout: 3000}));
+      this.props.dispatch(showSnack('settings_updated', {label: intl.formatMessage(messages.settingsUpdated), timeout: 3000}));
     }
   }
   handleCheckboxBtnClick = (id, option) =>{
@@ -44,9 +52,11 @@ export default class SettingsContainer extends Component {
     }
     return (
       <Content>
+        
         <Settings notifications={notifications} onCheckboxBtnClick={this.handleCheckboxBtnClick} />
       </Content>
       
     )
   }
 }
+export default injectIntl(SettingsContainer)

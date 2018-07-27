@@ -4,8 +4,8 @@ export default function reducer(state={
   fetched: false,
   error: null,
   saveUserData:{
-    fetching: false,
-    fetched: false,
+    saving: false,
+    saved: false,
     error: null,
   },
   changePassword: {
@@ -49,17 +49,17 @@ export default function reducer(state={
         }
       }
       case "SAVE_USER_DATA": {
-        return {...state, saveUserData: {fetching: true, fetched:false}}
+        return {...state, saveUserData: {saving: true, saved:false}}
       }
       case "SAVE_USER_DATA_REJECTED": {
-        return {...state, saveUserData: {fetching: false, error: action.payload}}
+        return {...state, saveUserData: {saving: false, error: action.payload}}
       }
       case "SAVE_USER_DATA_FULFILLED": {
         return {
           ...state,
           saveUserData: {
-            fetching: false,
-            fetched: true
+            saving: false,
+            saved: true
           }
         }
       }

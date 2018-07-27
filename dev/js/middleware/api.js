@@ -65,11 +65,11 @@ export default store => next => action => {
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
-  let { endpoint, types, authenticated, params, method, successToast } = callAPI
+  let { endpoint, types, authenticated, params, method } = callAPI
   const [ requestType, successType, errorType ] = types
   next({type:requestType, payload: params});
   // Passing the authenticated boolean back in our data will let us distinguish between normal and secret quotes
-  return callApi(endpoint, authenticated, params, method, successToast).then(
+  return callApi(endpoint, authenticated, params, method).then(
     response => {
       next({
         params: params ? params : null,
@@ -77,9 +77,6 @@ export default store => next => action => {
         authenticated,
         type: successType
       })
-      if(successToast){
-         next({type: "RRS_SHOW_SNACK", payload: successToast})
-      }
     },
     error => {
       next({type: errorType, payload:error})

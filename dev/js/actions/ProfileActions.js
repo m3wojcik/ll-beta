@@ -9,8 +9,7 @@ export function saveUserData(params) {
       method: 'post',
       params:{
         ...params
-      },
-      successToast: {id:"profile_updated", data:{label:"Profile was successfully updated", timeout: 3000 } }
+      }
     }
   }
 }
