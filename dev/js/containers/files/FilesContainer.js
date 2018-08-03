@@ -4,8 +4,6 @@ import {push} from 'react-router-redux';
 import { fetchFiles } from "../../actions/FilesActions";
 import {getParamFromPath, getCleanPath} from '../../actions/Functions'
 import {BASE_URL} from "../../middleware/api"
-import Button from 'react-md/lib/Buttons/Button';
-import FontIcon from 'react-md/lib/FontIcons';
 import Loader from '../../components/helpers/Loader'
 import Files from '../../components/files/Files'
 import Breadcrumbs from '../../components/Breadcrumbs'

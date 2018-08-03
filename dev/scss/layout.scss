@@ -119,6 +119,12 @@ strong{
   max-width: 1024px;
 
 }
+@media screen and (max-width: 599px){
+  .content{
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
 .content.content-tabs{
   padding-top: 70px;
 }
@@ -515,6 +521,7 @@ strong{
 ------------------------------------------------------------------------------*/
 .class-details{
   border-top: 1px solid $md-blue-grey-100;
+  margin-top: 10px;
   .header{
     padding: 10px 20px;
     span{
@@ -1849,12 +1856,14 @@ ul.notification-header{
   margin: 0px;
   padding: 0px;
   display: flex;
+  flex-wrap: wrap;
   font-size: 12px;
   li{
     margin: 0px;
     padding: 0px;
     height: $notificationHeaderHeight;
     line-height: $notificationHeaderHeight;
+    white-space: nowrap;
   }
   li.app-icon{
     .md-icon{
@@ -1999,6 +2008,7 @@ ul.notification-header{
     }
     .md-list-tile{
       height: 95px;
+      flex-wrap: wrap;
     }
   }
   .md-list-tile--bottom-lines {
@@ -2106,7 +2116,7 @@ ul.notification-header{
     .feed-header{
       padding: 16px 16px;
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       .feed-header-icon{
         margin-right: 10px;
       }
@@ -2122,6 +2132,10 @@ ul.notification-header{
       color: $md-blue-grey-600;
       overflow: hidden;
       text-overflow: ellipsis;   
+      .card-section{
+        padding-left: 0px;
+        padding-right: 0px;
+      }
     }
     .feed-bottom{
 
@@ -2249,6 +2263,21 @@ ul.notification-header{
       font-weight: 700;
       color: $green;
       border-bottom: 2px solid $green;
+    }
+  }
+}
+@media screen and (max-width: 599px){
+  .feed{
+    .feed-item{
+      .feed-header{
+        padding-bottom: 6px;
+        .feed-header-icon{
+          display: none;
+        }
+        .feed-header-text{
+          margin-bottom: 10px;
+        }
+      }
     }
   }
 }

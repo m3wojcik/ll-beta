@@ -31,7 +31,7 @@ const messages = defineMessages({
 })
 
 const ClassDetailsStatus = ({ intl, status, details }) => {
-
+    console.log('status',status)
     let classDetails = []
     if(details){
       if(details.attendance_checked){
@@ -78,7 +78,7 @@ const ClassDetailsStatus = ({ intl, status, details }) => {
       }
     }
     const statusElement = (
-      status ?
+      status && status.label != ""?
         <li>
             <Label label={status.label} customColor={"#"+status.color} />
         </li>

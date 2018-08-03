@@ -22,7 +22,7 @@ const messages = defineMessages({
   nextClass: {id: "dashboardClasses.nextClass", defaultMessage: "Next class"}
 })
 
-const DashboardClasses = ({ dashboardClasses, fetched, intl, onViewClassClick }) => {
+const DashboardClasses = ({ dashboardClasses, fetched, intl, onViewClassClick, onJoinClassClick }) => {
 
     let output = [], sortedClasses = [], tmpClass = null
     const today = new Date()
@@ -53,6 +53,7 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl, onViewClassClick })
                   icon={<FontIcon className="icon-grey">event</FontIcon>} 
                   clas={sortedClasses[0]} 
                   onViewClassClick={onViewClassClick}
+                  onJoinClassClick={onJoinClassClick}
                 />
                 <DashboardClass 
                   className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone" 
@@ -60,6 +61,7 @@ const DashboardClasses = ({ dashboardClasses, fetched, intl, onViewClassClick })
                   icon={<FontIcon className="icon-green">event</FontIcon>} 
                   clas={sortedClasses[1]} 
                   onViewClassClick={onViewClassClick}
+                  onJoinClassClick={onJoinClassClick}
                 />
             </div>       
           </div>

@@ -5,7 +5,7 @@ export default class ListHorizontal extends Component {
 
   render(){
     const {elements, space, className} = this.props;
-    let cssClass = "list-horizontal list-with-bullets"
+    let cssClass = "list-horizontal"
     if(className) cssClass += " "+className
     const length = elements.length,
           mappedElements = []

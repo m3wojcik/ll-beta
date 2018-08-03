@@ -107,6 +107,12 @@ border-color: transparent;
     margin-right: -8px;
   }
 }
+@media screen and (max-width: 599px){
+  .md-grid{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
 .md-card{
   border-radius: .28571429rem;
   .md-card-title--primary{
@@ -223,4 +229,13 @@ button + button{
 //Bug fix
 .md-overlay--drawer.md-overlay--drawer{
   opacity: 1;
+}
+@media screen and (max-width: 319px){
+  .md-toolbar-relative{
+    margin-top: 46px;
+  }
+  .md-title--toolbar {
+    line-height: 48px;
+    margin-left: 0px;
+  }
 }

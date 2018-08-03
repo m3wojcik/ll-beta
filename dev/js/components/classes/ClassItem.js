@@ -27,6 +27,7 @@ export default class ClassItem extends Component {
         <CustomListItem
           inactive={inactive}
           key={clas.id}
+          className={"class-id-"+clas.id}
           onClick={onClassClick.bind(this,clas.id,clas.name)}
           leftIcon={<WeekDayIcon date={d} />}
           primaryText={primaryText}

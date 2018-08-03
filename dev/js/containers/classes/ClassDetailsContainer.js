@@ -21,12 +21,15 @@ export default class ClassDetailsContainer extends Component {
       this.props.dispatch(setAppHeader(nextProps.classDetails[this.props.params.classId].name));
     }
   }
+  handleJoinClassClick = (url) =>{
+    window.open(url)
+  }
   render(){
     const { classDetails } = this.props;
     if(classDetails[this.props.params.classId] && classDetails[this.props.params.classId].fetched){
       return(
         <Content noPadding>
-          <ClassDetails classDetails={classDetails[this.props.params.classId]} />
+          <ClassDetails classDetails={classDetails[this.props.params.classId]} onJoinClassClick={this.handleJoinClassClick} />
         </Content>
         )
     }else{

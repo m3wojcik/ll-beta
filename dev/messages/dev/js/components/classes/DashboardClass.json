@@ -2,5 +2,9 @@
   {
     "id": "dashboardClass.view",
     "defaultMessage": "View"
+  },
+  {
+    "id": "dashboardClass.join",
+    "defaultMessage": "Join"
   }
 ]
