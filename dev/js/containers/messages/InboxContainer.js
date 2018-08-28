@@ -5,7 +5,7 @@ import Button from 'react-md/lib/Buttons/Button';
 import FontIcon from 'react-md/lib/FontIcons';
 import { fetchInboxMessages } from "../../actions/MessagesActions";
 import { showSnack } from 'react-redux-snackbar';
-import { createNewMessageBtnClick } from "../../actions/CreateMessageActions";
+import { createNewMessageBtnClick } from "../../actions/MessagesActions";
 import Loader from '../../components/helpers/Loader'
 import Inbox from '../../components/messages/Inbox'
 import InboxToolbar from '../../components/messages/InboxToolbar'

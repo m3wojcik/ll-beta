@@ -88,9 +88,9 @@ const ToolbarHeader = ({header, intl}) =>{
       message = header
   }
   return(
-    <h2 className="md-title md-title--toolbar toolbar-title">     
+    <h2 className="md-title md-title--toolbar toolbar-title ellipsis">     
       {message}
-     </h2>
+    </h2>
    )
 }
 ToolbarHeader.propTypes = {

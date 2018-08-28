@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import {push} from 'react-router-redux';
 import { showSnack } from 'react-redux-snackbar';
 
-import { fetchMessage, deleteMessage, restoreMessage, updateReceivers } from "../../actions/MessagesActions";
+import { fetchMessage,  addReceivers, deleteMessage, restoreMessage, forwardBtnClick, replayBtnClick } from "../../actions/MessagesActions";
 import {BASE_URL} from "../../middleware/api"
 import Loader from '../../components/helpers/Loader'
 import Message from '../../components/messages/Message';
@@ -42,11 +42,14 @@ export default class MessageContainer extends Component {
     }
   }
   handleReplayBtnClick = (message) => {
-
+    console.log(message.senderId)
+    this.props.dispatch(replayBtnClick());
+    this.props.dispatch(addReceivers(message.senderId))
     this.props.dispatch(push('createmessage'));
   }
   handleForwardBtnClick = (message) => {
-      this.props.dispatch(push('createmessage'));
+    this.props.dispatch(forwardBtnClick());
+    this.props.dispatch(push('createmessage'));
   }
   handleDeleteBtnClick = (message) => {
     this.props.dispatch(deleteMessage({"ids": [message.id]}));

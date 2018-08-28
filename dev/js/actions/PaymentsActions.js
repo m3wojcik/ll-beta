@@ -1,17 +1,17 @@
-// import axios from "axios";
-//
-// export function fetchPayments() {
-//   return function(dispatch) {
-//     dispatch({type: "FETCH_PAYMENTS", payload: null});
-//     axios.get("http://api.local/?q=getPayments")
-//       .then((response) => {
-//         dispatch({type: "FETCH_PAYMENTS_FULFILLED", payload: response.data});
-//       })
-//       .catch((err) => {
-//         dispatch({type: "FETCH_PAYMENTS_REJECTED", payload: err})
-//       })
-//   }
-// }
+import axios from "axios";
+
+export function fetchInvoices() {
+  return function(dispatch) {
+    dispatch({type: "FETCH_INVOICES", payload: null});
+    axios.get("http://api.local/?q=getInvoices")
+      .then((response) => {
+        dispatch({type: "FETCH_INVOICES_FULFILLED", payload: response.data});
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_INVOICES_REJECTED", payload: err})
+      })
+  }
+}
 import { CALL_API } from '../middleware/api'
 
 export function fetchPayments() {

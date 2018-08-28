@@ -269,6 +269,30 @@ export default function reducer(state={
           }
         }
       }
+      case "REPLAY_BTN_CLICK": {
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            receivers: []
+          }
+        }
+      }
+      case "FORWARD_BTN_CLICK": {
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            receivers: []
+          }
+        }
+      }
+      case "CREATE_NEW_MESSAGE_BTN_CLICK": {
+        return {...state,
+          addressBook: {
+            ...state.addressBook,
+            receivers: []
+          }
+        }
+      }
       case "SET_MESSAGE_SUBJECT": {
         return {...state,
           createMessage: {

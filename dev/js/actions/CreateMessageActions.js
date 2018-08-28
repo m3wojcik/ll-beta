@@ -30,9 +30,7 @@ export function updateReceivers(receivers) {
 export function updateFiltredReceivers(receivers) {
     return{type: "UPDATE_FILTRED_RECEIVERS", payload: receivers};
 }
-export function createNewMessageBtnClick() {
-    return {type: "CREATE_NEW_MESSAGE_BTN_CLICK", payload: null};
-}
+
 export function replyMessageBtnClick(message) {
     return {type: "REPLY_MESSAGE_BTN_CLICK", payload: message};
 }

@@ -38,7 +38,7 @@ class ClassDetails extends Component {
               bottom={joinActions}
               >
               <div>
-                <ClassDetailsStatus  details={classDetails.details} />  
+                <ClassDetailsStatus details={classDetails.details} />  
                 <ClassDetailsList clas={classDetails} />
               </div>
             </Box>

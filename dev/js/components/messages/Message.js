@@ -14,7 +14,7 @@ export default class Message extends Component {
     const menu =
       <MessageMenu
         mailbox = {message.mailbox}
-        onReplayBtnClick={onReplayBtnClick}
+        onReplayBtnClick={onReplayBtnClick.bind(this,message)}
         onForwardBtnClick={onForwardBtnClick}
         onDeleteBtnClick={onDeleteBtnClick}
         onRestoreBtnClick={onRestoreBtnClick}

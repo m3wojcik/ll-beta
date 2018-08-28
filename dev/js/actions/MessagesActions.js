@@ -116,6 +116,15 @@ export function sendMessage(params) {
     }
   }
 }
+export function replayBtnClick() {
+  return {type: "REPLAY_BTN_CLICK", payload: null};
+}
+export function forwardBtnClick() {
+  return {type: "FORWARD_BTN_CLICK", payload: null};
+}
+export function createNewMessageBtnClick() {
+  return {type: "CREATE_NEW_MESSAGE_BTN_CLICK", payload: null};
+}
 export function searchAddressBook(search) {
   return {type: "SEARCH_ADDRESS_BOOK", payload: search};
 }

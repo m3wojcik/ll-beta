@@ -262,7 +262,7 @@ strong{
   }
 }
 .toolbar-children{
-  width: 100%;
+  width: calc(100% - 52px);
   display: flex;
 }
 /* Dashboard
@@ -2296,6 +2296,12 @@ ul.notification-header{
   .header-icon{
     margin: 0px 4px -5px -3px;
   } 
+}
+.ellipsis{
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 ul.attachment-list{
   margin: 0px;
