@@ -11,7 +11,8 @@ const PaymentsInvoices = ({ intl, invoices, onDownloadClick } ) => {
         <ListItem 
           key={invoice.id}
           primaryText={invoice.name}
-          secondaryText={<FormattedDate value={invoice.date} day="numeric" month="numeric" year="numeric" />}
+          secondaryText={<FormattedDate value={invoice.date} day="numeric" month="long" year="numeric" />}
+          leftIcon={<FontIcon>description</FontIcon>}
           rightIcon={
             <FontIcon onClick={onDownloadClick.bind(this, invoice.id)}>vertical_align_bottom</FontIcon>
           }

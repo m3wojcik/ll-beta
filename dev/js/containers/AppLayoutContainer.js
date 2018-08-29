@@ -10,13 +10,14 @@ import {getAppSettings, getCleanPath} from '../actions/Functions';
 import { fetchAppData, setAppSettings, fetchLocales } from "../actions/AppActions";
 import { removeToast } from "../actions/ToastsActions";
 import { IntlProvider, addLocaleData } from 'react-intl';
+import en from 'react-intl/locale-data/pl';
 import pl from 'react-intl/locale-data/pl';
 import es from 'react-intl/locale-data/es';
 import ru from 'react-intl/locale-data/ru';
 import fr from 'react-intl/locale-data/fr';
 
 import localeData from './../../locales/messages.json';
-addLocaleData([...pl, ...es, ...ru, ...fr]);
+addLocaleData([...en, ...pl, ...es, ...ru, ...fr]);
 
 @connect((store) => {
   return {
@@ -78,8 +79,7 @@ export default class AppLayoutContainer extends Component {
       }else{
         language = appData.user.language.split('_')[0]
       }
-      
-      return(
+      return(  
         <IntlProvider locale={language} messages={localeData[language]}>
         <div className={language}>
           <Snackbar {...toasts} onDismiss={this.handleRemoveToast} />
