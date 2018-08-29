@@ -6,5 +6,13 @@
   {
     "id": "PaymentsContainer.amountLeftToPay",
     "defaultMessage": "Amount left to pay"
+  },
+  {
+    "id": "PaymentsContainer.invoices",
+    "defaultMessage": "Invoices"
+  },
+  {
+    "id": "PaymentsContainer.close",
+    "defaultMessage": "Close"
   }
 ]

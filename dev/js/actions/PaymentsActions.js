@@ -24,3 +24,9 @@ export function fetchPayments() {
     }
   }
 }
+export function toggleInvoicesDialog(visible) {
+  return {
+    type: 'TOGGLE_INVOICES_DIALOG',
+    payload: visible,
+  }
+}

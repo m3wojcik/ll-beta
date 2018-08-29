@@ -160,7 +160,7 @@ export function getAppSettings(pathname){
       settings = {header:toolbarHeaders.surveys, searchBtn: true}
       break;
     case "payments":
-      settings = {header:toolbarHeaders.payments}
+      settings = {header:toolbarHeaders.payments, hasTabs: true}
       break;
     default:
       if(/^files(\/.+|)/.test(pathname)){

@@ -8,6 +8,7 @@ import ToolbarMenu from '../components/helpers/ToolbarMenu';
 import ToolbarHeader from '../components/helpers/ToolbarHeader';
 import ChangeLanguage from '../components/helpers/ChangeLanguage';
 import { setSearching, setSearchValue, toggleLanguageDialog, changeLanguage } from "../actions/AppActions";
+import {FormattedMessage} from 'react-intl';
 import {logoutUser} from "../actions/index";
 
 @connect((store) => {
@@ -84,13 +85,21 @@ export default class ToolbarContainer extends Component {
         <Dialog
             id="changeLanguageDialog"
             visible={view.dialogVisible}
-            title="Change language"
+            title={
+              <FormattedMessage 
+                        id="toolbarContainer.changeLanguage"
+                        defaultMessage="Change language"
+                      />
+            }
             focusOnMount={false}
             onHide={this.handleDialogClose}
             actions={[{
               onClick: this.handleDialogClose,
               primary: false,
-              label: 'Close',
+              label: <FormattedMessage 
+              id="toolbarContainer.close"
+              defaultMessage="Close"
+            />,
             }]}
           >
             <ChangeLanguage selected={language} onLanguageChange={this.handleLanguageChange} />

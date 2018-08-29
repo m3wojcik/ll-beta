@@ -1,0 +1,10 @@
+[
+  {
+    "id": "toolbarContainer.changeLanguage",
+    "defaultMessage": "Change language"
+  },
+  {
+    "id": "toolbarContainer.close",
+    "defaultMessage": "Close"
+  }
+]
