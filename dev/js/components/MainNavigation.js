@@ -21,7 +21,7 @@ export default class MainNavigation extends Component {
       const {appData , notifications, menu} = this.props;
       return(
       <List className="navigation">
-        <IndexLink  key="dashboard" to="/" activeClassName="active-main" >
+        <IndexLink key="dashboard" to="/" activeClassName="active-main" >
           <ListItem
             primaryText={
               <FormattedMessage 

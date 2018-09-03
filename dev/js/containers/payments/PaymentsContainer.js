@@ -105,7 +105,7 @@ export default class PaymentsContainer extends Component {
           <Dialog
             id="invoicesDialog"
             visible={view.dialogVisible}
-            width={400}
+            width={600}
             title={<FormattedMessage 
               id="PaymentsContainer.invoices"
               defaultMessage="Invoices"
@@ -121,7 +121,7 @@ export default class PaymentsContainer extends Component {
               />,
             }]}
           >
-          <PaymentsInvoicesContainer />
+          <PaymentsInvoicesContainer  />
           </Dialog>
         </Content>
     )

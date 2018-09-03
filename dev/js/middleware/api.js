@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import qs  from "qs";
-export const BASE_URL = localStorage.getItem('instance_url')+'/api';
+//export const BASE_URL = localStorage.getItem('instance_url')+'/api';
+export const BASE_URL = 'https://test.langlion.com'+'/api';
 
 function callApi(endpoint, authenticated, params, method) {
 

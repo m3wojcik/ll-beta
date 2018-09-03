@@ -51,8 +51,7 @@ class SettingsContainer extends Component {
       return(<Loader full />)
     }
     return (
-      <Content>
-        
+      <Content>   
         <Settings notifications={notifications} onCheckboxBtnClick={this.handleCheckboxBtnClick} />
       </Content>
       

@@ -239,3 +239,12 @@ button + button{
     margin-left: 0px;
   }
 }
+//Navigation drawer
+@media screen and (min-width: 768px){
+  .md-toolbar ~ .md-list--drawer {
+    height: calc(100% - 180px);
+  }
+}
+.md-list--nested-1 .md-list-tile{
+  padding-left: 16px;
+}

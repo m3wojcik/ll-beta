@@ -6,8 +6,10 @@ var webpack = require('webpack');
 module.exports = {
     devServer: {
         inline: true,
+        host: 'mariusz.langlion.com',
         contentBase: './src',
-        port: 3000
+        port: 3000,
+        public: true
     },
     devtool: 'cheap-module-eval-source-map',
     entry: './dev/js/index.js',

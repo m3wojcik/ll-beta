@@ -80,7 +80,7 @@ export default class ElibraryContainer extends Component {
         />
         <Drawer
           visible={view.drawerVisible}
-          onVisibilityToggle={this.handleDrawerToggle}
+          onVisibilityChange={this.handleDrawerToggle}
           type={Drawer.DrawerTypes.TEMPORARY}
           header={<DrawerHeader>Reservation</DrawerHeader>}
           className="drawer-bottom"

@@ -43,6 +43,7 @@ export default function reducer(state={
   }, action) {
 
     switch (action.type) {
+      
       case "FETCH_APP_DATA": {
         return {...state, appData: {fetching: true, fetched:false}}
       }

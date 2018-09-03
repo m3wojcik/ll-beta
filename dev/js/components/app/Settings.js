@@ -1,7 +1,9 @@
 import React from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
 import TabPaneTitle from '../helpers/TabPaneTitle';
-import ButtonCheckboxGroup from '../helpers/ButtonCheckboxGroup';
+import { List, ListItem } from 'react-md/lib/Lists';
+import MenuSwitchGroup from '../helpers/MenuSwitchGroup';
+import LabelsOptionsGroup from '../helpers/LabelsOptionsGroup';
 import {DataTable,  TableHeader,  TableBody,  TableRow,  TableColumn} from 'react-md';
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
@@ -106,34 +108,30 @@ const Settings = ({ intl, notifications, onCheckboxBtnClick })=> {
       })
     })
   }
+
   if(notifications.settings){
     Object.keys(notifications.settings).forEach(function(key, i){
        mappedNotifications.push(
-        <TableRow key={i}>
-          <TableColumn>{intl.formatMessage(messages[key])}</TableColumn>
-          <TableColumn><ButtonCheckboxGroup id={key} options={options} checked={notifications.settings[key]} onClick={onCheckboxBtnClick} /></TableColumn>
-        </TableRow>
+        <ListItem 
+          key={i}
+          className="list-item-right-button"
+          primaryText={intl.formatMessage(messages[key])}
+          secondaryText={<LabelsOptionsGroup options={options} checked={notifications.settings[key]} />}
+          rightIcon={<MenuSwitchGroup id={key} options={options} checked={notifications.settings[key]} onClick={onCheckboxBtnClick} />}
+        />
       )
     })
   }
-    return(
-      <section className="tab-pane">
-        <TabPaneTitle
-          title={intl.formatMessage(messages.notifications)} 
-          titleIcon={<FontIcon className="icon-red">assignment_turned_in</FontIcon>}
-        />
-        <DataTable plain>
-          <TableHeader>
-            <TableRow>
-              <TableColumn>{intl.formatMessage(messages.name)} </TableColumn>
-              <TableColumn>{intl.formatMessage(messages.event)} </TableColumn>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {mappedNotifications}
-          </TableBody>
-        </DataTable>  
-      </section>
-    )
-  }
+  return(
+    <section className="tab-pane">
+      <TabPaneTitle
+        title={intl.formatMessage(messages.notifications)} 
+        titleIcon={<FontIcon className="icon-red">assignment_turned_in</FontIcon>}
+      />
+      <List>
+        {mappedNotifications}
+      </List>
+    </section>
+  )
+}
 export default injectIntl(Settings)

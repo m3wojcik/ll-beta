@@ -1,0 +1,42 @@
+[
+  {
+    "id": "LayoutContainer.dashboard",
+    "defaultMessage": "Dashboard"
+  },
+  {
+    "id": "LayoutContainer.marks",
+    "defaultMessage": "Marks"
+  },
+  {
+    "id": "LayoutContainer.classes",
+    "defaultMessage": "Classes"
+  },
+  {
+    "id": "LayoutContainer.attendance",
+    "defaultMessage": "Attendance"
+  },
+  {
+    "id": "LayoutContainer.messages",
+    "defaultMessage": "Messages"
+  },
+  {
+    "id": "LayoutContainer.files",
+    "defaultMessage": "Files"
+  },
+  {
+    "id": "LayoutContainer.tests",
+    "defaultMessage": "Tests"
+  },
+  {
+    "id": "LayoutContainer.elibrary",
+    "defaultMessage": "E-library"
+  },
+  {
+    "id": "LayoutContainer.surveys",
+    "defaultMessage": "Surveys"
+  },
+  {
+    "id": "LayoutContainer.payments",
+    "defaultMessage": "Payments"
+  }
+]

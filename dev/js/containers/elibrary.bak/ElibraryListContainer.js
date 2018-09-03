@@ -147,7 +147,7 @@ export default class ElibraryListContainer extends Component {
           </Dialog>
           <Drawer
             visible={this.state.drawerVisible}
-            onVisibilityToggle={this.handleDrawerToggle}
+            onVisibilityChange={this.handleDrawerToggle}
             type={Drawer.DrawerTypes.TEMPORARY}
             header={<DrawerHeader>{this.state.drawerTitle}</DrawerHeader>}
             className="drawer-bottom"

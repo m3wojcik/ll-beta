@@ -6,6 +6,7 @@ import Loader from '../../components/helpers/Loader'
 
 @connect((store) => {
    return {
+    locales: store.app.appData.locales, 
     invoices: store.payments.invoices.invoices,
     fetched: store.payments.invoices.fetched,
     fetching: store.payments.invoices.fetching
@@ -19,14 +20,14 @@ class PaymentsInvoicesContainer extends Component {
     console.log('download', id);
   }
   render(){
-    const { fetched, invoices } = this.props;
+    const { fetched, invoices, locales } = this.props;
   
     if(!fetched){
         return( <Loader centerPadding />)
     }
     return(
       <div>
-          <PaymentsInvoices invoices={invoices} onDownloadClick={this.handleDownloadClick} />
+          <PaymentsInvoices invoices={invoices} locales={locales} onDownloadClick={this.handleDownloadClick}  />
       </div>
     )
   }

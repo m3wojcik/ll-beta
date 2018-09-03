@@ -4,7 +4,8 @@ import {push} from 'react-router-redux';
 
 import { CALL_API } from '../middleware/api'
 //import cookie from 'react-cookie';
-const API_URL = localStorage.getItem('instance_url')+'/api';
+//const API_URL = localStorage.getItem('instance_url')+'/api';
+const API_URL = 'https://test.langlion.com'+'/api';
 const CLIENT_ROOT_URL = '';
 
 export function errorHandler(dispatch, error, type) {

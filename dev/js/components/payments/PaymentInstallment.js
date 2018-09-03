@@ -31,7 +31,6 @@ const PaymentInstallment = ({ intl, installment }) =>{
     const amountToPay = installment.value
     let secondaryText = installment.date_to ? <CustomDate date={installment.date_to} format="day" /> : null
     const percentPaid = amountToPay != 0 ? (amountPaid / amountToPay) * 100 : 0;
-    console.log("partly", leftToPay, amountToPay)
     let props;
     if(leftToPay <= 0 && installment.value > 0){
       props = {
