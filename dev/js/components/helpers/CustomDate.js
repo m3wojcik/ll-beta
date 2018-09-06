@@ -2,6 +2,7 @@ import React from 'react';
 import {FormattedDate, FormattedTime, FormattedRelative} from 'react-intl';
 
 const CustomDate = ( { date, collored, format, className }) => {
+    const tmp = new Date(date).setSeconds(1)
     const time = new Date(date).getTime();
     const now = new Date().getTime();
     const diffDays = Math.ceil(Math.abs(time - now) / (1000*60*60*24));

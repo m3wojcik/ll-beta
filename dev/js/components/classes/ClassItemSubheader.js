@@ -2,7 +2,6 @@ import React from 'react';
 import FontIcon from 'react-md/lib/FontIcons';
 import FeedDate from './../wall/FeedDate'
 const ClassItemSubheader =({classItem})=> {
-  console.log('class', classItem)
   const output = [
     <li key="group">
       <FontIcon className="icon-green">event</FontIcon> 

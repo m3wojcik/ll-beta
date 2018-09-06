@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { SubmissionError } from 'redux-form'
 import { showSnack } from 'react-redux-snackbar'
-import { fetchUserData, saveUserData, saveAvatar } from "../../actions/ProfileActions";
+import { fetchUserData, saveUserData, saveAvatar, updateCanvas, setCanvaRef } from "../../actions/ProfileActions";
 import Drawer from 'react-md/lib/Drawers';
 import DrawerHeader from '../../components/helpers/DrawerHeader'
 import DrawerBody from '../../components/helpers/DrawerBody'
@@ -17,6 +17,7 @@ import {injectIntl, formatMessage, defineMessages} from 'react-intl';
    return {
     userData: store.profile.userData,
     saveUserData: store.profile.saveUserData,
+    avatar: store.profile.avatar,
     form: store.form.EditProfile,
     fetched: store.profile.fetched,
     fetching: store.profile.fetching
@@ -25,12 +26,15 @@ import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 class EditProfileContainer extends Component {
   constructor(props){
     super(props);
-    this.state = {drawerVisible: false}
+    this.state = {drawerVisible: true}
   }
   componentWillReceiveProps(nextProps){
-    const {saveUserData} = this.props
+    const {saveUserData, avatar} = this.props
     if(!saveUserData.saved && nextProps.saveUserData.saved){
       this.props.dispatch(showSnack('profile_updated', {label: 'Profile was successfully updated', timeout: 3000}));
+    }
+    if(!avatar.saved && nextProps.avatar.saved){
+      this.props.dispatch(showSnack('avatar_updated', {label: 'Avatar was successfully updated', timeout: 3000}));
     }
   }
   componentDidMount(){
@@ -41,7 +45,6 @@ class EditProfileContainer extends Component {
       email: values.email,
       phone: values.phone
     }
-    // throw new SubmissionError({ email: 'Invalid email address', _error: 'Update profile failed!' })
     this.props.dispatch(saveUserData(params));
   }
   handleDrawerToggle = (visible) => {
@@ -50,15 +53,23 @@ class EditProfileContainer extends Component {
   handleChangeAvatarClick = ()=>{
     this.handleDrawerToggle(true)
   }
+  handleSaveClick = () =>{
+    const {avatar} = this.props
+    const avatarBase64Data = avatar.canva.toDataURL("image/png")
+    this.props.dispatch(saveAvatar({data:avatarBase64Data}));
+    this.handleDrawerToggle(false); 
+  }
   handleCancelClick = ()=>{
     this.handleDrawerToggle(false)
   }
   handleCanvasUpdate = (img)=>{
-    this.props.dispatch(saveAvatar({data: img}));
-    console.log('img update')
+    //this.props.dispatch(updateCanvas(img));
+  }
+  handleSetCanvaRef = (ref)=>{
+    this.props.dispatch(setCanvaRef(ref));
   }
   render(){
-    const { intl, fetched, userData, form, saveUserData } = this.props;
+    const { intl, fetched, userData, avatar, saveUserData } = this.props;
     const messages = defineMessages({
       changeAvatar: {
         id: 'EditProfileContainer.changeAvatar',
@@ -81,7 +92,15 @@ class EditProfileContainer extends Component {
             header={<DrawerHeader>{intl.formatMessage(messages.changeAvatar)}</DrawerHeader>}
             className="drawer-bottom"
           >
-            <DrawerBody><ChangeAvatarContainer onCancelClick={this.handleCancelClick} onCanvasUpdate={this.handleCanvasUpdate} /></DrawerBody>
+            <DrawerBody>
+              <ChangeAvatarContainer 
+                avatar={avatar.avatar} 
+                onSaveClick={this.handleSaveClick} 
+                onCancelClick={this.handleCancelClick} 
+                onCanvasUpdate={this.handleCanvasUpdate}
+                onSetCanvaRef={this.handleSetCanvaRef} 
+              />
+            </DrawerBody>
           </Drawer>
       </Content>
     )

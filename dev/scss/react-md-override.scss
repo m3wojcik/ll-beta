@@ -16,9 +16,20 @@
   //   color: #fff;
   // }
 }
-.md-toolbar--fixed.no-shadow{
-  border-bottom: none;
-  box-shadow: none;
+@media screen and (min-width: 840px){
+  .md-toolbar--fixed.no-shadow{
+    border-bottom: none;
+    box-shadow: none;
+  } 
+}
+@media screen and (max-width: 839px){
+  .md-tabs-fixed-container{
+    position: relative;
+    box-shadow: none !important;
+    background-color: $md-blue-grey-50;
+    border-bottom: 1px solid $md-blue-grey-100;
+    padding-bottom: 4px;
+  }
 }
 .md-toolbar--action-right{
     display: flex;
@@ -79,21 +90,23 @@ border-color: transparent;
     width: 100%;
   }
 }
-.md-grid.md-row{
-  padding-left: 0px;
-  padding-right: 0px;
-}
+// .md-grid.md-row{
+//   padding-left: 0px;
+//   padding-right: 0px;
+// }
 
 .md-grid{
+  padding-top: 0px;
+  padding-bottom: 0px;
     .md-cell--50{
         width: calc(50% - 16px);
     }
 }
 @media screen and (min-width: 1280px){
-  .md-grid.md-row{
-    margin-left: -8px;
-    margin-right: -8px;
-  }
+  // .md-grid.md-row{
+  //   margin-left: -8px;
+  //   margin-right: -8px;
+  // }
 }
 @media screen and (min-width: 840px){
   .md-grid.md-row{
@@ -102,10 +115,10 @@ border-color: transparent;
   }
 }
 @media screen and (max-width: 839px) and (min-width: 600px){
-  .md-grid.md-row{
-    margin-left: -8px;
-    margin-right: -8px;
-  }
+  // .md-grid.md-row{
+  //   margin-left: -8px;
+  //   margin-right: -8px;
+  // }
 }
 @media screen and (max-width: 599px){
   .md-grid{
@@ -230,6 +243,11 @@ button + button{
 .md-overlay--drawer.md-overlay--drawer{
   opacity: 1;
 }
+@media screen and (max-width: 1023px){
+  .md-title--toolbar {
+    margin-left: 10px;
+  }
+}
 @media screen and (max-width: 319px){
   .md-toolbar-relative{
     margin-top: 46px;
@@ -242,7 +260,12 @@ button + button{
 //Navigation drawer
 @media screen and (min-width: 768px){
   .md-toolbar ~ .md-list--drawer {
-    height: calc(100% - 180px);
+    height: calc(100% - 135px);
+  }
+}
+@media screen and (max-width: 1024px) and (min-width: 320px){
+  .md-toolbar ~ .md-list--drawer {
+    height: calc(100% - 135px);
   }
 }
 .md-list--nested-1 .md-list-tile{

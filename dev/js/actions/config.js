@@ -1,7 +1,12 @@
 import axios from "axios";
+import {BASE_URL, INSTANCE_URL} from "../middleware/api"
+import av1 from '../../img/avatars/av01.png'
+import av2 from '../../img/avatars/av02.png'
+import av3 from '../../img/avatars/av03.png'
+import av4 from '../../img/avatars/av04.png'
 
 export const instance = axios.create({
-  baseURL: 'https://test.langlion.com/api'
+  baseURL: BASE_URL
   //baseURL: 'http://api.local/'
 });
 export const errorMessage = {
@@ -43,9 +48,8 @@ export const toolbarHeaders = {
 
 }
 export const avatars = [
-  {id: 0, src: "http://langlion.www/wp-content/uploads/test.png"},
-  {id: 1, src: "http://langlion.www/wp-content/uploads/av01.png"},
-  {id: 2, src: "http://langlion.www/wp-content/uploads/av02.png"},
-  {id: 3, src: "http://langlion.www/wp-content/uploads/av03.png"},
-  {id: 4, src: "http://langlion.www/wp-content/uploads/av04.png"}
+  {id: 1, src: av1},
+  {id: 2, src: av2},
+  {id: 3, src: av3},
+  {id: 4, src: av4},
 ]

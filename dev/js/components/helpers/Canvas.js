@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-md/lib/Sliders';
 
+
 export default class Canvas extends Component {
   constructor() {
     super()
@@ -18,11 +19,15 @@ export default class Canvas extends Component {
       drawnWidth: 0,
       drawnHeight: 0,
       startMoveX: 0,
-      startMoveY: 0
+      startMoveY: 0,
+      dataUrl: null
     }
   }
   componentDidMount() {
     const {src} = this.props
+    this.setState({
+      dataUrl: this.refs.canvas
+    })
     this.updateCanvas(src);
   }
   componentWillReceiveProps(next){
@@ -65,7 +70,7 @@ export default class Canvas extends Component {
         drawnHeight = image.height * (w/image.width)
         startPosY = -1 * (drawnHeight - h) / 2
       }
-      console.log('position', startPosX, startPosY);
+      //console.log('position', startPosX, startPosY);
       this.setState({
         posX: startPosX,
         posY: startPosY,
@@ -76,14 +81,13 @@ export default class Canvas extends Component {
         drawnWidth: drawnWidth,
         drawnHeight: drawnHeight,
         startWidth: drawnWidth,
-        startHeight: drawnHeight
+        startHeight: drawnHeight 
       })
       this.drawImage(startPosX, startPosY, drawnWidth, drawnHeight)
 
       //TODO UPLOAD zdjęcia
-      console.log('this.refs.canvas', this.refs.canvas);
-      var dataurl = this.refs.canvas.toDataURL("image/png");
-      onCanvasUpdate(dataurl)
+      onCanvasUpdate(this.state.dataUrl.toDataURL("image/png"))
+      
       //console.log('dataurl', dataurl);
     }.bind(this)
   }
@@ -92,7 +96,7 @@ export default class Canvas extends Component {
   }
   handleSliderChange = (value) =>{
     const {sliderValue, image, posX, posY, drawnWidth, drawnHeight, startWidth, startHeight} = this.state
-    const {w, h} = this.props
+    const {w, h, onCanvasUpdate} = this.props
     if(value != sliderValue) {
 
       let ratio = image.width / image.height,
@@ -124,6 +128,7 @@ export default class Canvas extends Component {
         drawnHeight: newDrawnHeight
       })
       this.drawImage(newPosX,newPosY,newDrawnWidth, newDrawnHeight)
+      onCanvasUpdate(this.state.dataUrl.toDataURL("image/png"))
     }
   }
   _onMouseDown = (e)=> {
@@ -135,12 +140,14 @@ export default class Canvas extends Component {
     })
   }
   _onMouseUp = (e)=> {
+    const {onCanvasUpdate} = this.props
     if(this.state.isDragging){
       this.setState({
         isDragging: false,
         posX: this.state.tmpX,
         posY: this.state.tmpY
       })
+      onCanvasUpdate(this.state.dataUrl.toDataURL("image/png"))
     }
   }
   _onMouseMove = (e)=> {

@@ -3,22 +3,16 @@ import Button from 'react-md/lib/Buttons/Button';
 import Avatar from '../helpers/Avatar'
 import Select from '../helpers/Select'
 import Canvas from '../helpers/Canvas'
+import ImageEditor from '../helpers/ImageEditor'
 import Dropzone from 'react-dropzone'
+
 
 export default class ChangeAvatar extends Component {
 
   render(){
-    const { avatars, selectedAvatar, avatarType, onCanvasUpdate, onCancelClick, onSaveClick, onChangeAvatar, onDrop } = this.props
+    const { avatar, avatars, onSetCanvaRef, onCanvasUpdate, onCancelClick, onSaveClick, onChangeAvatar, onDrop } = this.props
     const mappedAvatars = []
-    let avatarSrc = avatars[0].src;
-    if(selectedAvatar != null){
-      if(avatarType == "prepared"){
-        avatarSrc = avatars[selectedAvatar].src
-      }else{
-        avatarSrc = selectedAvatar.preview
-      }
-    }
-
+    
     avatars.forEach(function(avatar){
       mappedAvatars.push(
           {
@@ -32,8 +26,9 @@ export default class ChangeAvatar extends Component {
       <div className="">
         <div className="md-grid">
           <div className="md-cell md-cell--6">
-            <Canvas src={avatarSrc} w={200} h={200} onCanvasUpdate={onCanvasUpdate} />
-          </div>
+            <Canvas src={avatar} w={200} h={200} onCanvasUpdate={onCanvasUpdate} />
+            <ImageEditor w={200} h={200} src={avatar} onSetCanvaRef={onSetCanvaRef} />
+          </div> 
           <div className="md-cell md-cell--6">
             <Dropzone
               accept="image/jpeg, image/png"

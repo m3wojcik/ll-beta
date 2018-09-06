@@ -15,7 +15,6 @@ const messages = defineMessages({
 })
 
 const  DashboardClass = ({ intl, className, header, icon, clas, onViewClassClick, onJoinClassClick }) => {
-  console.log('sdsd', )
   const classTime =  clas.date + " " + clas.time
   const time = intl.formatTime(classTime)+" - "+ intl.formatTime((new Date(classTime)).getTime() + (clas.length * 1000 * 60))
   const headerText = <span>{time} </span>

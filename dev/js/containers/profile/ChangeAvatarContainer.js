@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
 import { avatars } from "../../actions/config"
-import { uploadAvatar } from "../../actions/ProfileActions"
-import Loader from '../../components/helpers/Loader'
 import ChangeAvatar from '../../components/profile/ChangeAvatar';
 
 export default class ChangeAvatarContainer extends Component {
@@ -10,39 +7,41 @@ export default class ChangeAvatarContainer extends Component {
     super()
     this.state = {
       selectedAvatar: null,
-      avatarType: null,
+      avatarSrc: null,
       files: []
     }
   }
+  componentWillReceiveProps(next){
+    const {avatar} = this.props
+    if(avatar != next.avatar){
+      this.setState({
+        avatarSrc: next.avatar
+      })
+    }
+  }
   handleChangeAvatar = ( index, value) =>{
-    console.log( value);
     this.setState({
-      selectedAvatar: index,
-      avatarType: "prepared"
+      avatarSrc: avatars[index].src
     })
   }
-  handleSaveClick = () =>{
-    console.log('save')
-  }
+  
   handleDrop = (files) =>{
-    console.log('files', files);
     this.setState({
-      selectedAvatar: files[0],
-      avatarType: "custom"
+      avatarSrc: files[0].preview
     })
   }
   render(){
-    const {  onCancelClick, onCanvasUpdate } = this.props;
-    const {selectedAvatar, avatarType} = this.state
+    const {  avatar, onCancelClick, onCanvasUpdate, onSetCanvaRef, onSaveClick } = this.props;
+    const {avatarSrc} = this.state
     return(
           <ChangeAvatar
-            selectedAvatar={selectedAvatar}
-            avatarType={avatarType}
+            avatar={avatarSrc}
             avatars={avatars}
             onDrop={this.handleDrop}
+            onSetCanvaRef={onSetCanvaRef}
             onCanvasUpdate={onCanvasUpdate}
             onCancelClick={onCancelClick}
-            onSaveClick={this.handleSaveClick}
+            onSaveClick={onSaveClick}
             onChangeAvatar={this.handleChangeAvatar} />
     )
   }

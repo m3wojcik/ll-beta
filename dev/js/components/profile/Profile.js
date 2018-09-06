@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FakeFormControl from './../helpers/FakeFormControl';
-import Avatar from './../helpers/Avatar'
+import AvatarContainer from './../../containers/profile/AvatarContainer'
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 
@@ -39,16 +39,17 @@ const Profile = ({ intl, userData }) => {
       <div className="fake-form">
         <div className="md-grid">
           <div className="md-cell md-cell--6">
+            <FakeFormControl label={intl.formatMessage(messages.avatar)}
+              value={<AvatarContainer w={200} h={200} id={userData.id} />} />
+          </div>
+          <div className="md-cell md-cell--6">
             <FakeFormControl label={intl.formatMessage(messages.firstName)} value={userData.firstname} />
             <FakeFormControl label={intl.formatMessage(messages.lastName)} value={userData.lastname} />
             <FakeFormControl label={intl.formatMessage(messages.login)} value={userData.login} />
             <FakeFormControl label={intl.formatMessage(messages.phone)} value={userData.phone} />
             <FakeFormControl label={intl.formatMessage(messages.email)} value={userData.email} />
           </div>
-          <div className="md-cell md-cell--6">
-            <FakeFormControl label={intl.formatMessage(messages.avatar)}
-              value={<Avatar w={200} h={200} src={userData.avatar} />} />
-          </div>
+          
         </div>
       </div>
     )

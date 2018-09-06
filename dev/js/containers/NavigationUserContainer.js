@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import UserPhoto from '../components/helpers/UserPhoto';
+import AvatarContainer from './profile/AvatarContainer'
 export default class NavigationUserContainer extends Component {
 
   render(){
@@ -14,7 +15,7 @@ export default class NavigationUserContainer extends Component {
     return(
       <div className="navigation-user">
         <div className="navigation-user-avatar">
-          {avatar}
+          <AvatarContainer w={48} h={48} id={userData.id} />
         </div>
         <div className="navigation-user-data">
           <div className="navigation-user-name">

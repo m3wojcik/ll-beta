@@ -54,7 +54,7 @@ export default class PaymentsContainer extends Component {
             left={<PaymentsToolbar onInvoicesClick={this.handleInvoicesClick} />}
           />
           <div className="expander-body">
-            <div className="md-grid md-row">
+            <div className="md-grid md-row ll-payments-boxes">
               <div className="md-cell md-cell--6 md-cell--12-tablet md-cell--12-phone">
                 <Box
                   className="box-blue"

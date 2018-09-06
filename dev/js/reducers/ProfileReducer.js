@@ -21,8 +21,12 @@ export default function reducer(state={
   },
   avatar:{
     avatar: null,
+    canvas: null,
+    canva: null,
     fetching: false,
     fetched: false,
+    saving: false,
+    saved: false,
     error: null,
   },
   avatars: {
@@ -105,13 +109,36 @@ export default function reducer(state={
         return {
           ...state,
           avatar: {
-            avatar: action.payload,
+            ...state.avatar,
+            avatar: action.payload.avatar,
             fetching: false,
             fetched: true
           }
         }
       }
-
+      case "SAVE_AVATAR": {
+        return {...state, avatar: {...state.avatar, saving: true, saved:false}}
+      }
+      case "SAVE_AVATAR_REJECTED": {
+        return {...state, avatar: {...state.avatar, saving: false, error: action.payload}}
+      }
+      case "SAVE_AVATAR_FULFILLED": {
+        return {
+          ...state,
+          avatar: {
+            ...state.avatar,
+            avatar: action.params.data,
+            saving: false,
+            saved: true
+          }
+        }
+      }
+      case "UPDATE_CANVAS": {
+        return {...state, avatar: {...state.avatar, canvas: action.payload}}
+      }
+      case "SET_CANVA_REF": {
+        return {...state, avatar: {...state.avatar, canva: action.payload}}
+      }
       case "FETCH_STUDENT_HISTORY": {
         return {...state, studentHistory: {fetching: true, fetched:false}}
       }
@@ -119,7 +146,6 @@ export default function reducer(state={
         return {...state, studentHistory: {fetching: false, error: action.payload}}
       }
       case "FETCH_STUDENT_HISTORY_FULFILLED": {
-        console.log('history', action.payload.history)
         return {
           ...state,
           studentHistory: {

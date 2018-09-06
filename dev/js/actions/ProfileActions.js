@@ -36,13 +36,14 @@ export function changePassword(params) {
     }
   }
 }
-export function fetchAvatar() {
+export function fetchAvatar(params) {
   return {
     [CALL_API]: {
-      endpoint: '/getAvatar',
+      endpoint: '/avatar',
       types: ["FETCH_AVATAR", "FETCH_AVATAR_FULFILLED", "FETCH_AVATAR_REJECTED"],
       authenticated: true,
-      method: 'get'
+      method: 'get',
+      params: {...params}
     }
   }
 }
@@ -65,6 +66,18 @@ export function fetchStudentHistory() {
       authenticated: true,
       method: 'post'
     }
+  }
+}
+export function updateCanvas(img) {
+  return {
+    type: 'UPDATE_CANVAS',
+    payload: img,
+  }
+}
+export function setCanvaRef(ref) {
+  return {
+    type: 'SET_CANVA_REF',
+    payload: ref,
   }
 }
 

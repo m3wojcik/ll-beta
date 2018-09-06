@@ -36,7 +36,7 @@ const PaymentInstallment = ({ intl, installment }) =>{
       props = {
         primaryText: intl.formatMessage(messages.amountPaid) + amountPaid
       }
-      secondaryText = <CustomDate date={installment.paid_at} format="day" />
+      secondaryText = <CustomDate date={installment.date_to} format="day" />
     }else if(0 < leftToPay && leftToPay < amountToPay){
       props = {
         primaryText: intl.formatMessage(messages.amountLeftToPay) + leftToPay

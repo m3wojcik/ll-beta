@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Field, reduxForm } from 'redux-form';
-import TextField from 'react-md/lib/TextFields';
-import UserPhoto from './../helpers/UserPhoto';
 import Button from 'react-md/lib/Buttons/Button';
 import FakeFormControl from './../helpers/FakeFormControl';
 import {RenderField} from './../helpers/RenderField'
-import Avatar from './../helpers/Avatar'
+import AvatarContainer from './../../containers/profile/AvatarContainer'
 import {email} from './../helpers/Validate'
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
@@ -61,6 +59,11 @@ let EditProfile= ({ intl, userData, saveUserData, handleSubmit, onChangeAvatarCl
         <form className="ui form login-form" onSubmit={handleSubmit}>
           <div className="md-grid">
             <div className="md-cell md-cell--6">
+              <FakeFormControl label={intl.formatMessage(messages.avatar)}
+                value={<AvatarContainer w={200} h={200} id={userData.id} />} />
+              <Button onClick={onChangeAvatarClick} raised >{intl.formatMessage(messages.changeAvatar)}</Button>
+            </div>
+            <div className="md-cell md-cell--6">
               <div className="field">
                 <label>{intl.formatMessage(messages.login)}</label>
                 <Field placeholder={intl.formatMessage(messages.login)} disabled name="login" component="input" type="text"/>
@@ -82,11 +85,7 @@ let EditProfile= ({ intl, userData, saveUserData, handleSubmit, onChangeAvatarCl
                 validate={email}
               />
             </div>
-            <div className="md-cell md-cell--6">
-              <FakeFormControl label={intl.formatMessage(messages.avatar)}
-                value={<Avatar w={200} h={200} src={userData.avatar} />} />
-              <Button onClick={onChangeAvatarClick} raised >{intl.formatMessage(messages.changeAvatar)}</Button>
-            </div>
+            
           </div>
           <div className="fake-form-actions">
             <Button {...buttonProps} >{intl.formatMessage(messages.save)}</Button>

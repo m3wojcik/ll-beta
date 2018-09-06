@@ -4,11 +4,19 @@
     "defaultMessage": "Upcoming classes"
   },
   {
+    "id": "dashboardClasses.firstClass",
+    "defaultMessage": "First class"
+  },
+  {
     "id": "dashboardClasses.previousClass",
     "defaultMessage": "Previous class"
   },
   {
     "id": "dashboardClasses.nextClass",
     "defaultMessage": "Next class"
+  },
+  {
+    "id": "dashboardClasses.lastClass",
+    "defaultMessage": "Last class"
   }
 ]

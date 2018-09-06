@@ -1,8 +1,11 @@
 import React from 'react';
 import axios from 'axios';
 import qs  from "qs";
-//export const BASE_URL = localStorage.getItem('instance_url')+'/api';
-export const BASE_URL = 'https://test.langlion.com'+'/api';
+
+//export const INSTANCE_URL = localStorage.getItem('instance_url');
+export const INSTANCE_URL = 'https://test.langlion.com';
+export const BASE_URL = INSTANCE_URL+'/api';
+
 
 function callApi(endpoint, authenticated, params, method) {
 
@@ -51,6 +54,7 @@ function callApi(endpoint, authenticated, params, method) {
   console.log('get', BASE_URL + endpoint + "?access_token="+ access_token, axios_config);
   return axios(axios_config)
   .then(response => {
+    
     return response.data
   })
   .catch((error) => {

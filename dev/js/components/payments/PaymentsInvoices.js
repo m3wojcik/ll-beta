@@ -9,12 +9,12 @@ const PaymentsInvoices = ({ invoices, onDownloadClick, locales } ) => {
     invoice =>
         <ListItem 
           key={invoice.id}
-          primaryText={invoice.name}
+          primaryText={invoice.number}
           secondaryText={
             <ul className="notification-header">
               <li><FormattedDate value={invoice.date} day="numeric" month="long" year="numeric" /></li>
               <li key="bullet2" className="bullet"><FontIcon>lens</FontIcon></li>
-              <li key="timestamp" className="timestamp md-text--secondary">{invoice.grossValue +" "+ locales.currencyCode}</li>
+              <li key="timestamp" className="timestamp md-text--secondary">{invoice.total_gross +" "+ locales.currencyCode}</li>
             </ul>
             
           }

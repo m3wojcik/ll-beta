@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { fetchInvoices } from "../../actions/PaymentsActions";
 import PaymentsInvoices from '../../components/payments/PaymentsInvoices'
+import {BASE_URL} from "../../middleware/api"
 import Loader from '../../components/helpers/Loader'
 
 @connect((store) => {
@@ -17,7 +18,9 @@ class PaymentsInvoicesContainer extends Component {
     this.props.dispatch(fetchInvoices());
   }
   handleDownloadClick = (id) =>{
-    console.log('download', id);
+    const accessToken = localStorage.getItem('access_token')
+    const downloadString = BASE_URL + "/downloadInvoice?access_token="+ accessToken +"&id="+id
+    window.open(downloadString)
   }
   render(){
     const { fetched, invoices, locales } = this.props;
