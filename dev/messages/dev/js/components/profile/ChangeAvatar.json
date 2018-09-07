@@ -1,0 +1,18 @@
+[
+  {
+    "id": "changeAvatar.clickOrDropFile",
+    "defaultMessage": "Click or drop file"
+  },
+  {
+    "id": "changeAvatar.orSelectExisting",
+    "defaultMessage": "or select from existing"
+  },
+  {
+    "id": "changeAvatar.cancel",
+    "defaultMessage": "Cancel"
+  },
+  {
+    "id": "changeAvatar.save",
+    "defaultMessage": "Save"
+  }
+]

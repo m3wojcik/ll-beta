@@ -4,6 +4,14 @@ import av1 from '../../img/avatars/av01.png'
 import av2 from '../../img/avatars/av02.png'
 import av3 from '../../img/avatars/av03.png'
 import av4 from '../../img/avatars/av04.png'
+import av5 from '../../img/avatars/av05.png'
+import av6 from '../../img/avatars/av06.png'
+import av7 from '../../img/avatars/av07.png'
+import av8 from '../../img/avatars/av08.png'
+import av9 from '../../img/avatars/av09.png'
+import av10 from '../../img/avatars/av10.png'
+import av11 from '../../img/avatars/av11.png'
+import av12 from '../../img/avatars/av12.png'
 
 export const instance = axios.create({
   baseURL: BASE_URL
@@ -52,4 +60,12 @@ export const avatars = [
   {id: 2, src: av2},
   {id: 3, src: av3},
   {id: 4, src: av4},
+  {id: 5, src: av5},
+  {id: 6, src: av6},
+  {id: 7, src: av7},
+  {id: 8, src: av8},
+  {id: 9, src: av9},
+  {id: 10, src: av10},
+  {id: 11, src: av11},
+  {id: 12, src: av12},
 ]

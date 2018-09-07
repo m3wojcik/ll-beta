@@ -11,6 +11,10 @@ export default class ChangeAvatarContainer extends Component {
       files: []
     }
   }
+  componentDidMount() {
+    const {avatar} = this.props
+    this.setState({ avatarSrc: avatar})
+  }
   componentWillReceiveProps(next){
     const {avatar} = this.props
     if(avatar != next.avatar){
@@ -18,6 +22,11 @@ export default class ChangeAvatarContainer extends Component {
         avatarSrc: next.avatar
       })
     }
+  }
+  handleCaptureScreen = (image) =>{
+    this.setState({
+      avatarSrc: image
+    })
   }
   handleChangeAvatar = ( index, value) =>{
     this.setState({
@@ -31,7 +40,7 @@ export default class ChangeAvatarContainer extends Component {
     })
   }
   render(){
-    const {  avatar, onCancelClick, onCanvasUpdate, onSetCanvaRef, onSaveClick } = this.props;
+    const {  avatar, onCancelClick, onSetCanvaRef, onSetWebcamRef, onSaveClick } = this.props;
     const {avatarSrc} = this.state
     return(
           <ChangeAvatar
@@ -39,7 +48,7 @@ export default class ChangeAvatarContainer extends Component {
             avatars={avatars}
             onDrop={this.handleDrop}
             onSetCanvaRef={onSetCanvaRef}
-            onCanvasUpdate={onCanvasUpdate}
+            onCaptureScreen={this.handleCaptureScreen}
             onCancelClick={onCancelClick}
             onSaveClick={onSaveClick}
             onChangeAvatar={this.handleChangeAvatar} />

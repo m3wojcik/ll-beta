@@ -133,9 +133,6 @@ export default function reducer(state={
           }
         }
       }
-      case "UPDATE_CANVAS": {
-        return {...state, avatar: {...state.avatar, canvas: action.payload}}
-      }
       case "SET_CANVA_REF": {
         return {...state, avatar: {...state.avatar, canva: action.payload}}
       }

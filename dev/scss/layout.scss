@@ -1094,8 +1094,9 @@ li.test-page{
 ------------------------------------------------------------------------------*/
 .select{
   display: flex;
+  flex-wrap: wrap;
   .select-obj{
-    padding: 3px;
+    padding: 2px;
     border: 2px solid transparent;
     border-radius: 5px;
     cursor: pointer;
@@ -1880,6 +1881,8 @@ ul.card-list > li{
 }
 .avatar-zoom{
   width: 200px;
+  margin-left: auto;
+  margin-right: auto;
   canvas{
     cursor: move; /* fallback if grab cursor is unsupported */
     cursor: grab;

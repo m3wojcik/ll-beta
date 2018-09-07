@@ -8,9 +8,7 @@ import Loader from '../../components/helpers/Loader'
 import Survey from '../../components/surveys/Survey';
 import TestInfo from '../../components/tests/TestInfo';
 import ToolbarExpander from '../../components/helpers/ToolbarExpander';
-import CountdownTimer from '../../components/helpers/CountdownTimer';
-import Dialog from 'react-md/lib/Dialogs';
-import Button from 'react-md/lib/Buttons/Button';
+
 
 @connect((store) => {
    return {

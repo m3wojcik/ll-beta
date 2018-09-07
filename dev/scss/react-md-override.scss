@@ -196,10 +196,11 @@ h3, .md-title, h6, .md-body-2{
   max-width: 100vw;
   max-height: 100vh;
   transform: translate3d(0, 100vh, 0);
+  overflow-x: auto;
 }
 @media screen and (min-width: 1025px){
   .drawer-bottom{
-      margin-left: 256px;
+      // margin-left: 256px;
       padding-right: 256px;
   }
   // .md-snackbar{
@@ -270,4 +271,7 @@ button + button{
 }
 .md-list--nested-1 .md-list-tile{
   padding-left: 16px;
+}
+.navigation-drawer header .navigation-user .navigation-user-avatar div{
+  background-color: transparent;
 }

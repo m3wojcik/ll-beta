@@ -1,0 +1,14 @@
+[
+  {
+    "id": "WebcamCapture.useWebcam",
+    "defaultMessage": "Use webcam"
+  },
+  {
+    "id": "WebcamCapture.webcam",
+    "defaultMessage": "Webcam"
+  },
+  {
+    "id": "WebcamCapture.capture",
+    "defaultMessage": "Capture"
+  }
+]

@@ -68,12 +68,6 @@ export function fetchStudentHistory() {
     }
   }
 }
-export function updateCanvas(img) {
-  return {
-    type: 'UPDATE_CANVAS',
-    payload: img,
-  }
-}
 export function setCanvaRef(ref) {
   return {
     type: 'SET_CANVA_REF',

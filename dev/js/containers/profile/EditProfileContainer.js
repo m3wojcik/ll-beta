@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { SubmissionError } from 'redux-form'
 import { showSnack } from 'react-redux-snackbar'
-import { fetchUserData, saveUserData, saveAvatar, updateCanvas, setCanvaRef } from "../../actions/ProfileActions";
+import { fetchUserData, saveUserData, saveAvatar, setCanvaRef } from "../../actions/ProfileActions";
 import Drawer from 'react-md/lib/Drawers';
 import DrawerHeader from '../../components/helpers/DrawerHeader'
 import DrawerBody from '../../components/helpers/DrawerBody'
@@ -62,12 +61,10 @@ class EditProfileContainer extends Component {
   handleCancelClick = ()=>{
     this.handleDrawerToggle(false)
   }
-  handleCanvasUpdate = (img)=>{
-    //this.props.dispatch(updateCanvas(img));
-  }
   handleSetCanvaRef = (ref)=>{
     this.props.dispatch(setCanvaRef(ref));
   }
+
   render(){
     const { intl, fetched, userData, avatar, saveUserData } = this.props;
     const messages = defineMessages({
@@ -79,6 +76,7 @@ class EditProfileContainer extends Component {
     if(!fetched){
       return( <Loader full />)
     }
+    //console.log('avatar', avatar)
     return(
       <Content>
           <ProfileTabMenu activeIndex={1} />
@@ -97,8 +95,7 @@ class EditProfileContainer extends Component {
                 avatar={avatar.avatar} 
                 onSaveClick={this.handleSaveClick} 
                 onCancelClick={this.handleCancelClick} 
-                onCanvasUpdate={this.handleCanvasUpdate}
-                onSetCanvaRef={this.handleSetCanvaRef} 
+                onSetCanvaRef={this.handleSetCanvaRef}
               />
             </DrawerBody>
           </Drawer>
