@@ -23,7 +23,7 @@ export default class StudentHistoryContainer extends Component {
     }
     return(
       <div className="content">
-          <ProfileTabMenu activeIndex={4} />
+          <ProfileTabMenu activeIndex={3} />
           <section className="tab-pane">
           <StudentHistory studentHistory={studentHistory} /> 
           </section>

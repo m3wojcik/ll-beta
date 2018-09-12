@@ -24,7 +24,7 @@ class LoginHistoryContainer extends Component {
     }
     return(
       <div className="content">
-          <ProfileTabMenu activeIndex={3} />
+          <ProfileTabMenu activeIndex={2} />
           <section className="tab-pane">
             <LoginHistory loginHistory={loginHistory} />
           </section>

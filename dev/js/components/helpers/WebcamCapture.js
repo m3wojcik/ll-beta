@@ -38,8 +38,8 @@ class WebcamCapture extends Component {
       facingMode: 'user',
     }  
     return(
-     <div>
-       <Button iconEl={<FontIcon>camera_alt</FontIcon>} onClick={this.handleWebcamModal} raised >
+     <div className="text-center">
+       <Button iconEl={<FontIcon>camera_alt</FontIcon>} onClick={this.handleWebcamModal} flat primary swapTheming>
         <FormattedMessage 
           id="WebcamCapture.useWebcam"
           defaultMessage="Use webcam"
@@ -65,12 +65,15 @@ class WebcamCapture extends Component {
                 ref="cam" 
                 videoConstraints={videoConstraints}
               />
-              <Button iconEl={<FontIcon>camera_alt</FontIcon>} onClick={this.handleCapture} raised primary >
-              <FormattedMessage 
-                id="WebcamCapture.capture"
-                defaultMessage="Capture"
-              />
-              </Button>
+              <div className="text-center">
+                <Button iconEl={<FontIcon>camera_alt</FontIcon>} onClick={this.handleCapture} raised primary >
+                  <FormattedMessage 
+                    id="WebcamCapture.capture"
+                    defaultMessage="Capture"
+                  />
+                </Button>
+              </div>
+              
             </div>
           </DialogContainer>
      </div>

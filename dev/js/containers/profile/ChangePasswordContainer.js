@@ -30,18 +30,25 @@ class ChangePasswordContainer extends Component {
       samePassword: {
         id: 'changePasswordContainer.samePassword',
         defaultMessage: "New password can't be the same as old"
+      },
+      noPasswords: {
+        id: 'changePasswordContainer.noPasswords',
+        defaultMessage: "No passwords"
       }
     })
     
     if(nextProps.changePassword.error && nextProps.changePassword.error.response){
       if(changePassword.error != nextProps.changePassword.error){
         const code =  nextProps.changePassword.error.response.data.error.code
+        console.log('no_passwords', code)
         if(code == 'wrong_password'){
           this.props.dispatch(showSnack(code, {label: intl.formatMessage(messages.wrongPassword), timeout: 3000}));
         }else if(code == 'passwords_must_match'){
           this.props.dispatch(showSnack(code, {label: intl.formatMessage(messages.passwordsMustMatch), timeout: 3000}));
         }else if(code == 'same_password'){
           this.props.dispatch(showSnack(code, {label: intl.formatMessage(messages.samePassword), timeout: 3000}));
+        }else if(code == 'no_passwords'){
+          this.props.dispatch(showSnack(code, {label: intl.formatMessage(messages.noPasswords), timeout: 3000}));
         }
       }
     }
@@ -52,15 +59,13 @@ class ChangePasswordContainer extends Component {
       new_password: values.newPass,
       new_password2: values.newPass2,
     }
-    console.log('params', params);
-    // throw new SubmissionError({ email: 'Invalid email address', _error: 'Update profile failed!' })
     this.props.dispatch(changePassword(params));
   }
   render(){
     const { changePassword } = this.props;
     return(
       <Content>
-          <ProfileTabMenu activeIndex={2} />
+          <ProfileTabMenu activeIndex={1} />
           <section className="tab-pane">
             <ChangePassword changePassword={changePassword} onSubmit={this.handleSubmit} />
           </section>

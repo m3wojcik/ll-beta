@@ -61,6 +61,7 @@ export default function reducer(state={
       case "SAVE_USER_DATA_FULFILLED": {
         return {
           ...state,
+          userData: action.payload.userProfile,
           saveUserData: {
             saving: false,
             saved: true

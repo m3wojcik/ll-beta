@@ -5,7 +5,7 @@ import TextField from 'react-md/lib/TextFields';
 import UserPhoto from './../helpers/UserPhoto';
 import Button from 'react-md/lib/Buttons/Button';
 import FakeFormControl from './../helpers/FakeFormControl';
-import {RenderField} from './../helpers/RenderField'
+import FieldInputEditable from './../helpers/FieldInputEditable'
 import Avatar from './../helpers/Avatar'
 import {email} from './../helpers/Validate'
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
@@ -42,21 +42,12 @@ let ChangePassword= ({ intl, changePassword, handleSubmit }) => {
     }
     return(
       <div className="fake-form">
-        <form className="ui form login-form" onSubmit={handleSubmit}>
+        <form className="" onSubmit={handleSubmit}>
           <div className="md-grid">
             <div className="md-cell md-cell--6">
-              <div className="field">
-                <label>{intl.formatMessage(messages.oldPass)}</label>
-                <Field placeholder={intl.formatMessage(messages.oldPass)} name="oldPass" component="input" type="password"/>
-              </div>
-              <div className="field">
-                <label>{intl.formatMessage(messages.newPass)}</label>
-                <Field placeholder={intl.formatMessage(messages.newPass)} name="newPass" component="input" type="password"/>
-              </div>
-              <div className="field">
-                <label>{intl.formatMessage(messages.newPass2)}</label>
-                <Field placeholder={intl.formatMessage(messages.newPass2)} name="newPass2" component="input" type="password"/>
-              </div>
+                <Field placeholder={intl.formatMessage(messages.oldPass)} name="oldPass" component={FieldInputEditable} type="password"/>
+                <Field placeholder={intl.formatMessage(messages.newPass)} name="newPass" component={FieldInputEditable} type="password"/>
+                <Field placeholder={intl.formatMessage(messages.newPass2)} name="newPass2" component={FieldInputEditable} type="password"/>
             </div>
           </div>
           <div className="fake-form-actions">

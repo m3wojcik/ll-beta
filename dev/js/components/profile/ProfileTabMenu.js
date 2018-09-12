@@ -29,10 +29,9 @@ const messages = defineMessages({
 const ProfileTabMenu = ({intl,activeIndex}) => {
   var tabs = [
     {"label": intl.formatMessage(messages.profile), "icon": <FontIcon>person</FontIcon>, "link": "profile", "active": activeIndex == 0 ? true : false},
-    {"label": intl.formatMessage(messages.editProfile), "icon": <FontIcon>create</FontIcon>, "link": "profile/edit", "active": activeIndex == 1 ? true : false},
-    {"label": intl.formatMessage(messages.changePassword), "icon": <FontIcon>vpn_key</FontIcon>, "link": "profile/changePassword", "active": activeIndex == 2 ? true : false},
-    {"label": intl.formatMessage(messages.loginHistory), "icon": <FontIcon>how_to_reg</FontIcon>, "link": "profile/loginHistory", "active": activeIndex == 3 ? true : false},
-    {"label": intl.formatMessage(messages.studentHistory), "icon": <FontIcon>history</FontIcon>, "link": "profile/studentHistory", "active": activeIndex == 4 ? true : false}
+    {"label": intl.formatMessage(messages.changePassword), "icon": <FontIcon>vpn_key</FontIcon>, "link": "profile/changePassword", "active": activeIndex == 1 ? true : false},
+    {"label": intl.formatMessage(messages.loginHistory), "icon": <FontIcon>how_to_reg</FontIcon>, "link": "profile/loginHistory", "active": activeIndex == 2 ? true : false},
+    {"label": intl.formatMessage(messages.studentHistory), "icon": <FontIcon>history</FontIcon>, "link": "profile/studentHistory", "active": activeIndex == 3 ? true : false}
   ]
     return(
       <CustomTabs tabs={tabs} />

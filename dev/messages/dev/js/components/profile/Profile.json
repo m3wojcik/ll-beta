@@ -1,26 +1,34 @@
 [
   {
-    "id": "profile.firstName",
+    "id": "editProfile.firstName",
     "defaultMessage": "First name"
   },
   {
-    "id": "profile.lastName",
+    "id": "editProfile.lastName",
     "defaultMessage": "Last Name"
   },
   {
-    "id": "profile.login",
+    "id": "editProfile.login",
     "defaultMessage": "Login"
   },
   {
-    "id": "profile.phone",
+    "id": "editProfile.phone",
     "defaultMessage": "Phone"
   },
   {
-    "id": "profile.email",
+    "id": "editProfile.email",
     "defaultMessage": "E-mail"
   },
   {
-    "id": "profile.avatar",
+    "id": "editProfile.avatar",
     "defaultMessage": "Avatar"
+  },
+  {
+    "id": "editProfile.changeAvatar",
+    "defaultMessage": "Change avatar"
+  },
+  {
+    "id": "editProfile.save",
+    "defaultMessage": "save"
   }
 ]

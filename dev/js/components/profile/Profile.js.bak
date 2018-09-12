@@ -1,0 +1,68 @@
+import React, { Component } from 'react';
+import FakeFormControl from './../helpers/FakeFormControl';
+import AvatarContainer from './../../containers/profile/AvatarContainer'
+import Button from 'react-md/lib/Buttons/Button';
+import FontIcon from 'react-md/lib/FontIcons';
+import { Link } from 'react-router';
+import {injectIntl, formatMessage, defineMessages} from 'react-intl';
+
+
+const messages = defineMessages({
+  firstName: {
+    id: 'profile.firstName',
+    defaultMessage: 'First name'
+  },
+  lastName: {
+    id: 'profile.lastName',
+    defaultMessage: 'Last Name'
+  },
+  login: {
+    id: 'profile.login',
+    defaultMessage: 'Login'
+  },
+  phone: {
+    id: 'profile.phone',
+    defaultMessage: 'Phone'
+  },
+  email: {
+    id: 'profile.email',
+    defaultMessage: 'E-mail'
+  },
+  avatar: {
+    id: 'profile.avatar',
+    defaultMessage: 'Avatar'
+  },
+  edit: {
+    id: 'profile.edit',
+    defaultMessage: 'Edit'
+  }
+  
+})
+
+
+const Profile = ({ intl, userData }) => {
+
+    return(
+      <div className="fake-form">
+        <div className="md-grid">
+          <div className="md-cell md-cell--6">
+            <FakeFormControl label={intl.formatMessage(messages.avatar)}
+              value={<AvatarContainer w={200} h={200} id={userData.id} />} />
+          </div>
+          <div className="md-cell md-cell--6">
+            <FakeFormControl label={intl.formatMessage(messages.firstName)} value={userData.firstname} />
+            <FakeFormControl label={intl.formatMessage(messages.lastName)} value={userData.lastname} />
+            <FakeFormControl label={intl.formatMessage(messages.login)} value={userData.login} />
+            <FakeFormControl label={intl.formatMessage(messages.phone)} value={userData.phone} />
+            <FakeFormControl label={intl.formatMessage(messages.email)} value={userData.email} />
+          </div>
+        </div>
+        <div className="fake-form-actions">
+          <Link to="profile/edit" >
+            <Button iconEl={<FontIcon>create</FontIcon>} raised primary >{intl.formatMessage(messages.edit)}</Button>
+          </Link>
+        </div>
+      </div>
+    )
+}
+export default injectIntl(Profile)
