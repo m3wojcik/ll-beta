@@ -16,6 +16,14 @@ export default class MediaLibItemActions extends Component {
           defaultMessage="Reserve"
         />
         </Button>)
+      output.push(<Button key="Details" primary flat
+            onClick={onDetailsClick.bind(this, item)}
+            >
+              <FormattedMessage 
+                  id="mediaLibItemActions.details"
+                  defaultMessage="Details"
+                />
+            </Button>)
     }else if (reserved) {
       let progress;
       if(inProgress){
@@ -34,14 +42,7 @@ export default class MediaLibItemActions extends Component {
           />
         </Button>)
     }
-    output.push(<Button key="Details" primary flat
-      onClick={onDetailsClick.bind(this, item)}
-      >
-        <FormattedMessage 
-            id="mediaLibItemActions.details"
-            defaultMessage="Details"
-          />
-      </Button>)
+
     return(
       <ActionsRow>{output}</ActionsRow>
     )

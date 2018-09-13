@@ -10,7 +10,7 @@ import {getAppSettings, getCleanPath} from '../actions/Functions';
 import { fetchAppData, setAppSettings, fetchLocales } from "../actions/AppActions";
 import { removeToast } from "../actions/ToastsActions";
 import { IntlProvider, addLocaleData } from 'react-intl';
-import en from 'react-intl/locale-data/pl';
+import en from 'react-intl/locale-data/en';
 import pl from 'react-intl/locale-data/pl';
 import es from 'react-intl/locale-data/es';
 import ru from 'react-intl/locale-data/ru';
@@ -68,7 +68,7 @@ export default class AppLayoutContainer extends Component {
     }
     render(){
       const { hasTabs, appData, toasts, error } = this.props;
-      let language;
+      let language, locale;
       if(!appData.fetched){
         return(
           <div>
@@ -78,9 +78,10 @@ export default class AppLayoutContainer extends Component {
         )
       }else{
         language = appData.user.language.split('_')[0]
+        locale = appData.locales.locale.split('_')[0]
       }
       return(  
-        <IntlProvider locale={language} messages={localeData[language]}>
+        <IntlProvider locale={locale} messages={localeData[language]}>
         <div className={language}>
           <Snackbar {...toasts} onDismiss={this.handleRemoveToast} />
           <LayoutContainer

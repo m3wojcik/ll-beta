@@ -58,7 +58,7 @@ export default class ElibraryList extends Component {
 }
 ElibraryList.propTypes = {
   elibraryList: React.PropTypes.array.isRequired,
-  onDetailsClick: React.PropTypes.func.isRequired,
+  onDetailsClick: React.PropTypes.func,
   searchValue: React.PropTypes.string,
   onReserveClick: React.PropTypes.func,
   onCancelReservationClick: React.PropTypes.func,

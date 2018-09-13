@@ -1,14 +1,14 @@
 [
   {
-    "id": "elibraryReservationDate.reserve",
-    "defaultMessage": "Reserve"
-  },
-  {
     "id": "elibraryReservationDate.pickReservationDate",
     "defaultMessage": "Pick reservation date"
   },
   {
     "id": "elibraryReservationDate.cancel",
     "defaultMessage": "Cancel"
+  },
+  {
+    "id": "elibraryReservationDate.reserve",
+    "defaultMessage": "Reserve"
   }
 ]

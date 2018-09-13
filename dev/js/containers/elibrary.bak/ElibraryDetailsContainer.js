@@ -16,11 +16,10 @@ export default class ElibraryDetailsContainer extends Component {
   componentDidMount(){
     const {id} = this.props;
     console.log('mount', id);
-    this.props.dispatch(fetchElibraryDetails({id: id}));
+    this.props.dispatch(fetchElibraryDetails({group_id: id}));
   }
   render(){
     const { fetched,elibraryDetails, id } = this.props;
-    console.log('render', elibraryDetails);
     if(!fetched){
       return(
           <Loader center key="loader" />

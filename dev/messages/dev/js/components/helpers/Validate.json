@@ -1,0 +1,18 @@
+[
+  {
+    "id": "Validate.invalidEmailAddress",
+    "defaultMessage": "Invalid e-mail address"
+  },
+  {
+    "id": "Validate.pleaseFillPassword",
+    "defaultMessage": "Please fill password"
+  },
+  {
+    "id": "Validate.pleaseFillPassword2",
+    "defaultMessage": "Please fill password"
+  },
+  {
+    "id": "Validate.passwordsDontMatch",
+    "defaultMessage": "Passwords don't match"
+  }
+]

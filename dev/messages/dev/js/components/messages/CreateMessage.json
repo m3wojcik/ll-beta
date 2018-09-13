@@ -1,0 +1,18 @@
+[
+  {
+    "id": "createMessage.receivers",
+    "defaultMessage": "Receivers"
+  },
+  {
+    "id": "createMessage.subject",
+    "defaultMessage": "Subject"
+  },
+  {
+    "id": "createMessage.message",
+    "defaultMessage": "Message"
+  },
+  {
+    "id": "createMessage.send",
+    "defaultMessage": "Send"
+  }
+]

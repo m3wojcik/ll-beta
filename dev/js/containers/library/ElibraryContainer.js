@@ -52,13 +52,12 @@ export default class ElibraryContainer extends Component {
     this.handleDrawerToggle(true)
   }
   handleDetailsClick = (object) => {
-    console.log(object);
+    console.log('details')
     this.props.dispatch(setElibraryView({
       dialogVisible: true,
       dialogTitle: object.title,
       dialogData: <ElibraryDetailsContainer id={object.id} />
     }))
-    //this.handleDialogToggle(true)
   }
   handleReserveClick = () => {
     const {reservation} = this.props
@@ -73,7 +72,9 @@ export default class ElibraryContainer extends Component {
     return(
       <Content noPadding>
         <ElibraryBookingsContainer />
-        <ElibraryReservationsContainer />
+        <ElibraryReservationsContainer
+          onDetailsClick={this.handleDetailsClick}
+        />
         <ElibraryListContainer
           onReserveClick={this.handleReserveDrawerClick}
           onDetailsClick={this.handleDetailsClick}

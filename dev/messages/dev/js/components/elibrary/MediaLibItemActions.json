@@ -4,11 +4,11 @@
     "defaultMessage": "Reserve"
   },
   {
-    "id": "mediaLibItemActions.cancelReservation",
-    "defaultMessage": "Cancel reservation"
-  },
-  {
     "id": "mediaLibItemActions.details",
     "defaultMessage": "Details"
+  },
+  {
+    "id": "mediaLibItemActions.cancelReservation",
+    "defaultMessage": "Cancel reservation"
   }
 ]

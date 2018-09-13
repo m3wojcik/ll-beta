@@ -1,6 +1,4 @@
 import React,{Component} from 'react';
-import { render } from 'react-dom';
-import { connect } from "react-redux";
 import WebFontLoader from 'webfontloader';
 
 require('../../scss/style.scss');

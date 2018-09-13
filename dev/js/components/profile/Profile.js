@@ -42,7 +42,7 @@ const messages = defineMessages({
     id: 'editProfile.save',
     defaultMessage: 'save'
   }
-  
+ 
 })
 
 let Profile= ({ intl, userData, saveUserData, handleSubmit, onBlur, onChangeAvatarClick }) => {

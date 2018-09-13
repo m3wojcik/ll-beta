@@ -33,7 +33,6 @@ export default class ElibraryReservationsContainer extends Component {
           <ElibraryList
             reserved={true}
             onCancelReservationClick={this.handleCancelReservationClick}
-            onDetailsClick={this.handleDetailsClick}
             searchValue={toolbar.searchValue}
             elibraryList={books}/>
         </ListWithHeader>

@@ -6,7 +6,8 @@ import { setResevedDateFrom } from "../../actions/ElibraryListActions";
 
 @connect((store) => {
    return {
-     reservation: store.elibrary.reservation
+     reservation: store.elibrary.reservation,
+     locales: store.app.appData.locales
   };
 })
 export default class ElibraryReservationDateContainer extends Component {
@@ -19,13 +20,14 @@ export default class ElibraryReservationDateContainer extends Component {
     this.props.dispatch(setResevedDateFrom(dateObject))
   }
   render(){
-    const { onCancelClick , reservation, onReserveClick} = this.props;
+    const { locales, onCancelClick , reservation, onReserveClick} = this.props;
     return(
         <ElibraryReservationDate
         value={reservation.dateFrom}
         onCancelClick={onCancelClick}
         onReserveClick={onReserveClick}
         inProgress={reservation.saving}
+        locales={locales}
         onDateChange={this.handleDateChange} />
     )
   }

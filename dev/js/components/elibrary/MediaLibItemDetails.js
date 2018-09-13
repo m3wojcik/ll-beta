@@ -53,7 +53,6 @@ const MediaLibItemDetails = ({intl, item, available, borrowed, reserved}) =>{
     }
     if(item.to && borrowed){
       let dateTo = new Date(item.to);
-      console.log('dateTo',item.to,dateTo);
       bookingDetails.push({"label": intl.formatMessage(messages.returnDate),"value": <FormattedDate value={dateTo} day="numeric" month="numeric" year="numeric" />})
     }
     if(item.quantity_available){

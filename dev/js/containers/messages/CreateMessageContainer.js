@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import {push} from 'react-router-redux';
-import TextField from 'react-md/lib/TextFields'
 import { showSnack } from 'react-redux-snackbar';
 //import ReactQuill from 'react-quill';
-import Button from 'react-md/lib/Buttons/Button';
 import { addAlert } from "../../actions/AlertActions";
 import { sendMessage, setMessageSubject, setMessageText } from "../../actions/MessagesActions";
+import CreateMessage from '../../components/messages/CreateMessage'
 import Content from '../../components/helpers/Content'
 import Loader from '../../components/helpers/Loader'
-import AddressBookContainer from './AddressBookContainer'
+
 import AlertContainer from '../AlertContainer'
 //import '../../../scss/quill.snow.scss';
 
@@ -65,21 +64,13 @@ export default class CreateMessageContainer extends Component {
       <Content >
         <AlertContainer />
         {sendMessage.fetching ? <Loader centerPadding /> : null}
-        <form class="ui form">
-          <div className="field">
-            <label>Receivers</label>
-            <AddressBookContainer />
-          </div>
-          <div className="field">
-            <label>Subject</label>
-            <input value={subject} onChange={this.handleSubjectChange} name="subject" type="text"/>
-          </div>
-          <div className="field">
-            <label>Message</label>
-            <textarea value={text} onChange={this.handleTextChange} ></textarea>
-          </div>
-          <Button raised primary onClick={this.handleSendClick}>Send</Button>
-        </form>
+        <CreateMessage 
+          subcject={subject}
+          text={text}
+          onSubjectChange={this.handleSubjectChange}
+          onTextChange={this.handleTextChange}
+          onSendClick={this.handleSendClick}
+        />
       </Content>
     )
   }

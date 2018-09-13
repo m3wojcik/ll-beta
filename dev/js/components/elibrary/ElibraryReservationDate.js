@@ -1,42 +1,33 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
-import DatePicker from 'react-md/lib/Pickers/DatePickerContainer';
-import Button from 'react-md/lib/Buttons/Button';
-import CircularProgress from 'react-md/lib/Progress/CircularProgress';
+import { DatePicker, Button } from 'react-md';
 import Loader from '../helpers/Loader'
 
 export default class ElibraryReservationDate extends Component {
 
   render(){
-    const { value, onCancelClick, onReserveClick, onDateChange, inProgress } = this.props;
-
+    const { value, onCancelClick, onReserveClick, onDateChange, inProgress, locales  } = this.props;
+    console.log('locales',locales)
     let btnPrimaryProps;
     if(inProgress) {
       btnPrimaryProps = {
         onClick:onReserveClick.bind(this),
         raised: true,
         primary: true,
-        disabled: true,
-        label: <FormattedMessage 
-          id="elibraryReservationDate.reserve"
-          defaultMessage="Reserve"
-        />
+        disabled: true
       }
     }else{
       btnPrimaryProps = {
         onClick:onReserveClick.bind(this),
         raised: true,
-        primary: true,
-        label: <FormattedMessage 
-          id="elibraryReservationDate.reserve"
-          defaultMessage="Reserve"
-        />
+        primary: true
       }
     }
     return(
         <div className="flex-center flex-wrap">
         {  inProgress ? <Loader center /> : null}
             <div className="">
+              {console.log(value)}
               <DatePicker
                 id="reservation-date"
                 className="inline-center-picker"
@@ -44,10 +35,12 @@ export default class ElibraryReservationDate extends Component {
                   id="elibraryReservationDate.pickReservationDate"
                   defaultMessage="Pick reservation date"
                 />}
+                firstDayOfWeek={1}
                 autoOk
                 onChange={onDateChange.bind(this)}
                 value={value}
-                className=""
+                locales={locales.locale.replace("_", "-")}
+                portal
               />
           </div>
           <div className="width-100 text-center">
@@ -57,7 +50,12 @@ export default class ElibraryReservationDate extends Component {
                   defaultMessage="Cancel"
                 />
               </Button>
-              <Button {...btnPrimaryProps} />
+              <Button {...btnPrimaryProps}>
+              <FormattedMessage 
+                id="elibraryReservationDate.reserve"
+                defaultMessage="Reserve"
+              />
+              </Button>
           </div>
       </div>
     )

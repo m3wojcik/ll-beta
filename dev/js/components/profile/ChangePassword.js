@@ -7,7 +7,7 @@ import Button from 'react-md/lib/Buttons/Button';
 import FakeFormControl from './../helpers/FakeFormControl';
 import FieldInputEditable from './../helpers/FieldInputEditable'
 import Avatar from './../helpers/Avatar'
-import {email} from './../helpers/Validate'
+import {emptyPassword, passwordMatch} from './../helpers/Validate'
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 
@@ -45,9 +45,9 @@ let ChangePassword= ({ intl, changePassword, handleSubmit }) => {
         <form className="" onSubmit={handleSubmit}>
           <div className="md-grid">
             <div className="md-cell md-cell--6">
-                <Field placeholder={intl.formatMessage(messages.oldPass)} name="oldPass" component={FieldInputEditable} type="password"/>
-                <Field placeholder={intl.formatMessage(messages.newPass)} name="newPass" component={FieldInputEditable} type="password"/>
-                <Field placeholder={intl.formatMessage(messages.newPass2)} name="newPass2" component={FieldInputEditable} type="password"/>
+                <Field placeholder={intl.formatMessage(messages.oldPass)} name="oldPass" component={FieldInputEditable} type="password" validate={emptyPassword} />
+                <Field placeholder={intl.formatMessage(messages.newPass)} name="newPass" component={FieldInputEditable} type="password" validate={emptyPassword}/>
+                <Field placeholder={intl.formatMessage(messages.newPass2)} name="newPass2" component={FieldInputEditable} type="password" validate={passwordMatch}/>
             </div>
           </div>
           <div className="fake-form-actions">

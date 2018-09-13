@@ -4,7 +4,6 @@ import TabPaneTitle from '../helpers/TabPaneTitle';
 import { List, ListItem } from 'react-md/lib/Lists';
 import MenuSwitchGroup from '../helpers/MenuSwitchGroup';
 import LabelsOptionsGroup from '../helpers/LabelsOptionsGroup';
-import {DataTable,  TableHeader,  TableBody,  TableRow,  TableColumn} from 'react-md';
 import {injectIntl, formatMessage, defineMessages} from 'react-intl';
 
 const messages = defineMessages({
